@@ -1,2 +1,3 @@
-# catalog
+# Catalog
+USFS Metadata Catalog
 # catalog
