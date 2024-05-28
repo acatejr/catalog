@@ -11,19 +11,18 @@ class BaseModel(models.Model):
 
 
 class Document(BaseModel):
-    
     metadata_url = models.CharField(
         max_length=1500,
         unique=True,
         null=True,
-        help_text="The url used to access the metadata."
+        help_text="The url used to access the metadata.",
     )
-    
+
     type = models.CharField(
         max_length=150,
         unique=False,
         null=True,
-        help_text="The metadata type.  Usually an ISO standard format."
+        help_text="The metadata type.  Usually an ISO standard format.",
     )
 
     description = models.CharField(

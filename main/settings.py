@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_extensions",
+    "graphene_django",
     "apps.catalog",
 ]
 
@@ -136,3 +137,5 @@ STATIC_ROOT = os.environ.get("DJANGO_STATIC_ROOT")
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+GRAPHENE = {"SCHEMA": "apps.catalog.schema.schema"}

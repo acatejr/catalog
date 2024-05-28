@@ -4,20 +4,28 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('catalog', '0002_created_document_model'),
+        ("catalog", "0002_created_document_model"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='document',
-            name='source_url',
-            field=models.CharField(help_text='The url used to access the metadata.', max_length=1500, null=True, unique=True),
+            model_name="document",
+            name="source_url",
+            field=models.CharField(
+                help_text="The url used to access the metadata.",
+                max_length=1500,
+                null=True,
+                unique=True,
+            ),
         ),
         migrations.AddField(
-            model_name='document',
-            name='type',
-            field=models.CharField(help_text='The metadata type.  Usually an ISO standard format.', max_length=150, null=True),
+            model_name="document",
+            name="type",
+            field=models.CharField(
+                help_text="The metadata type.  Usually an ISO standard format.",
+                max_length=150,
+                null=True,
+            ),
         ),
     ]

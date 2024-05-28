@@ -4,15 +4,14 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('catalog', '0003_added_source_ur_and_type_to_document_model'),
+        ("catalog", "0003_added_source_ur_and_type_to_document_model"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='document',
-            old_name='source_url',
-            new_name='metadata_url',
+            model_name="document",
+            old_name="source_url",
+            new_name="metadata_url",
         ),
     ]

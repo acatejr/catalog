@@ -35,16 +35,11 @@ class Command(BaseCommand):
                 type = resp["@type"]
 
             try:
-                doc = Document(
-                    type=type,
-                    description=description,
-                    metadata_url=url
-                )
+                doc = Document(type=type, description=description, metadata_url=url)
 
                 doc.save()
             except IntegrityError as err:
                 pass
-
 
     def national_data_set(self):
         base_url = "https://data.fs.usda.gov/geodata/edw/datasets.php"
@@ -53,7 +48,6 @@ class Command(BaseCommand):
         table = soup.find("table", class_="fcTable")
         rows = table.find_all("tr")
         for row in rows:
-            
             cells = row.find_all("td")
             title = cells[0].find("strong").get_text()
             metadata_anchor = cells[1].find("a")
@@ -77,7 +71,6 @@ class Command(BaseCommand):
                     doc.save()
                 except IntegrityError as err:
                     pass
-
 
     def add_arguments(self, parser):
         # parser.add_argument('sample', nargs='+')
