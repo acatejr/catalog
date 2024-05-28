@@ -10,4 +10,5 @@ ruff
 psycopg2-binary
 bs4
 graphene_django
+lxml
 # sentence-transformers
