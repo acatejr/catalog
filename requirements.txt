@@ -9,7 +9,7 @@ requests
 ruff
 psycopg2-binary
 bs4
-graphene_django
 lxml
-graphene-django
+Werkzeug
+uvicorn
 # sentence-transformers

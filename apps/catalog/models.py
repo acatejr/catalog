@@ -34,4 +34,4 @@ class Document(BaseModel):
 
     @property
     def short_descr(self):
-        return truncatechars(self.description, 25)
+        return truncatechars(self.description, 50)

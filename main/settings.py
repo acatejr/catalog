@@ -29,11 +29,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-roj0l)!b!14(exoh@5iaofx5(66(_s14q5lx_&^d%b4ff&9#$#"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+# DEBUG = False
 DEBUG = is_true(os.environ.get("DJANGO_DEBUG"))
+# DEBUG = False
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_extensions",
-    "graphene_django",
     "apps.catalog",
 ]
 
@@ -138,4 +137,3 @@ STATIC_ROOT = os.environ.get("DJANGO_STATIC_ROOT")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-GRAPHENE = {"SCHEMA": "apps.catalog.schema.schema"}

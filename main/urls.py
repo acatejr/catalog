@@ -16,14 +16,16 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
-from graphene_django.views import GraphQLView
+from django.urls import path, include
 from django.views.decorators.csrf import csrf_exempt
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 import os
+import apps.catalog.urls as catalog_urls
+
 
 urlpatterns = [
-    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
     path("admin/", admin.site.urls),
+    # path('catalog/', include(catalog_urls)),
 ]
 
 admin.site.site_header = os.environ.get("ADMIN_SITE_SITE_HEADER", "Admin")
