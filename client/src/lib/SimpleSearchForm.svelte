@@ -3,21 +3,21 @@
 
     let data = []
     let searchTerm = ""
-    let baseApiUrl = "http://127.0.0.1:8000/"
+
+    let baseApiUrl = "http://127.0.0.1:8000"
 
     const handleSearch = async(url) => {
         axios.get(url, {
-            methid: "GET",
-            mode: "no-cors",
+            method: "GET",
             headers: {
-                // "Access-Control-Allow-Origin" : "*",
-                // "Access-Control-Allow-Methods":"GET,PUT,POST,DELETE,PATCH,OPTIONS",
                 "Content-Type": "application/json",
                 "X-API-KEY": "api-key",
             }
         })
         .then((resp) => {
-            data = resp.data
+            if (resp.data) {
+                data = resp.data.data
+            }
         })
     }
 
@@ -25,7 +25,7 @@
         searchTerm = e.target.value
 
         if (searchTerm.length > 3) {
-            let url = `${baseApiUrl}catalog/api/documents/${searchTerm}/`
+            let url = `${baseApiUrl}/simple-search/${searchTerm}/`
             await handleSearch(url)
         } else {
             data = []
@@ -55,11 +55,10 @@
 
     <div class="row">
         <div class="col">
-            Search term: {searchTerm}
             <table class="table table-sm">
                 <thead>
                     <tr>
-                        <th>Search results:</th>
+                        <th>Search results: {searchTerm}</th>
                     </tr>
                 </thead>
 

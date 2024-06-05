@@ -1,9 +1,12 @@
 <script>
     import SimpleSearchForm from "./lib/SimpleSearchForm.svelte"
+    import Heade from "./lib/Header.svelte";
+    import Header from "./lib/Header.svelte";
 </script>
 
 <main>
     <div class="container">
+        <Header/>
         <SimpleSearchForm />
     </div>
 </main>
