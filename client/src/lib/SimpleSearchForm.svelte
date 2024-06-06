@@ -24,7 +24,7 @@
     const handleInput = async(e) => {
         searchTerm = e.target.value
 
-        if (searchTerm.length > 3) {
+        if (searchTerm.length >= 2) {
             let url = `${baseApiUrl}/simple-search/${searchTerm}/`
             await handleSearch(url)
         } else {
@@ -35,7 +35,7 @@
 </script>
 
 <main>
-    <div class="row">
+    <div class="row title">
         <div class="col">
             <h3>Simple Catalog Search</h3>
         </div>
@@ -74,4 +74,8 @@
     </div>
 </main>
 
-<style></style>
+<style>
+    .title {
+        padding-top: 15px;
+    }
+</style>
