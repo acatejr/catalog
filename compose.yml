@@ -1,14 +1,32 @@
 services:
 
-  catalogdb:
+#   catalog:
+#     container_name: catalog
+#     image: catalog
+#     build: .
+#     env_file:
+#       - .env
+#     ports:
+#       - 8000:8000
+#     volumes:
+#       - $PWD:/catalog
+#       # - static:/var/www/static
+#       # - media:/var/www/media
+#     tty: true
+#     stdin_open: true
+#     restart: unless-stopped
+    # command: "gunicorn main.wsgi:application --bind '0.0.0.0:8000' --reload"
+
+  db:
     container_name: catalogdb
-    image: ankane/pgvector
+    image: postgres:latest
+    env_file: .env
     ports:
-      - "5432:5432"
-    env_file:
-      - .env
+      - 5432:5432
     volumes:
       - pgdata:/var/lib/postgresql/data
 
 volumes:
   pgdata:
+  # static:
+  # media:
