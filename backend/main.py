@@ -7,7 +7,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, load_only
 # import psycopg2
 # from fastapi.encoders import jsonable_encoder
-from .models import Document
+from .models import Document, SearchTermLog
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -30,6 +30,11 @@ POSTGRES_HOST = os.environ.get("POSTGRES_HOST")
 db_url = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:5432"
 engine = create_engine(db_url)
 
+def log_search_term(session, term):
+    search_term = SearchTermLog(term=term)
+    session.add(search_term)
+    session.commit()
+
 @api.get("/health")
 async def health():
     """API health check"""
@@ -48,6 +53,10 @@ async def simple_search(term: str):
     }
 
     with Session(engine) as session:
+
+        # The search term has to be saved first in this session
+        log_search_term(session, term)
+
         query = (
             session.query(Document)
             .options(
@@ -58,6 +67,8 @@ async def simple_search(term: str):
             .filter(Document.description.like(f"%{term}%"))
         )
         data["data"] = query.all()
+
+
 
     return data
 

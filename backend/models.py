@@ -1,15 +1,8 @@
 from sqlalchemy import Column, Integer, String, DateTime
-
-# from pgvector.sqlalchemy import Vector
 from datetime import datetime
 from sqlalchemy.orm import declarative_base, relationship
-# from typing import Optional
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.sql.expression import text
-
-# import enum
-# from sqlalchemy import Enum
-# import sqlalchemy.types as types
 
 Base = declarative_base()
 target_metadata = Base.metadata
@@ -24,6 +17,26 @@ class Document(Base):
     created_at = Column(
         TIMESTAMP(timezone="TRUE"), nullable=False, server_default=text("now()")
     )
+
+    updated_at = Column(
+        TIMESTAMP(timezone="TRUE"),
+        nullable=False,
+        server_default=text("now()"),
+        server_onupdate=text("now()"),
+    )
+
+class SearchTermLog(Base):
+    """Table that keeps log of search terms
+    """
+    __tablename__ = "search_terms"
+
+    id = Column(Integer, primary_key=True)
+    term = Column(String(2500), unique=False, nullable=True)
+
+    created_at = Column(
+        TIMESTAMP(timezone="TRUE"), nullable=False, server_default=text("now()")
+    )
+
     updated_at = Column(
         TIMESTAMP(timezone="TRUE"),
         nullable=False,
