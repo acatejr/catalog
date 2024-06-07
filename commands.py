@@ -17,8 +17,10 @@ POSTGRES_HOST = os.environ.get("POSTGRES_HOST")
 db_url = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:5432"
 engine = create_engine(db_url)
 
+
 def init_db():
     Base.metadata.create_all(engine)
+
 
 SEED_URLS = [
     "https://catalog.data.gov/harvest/object/203bed83-5da3-4a64-b156-ea016f277b07",
@@ -38,6 +40,7 @@ SEED_URLS = [
     "https://catalog.data.gov/harvest/object/a0a63e30-b3cb-418b-8616-d89ee2e9e100",
 ]
 
+
 @click.command("load_seed_data")
 def load_seed_data():
     click.echo("Loading seed urls.")
@@ -50,10 +53,7 @@ def load_seed_data():
         if "@type" in resp.keys():
             type = resp["@type"]
 
-        document = Document(
-            metadata_url = url,
-            description = description
-        )
+        document = Document(metadata_url=url, description=description)
 
         documents.append(document)
         if documents and len(documents):
@@ -67,12 +67,11 @@ def load_seed_data():
 
     click.echo("Done!")
 
+
 @click.command("show_stache_creds")
 def show_stache_creds():
     url = os.environ.get("UA_STACHE_URL")
-    headers = {
-        "X-STACHE-KEY": os.environ.get("X_STACHE_KEY")
-    }
+    headers = {"X-STACHE-KEY": os.environ.get("X_STACHE_KEY")}
 
     for i in range(100):
         resp = requests.get(url, headers=headers)
@@ -82,9 +81,11 @@ def show_stache_creds():
             secret = json.loads(stache_entry["secret"])
             click.echo(f"{i}, {secret}")
 
+
 @click.group(help="")
 def cli():
     pass
+
 
 if __name__ == "__main__":
     cli.add_command(load_seed_data)

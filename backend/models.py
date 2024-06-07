@@ -7,6 +7,7 @@ from sqlalchemy.sql.expression import text
 Base = declarative_base()
 target_metadata = Base.metadata
 
+
 class Document(Base):
     __tablename__ = "documents"
 
@@ -25,9 +26,10 @@ class Document(Base):
         server_onupdate=text("now()"),
     )
 
+
 class SearchTermLog(Base):
-    """Table that keeps log of search terms
-    """
+    """Table that keeps log of search terms"""
+
     __tablename__ = "search_terms"
 
     id = Column(Integer, primary_key=True)
@@ -43,6 +45,7 @@ class SearchTermLog(Base):
         server_default=text("now()"),
         server_onupdate=text("now()"),
     )
+
 
 # from sqlalchemy import Column, Integer, String, DateTime
 # # from pgvector.sqlalchemy import Vector
