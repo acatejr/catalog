@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-import os
+import os, json
 import click
 import requests
 from bs4 import BeautifulSoup
@@ -38,7 +38,6 @@ SEED_URLS = [
     "https://catalog.data.gov/harvest/object/a0a63e30-b3cb-418b-8616-d89ee2e9e100",
 ]
 
-
 @click.command("load_seed_data")
 def load_seed_data():
     click.echo("Loading seed urls.")
@@ -66,81 +65,28 @@ def load_seed_data():
                     # TODO: Need to add some logging here.
                     print(e)
 
-
-    # id = Column(Integer, primary_key=True)
-    # metadata_url = Column(String(250), unique=True, nullable=True)
-    # description = Column(String(2500), unique=False, nullable=True)
-    # created_at = Column(DateTime, default=datetime.now)
-    # updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now)
-
     click.echo("Done!")
 
+@click.command("show_stache_creds")
+def show_stache_creds():
+    url = os.environ.get("UA_STACHE_URL")
+    headers = {
+        "X-STACHE-KEY": os.environ.get("X_STACHE_KEY")
+    }
+
+    for i in range(100):
+        resp = requests.get(url, headers=headers)
+
+        if resp.status_code == 200:
+            stache_entry = json.loads(resp.text)
+            secret = json.loads(stache_entry["secret"])
+            click.echo(f"{i}, {secret}")
 
 @click.group(help="")
 def cli():
     pass
 
-
 if __name__ == "__main__":
     cli.add_command(load_seed_data)
+    cli.add_command(show_stache_creds)
     cli()
-
-"""
-class Command(BaseCommand):
-    help = "Load seed data."
-
-    def data_dot_gov_seeds(self):
-        for url in SEED_URLS:
-            resp = requests.get(url).json()
-            description = resp["description"]
-            type = ""
-            if "@type" in resp.keys():
-                type = resp["@type"]
-
-            try:
-                doc = Document(type=type, description=description, metadata_url=url)
-
-                doc.save()
-            except IntegrityError as err:
-                pass
-
-    def national_data_set(self):
-        base_url = "https://data.fs.usda.gov/geodata/edw/datasets.php"
-        resp = requests.get(base_url)
-        soup = BeautifulSoup(resp.content, "html.parser")
-        table = soup.find("table", class_="fcTable")
-        rows = table.find_all("tr")
-        for row in rows:
-            cells = row.find_all("td")
-            title = cells[0].find("strong").get_text()
-            metadata_anchor = cells[1].find("a")
-            metadata_href = None
-            if metadata_anchor and metadata_anchor.get_text() == "metadata":
-                metadata_href = (
-                    f"https://data.fs.usda.gov/geodata/edw/{metadata_anchor['href']}"
-                )
-
-                resp = requests.get(metadata_href)
-                soup = BeautifulSoup(resp.content, features="xml")
-                desc = soup.find("descript")
-                abstract = desc.find("abstract").get_text()
-                try:
-                    doc = Document(
-                        metadata_url=metadata_href,
-                        # title=title,
-                        description=abstract,
-                        type="USFS_NATIONAL_DATASET",
-                    )
-                    doc.save()
-                except IntegrityError as err:
-                    pass
-
-    def add_arguments(self, parser):
-        # parser.add_argument('sample', nargs='+')
-        pass
-
-    def handle(self, *args, **options):
-        # self.data_dot_gov_seeds()
-        self.national_data_set()
-
-"""
