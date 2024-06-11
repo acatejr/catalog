@@ -1,7 +1,0 @@
-faker
-pytest
-pytest-sugar
-ruff
-click
-requests
-bs4
