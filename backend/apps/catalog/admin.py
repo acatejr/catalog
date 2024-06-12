@@ -1,9 +1,12 @@
 from django.contrib import admin
 
 from django.contrib import admin
-from django import forms
-from .models import Domain
+from .models import Domain, RootDomain
 
+
+@admin.register(RootDomain)
+class RootDomainAdmin(admin.ModelAdmin):
+    list_display = ["id", "name", "created_on", "updated_on"]
 
 @admin.register(Domain)
 class DomainAdmin(admin.ModelAdmin):

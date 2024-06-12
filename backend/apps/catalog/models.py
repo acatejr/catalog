@@ -9,9 +9,17 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
+class RootDomain(BaseModel):
+    """The data catalog's root domain.  The catalog can have onlye 1 of these.
+    However, the root can have many sub-domains represented by each Domain object.
+    """
+
+    name = models.CharField(max_length=250, unique=True, null=False, help_text="Domain name")
+
 class Domain(BaseModel):
 
     name = models.CharField(max_length=250, unique=True, null=False, help_text="Domain name")
+
 
 # class Document(BaseModel):
 #     metadata_url = models.CharField(
