@@ -26,80 +26,53 @@ SEED_URLS = [
 class Command(BaseCommand):
     help = "Loads data into catalog database."
 
+    def remove_html(self, text):
+        txt = re.sub('<[^<]+?>', '', text).replace("\n", "")
+        return txt
+
     def load_data_dot_gov(self):
-        domain = Domain.objects.get(pk=2)
+        domain = Domain.objects.get(pk=1)
         for url in SEED_URLS:
             resp = requests.get(url).json()
             description = resp["description"]
-            desc = re.sub('<[^<]+?>', '', description).replace("\n", "")
+            # desc = re.sub('<[^<]+?>', '', description).replace("\n", "")
+            desc = self.remove_html(description)
             title = resp["title"]
             asset = Asset(title=title, metadata_url=url, description=desc, domain=domain)
             asset.save()
+
+    def load_nds_data(self):
+        domain = Domain.objects.get(pk=2)
+        base_url = "https://data.fs.usda.gov/geodata/edw/datasets.php"
+        resp = requests.get(base_url)
+        soup = BeautifulSoup(resp.content, "html.parser")
+        table = soup.find("table", class_="fcTable")
+        rows = table.find_all("tr")
+        for row in rows:            
+            cells = row.find_all("td")
+            title = self.remove_html(cells[0].find("strong").get_text())
+            metadata_anchor = cells[1].find("a")
+            metadata_url = None
+            if metadata_anchor and metadata_anchor.get_text() == "metadata":
+                metadata_url = f"https://data.fs.usda.gov/geodata/edw/{metadata_anchor['href']}"
+                resp = requests.get(metadata_url)
+                soup = BeautifulSoup(resp.content, features="xml")
+                desc = soup.find("descript")
+                abstract = self.remove_html(desc.find("abstract").get_text())
+
+                asset = Asset(
+                    metadata_url=metadata_url, 
+                    title=title, 
+                    description=abstract, 
+                    domain=domain
+                )
+
+                asset.save()                
 
     def add_arguments(self, parser):
         pass
         # parser.add_argument('sample', nargs='+')
 
     def handle(self, *args, **options):
-        self.load_data_dot_gov()
-
-
-# from apps.catalog.models import Document
-# from django.db.utils import IntegrityError
-
-# class Command(BaseCommand):
-#     help = "Load seed data."
-
-#     def data_dot_gov_seeds(self):
-#         for url in SEED_URLS:
-#             resp = requests.get(url).json()
-#             description = resp["description"]
-#             type = ""
-#             if "@type" in resp.keys():
-#                 type = resp["@type"]
-
-#             try:
-#                 doc = Document(type=type, description=description, metadata_url=url)
-
-#                 doc.save()
-#             except IntegrityError as err:
-#                 pass
-
-#     def national_data_set(self):
-#         base_url = "https://data.fs.usda.gov/geodata/edw/datasets.php"
-#         resp = requests.get(base_url)
-#         soup = BeautifulSoup(resp.content, "html.parser")
-#         table = soup.find("table", class_="fcTable")
-#         rows = table.find_all("tr")
-#         for row in rows:
-#             cells = row.find_all("td")
-#             title = cells[0].find("strong").get_text()
-#             metadata_anchor = cells[1].find("a")
-#             metadata_href = None
-#             if metadata_anchor and metadata_anchor.get_text() == "metadata":
-#                 metadata_href = (
-#                     f"https://data.fs.usda.gov/geodata/edw/{metadata_anchor['href']}"
-#                 )
-
-#                 resp = requests.get(metadata_href)
-#                 soup = BeautifulSoup(resp.content, features="xml")
-#                 desc = soup.find("descript")
-#                 abstract = desc.find("abstract").get_text()
-#                 try:
-#                     doc = Document(
-#                         metadata_url=metadata_href,
-#                         # title=title,
-#                         description=abstract,
-#                         type="USFS_NATIONAL_DATASET",
-#                     )
-#                     doc.save()
-#                 except IntegrityError as err:
-#                     pass
-
-#     def add_arguments(self, parser):
-#         # parser.add_argument('sample', nargs='+')
-#         pass
-
-#     def handle(self, *args, **options):
-#         # self.data_dot_gov_seeds()
-#         self.national_data_set()
+        # self.load_data_dot_gov()
+        self.load_nds_data()

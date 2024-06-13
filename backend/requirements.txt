@@ -9,4 +9,5 @@ ruff
 psycopg2-binary
 bs4
 python-dotenv
+lxml
 # sentence-transformers
