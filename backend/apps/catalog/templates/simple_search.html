@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h2>Simple Search</h2>
+            {% crispy form form.helper %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ data }}
+        </div>
+    </div>
+{% endblock %}
