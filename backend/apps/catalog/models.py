@@ -119,7 +119,7 @@ class Asset(BaseModel):
 
     @property
     def short_descr(self):
-        return truncatechars(self.description, 50)
+        return truncatechars(self.description, 75)
 
     @property
     def short_url(self):

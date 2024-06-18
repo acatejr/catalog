@@ -1,29 +1,28 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView, FormView, ListView
 from django.db.models import Q
+from django.core.paginator import Paginator
 from .forms import SimpleSearchForm
 from .models import Asset
 
-def simple_search(request):
+def simple_search(request, term=None, page=1):
     template = "simple_search.html"
-    data = None
-
+    
     if request.method == "GET":
-        return render(request, template, {"form": SimpleSearchForm()})
-    elif request.method == "POST":
-        form = SimpleSearchForm(request.POST)
-        if form.is_valid():
-            cleaned_data = form.cleaned_data
-            search_term = cleaned_data["search_term"]
-            assets = Asset.objects.filter(Q(description__icontains=search_term) | Q(title__icontains=search_term))
-            if assets:
-                data = {
-                    "assets": assets
-                }
+        
+        if "term" in request.GET.keys():
+            term = request.GET.get("term")
 
-        return render(request, template, {"form": SimpleSearchForm(), "data": data})
+        if term:
+            assets = Asset.objects.filter(Q(description__icontains=term) | Q(title__icontains=term)).order_by("id")
+            paginator = Paginator(assets, 15)               
+            assets = paginator.page(page)
+            return render(request, template, {"term": term, "page": page, "assets": assets})
 
+        return render(request, template, {"term": term, "page": page})
 
-class SimpleSearchView(FormView):
-    form_class = SimpleSearchForm
-    template_name = "catalog/simple_search.html"
+class AssetListView(ListView):
+    model = Asset
+    paginate_by = 25
+    context_object_name = "assets"
+    ordering = ["title", "description"]

@@ -16,7 +16,7 @@ class SimpleSearchForm(forms.Form):
         self.helper = FormHelper()
         self.helper.form_id = 'simple-search'
         self.helper.form_class = 'form'
-        self.helper.form_method = 'post'
+        self.helper.form_method = 'get'
         self.helper.form_action = reverse("simple_search")
 
         self.helper.add_input(Submit('submit', 'Search'))
