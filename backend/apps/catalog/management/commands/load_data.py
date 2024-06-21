@@ -27,7 +27,7 @@ class Command(BaseCommand):
     help = "Loads data into catalog database."
 
     def remove_html(self, text):
-        txt = re.sub('<[^<]+?>', '', text).replace("\n", "")
+        txt = re.sub("<[^<]+?>", "", text).replace("\n", "")
         return txt
 
     def load_data_dot_gov(self):
@@ -38,7 +38,9 @@ class Command(BaseCommand):
             # desc = re.sub('<[^<]+?>', '', description).replace("\n", "")
             desc = self.remove_html(description)
             title = resp["title"]
-            asset = Asset(title=title, metadata_url=url, description=desc, domain=domain)
+            asset = Asset(
+                title=title, metadata_url=url, description=desc, domain=domain
+            )
             asset.save()
 
     def load_nds_data(self):
@@ -48,26 +50,28 @@ class Command(BaseCommand):
         soup = BeautifulSoup(resp.content, "html.parser")
         table = soup.find("table", class_="fcTable")
         rows = table.find_all("tr")
-        for row in rows:            
+        for row in rows:
             cells = row.find_all("td")
             title = self.remove_html(cells[0].find("strong").get_text())
             metadata_anchor = cells[1].find("a")
             metadata_url = None
             if metadata_anchor and metadata_anchor.get_text() == "metadata":
-                metadata_url = f"https://data.fs.usda.gov/geodata/edw/{metadata_anchor['href']}"
+                metadata_url = (
+                    f"https://data.fs.usda.gov/geodata/edw/{metadata_anchor['href']}"
+                )
                 resp = requests.get(metadata_url)
                 soup = BeautifulSoup(resp.content, features="xml")
                 desc = soup.find("descript")
                 abstract = self.remove_html(desc.find("abstract").get_text())
 
                 asset = Asset(
-                    metadata_url=metadata_url, 
-                    title=title, 
-                    description=abstract, 
-                    domain=domain
+                    metadata_url=metadata_url,
+                    title=title,
+                    description=abstract,
+                    domain=domain,
                 )
 
-                asset.save()                
+                asset.save()
 
     def add_arguments(self, parser):
         pass

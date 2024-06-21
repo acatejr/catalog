@@ -4,8 +4,6 @@ pytest
 pytest-sugar
 pytest-django
 django-extensions
-django-crispy-forms
-crispy-bootstrap5
 requests
 ruff
 psycopg2-binary

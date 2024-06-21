@@ -1,21 +1,18 @@
 services:
 
-  catalog:
-    container_name: catalog
-    image: catalog
-    build: .
-    env_file:
-      - .env
-    ports:
-      - 8000:8000
-    volumes:
-      - $PWD:/catalog
-      # - static:/var/www/static
-      # - media:/var/www/media
-    tty: true
-    stdin_open: true
-    restart: unless-stopped
-    # command: "gunicorn main.wsgi:application --bind '0.0.0.0:8000' --reload"
+  # catalog:
+  #   container_name: catalog
+  #   image: catalog
+  #   build: .
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - 8000:8000
+  #   volumes:
+  #     - $PWD:/catalog
+  #   tty: true
+  #   stdin_open: true
+  #   restart: unless-stopped
 
   db:
     container_name: catalogdb
@@ -50,5 +47,3 @@ volumes:
   neo4j_db_logs:
   neo4j_db_import:
   neo4j_db_plugins:
-  # static:
-  # media:

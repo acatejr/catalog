@@ -4,20 +4,29 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('catalog', '0006_added_format_to_domain'),
+        ("catalog", "0006_added_format_to_domain"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='domain',
-            name='host_system_name',
-            field=models.CharField(blank=True, help_text='System name currently hosting the data (i.e. Redshift,  Oracle)', max_length=500, null=True),
+            model_name="domain",
+            name="host_system_name",
+            field=models.CharField(
+                blank=True,
+                help_text="System name currently hosting the data (i.e. Redshift,  Oracle)",
+                max_length=500,
+                null=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='domain',
-            name='host_system_type',
-            field=models.CharField(blank=True, help_text='System type currently hosting the data', max_length=500, null=True),
+            model_name="domain",
+            name="host_system_type",
+            field=models.CharField(
+                blank=True,
+                help_text="System type currently hosting the data",
+                max_length=500,
+                null=True,
+            ),
         ),
     ]

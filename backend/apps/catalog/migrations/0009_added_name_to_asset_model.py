@@ -4,15 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('catalog', '0008_asset_model'),
+        ("catalog", "0008_asset_model"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='asset',
-            name='name',
-            field=models.CharField(blank=True, help_text='Name describing the asset', max_length=150, null=True),
+            model_name="asset",
+            name="name",
+            field=models.CharField(
+                blank=True,
+                help_text="Name describing the asset",
+                max_length=150,
+                null=True,
+            ),
         ),
     ]

@@ -4,15 +4,14 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('catalog', '0009_added_name_to_asset_model'),
+        ("catalog", "0009_added_name_to_asset_model"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='asset',
-            old_name='name',
-            new_name='title',
+            model_name="asset",
+            old_name="name",
+            new_name="title",
         ),
     ]

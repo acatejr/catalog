@@ -2,23 +2,29 @@ from django.shortcuts import render
 from django.views.generic import TemplateView, FormView, ListView
 from django.db.models import Q
 from django.core.paginator import Paginator
-from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from .forms import SimpleSearchForm, AdvancedSearchForm
-from .models import Asset
+from .models import Asset, SearchTerm
+
 
 def simple_search(request, term=None, page=1):
     template = "simple_search.html"
-    
+
     if request.method == "GET":
-        
         if "term" in request.GET.keys():
             term = request.GET.get("term")
 
         if term:
-            assets = Asset.objects.filter(Q(description__icontains=term) | Q(title__icontains=term)).order_by("id")
+            search_term = SearchTerm(term=term)
+            search_term.save()
+            assets = Asset.objects.filter(
+                Q(description__icontains=term) | Q(title__icontains=term)
+            ).order_by("id")
             paginator = Paginator(assets, 15)
             assets = paginator.page(page)
-            return render(request, template, {"term": term, "page": page, "assets": assets})
+            return render(
+                request, template, {"term": term, "page": page, "assets": assets}
+            )
 
         return render(request, template, {"term": term, "page": page})
 
@@ -32,17 +38,28 @@ class AdvancedSearch(ListView):
     term = ""
 
     def get(self, request, *args, **kwargs):
-        self.object_list = Asset.objects.all().order_by("id")
-        context = self.get_context_data(*args, **kwargs)       
+        # self.object_list = Asset.objects.all().order_by("id")
+        self.object_list = Asset.objects.none()
+        context = self.get_context_data(*args, **kwargs)
         assets = Asset.objects.none()
         if "term" in self.request.GET.keys():
-            self.term = self.request.GET["term"]
+            self.term = self.request.GET["term"]            
             if self.term:
-                assets = Asset.objects.annotate(
-                    search=SearchVector("title", "description"),
-                ).filter(search=self.term)
+                search_term = SearchTerm(term=self.term)
+                search_term.save()
+                search_vector = SearchVector("title", "description")
+                search_query = SearchQuery(self.term)
+                assets = (
+                    Asset.objects.annotate(
+                        search=search_vector,
+                        rank=SearchRank(search_vector, search_query),
+                    )
+                    .filter(search=self.term)
+                    .order_by("-rank")
+                )
                 context["assets"] = assets
-            else:                
+
+            else:
                 context["assets"] = assets
 
         return render(request, self.template_name, context)

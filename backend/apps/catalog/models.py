@@ -90,7 +90,6 @@ class Domain(BaseModel):
 
 
 class Asset(BaseModel):
-
     metadata_url = models.CharField(
         max_length=1500,
         unique=True,
@@ -104,7 +103,7 @@ class Asset(BaseModel):
         unique=True,
         null=True,
         blank=True,
-        help_text="Name describing the asset"
+        help_text="Name describing the asset",
     )
 
     description = models.CharField(
@@ -127,3 +126,8 @@ class Asset(BaseModel):
 
     def __str__(self) -> str:
         return f"{self.title}"
+
+
+class SearchTerm(BaseModel):
+
+    term = models.CharField(max_length=2000, blank=False)
