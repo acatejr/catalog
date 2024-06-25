@@ -1,6 +1,6 @@
 from django.urls import path
 from django.views.generic import TemplateView
-from .views import AssetListView, simple_search, AdvancedSearch
+from .views import AssetListView, simple_search, AdvancedSearch, AssetSearchFormView
 
 urlpatterns = [
     path("assets", AssetListView.as_view(), name="assets"),
@@ -13,4 +13,5 @@ urlpatterns = [
     path(
         "assets/advancedsearch", view=AdvancedSearch.as_view(), name="advanced_search"
     ),
+    path("assets/search", view=AssetSearchFormView.as_view(), name="asset_search")
 ]

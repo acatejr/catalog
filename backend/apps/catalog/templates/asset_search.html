@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h2>Asset Search</h2>
+
+            <form method="get">
+                {% csrf_token %}
+                {{ form }}
+            </form>
+        </div>
+    </div>
+
+    {% if assets %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for asset in assets %}
+                    <tr>
+                        <td>{{ asset.title }}</td>
+                        <td>{{ asset.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+    {% endif %}
+{% endblock %}

@@ -4,7 +4,27 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 # from .forms import SimpleSearchForm, AdvancedSearchForm
+from .forms import AssetSearchForm
 from .models import Asset, SearchTerm
+
+class AssetSearchFormView(FormView):
+    model = Asset
+    form_class = AssetSearchForm
+    template_name = "asset_search.html"
+
+    def get(self, request, *args, **kwargs):
+        """Handle GET requests: instantiate a blank version of the form."""    
+        context = self.get_context_data()
+        if "term" in self.request.GET.keys():
+            term = request.GET["term"]
+            search_term = SearchTerm(term=term)
+            search_term.save()
+            assets = Asset.objects.filter(
+                Q(description__icontains=term) | Q(title__icontains=term)
+            ).order_by("id")
+            context["assets"] = assets
+
+        return self.render_to_response(context)
 
 
 def simple_search(request, term=None, page=1):
@@ -36,6 +56,7 @@ class AdvancedSearch(ListView):
     ordering = ["title", "description"]
     paginate_by = 15
     term = ""
+    success_url = "foo"
 
     def get(self, request, *args, **kwargs):
         self.object_list = Asset.objects.none()

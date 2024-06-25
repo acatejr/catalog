@@ -1,7 +1,17 @@
 from django import forms
-# from crispy_forms.helper import FormHelper
-# from crispy_forms.layout import Submit
 from django.urls import reverse
+
+class AssetSearchForm(forms.Form):
+
+    term = forms.CharField(
+        label="",
+        max_length=150,
+        required=True,
+        widget=forms.TextInput(attrs={'placeholder': 'search term'})
+    )
+
+    # full_text_search = forms.BooleanField()
+
 
 
 # class SimpleSearchForm(forms.Form):
