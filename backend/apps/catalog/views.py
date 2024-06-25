@@ -3,7 +3,7 @@ from django.views.generic import TemplateView, FormView, ListView
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
-from .forms import SimpleSearchForm, AdvancedSearchForm
+# from .forms import SimpleSearchForm, AdvancedSearchForm
 from .models import Asset, SearchTerm
 
 
@@ -38,7 +38,6 @@ class AdvancedSearch(ListView):
     term = ""
 
     def get(self, request, *args, **kwargs):
-        # self.object_list = Asset.objects.all().order_by("id")
         self.object_list = Asset.objects.none()
         context = self.get_context_data(*args, **kwargs)
         assets = Asset.objects.none()
