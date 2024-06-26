@@ -129,5 +129,4 @@ class Asset(BaseModel):
 
 
 class SearchTerm(BaseModel):
-
     term = models.CharField(max_length=2000, blank=False)

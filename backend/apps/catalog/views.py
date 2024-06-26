@@ -3,9 +3,11 @@ from django.views.generic import TemplateView, FormView, ListView
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
+
 # from .forms import SimpleSearchForm, AdvancedSearchForm
 from .forms import AssetSearchForm
 from .models import Asset, SearchTerm
+
 
 class AssetSearchFormView(FormView):
     model = Asset
@@ -13,7 +15,7 @@ class AssetSearchFormView(FormView):
     template_name = "asset_search.html"
 
     def get(self, request, *args, **kwargs):
-        """Handle GET requests: instantiate a blank version of the form."""    
+        """Handle GET requests: instantiate a blank version of the form."""
         context = self.get_context_data()
         if "term" in self.request.GET.keys():
             term = request.GET["term"]
@@ -63,7 +65,7 @@ class AdvancedSearch(ListView):
         context = self.get_context_data(*args, **kwargs)
         assets = Asset.objects.none()
         if "term" in self.request.GET.keys():
-            self.term = self.request.GET["term"]            
+            self.term = self.request.GET["term"]
             if self.term:
                 search_term = SearchTerm(term=self.term)
                 search_term.save()

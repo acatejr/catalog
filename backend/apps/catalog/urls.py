@@ -13,5 +13,5 @@ urlpatterns = [
     path(
         "assets/advancedsearch", view=AdvancedSearch.as_view(), name="advanced_search"
     ),
-    path("assets/search", view=AssetSearchFormView.as_view(), name="asset_search")
+    path("assets/search", view=AssetSearchFormView.as_view(), name="asset_search"),
 ]

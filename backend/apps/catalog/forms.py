@@ -1,17 +1,16 @@
 from django import forms
 from django.urls import reverse
 
-class AssetSearchForm(forms.Form):
 
+class AssetSearchForm(forms.Form):
     term = forms.CharField(
         label="",
         max_length=150,
         required=True,
-        widget=forms.TextInput(attrs={'placeholder': 'search term'})
+        widget=forms.TextInput(attrs={"placeholder": "search term"}),
     )
 
     # full_text_search = forms.BooleanField()
-
 
 
 # class SimpleSearchForm(forms.Form):
