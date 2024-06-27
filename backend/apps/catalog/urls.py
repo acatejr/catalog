@@ -1,17 +1,7 @@
-from django.urls import path
-from django.views.generic import TemplateView
-from .views import AssetListView, simple_search, AdvancedSearch, AssetSearchFormView
+from django.urls import path, reverse
+from django.views.generic import TemplateView, RedirectView
+from .views import assets
 
 urlpatterns = [
-    path("assets", AssetListView.as_view(), name="assets"),
-    path(
-        "assets/simplesearch/<str:term>/<int:page>",
-        view=simple_search,
-        name="simple_search",
-    ),
-    path("assets/simplesearch", view=simple_search),
-    path(
-        "assets/advancedsearch", view=AdvancedSearch.as_view(), name="advanced_search"
-    ),
-    path("assets/search", view=AssetSearchFormView.as_view(), name="asset_search"),
+    path("", assets, name="assets"),
 ]
