@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from . import is_true
 
 load_dotenv()
 
@@ -27,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-8)(8(t9emklkt2s!xy48o79^%dlrqm3z+9)&u5auo=@jm1&z4h"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = is_true(os.environ.get("DJANGO_DEBUG"))
 
 ALLOWED_HOSTS = []
 
