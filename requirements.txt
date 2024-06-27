@@ -1,8 +1,0 @@
--r dev.requirements.txt
-fastapi
-python-dotenv
-alembic
-psycopg2-binary
-SQLAlchemy
-# sentence-transformers
-# pgvector

@@ -1,0 +1,13 @@
+django
+gunicorn
+pytest
+pytest-sugar
+pytest-django
+django-extensions
+requests
+ruff
+psycopg2-binary
+bs4
+python-dotenv
+lxml
+# sentence-transformers
