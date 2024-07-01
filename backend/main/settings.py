@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-from . import is_true
+from . import is_true, split_with_comma
 
 load_dotenv()
 
@@ -132,7 +132,5 @@ STATIC_ROOT = os.environ.get("DJANGO_STATIC_ROOT")
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
-
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-CRISPY_TEMPLATE_PACK = "bootstrap5"
+# CSRF
+CSRF_TRUSTED_ORIGINS = split_with_comma(os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", ""))
