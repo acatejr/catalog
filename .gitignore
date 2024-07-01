@@ -201,3 +201,5 @@ terraform.rc
 venv/
 neo4j_db/
 static/
+.envrc
+.venv/
