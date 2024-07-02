@@ -20,7 +20,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <button type="submit" class="btn btn-primary">Search</button>
                 <a href="{% url 'assets' %}" class="btn btn-primary">New Search</a>
             </form>
@@ -35,13 +35,15 @@
                         <tr>
                             <th>Title</th>
                             <th>Description</th>
+                            <th>Modified</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for asset in assets %}        
+                        {% for asset in assets %}
                         <tr>
                             <td>{{ asset.title }}</td>
                             <td>{{ asset.description|truncatewords:10|slice:"-4" }}...</td>
+                            <td>{{ asset.modified }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -82,9 +84,9 @@
                 {% endif %}
 
                 <a href="?page={{ assets.next_page_number }}">»</a>
-            {% endif %}        
+            {% endif %}
         </div>
-    {% endif %}   
+    {% endif %}
 
 {% endblock %}
 
