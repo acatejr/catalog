@@ -21,11 +21,14 @@ class DomainAdmin(admin.ModelAdmin):
 
 @admin.register(Asset)
 class AssetAdmin(admin.ModelAdmin):
+    list_filter = ["domain"]
+
     list_display = [
         "id",
         "title",
         "short_url",
         "short_descr",
+        "modified",
         "created_on",
         "updated_on",
     ]

@@ -25,7 +25,7 @@ def assets(request):
                     Q(description__icontains=term) | Q(title__icontains=term)
                 ).order_by("id")
         else:
-            items = Asset.objects.all()
+            items = Asset.objects.all().order_by("id")
 
         page = request.GET.get("page", 1)
         paginator = Paginator(items, items_per_page)

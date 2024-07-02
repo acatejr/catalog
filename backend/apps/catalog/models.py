@@ -116,6 +116,8 @@ class Asset(BaseModel):
 
     domain = models.ForeignKey(Domain, on_delete=models.DO_NOTHING)
 
+    modified = models.DateTimeField(null=True, blank=True, help_text="Date metadata was last modified.")
+
     @property
     def short_descr(self):
         return truncatechars(self.description, 75)

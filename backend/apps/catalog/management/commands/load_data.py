@@ -1,7 +1,10 @@
 from django.core.management.base import BaseCommand
 import requests
 from bs4 import BeautifulSoup
+from datetime import datetime
+from django.core.exceptions import ValidationError
 import re
+import arrow
 from apps.catalog.models import Asset, Domain
 
 SEED_URLS = [
@@ -38,8 +41,14 @@ class Command(BaseCommand):
             # desc = re.sub('<[^<]+?>', '', description).replace("\n", "")
             desc = self.remove_html(description)
             title = resp["title"]
+            modified = arrow.get(resp["modified"])
+
             asset = Asset(
-                title=title, metadata_url=url, description=desc, domain=domain
+                title=title,
+                metadata_url=url,
+                description=desc,
+                domain=domain,
+                modified=str(modified),
             )
             asset.save()
 
@@ -53,6 +62,12 @@ class Command(BaseCommand):
         for row in rows:
             cells = row.find_all("td")
             title = self.remove_html(cells[0].find("strong").get_text())
+            paragraphs = cells[0].find_all("p")
+
+            if len(paragraphs) > 2:
+                date_of_last_refresh = paragraphs[-1].get_text().replace("Date of last refresh: ", "").replace(",", "")
+                date_of_last_refresh = arrow.get(date_of_last_refresh, "MMM D YYYY")
+
             metadata_anchor = cells[1].find("a")
             metadata_url = None
             if metadata_anchor and metadata_anchor.get_text() == "metadata":
@@ -69,6 +84,7 @@ class Command(BaseCommand):
                     title=title,
                     description=abstract,
                     domain=domain,
+                    modified=str(date_of_last_refresh),
                 )
 
                 asset.save()
