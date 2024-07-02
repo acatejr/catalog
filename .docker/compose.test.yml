@@ -1,18 +1,21 @@
 services:
 
-  # catalog:
-  #   container_name: catalog
-  #   image: catalog
-  #   build: .
-  #   env_file:
-  #     - .env
-  #   ports:
-  #     - 8000:8000
-  #   volumes:
-  #     - $PWD:/catalog
-  #   tty: true
-  #   stdin_open: true
-  #   restart: unless-stopped
+  catalog:
+    container_name: catalog
+    image: catalog
+    build: .
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    volumes:
+      - $PWD/backend:/catalog
+      - static:/var/www/static
+      - media:/var/www/media
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    command: "gunicorn main.wsgi:application --bind '0.0.0.0:8000' --reload"
 
   db:
     container_name: catalogdb
@@ -20,6 +23,30 @@ services:
     env_file: .env
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  caddy:
+    container_name: mmp_caddy
+    image: caddy:latest
+    ports:
+      - "80:80"
+      - "443:443"
+
+    volumes:
+      # Caddy specific urls
+        - $PWD/.docker/caddy/Caddyfile:/etc/caddy/Caddyfile
+        - type: volume
+          source: media
+          target: /usr/share/caddy/media
+          read_only: true
+          volume:
+            nocopy: true
+        - type: volume
+          source: static
+          target: /usr/share/caddy/static
+          read_only: true
+          volume:
+            nocopy: true
+    restart: unless-stopped
 
   # neo4j:
   #   container_name: neo4j
@@ -41,6 +68,8 @@ services:
 
 volumes:
   pgdata:
+  static:
+  media:
   # neo4j_db_data:
   # neo4j_db_logs:
   # neo4j_db_import:
