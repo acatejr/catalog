@@ -25,7 +25,7 @@ services:
       - pgdata:/var/lib/postgresql/data
 
   caddy:
-    container_name: mmp_caddy
+    container_name: catalog_caddy
     image: caddy:latest
     ports:
       - "80:80"
