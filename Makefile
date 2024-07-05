@@ -2,8 +2,7 @@ SHELL := bash
 .ONESHELL:
 .SHELLFLAGS := -eu -o pipefail -c
 
-# # .PHONY: dcu dcd dcs shell chown build collect_static dcr serve
-.PHONY: collect_static dcu serve
+.PHONY: collect_static dcu dcd dcd serve shell
 
 collect_static:
 	docker exec -it catalog ./manage.py collectstatic --no-input
@@ -11,19 +10,17 @@ collect_static:
 dcu:
 	docker compose -f .docker/compose.yml up -d --build
 
+dcs:
+	docker compose -f .docker/compose.yml stop
+
 serve:
 	docker exec -it catalog python manage.py runserver 0.0.0.0:8000
 
 shell:
 	docker exec -it catalog bash
 
-
-
-# dcd:
-# 	docker compose -f .docker/compose.yml down
-
-# dcs:
-# 	docker compose -f .docker/compose.yml stop
+dcd:
+	docker compose -f .docker/compose.yml down
 
 # dcr:
 # 	docker compose -f .docker/compose.yml restart
@@ -34,6 +31,6 @@ shell:
 # build:
 # 	git pull
 # 	docker compose -f .docker/compose.prd.yml up -d --build
-# 	docker exec -it mmp ./manage.py migrate
-# 	docker exec -it mmp ./manage.py collectstatic --noinput
+# 	docker exec -it catalog ./manage.py migrate
+# 	docker exec -it catalog ./manage.py collectstatic --noinput
 # 	docker compose -f .docker/compose.prd.yml restart

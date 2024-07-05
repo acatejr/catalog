@@ -7,6 +7,8 @@ from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import AssetSearchForm
 from .models import Asset, SearchTerm
+from django.http import HttpResponse
+from django.views import View
 
 
 def assets(request):
@@ -38,3 +40,12 @@ def assets(request):
 
     context["assets"] = assets
     return render(request, template, context)
+
+
+
+class MapSearchView(View):
+    template_name = "catalog/map_search.html"
+
+    def get(self, request, *args, **kwargs):
+
+        return render(request, self.template_name, {"form": None})
