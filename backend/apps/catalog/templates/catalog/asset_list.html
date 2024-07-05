@@ -30,7 +30,7 @@
     <div class="row">
         <div class="col">
             {% if assets %}
-                <table class="table table-sm">
+                <table class="table table-sm" style="font-size: .8rem;">
                     <thead>
                         <tr>
                             <th>Title</th>
@@ -53,37 +53,25 @@
     </div>
 
     {% if assets.has_other_pages %}
-
-        <div class="pagination nav">
+        <div class="btn-group">
             {% if assets.has_previous %}
-                <a href="?page={{ assets.previous_page_number }}">«</a>
-
-                {% if assets.number > 3 %}
-                    <a href="?page=1">1</a>
-                    {% if assets.number > 4 %}
-                    <span>...</span>
-                    {% endif %}
-                {% endif %}
-
+                <a href="?page={{ assets.previous_page_number }}" class="btn btn-outline-primary">&laquo;</a>
             {% endif %}
 
-            {% for num in assets.paginator.page_range %}
-                {% if assets.number == num %}
-                    <a href="?page={{ num }}">{{ num }}</a>
-                {% elif num > assets.number|add:'-3' and num < assets.number|add:'3' %}
-                    <a href="?page={{ num }}">{{ num }}</a>
+            {% for page_number in assets.paginator.page_range %}
+                {% if assets.number == page_number %}
+                    <button class="btn btn-outline-primary active">
+                        <span>{{ page_number }} <span class="sr-only"></span></span>
+                    </button>
+                {% else %}
+                    <a href="?page={{ page_number }}" class="btn btn-outline-primary">
+                        {{ page_number }}
+                    </a>
                 {% endif %}
             {% endfor %}
 
             {% if assets.has_next %}
-                {% if assets.number < assets.paginator.num_pages|add:'-3' %}
-                    <span>...</span>
-                    <a href="?page={{ assets.paginator.num_pages }}">{{ assets.paginator.num_pages }}</a>
-                {% elif assets.number < assets.paginator.num_pages|add:'-2' %}
-                    <a href="?page={{ assets.paginator.num_pages }}">{{ assets.paginator.num_pages }}</a>
-                {% endif %}
-
-                <a href="?page={{ assets.next_page_number }}">»</a>
+                <a href="?page={{ assets.next_page_number }}" class="btn btn-outline-primary">&raquo;</a>
             {% endif %}
         </div>
     {% endif %}

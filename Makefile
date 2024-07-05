@@ -3,16 +3,21 @@ SHELL := bash
 .SHELLFLAGS := -eu -o pipefail -c
 
 # # .PHONY: dcu dcd dcs shell chown build collect_static dcr serve
-.PHONY: collect_static
+.PHONY: collect_static dcu serve
 
 collect_static:
 	docker exec -it catalog ./manage.py collectstatic --no-input
 
-# serve:
-#     pyhon manage.py runserver
+dcu:
+	docker compose -f .docker/compose.yml up -d --build
 
-# dcu:
-# 	docker compose -f .docker/compose.yml up -d --build
+serve:
+	docker exec -it catalog python manage.py runserver 0.0.0.0:8000
+
+shell:
+	docker exec -it catalog bash
+
+
 
 # dcd:
 # 	docker compose -f .docker/compose.yml down
@@ -22,9 +27,6 @@ collect_static:
 
 # dcr:
 # 	docker compose -f .docker/compose.yml restart
-
-# shell:
-# 	docker exec -it mmp bash
 
 # chown:
 # 	sudo chown $(USER):$(USER) -R .

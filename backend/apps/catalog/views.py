@@ -13,7 +13,7 @@ def assets(request):
     template = "catalog/asset_list.html"
     form = AssetSearchForm()
     context = {"form": form}
-    items_per_page = 12
+    items_per_page = 15
 
     if request.method == "GET":
         if "term" in request.GET.keys():
