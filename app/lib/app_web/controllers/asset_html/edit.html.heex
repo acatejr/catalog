@@ -1,0 +1,8 @@
+<.header>
+  Edit Asset <%= @asset.id %>
+  <:subtitle>Use this form to manage asset records in your database.</:subtitle>
+</.header>
+
+<.asset_form changeset={@changeset} action={~p"/assets/#{@asset}"} />
+
+<.back navigate={~p"/assets"}>Back to assets</.back>
