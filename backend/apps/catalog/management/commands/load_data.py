@@ -6,6 +6,11 @@ from django.core.exceptions import ValidationError
 import re
 import arrow
 from apps.catalog.models import Asset, Domain
+import os.path
+from django.db.models import Q
+from dotenv import load_dotenv
+
+load_dotenv()
 
 SEED_URLS = [
     "https://catalog.data.gov/harvest/object/203bed83-5da3-4a64-b156-ea016f277b07",
@@ -55,38 +60,48 @@ class Command(BaseCommand):
     def load_nds_data(self):
         domain = Domain.objects.get(pk=2)
         base_url = "https://data.fs.usda.gov/geodata/edw/datasets.php"
-        resp = requests.get(base_url)
-        soup = BeautifulSoup(resp.content, "html.parser")
-        table = soup.find("table", class_="fcTable")
-        rows = table.find_all("tr")
-        for row in rows:
-            cells = row.find_all("td")
-            title = self.remove_html(cells[0].find("strong").get_text())
-            paragraphs = cells[0].find_all("p")
+        fsgeodata_html_file = "fsgeodata.html"
+        print(f"Loading data from FSGeodata Clearninghouse Metdata URLs.")
+        
+        if not os.path.isfile(fsgeodata_html_file):
+            resp = requests.get(base_url)
+            soup = BeautifulSoup(resp.content, "html.parser")
+            with open("fsgeodata.html", "w") as of:
+                of.write(soup)
+        # else:
+        html = ""
+        with open(fsgeodata_html_file, "r") as f:
+            html = f.read()
+        soup = BeautifulSoup(html, "html.parser")
+        
+        anchors = soup.find_all("a")
+        metadata_urls = []
+        for anchor in anchors:
+            if anchor and anchor.get_text() == "metadata":
+                metadata_urls.append(anchor["href"])
 
-            if len(paragraphs) > 2:
-                date_of_last_refresh = paragraphs[-1].get_text().replace("Date of last refresh: ", "").replace(",", "")
-                date_of_last_refresh = arrow.get(date_of_last_refresh, "MMM D YYYY")
-
-            metadata_anchor = cells[1].find("a")
-            metadata_url = None
-            if metadata_anchor and metadata_anchor.get_text() == "metadata":
-                metadata_url = (
-                    f"https://data.fs.usda.gov/geodata/edw/{metadata_anchor['href']}"
-                )
-                resp = requests.get(metadata_url)
-                soup = BeautifulSoup(resp.content, features="xml")
-                desc = soup.find("descript")
-                abstract = self.remove_html(desc.find("abstract").get_text())
-
+        for url in metadata_urls:
+            resp = requests.get(url)
+            soup = BeautifulSoup(resp.content, features="xml")
+            title = self.remove_html(soup.find("title").get_text())
+            desc_block = soup.find("descript")
+            abstract = self.remove_html(desc_block.find("abstract").get_text())
+            # purpose = self.remove_html(desc_block.find("purpose").get_text())
+            
+            asset = Asset.objects.filter(Q(metadata_url=url) | Q(title=title))
+            if asset:
+                asset = asset[0]
+                asset.description = abstract
+                asset.domain = domain
+                asset.save()
+            else:
                 asset = Asset(
-                    metadata_url=metadata_url,
+                    metadata_url=url,
                     title=title,
                     description=abstract,
-                    domain=domain,
-                    modified=str(date_of_last_refresh),
+                    domain=domain
+                    # modified=str(date_of_last_refresh),
                 )
-
                 asset.save()
 
     def add_arguments(self, parser):
@@ -94,5 +109,5 @@ class Command(BaseCommand):
         # parser.add_argument('sample', nargs='+')
 
     def handle(self, *args, **options):
-        self.load_data_dot_gov()
+        # self.load_data_dot_gov()
         self.load_nds_data()

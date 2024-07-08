@@ -3,16 +3,21 @@
 
 {% block content %}
     <style>
-        #map { height: 180px; }
+        #map { height: 675px;}
     </style>
-
+    
     <div class="row">
-        <div id="map" name="map" class="col"></div>
+        <div class="container">
+            <h2>Map Search</h2>
+            <div class="col">                
+                <div id="map" name="map"></div>
+            </div>
+        </div>
     </div>
 
     <script type="text/javascript">
 
-        var map = L.map('map').setView([51.505, -0.09], 13);
+        var map = L.map('map').setView([38.7310156, -96], 5);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
