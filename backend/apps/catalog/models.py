@@ -16,7 +16,8 @@ class RootDomain(BaseModel):
     """
 
     name = models.CharField(
-        max_length=250, unique=True, null=False, help_text="Domain name"
+        max_length=250, unique=True, null=False, help_text="The root domain name.",
+        choices=[["USFS", "United States Forest Service"]]
     )
 
     description = models.CharField(

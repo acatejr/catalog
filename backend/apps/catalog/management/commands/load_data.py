@@ -57,30 +57,32 @@ class Command(BaseCommand):
             )
             asset.save()
 
-    def load_nds_data(self):
+    def load_fsgeodata(self):
         domain = Domain.objects.get(pk=2)
         base_url = "https://data.fs.usda.gov/geodata/edw/datasets.php"
         fsgeodata_html_file = "fsgeodata.html"
-        print(f"Loading data from FSGeodata Clearninghouse Metdata URLs.")
+        print(f"Loading data from FSGeodata Clearinghouse Metdata URLs.")
         
-        if not os.path.isfile(fsgeodata_html_file):
-            resp = requests.get(base_url)
-            soup = BeautifulSoup(resp.content, "html.parser")
-            with open("fsgeodata.html", "w") as of:
-                of.write(soup)
-        # else:
-        html = ""
-        with open(fsgeodata_html_file, "r") as f:
-            html = f.read()
-        soup = BeautifulSoup(html, "html.parser")
+        # Read the page that has the matedata links and cache locally
+        resp = requests.get(base_url)
+        soup = BeautifulSoup(resp.content, "html.parser")
+        
+        # with open(fsgeodata_html_file, "w") as of:
+        #     of.write(str(soup))
+        # html = ""
+        # with open(fsgeodata_html_file, "r") as f:
+        #     html = f.read()
+
+        # soup = BeautifulSoup(html, "html.parser")
         
         anchors = soup.find_all("a")
         metadata_urls = []
-        for anchor in anchors:
-            if anchor and anchor.get_text() == "metadata":
+        for anchor in anchors:            
+            if anchor and anchor.get_text() == "metadata":                
                 metadata_urls.append(anchor["href"])
 
         for url in metadata_urls:
+            url = f"https://data.fs.usda.gov/geodata/edw/{url}"
             resp = requests.get(url)
             soup = BeautifulSoup(resp.content, features="xml")
             title = self.remove_html(soup.find("title").get_text())
@@ -88,7 +90,7 @@ class Command(BaseCommand):
             abstract = self.remove_html(desc_block.find("abstract").get_text())
             # purpose = self.remove_html(desc_block.find("purpose").get_text())
             
-            asset = Asset.objects.filter(Q(metadata_url=url) | Q(title=title))
+            asset = Asset.objects.filter(Q(metadata_url=url) | Q(title=title))            
             if asset:
                 asset = asset[0]
                 asset.description = abstract
@@ -104,10 +106,12 @@ class Command(BaseCommand):
                 )
                 asset.save()
 
+            print(f"{url}")
+
     def add_arguments(self, parser):
         pass
         # parser.add_argument('sample', nargs='+')
 
     def handle(self, *args, **options):
         # self.load_data_dot_gov()
-        self.load_nds_data()
+        self.load_fsgeodata()
