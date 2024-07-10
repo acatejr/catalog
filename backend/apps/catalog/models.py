@@ -16,8 +16,11 @@ class RootDomain(BaseModel):
     """
 
     name = models.CharField(
-        max_length=250, unique=True, null=False, help_text="The root domain name.",
-        choices=[["USFS", "United States Forest Service"]]
+        max_length=250,
+        unique=True,
+        null=False,
+        help_text="The root domain name.",
+        choices=[["USFS", "United States Forest Service"]],
     )
 
     description = models.CharField(
@@ -117,7 +120,9 @@ class Asset(BaseModel):
 
     domain = models.ForeignKey(Domain, on_delete=models.DO_NOTHING)
 
-    modified = models.DateTimeField(null=True, blank=True, help_text="Date metadata was last modified.")
+    modified = models.DateTimeField(
+        null=True, blank=True, help_text="Date metadata was last modified."
+    )
 
     @property
     def short_descr(self):

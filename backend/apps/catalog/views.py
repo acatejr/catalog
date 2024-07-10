@@ -1,13 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, FormView, ListView
-from django.views.generic.edit import FormMixin
 from django.db.models import Q
-from django.core.paginator import Paginator
-from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import AssetSearchForm
 from .models import Asset, SearchTerm
-from django.http import HttpResponse
 from django.views import View
 
 
@@ -42,10 +37,8 @@ def assets(request):
     return render(request, template, context)
 
 
-
 class MapSearchView(View):
     template_name = "catalog/map_search.html"
 
     def get(self, request, *args, **kwargs):
-
         return render(request, self.template_name, {"form": None})

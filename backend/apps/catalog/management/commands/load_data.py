@@ -1,12 +1,9 @@
 from django.core.management.base import BaseCommand
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
-from django.core.exceptions import ValidationError
 import re
 import arrow
 from apps.catalog.models import Asset, Domain
-import os.path
 from django.db.models import Q
 from dotenv import load_dotenv
 
@@ -60,13 +57,12 @@ class Command(BaseCommand):
     def load_fsgeodata(self):
         domain = Domain.objects.get(pk=2)
         base_url = "https://data.fs.usda.gov/geodata/edw/datasets.php"
-        fsgeodata_html_file = "fsgeodata.html"
-        print(f"Loading data from FSGeodata Clearinghouse Metdata URLs.")
-        
+        print("Loading data from FSGeodata Clearinghouse Metdata URLs.")
+
         # Read the page that has the matedata links and cache locally
         resp = requests.get(base_url)
         soup = BeautifulSoup(resp.content, "html.parser")
-        
+
         # with open(fsgeodata_html_file, "w") as of:
         #     of.write(str(soup))
         # html = ""
@@ -74,11 +70,11 @@ class Command(BaseCommand):
         #     html = f.read()
 
         # soup = BeautifulSoup(html, "html.parser")
-        
+
         anchors = soup.find_all("a")
         metadata_urls = []
-        for anchor in anchors:            
-            if anchor and anchor.get_text() == "metadata":                
+        for anchor in anchors:
+            if anchor and anchor.get_text() == "metadata":
                 metadata_urls.append(anchor["href"])
 
         for url in metadata_urls:
@@ -89,8 +85,8 @@ class Command(BaseCommand):
             desc_block = soup.find("descript")
             abstract = self.remove_html(desc_block.find("abstract").get_text())
             # purpose = self.remove_html(desc_block.find("purpose").get_text())
-            
-            asset = Asset.objects.filter(Q(metadata_url=url) | Q(title=title))            
+
+            asset = Asset.objects.filter(Q(metadata_url=url) | Q(title=title))
             if asset:
                 asset = asset[0]
                 asset.description = abstract
@@ -101,7 +97,7 @@ class Command(BaseCommand):
                     metadata_url=url,
                     title=title,
                     description=abstract,
-                    domain=domain
+                    domain=domain,
                     # modified=str(date_of_last_refresh),
                 )
                 asset.save()

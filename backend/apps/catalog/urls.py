@@ -1,5 +1,4 @@
-from django.urls import path, reverse
-from django.views.generic import TemplateView, RedirectView
+from django.urls import path
 from .views import assets, MapSearchView
 
 urlpatterns = [

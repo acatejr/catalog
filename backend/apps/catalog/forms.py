@@ -1,5 +1,4 @@
 from django import forms
-from django.urls import reverse
 
 
 class AssetSearchForm(forms.Form):
