@@ -109,5 +109,5 @@ class Command(BaseCommand):
         # parser.add_argument('sample', nargs='+')
 
     def handle(self, *args, **options):
-        # self.load_data_dot_gov()
+        self.load_data_dot_gov()
         self.load_fsgeodata()
