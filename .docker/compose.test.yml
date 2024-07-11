@@ -15,7 +15,7 @@ services:
     tty: true
     stdin_open: true
     restart: unless-stopped
-    command: "gunicorn main.wsgi:application --bind '0.0.0.0:8000' --reload"
+    command: "gunicorn main.wsgi:application --bind '0.0.0.0:8000'"
 
   db:
     container_name: catalogdb

@@ -1,0 +1,8 @@
+# FROM python:3.12.4 AS build
+FROM python:3.12.4-slim as test
+RUN apt-get update -y
+WORKDIR /catalog
+COPY .docker/requirements.txt .
+COPY ./app ./app
+
+RUN pip install pip --upgrade && pip install --no-cache-dir -r requirements.txt
