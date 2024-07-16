@@ -22,6 +22,7 @@ shell:
 dcd:
 	docker compose -f .docker/compose.yml down
 
+
 # dcr:
 # 	docker compose -f .docker/compose.yml restart
 

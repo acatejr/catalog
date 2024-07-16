@@ -63,3 +63,4 @@ volumes:
   pgdata:
   static:
   media:
+  

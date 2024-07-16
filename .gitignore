@@ -1,3 +1,10 @@
+.pytest_cache/
+.venv/
+.ruff_cache/
+*.pyc
+*scratch*
+.env
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
