@@ -8,10 +8,10 @@ collect_static:
 	docker exec -it catalog ./manage.py collectstatic --no-input
 
 dcu:
-	docker compose -f .docker/compose.yml up -d --build
+	docker compose -f compose.yml up -d --build
 
 dcs:
-	docker compose -f .docker/compose.yml stop
+	docker compose -f compose.yml stop
 
 serve:
 	docker exec -it catalog python manage.py runserver 0.0.0.0:8000
@@ -20,7 +20,7 @@ shell:
 	docker exec -it catalog bash
 
 dcd:
-	docker compose -f .docker/compose.yml down
+	docker compose -f compose.yml down
 
 
 # dcr:
