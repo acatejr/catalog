@@ -210,3 +210,4 @@ neo4j_db/
 static/
 .envrc
 .venv/
+.env.test

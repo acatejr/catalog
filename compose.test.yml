@@ -2,23 +2,29 @@ services:
 
   catalog:
     image: acatejr/catalog:latest
+    build: .
     env_file:
-      - .env
-    ports:
-      - 8000:8000
+      - .env.test
+    volumes:
+      # - $PWD:/catalog
+      - static:/var/www/static
+      - media:/var/www/media
     stdin_open: true
     tty: true
     depends_on:
       - db
     restart: unless-stopped
+    command: "uvicorn main.asgi:application --reload --host 0.0.0.0 --port 8000"
 
   db:
     container_name: catalogdb
     image: postgres:latest
-    env_file: .env
+    env_file: .env.test
     restart: unless-stopped
     volumes:
       - pgdata:/var/lib/postgresql/data
 
 volumes:
   pgdata:
+  static:
+  media:
