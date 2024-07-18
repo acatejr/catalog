@@ -1,0 +1,24 @@
+services:
+
+  catalog:
+    image: acatejr/catalog:latest
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    container_name: catalogdb
+    image: postgres:latest
+    env_file: .env
+    restart: unless-stopped
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

@@ -22,6 +22,8 @@ shell:
 dcd:
 	docker compose -f compose.yml down
 
+# docker build --pull --rm -f "Dockerfile" -t catalog:latest "."
+# docker push acatejr/catalog:latest
 
 # dcr:
 # 	docker compose -f .docker/compose.yml restart
