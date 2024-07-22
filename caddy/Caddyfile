@@ -1,9 +1,9 @@
 localhost {
- 	reverse_proxy catalog-catalog-1:8000 {
+ 	reverse_proxy catalog:8000 {
  	  header_down Strict-Transport-Security max-age=31536000;
  	}
 
-  handle_path /static/* {
+  handle_path /static/* {    
     root * /usr/share/caddy/static
     file_server
   }

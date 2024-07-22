@@ -1,6 +1,6 @@
 arrow
 django
-uvicorn
+gunicorn
 pytest
 pytest-sugar
 pytest-django
