@@ -4,9 +4,8 @@ services:
     image: acatejr/catalog:latest
     build: .
     env_file:
-      - .env.test
+      - .env
     volumes:
-      # - $PWD:/catalog
       - static:/var/www/static
       - media:/var/www/media
     stdin_open: true
@@ -19,10 +18,33 @@ services:
   db:
     container_name: catalogdb
     image: postgres:latest
-    env_file: .env.test
+    env_file: .env
     restart: unless-stopped
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  caddy:
+    container_name: catalog_caddy
+    image: caddy:latest    
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # Caddy specific urls
+      - $PWD/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - type: volume
+        source: media
+        target: /usr/share/caddy/media
+        read_only: true
+        volume:
+          nocopy: true
+      - type: volume
+        source: static
+        target: /usr/share/caddy/static
+        read_only: true
+        volume:
+          nocopy: true
+    restart: unless-stopped
 
 volumes:
   pgdata:

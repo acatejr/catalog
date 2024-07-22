@@ -1,0 +1,31 @@
+localhost {
+ 	reverse_proxy catalog-catalog-1:8000 {
+ 	  header_down Strict-Transport-Security max-age=31536000;
+ 	}
+
+  handle_path /static/* {
+    root * /usr/share/caddy/static
+    file_server
+  }
+
+  handle_path /media/* {
+    root * /usr/share/caddy/media
+    file_server
+  }
+}
+
+dadaforest.net {
+  reverse_proxy catalog-catalog-1:8000 {
+    header_down Strict-Transport-Security max-age=31536000;
+  }
+
+  handle_path /static/* {
+    root * /usr/share/caddy/static
+    file_server
+  }
+
+  handle_path /media/* {
+    root * /usr/share/caddy/media
+    file_server
+  }
+}
