@@ -139,4 +139,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 if DEBUG:
     CSRF_TRUSTED_ORIGINS = ["*"]
 else:
-    CSRF_TRUSTED_ORIGINS = ["dadaforest.net"]
+    CSRF_TRUSTED_ORIGINS = ["https://dadaforest.net", "dadaforest.net"]
