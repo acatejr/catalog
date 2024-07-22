@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     volumes:
-      - $PWD:/catalog
+      - $PWD/main:/catalog
       - static:/var/www/static
       - media:/var/www/media
     stdin_open: true
