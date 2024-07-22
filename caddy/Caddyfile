@@ -15,7 +15,7 @@ localhost {
 }
 
 dadaforest.net {
-  reverse_proxy catalog-catalog-1:8000 {
+  reverse_proxy catalog:8000 {
     header_down Strict-Transport-Security max-age=31536000;
   }
 
