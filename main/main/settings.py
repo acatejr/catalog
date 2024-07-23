@@ -136,6 +136,7 @@ STATIC_ROOT = os.environ.get("DJANGO_STATIC_ROOT")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-if DEBUG == 0 :
+if DEBUG == 0:
     CSRF_TRUSTED_ORIGINS = ["https://dadaforest.net"]
-
+else:
+    CSRF_TRUSTED_ORIGINS = ["https://localhost", "https://0.0.0.0"]

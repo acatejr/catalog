@@ -7,12 +7,18 @@ class DomainAdmin(admin.ModelAdmin):
     ordering = ["pk"]
     list_display = ["id", "name"]
 
+
 @admin.register(Asset)
 class AssetAdmin(admin.ModelAdmin):
     ordering = ["pk"]
     list_display = ["id", "title", "short_descr"]
+    list_per_page = 20
+
 
 @admin.register(SearchTerm)
 class SearchTermAdmin(admin.ModelAdmin):
     ordering = ["pk"]
-    list_display = ["id", "term",]
+    list_display = [
+        "id",
+        "term",
+    ]
