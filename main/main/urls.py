@@ -16,13 +16,14 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.views.generic.base import RedirectView
 import config
 
 urlpatterns = [
     path("", RedirectView.as_view(url="/admin")),
     path("admin/", admin.site.urls),
+    path("search/", include("app_catalog.urls")), #)
 ]
 
 admin.site.site_header = config.ADMIN_SITE_SITE_HEADER
