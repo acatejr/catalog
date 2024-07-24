@@ -1,6 +1,12 @@
 {% extends 'app_catalog/base.html' %}
     {% block content %}    
-        <h2 class="">Text Search</h2>
+        
+    <nav class="usfs-header flex items-center justify-between flex-wrap p-6">
+        USFS Metadata Catalog - Asset Search
+    </nav>
+
+    <div class="container mx-auto p-6">
+
         <table class="table-fixed">
             <thead>
                 <tr>
@@ -17,5 +23,7 @@
                 {% endfor %}
             </tbody>
         </table>
+
+    </div>
     {% endblock %}
 </div>
