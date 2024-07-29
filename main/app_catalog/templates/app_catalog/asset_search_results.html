@@ -10,15 +10,15 @@
         <table class="table-fixed">
             <thead>
                 <tr>
-                    <th class="text-left align-text-top">Title</th>
-                    <th class="text-left align-text-top">Description</th>
+                    <th class="text-left align-text-top">Asset Title</th>
+                    <th class="text-left align-text-top">Short Description</th>
                 </tr>
             </thead>
             <tbody>
                 {% for asset in asset_list %}
                     <tr>
                         <td class="align-text-top">{{ asset.title }}</td>
-                        <td class="align-text-top">{{ asset.description }}</td>
+                        <td class="align-text-top">{{ asset.short_descr }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
