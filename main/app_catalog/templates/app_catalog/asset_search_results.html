@@ -1,29 +1,73 @@
 {% extends 'app_catalog/base.html' %}
-    {% block content %}    
-        
+    {% block content %}
+
     <nav class="usfs-header flex items-center justify-between flex-wrap p-6">
         USFS Metadata Catalog - Asset Search
     </nav>
 
     <div class="container mx-auto p-6">
 
-        <table class="table-fixed">
-            <thead>
+        <table id="asset-list" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th class="text-left align-text-top">Asset Title</th>
-                    <th class="text-left align-text-top">Short Description</th>
+                    <th scope="col" class="px-6 py-3">Asset Title</th>
+                    <th scope="col" class="px-6 py-3">Asset Domain</th>
+                    <th scope="col" class="px-6 py-3">Short Description</th>
                 </tr>
             </thead>
             <tbody>
                 {% for asset in asset_list %}
-                    <tr>
-                        <td class="align-text-top">{{ asset.title }}</td>
-                        <td class="align-text-top">{{ asset.short_descr }}</td>
+                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td class="px-6 py-1">{{ asset.title }}</td>
+                        <td class="px-6 py-1">{{ asset.domain }}</td>
+                        <td class="px-6 py-1">{{ asset.short_descr }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
 
+        <div class="flex">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                Previous
+                </a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <a href="?page={{ num }}" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ num }}</a>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a href="?page={{ num }}" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            <!-- Next Button -->
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="flex items-center justify-center px-3 h-8 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                Next
+                </a>
+            {% endif %}
+        </div>
+
+        <!--
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        -->
     </div>
     {% endblock %}
 </div>

@@ -7,3 +7,4 @@ class AssetSearchResults(ListView):
     model = Asset
     context_object_name = "asset_list"
     template_name = 'app_catalog/asset_search_results.html'
+    paginate_by = 20

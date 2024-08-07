@@ -93,12 +93,12 @@ class Command(BaseCommand):
                 asset.save()
 
             print(f"{url}")
-    
+
     def add_arguments(self, parser):
         # parser.add_argument('sample', nargs='+')
         pass
 
     def handle(self, *args, **options):
         print("Loading seed asset data.")
-        # self.load_data_dot_gov()
-        self.load_fsgeodata()
+        self.load_data_dot_gov()
+        # self.load_fsgeodata()
