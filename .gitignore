@@ -211,3 +211,4 @@ static/
 .envrc
 .venv/
 .env.test
+mise.local.toml

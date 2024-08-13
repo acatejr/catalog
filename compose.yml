@@ -1,11 +1,13 @@
 services:
 
   catalog:
-    container_name: catalog
+    # container_name: catalog
     image: catalog
     build: .
-    env_file:
-      - .env
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_HOST
     volumes:
       - $PWD/main:/catalog
       - static:/var/www/static
@@ -18,15 +20,18 @@ services:
     command: "gunicorn main.wsgi:application --bind '0.0.0.0:8000' --reload"
 
   postgres:
-    container_name: catalogdb
+    # container_name: catalogdb
     image: postgres:latest
-    env_file: .env
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_HOST
     restart: unless-stopped
     volumes:
       - pgdata:/var/lib/postgresql/data
 
   caddy:
-    container_name: catalog_caddy
+    # container_name: catalog_caddy
     image: caddy:latest    
     ports:
       - "80:80"
