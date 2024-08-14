@@ -12,6 +12,7 @@ class DomainAdmin(admin.ModelAdmin):
 class AssetAdmin(admin.ModelAdmin):
     ordering = ["pk"]
     list_display = ["id", "title", "domain", "short_descr"]
+    list_filter = ["domain"]
     list_per_page = 20
 
 

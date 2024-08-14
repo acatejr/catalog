@@ -10,7 +10,7 @@ class AssetSearchResults(ListView, FormMixin):
     model = Asset
     context_object_name = "asset_list"
     template_name = 'app_catalog/asset_search_results.html'
-    paginate_by = 20
+    paginate_by = 13
     form_class = AssetSimpleSerchForm
     search_term = None
 
