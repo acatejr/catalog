@@ -1,0 +1,251 @@
+Running ExUnit with seed: 130521, max_cases: 16
+
+..........
+
+  1) test Index deletes domain in listing (AppWeb.DomainLiveTest)
+     test/app_web/live/domain_live_test.exs:72
+     ** (UndefinedFunctionError) function Asset.__schema__/1 is undefined (module Asset is not available). Did you mean:
+
+           * App.Catalog.Asset.__schema__/1
+
+     stacktrace:
+       Asset.__schema__(:primary_key)
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:172: Ecto.Changeset.Relation.change/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:556: anonymous fn/4 in Ecto.Changeset.Relation.surface_changes/3
+       (elixir 1.17.2) lib/enum.ex:2531: Enum."-reduce/3-lists^foldl/2-0-"/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:543: Ecto.Changeset.Relation.surface_changes/3
+       (ecto 3.12.1) lib/ecto/repo/schema.ex:382: Ecto.Repo.Schema.do_insert/4
+       (app 0.1.0) test/support/fixtures/catalog_fixtures.ex:30: App.CatalogFixtures.domain_fixture/1
+       test/app_web/live/domain_live_test.exs:12: AppWeb.DomainLiveTest.create_domain/1
+       AppWeb.DomainLiveTest.__ex_unit_describe_0/1
+
+
+
+  2) test Index saves new domain (AppWeb.DomainLiveTest)
+     test/app_web/live/domain_live_test.exs:26
+     ** (UndefinedFunctionError) function Asset.__schema__/1 is undefined (module Asset is not available). Did you mean:
+
+           * App.Catalog.Asset.__schema__/1
+
+     stacktrace:
+       Asset.__schema__(:primary_key)
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:172: Ecto.Changeset.Relation.change/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:556: anonymous fn/4 in Ecto.Changeset.Relation.surface_changes/3
+       (elixir 1.17.2) lib/enum.ex:2531: Enum."-reduce/3-lists^foldl/2-0-"/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:543: Ecto.Changeset.Relation.surface_changes/3
+       (ecto 3.12.1) lib/ecto/repo/schema.ex:382: Ecto.Repo.Schema.do_insert/4
+       (app 0.1.0) test/support/fixtures/catalog_fixtures.ex:30: App.CatalogFixtures.domain_fixture/1
+       test/app_web/live/domain_live_test.exs:12: AppWeb.DomainLiveTest.create_domain/1
+       AppWeb.DomainLiveTest.__ex_unit_describe_0/1
+
+
+
+  3) test Index lists all domains (AppWeb.DomainLiveTest)
+     test/app_web/live/domain_live_test.exs:19
+     ** (UndefinedFunctionError) function Asset.__schema__/1 is undefined (module Asset is not available). Did you mean:
+
+           * App.Catalog.Asset.__schema__/1
+
+     stacktrace:
+       Asset.__schema__(:primary_key)
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:172: Ecto.Changeset.Relation.change/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:556: anonymous fn/4 in Ecto.Changeset.Relation.surface_changes/3
+       (elixir 1.17.2) lib/enum.ex:2531: Enum."-reduce/3-lists^foldl/2-0-"/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:543: Ecto.Changeset.Relation.surface_changes/3
+       (ecto 3.12.1) lib/ecto/repo/schema.ex:382: Ecto.Repo.Schema.do_insert/4
+       (app 0.1.0) test/support/fixtures/catalog_fixtures.ex:30: App.CatalogFixtures.domain_fixture/1
+       test/app_web/live/domain_live_test.exs:12: AppWeb.DomainLiveTest.create_domain/1
+       AppWeb.DomainLiveTest.__ex_unit_describe_0/1
+
+
+
+  4) test Show updates domain within modal (AppWeb.DomainLiveTest)
+     test/app_web/live/domain_live_test.exs:90
+     ** (UndefinedFunctionError) function Asset.__schema__/1 is undefined (module Asset is not available). Did you mean:
+
+           * App.Catalog.Asset.__schema__/1
+
+     stacktrace:
+       Asset.__schema__(:primary_key)
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:172: Ecto.Changeset.Relation.change/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:556: anonymous fn/4 in Ecto.Changeset.Relation.surface_changes/3
+       (elixir 1.17.2) lib/enum.ex:2531: Enum."-reduce/3-lists^foldl/2-0-"/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:543: Ecto.Changeset.Relation.surface_changes/3
+       (ecto 3.12.1) lib/ecto/repo/schema.ex:382: Ecto.Repo.Schema.do_insert/4
+       (app 0.1.0) test/support/fixtures/catalog_fixtures.ex:30: App.CatalogFixtures.domain_fixture/1
+       test/app_web/live/domain_live_test.exs:12: AppWeb.DomainLiveTest.create_domain/1
+       AppWeb.DomainLiveTest.__ex_unit_describe_1/1
+
+
+
+  5) test Index updates domain in listing (AppWeb.DomainLiveTest)
+     test/app_web/live/domain_live_test.exs:49
+     ** (UndefinedFunctionError) function Asset.__schema__/1 is undefined (module Asset is not available). Did you mean:
+
+           * App.Catalog.Asset.__schema__/1
+
+     stacktrace:
+       Asset.__schema__(:primary_key)
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:172: Ecto.Changeset.Relation.change/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:556: anonymous fn/4 in Ecto.Changeset.Relation.surface_changes/3
+       (elixir 1.17.2) lib/enum.ex:2531: Enum."-reduce/3-lists^foldl/2-0-"/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:543: Ecto.Changeset.Relation.surface_changes/3
+       (ecto 3.12.1) lib/ecto/repo/schema.ex:382: Ecto.Repo.Schema.do_insert/4
+       (app 0.1.0) test/support/fixtures/catalog_fixtures.ex:30: App.CatalogFixtures.domain_fixture/1
+       test/app_web/live/domain_live_test.exs:12: AppWeb.DomainLiveTest.create_domain/1
+       AppWeb.DomainLiveTest.__ex_unit_describe_0/1
+
+
+
+  6) test Show displays domain (AppWeb.DomainLiveTest)
+     test/app_web/live/domain_live_test.exs:83
+     ** (UndefinedFunctionError) function Asset.__schema__/1 is undefined (module Asset is not available). Did you mean:
+
+           * App.Catalog.Asset.__schema__/1
+
+     stacktrace:
+       Asset.__schema__(:primary_key)
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:172: Ecto.Changeset.Relation.change/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:556: anonymous fn/4 in Ecto.Changeset.Relation.surface_changes/3
+       (elixir 1.17.2) lib/enum.ex:2531: Enum."-reduce/3-lists^foldl/2-0-"/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:543: Ecto.Changeset.Relation.surface_changes/3
+       (ecto 3.12.1) lib/ecto/repo/schema.ex:382: Ecto.Repo.Schema.do_insert/4
+       (app 0.1.0) test/support/fixtures/catalog_fixtures.ex:30: App.CatalogFixtures.domain_fixture/1
+       test/app_web/live/domain_live_test.exs:12: AppWeb.DomainLiveTest.create_domain/1
+       AppWeb.DomainLiveTest.__ex_unit_describe_1/1
+
+.
+
+  7) test domains list_domains/0 returns all domains (App.CatalogTest)
+     test/app/catalog_test.exs:67
+     ** (UndefinedFunctionError) function Asset.__schema__/1 is undefined (module Asset is not available). Did you mean:
+
+           * App.Catalog.Asset.__schema__/1
+
+     code: domain = domain_fixture()
+     stacktrace:
+       Asset.__schema__(:primary_key)
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:172: Ecto.Changeset.Relation.change/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:556: anonymous fn/4 in Ecto.Changeset.Relation.surface_changes/3
+       (elixir 1.17.2) lib/enum.ex:2531: Enum."-reduce/3-lists^foldl/2-0-"/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:543: Ecto.Changeset.Relation.surface_changes/3
+       (ecto 3.12.1) lib/ecto/repo/schema.ex:382: Ecto.Repo.Schema.do_insert/4
+       (app 0.1.0) test/support/fixtures/catalog_fixtures.ex:30: App.CatalogFixtures.domain_fixture/1
+       test/app/catalog_test.exs:68: (test)
+
+.
+
+  8) test domains update_domain/2 with valid data updates the domain (App.CatalogTest)
+     test/app/catalog_test.exs:88
+     ** (UndefinedFunctionError) function Asset.__schema__/1 is undefined (module Asset is not available). Did you mean:
+
+           * App.Catalog.Asset.__schema__/1
+
+     code: domain = domain_fixture()
+     stacktrace:
+       Asset.__schema__(:primary_key)
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:172: Ecto.Changeset.Relation.change/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:556: anonymous fn/4 in Ecto.Changeset.Relation.surface_changes/3
+       (elixir 1.17.2) lib/enum.ex:2531: Enum."-reduce/3-lists^foldl/2-0-"/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:543: Ecto.Changeset.Relation.surface_changes/3
+       (ecto 3.12.1) lib/ecto/repo/schema.ex:382: Ecto.Repo.Schema.do_insert/4
+       (app 0.1.0) test/support/fixtures/catalog_fixtures.ex:30: App.CatalogFixtures.domain_fixture/1
+       test/app/catalog_test.exs:89: (test)
+
+..
+
+  9) test domains get_domain!/1 returns the domain with given id (App.CatalogTest)
+     test/app/catalog_test.exs:72
+     ** (UndefinedFunctionError) function Asset.__schema__/1 is undefined (module Asset is not available). Did you mean:
+
+           * App.Catalog.Asset.__schema__/1
+
+     code: domain = domain_fixture()
+     stacktrace:
+       Asset.__schema__(:primary_key)
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:172: Ecto.Changeset.Relation.change/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:556: anonymous fn/4 in Ecto.Changeset.Relation.surface_changes/3
+       (elixir 1.17.2) lib/enum.ex:2531: Enum."-reduce/3-lists^foldl/2-0-"/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:543: Ecto.Changeset.Relation.surface_changes/3
+       (ecto 3.12.1) lib/ecto/repo/schema.ex:382: Ecto.Repo.Schema.do_insert/4
+       (app 0.1.0) test/support/fixtures/catalog_fixtures.ex:30: App.CatalogFixtures.domain_fixture/1
+       test/app/catalog_test.exs:73: (test)
+
+
+
+ 10) test domains create_domain/1 with valid data creates a domain (App.CatalogTest)
+     test/app/catalog_test.exs:77
+     ** (UndefinedFunctionError) function Asset.__schema__/1 is undefined (module Asset is not available). Did you mean:
+
+           * App.Catalog.Asset.__schema__/1
+
+     code: assert {:ok, %Domain{} = domain} = Catalog.create_domain(valid_attrs)
+     stacktrace:
+       Asset.__schema__(:primary_key)
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:172: Ecto.Changeset.Relation.change/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:556: anonymous fn/4 in Ecto.Changeset.Relation.surface_changes/3
+       (elixir 1.17.2) lib/enum.ex:2531: Enum."-reduce/3-lists^foldl/2-0-"/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:543: Ecto.Changeset.Relation.surface_changes/3
+       (ecto 3.12.1) lib/ecto/repo/schema.ex:382: Ecto.Repo.Schema.do_insert/4
+       test/app/catalog_test.exs:80: (test)
+
+
+
+ 11) test domains delete_domain/1 deletes the domain (App.CatalogTest)
+     test/app/catalog_test.exs:102
+     ** (UndefinedFunctionError) function Asset.__schema__/1 is undefined (module Asset is not available). Did you mean:
+
+           * App.Catalog.Asset.__schema__/1
+
+     code: domain = domain_fixture()
+     stacktrace:
+       Asset.__schema__(:primary_key)
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:172: Ecto.Changeset.Relation.change/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:556: anonymous fn/4 in Ecto.Changeset.Relation.surface_changes/3
+       (elixir 1.17.2) lib/enum.ex:2531: Enum."-reduce/3-lists^foldl/2-0-"/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:543: Ecto.Changeset.Relation.surface_changes/3
+       (ecto 3.12.1) lib/ecto/repo/schema.ex:382: Ecto.Repo.Schema.do_insert/4
+       (app 0.1.0) test/support/fixtures/catalog_fixtures.ex:30: App.CatalogFixtures.domain_fixture/1
+       test/app/catalog_test.exs:103: (test)
+
+..
+
+ 12) test domains update_domain/2 with invalid data returns error changeset (App.CatalogTest)
+     test/app/catalog_test.exs:96
+     ** (UndefinedFunctionError) function Asset.__schema__/1 is undefined (module Asset is not available). Did you mean:
+
+           * App.Catalog.Asset.__schema__/1
+
+     code: domain = domain_fixture()
+     stacktrace:
+       Asset.__schema__(:primary_key)
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:172: Ecto.Changeset.Relation.change/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:556: anonymous fn/4 in Ecto.Changeset.Relation.surface_changes/3
+       (elixir 1.17.2) lib/enum.ex:2531: Enum."-reduce/3-lists^foldl/2-0-"/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:543: Ecto.Changeset.Relation.surface_changes/3
+       (ecto 3.12.1) lib/ecto/repo/schema.ex:382: Ecto.Repo.Schema.do_insert/4
+       (app 0.1.0) test/support/fixtures/catalog_fixtures.ex:30: App.CatalogFixtures.domain_fixture/1
+       test/app/catalog_test.exs:97: (test)
+
+...
+
+ 13) test domains change_domain/1 returns a domain changeset (App.CatalogTest)
+     test/app/catalog_test.exs:108
+     ** (UndefinedFunctionError) function Asset.__schema__/1 is undefined (module Asset is not available). Did you mean:
+
+           * App.Catalog.Asset.__schema__/1
+
+     code: domain = domain_fixture()
+     stacktrace:
+       Asset.__schema__(:primary_key)
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:172: Ecto.Changeset.Relation.change/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:556: anonymous fn/4 in Ecto.Changeset.Relation.surface_changes/3
+       (elixir 1.17.2) lib/enum.ex:2531: Enum."-reduce/3-lists^foldl/2-0-"/3
+       (ecto 3.12.1) lib/ecto/changeset/relation.ex:543: Ecto.Changeset.Relation.surface_changes/3
+       (ecto 3.12.1) lib/ecto/repo/schema.ex:382: Ecto.Repo.Schema.do_insert/4
+       (app 0.1.0) test/support/fixtures/catalog_fixtures.ex:30: App.CatalogFixtures.domain_fixture/1
+       test/app/catalog_test.exs:109: (test)
+
+.
+Finished in 0.6 seconds (0.2s async, 0.4s sync)
+33 tests, 13 failures

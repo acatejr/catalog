@@ -1,0 +1,41 @@
+<.header>
+  Listing Domains
+  <:actions>
+    <.link patch={~p"/domains/new"}>
+      <.button>New Domain</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="domains"
+  rows={@streams.domains}
+  row_click={fn {_id, domain} -> JS.navigate(~p"/domains/#{domain}") end}
+>
+  <:col :let={{_id, domain}} label="Name"><%= domain.name %></:col>
+  <:action :let={{_id, domain}}>
+    <div class="sr-only">
+      <.link navigate={~p"/domains/#{domain}"}>Show</.link>
+    </div>
+    <.link patch={~p"/domains/#{domain}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, domain}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: domain.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="domain-modal" show on_cancel={JS.patch(~p"/domains")}>
+  <.live_component
+    module={AppWeb.DomainLive.FormComponent}
+    id={@domain.id || :new}
+    title={@page_title}
+    action={@live_action}
+    domain={@domain}
+    patch={~p"/domains"}
+  />
+</.modal>
