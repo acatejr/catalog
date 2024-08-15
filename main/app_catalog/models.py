@@ -114,5 +114,10 @@ class Asset(BaseModel):
         return f"{self.title}"
 
 
+class Keyword(BaseModel):
+    word = models.CharField(max_length=250)
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
+
+
 class SearchTerm(BaseModel):
     term = models.CharField(max_length=2000, blank=False)

@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import arrow
-from app_catalog.models import Asset, Domain
+from app_catalog.models import Asset, Domain, Keyword
 from django.db.models import Q
 from dotenv import load_dotenv
 
@@ -27,6 +27,7 @@ SEED_URLS = [
     "https://catalog.data.gov/harvest/object/a0a63e30-b3cb-418b-8616-d89ee2e9e100",
 ]
 
+
 class Command(BaseCommand):
     help = "Load seed metadata assets."
 
@@ -34,15 +35,20 @@ class Command(BaseCommand):
         txt = re.sub("<[^<]+?>", "", text).replace("\n", "")
         return txt
 
+    def save_keywords(self, asset, keywords):
+        for w in keywords:
+            keyword = Keyword(word=w, asset_id=asset.id)
+            keyword.save()
+
     def load_data_dot_gov(self):
         domain = Domain.objects.get(pk=1)
         for url in SEED_URLS:
             resp = requests.get(url).json()
             description = resp["description"]
-            # desc = re.sub('<[^<]+?>', '', description).replace("\n", "")
             desc = self.remove_html(description)
             title = resp["title"]
             modified = arrow.get(resp["modified"])
+            keywords = resp["keyword"]
 
             asset = Asset(
                 title=title,
@@ -52,6 +58,9 @@ class Command(BaseCommand):
                 modified=str(modified),
             )
             asset.save()
+
+            if keywords and len(keywords):
+                self.save_keywords(asset, keywords)
 
     def load_fsgeodata(self):
         domain = Domain.objects.get(pk=2)
@@ -70,11 +79,14 @@ class Command(BaseCommand):
 
         for url in metadata_urls:
             url = f"https://data.fs.usda.gov/geodata/edw/{url}"
-            resp = requests.get(url)
-            soup = BeautifulSoup(resp.content, features="xml")
-            title = self.remove_html(soup.find("title").get_text())
+            print(url)            
+            resp = requests.get(url)            
+            soup = BeautifulSoup(resp.content, features="xml")            
+            title = self.remove_html(soup.find("title").get_text())            
             desc_block = soup.find("descript")
             abstract = self.remove_html(desc_block.find("abstract").get_text())
+            themekeys = soup.find_all("themekey")
+            keywords = [tk.get_text() for tk in themekeys]           
 
             asset = Asset.objects.filter(Q(metadata_url=url) | Q(title=title))
             if asset:
@@ -91,7 +103,9 @@ class Command(BaseCommand):
                     # modified=str(date_of_last_refresh),
                 )
                 asset.save()
-
+                
+            if keywords and len(keywords):
+                self.save_keywords(asset, keywords)
             print(f"{url}")
 
     def add_arguments(self, parser):
@@ -100,5 +114,5 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         print("Loading seed asset data.")
-        self.load_data_dot_gov()
-        # self.load_fsgeodata()
+        # self.load_data_dot_gov()
+        self.load_fsgeodata()

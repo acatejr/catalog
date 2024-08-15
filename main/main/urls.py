@@ -23,7 +23,7 @@ import config
 urlpatterns = [
     path("", RedirectView.as_view(url="/admin")),
     path("admin/", admin.site.urls),
-    path("search/", include("app_catalog.urls")), #)
+    path("search/", include("app_catalog.urls")),
 ]
 
 admin.site.site_header = config.ADMIN_SITE_SITE_HEADER
