@@ -19,17 +19,17 @@ defmodule AppWeb.Router do
 
     get "/", PageController, :home
 
-    live "/assets", AssetLive.Index, :index
-    live "/assets/new", AssetLive.Index, :new
-    live "/assets/:id/edit", AssetLive.Index, :edit
-    live "/assets/:id", AssetLive.Show, :show
-    live "/assets/:id/show/edit", AssetLive.Show, :edit
-
     live "/domains", DomainLive.Index, :index
     live "/domains/new", DomainLive.Index, :new
     live "/domains/:id/edit", DomainLive.Index, :edit
     live "/domains/:id", DomainLive.Show, :show
     live "/domains/:id/show/edit", DomainLive.Show, :edit
+
+    live "/assets", AssetLive.Index, :index
+    live "/assets/new", AssetLive.Index, :new
+    live "/assets/:id/edit", AssetLive.Index, :edit
+    live "/assets/:id", AssetLive.Show, :show
+    live "/assets/:id/show/edit", AssetLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

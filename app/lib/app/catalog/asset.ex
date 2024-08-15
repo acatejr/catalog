@@ -4,7 +4,7 @@ defmodule App.Catalog.Asset do
 
   schema "assets" do
     field :title, :string
-    belongs_to :domain, Domain
+    field :domain_id, :id
 
     timestamps(type: :utc_datetime)
   end

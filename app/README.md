@@ -16,3 +16,11 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Forum: https://elixirforum.com/c/phoenix-forum
   * Source: https://github.com/phoenixframework/phoenix
+
+### Reference  
+https://thiagoramos.me/articles/how-to-use-migrations-and-insert-data-with-associations-ecto  
+mix phx.gen.schema Accounts.User users username:string email:string full_name:string role:string  
+mix phx.gen.schema Blog.Post posts title:string body:text status:string user_id:references:users  
+
+mix phx.gen.live Catalog Domain domains name:string
+mix phx.gen.live Catalog Asset assets title:string domain_id:references:domains

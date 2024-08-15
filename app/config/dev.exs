@@ -20,7 +20,7 @@ config :app, AppWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "BVc2uHMOGLNQ6997LdWT6hOqyR74YsfIhxvYfnOfbl3KjDVapZl+8cdrwN97p8ob",
+  secret_key_base: "vv2/SAGWjA+30FtmRfmkpnP0eA6k417B9DFFF5SizR/+j0eem2k68EUmk+jl+GDG",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:app, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:app, ~w(--watch)]}

@@ -5,20 +5,6 @@ defmodule App.CatalogFixtures do
   """
 
   @doc """
-  Generate a asset.
-  """
-  def asset_fixture(attrs \\ %{}) do
-    {:ok, asset} =
-      attrs
-      |> Enum.into(%{
-        title: "some title"
-      })
-      |> App.Catalog.create_asset()
-
-    asset
-  end
-
-  @doc """
   Generate a domain.
   """
   def domain_fixture(attrs \\ %{}) do
@@ -30,5 +16,19 @@ defmodule App.CatalogFixtures do
       |> App.Catalog.create_domain()
 
     domain
+  end
+
+  @doc """
+  Generate a asset.
+  """
+  def asset_fixture(attrs \\ %{}) do
+    {:ok, asset} =
+      attrs
+      |> Enum.into(%{
+        title: "some title"
+      })
+      |> App.Catalog.create_asset()
+
+    asset
   end
 end
