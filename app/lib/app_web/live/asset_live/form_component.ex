@@ -3,8 +3,12 @@ defmodule AppWeb.AssetLive.FormComponent do
 
   alias App.Catalog
 
+
   @impl true
   def render(assigns) do
+
+    domains = Enum.map(Catalog.list_domains(), fn d -> {d.name, "#{d.id}"} end)
+
     ~H"""
     <div>
       <.header>
@@ -20,7 +24,7 @@ defmodule AppWeb.AssetLive.FormComponent do
         phx-submit="save"
       >
         <.input field={@form[:title]} type="text" label="Title" />
-        <.input field={@form[:domain_id]} type="text" label="Domain" />
+        <.input field={@form[:domain_id]} type="select" label="Domain" options={domains}/>
 
         <:actions>
           <.button phx-disable-with="Saving...">Save Asset</.button>

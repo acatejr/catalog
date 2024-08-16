@@ -4,6 +4,7 @@ defmodule App.Catalog do
   """
 
   import Ecto.Query, warn: false
+  # alias ElixirLS.LanguageServer.Plugins.Ecto
   alias App.Repo
 
   alias App.Catalog.Domain
@@ -115,6 +116,10 @@ defmodule App.Catalog do
   """
   def list_assets do
     Repo.all(Asset)
+  end
+
+  def list_assets_with_domains do
+    Repo.preload(Repo.all(Asset), :domain)
   end
 
   @doc """

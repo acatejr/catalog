@@ -25,10 +25,9 @@ defmodule App.CatalogFixtures do
     {:ok, asset} =
       attrs
       |> Enum.into(%{
-        title: "some title"
+        title: "some title",
       })
       |> App.Catalog.create_asset()
-
     asset
   end
 end

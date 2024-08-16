@@ -6,7 +6,8 @@ defmodule AppWeb.AssetLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :assets, Catalog.list_assets())}
+    # {:ok, stream(socket, :assets, Catalog.list_assets())}
+    {:ok, stream(socket, :assets, Catalog.list_assets_with_domains())}
   end
 
   @impl true

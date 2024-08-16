@@ -1,6 +1,6 @@
 <.header>
-  Asset <%= @asset.id %>
-  <:subtitle>This is a asset record from your database.</:subtitle>
+  Asset <%= @asset.title %>
+  <:subtitle>Asset record</:subtitle>
   <:actions>
     <.link patch={~p"/assets/#{@asset}/show/edit"} phx-click={JS.push_focus()}>
       <.button>Edit asset</.button>
