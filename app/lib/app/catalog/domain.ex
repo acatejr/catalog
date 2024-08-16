@@ -13,4 +13,5 @@ defmodule App.Catalog.Domain do
     |> cast(attrs, [:name])
     |> validate_required([:name])
   end
+
 end

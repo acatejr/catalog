@@ -13,7 +13,8 @@ defmodule App.Catalog.Asset do
   @doc false
   def changeset(asset, attrs) do
     asset
-    |> cast(attrs, [:title])
+    |> cast(attrs, [:title, :domain_id])
     |> validate_required([:title])
+    # |> validate_required([:title, :domain_id])
   end
 end

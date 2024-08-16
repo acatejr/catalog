@@ -20,6 +20,8 @@ defmodule AppWeb.AssetLive.FormComponent do
         phx-submit="save"
       >
         <.input field={@form[:title]} type="text" label="Title" />
+        <.input field={@form[:domain_id]} type="text" label="Domain" />
+
         <:actions>
           <.button phx-disable-with="Saving...">Save Asset</.button>
         </:actions>
