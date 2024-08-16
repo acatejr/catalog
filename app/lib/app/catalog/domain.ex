@@ -4,7 +4,6 @@ defmodule App.Catalog.Domain do
 
   schema "domains" do
     field :name, :string
-
     timestamps(type: :utc_datetime)
   end
 

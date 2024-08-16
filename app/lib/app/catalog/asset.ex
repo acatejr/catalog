@@ -1,10 +1,11 @@
 defmodule App.Catalog.Asset do
+  alias App.Catalog.Domain
   use Ecto.Schema
   import Ecto.Changeset
 
   schema "assets" do
     field :title, :string
-    field :domain_id, :id
+    belongs_to :domain, Domain
 
     timestamps(type: :utc_datetime)
   end

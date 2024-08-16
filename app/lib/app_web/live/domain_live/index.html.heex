@@ -1,5 +1,5 @@
 <.header>
-  Listing Domains
+  Metadata Catalog Domains
   <:actions>
     <.link patch={~p"/domains/new"}>
       <.button>New Domain</.button>
@@ -13,6 +13,10 @@
   row_click={fn {_id, domain} -> JS.navigate(~p"/domains/#{domain}") end}
 >
   <:col :let={{_id, domain}} label="Name"><%= domain.name %></:col>
+  <:col :let={{_id, domain}} label="Title"></:col>
+  <:col :let={{_id, domain}} label="Inserted"><%= domain.inserted_at %></:col>
+  <:col :let={{_id, domain}} label="Updated"><%= domain.updated_at %></:col>
+
   <:action :let={{_id, domain}}>
     <div class="sr-only">
       <.link navigate={~p"/domains/#{domain}"}>Show</.link>
