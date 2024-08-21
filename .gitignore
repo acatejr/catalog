@@ -3,7 +3,7 @@
 .ruff_cache/
 *.pyc
 *scratch*
-.env
+.env*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
