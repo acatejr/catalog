@@ -10,7 +10,7 @@ from .forms import AssetSimpleSerchForm
 class AssetSearchResults(ListView, FormMixin):
     model = Asset
     context_object_name = "asset_list"
-    template_name = "app_catalog/asset_search_results.html"
+    template_name = "catalog/asset_search_results.html"
     paginate_by = 13
     form_class = AssetSimpleSerchForm
     search_term = None

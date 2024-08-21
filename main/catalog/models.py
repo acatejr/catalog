@@ -13,6 +13,9 @@ class BaseModel(models.Model):
 class Domain(BaseModel):
     """Domain objects.  All are technically sub-domains to the 1 root domain."""
 
+    class Meta:
+        db_table = "domains"
+
     name = models.CharField(
         max_length=250, unique=True, null=False, help_text="Domain name (required)"
     )
@@ -72,6 +75,9 @@ class Domain(BaseModel):
 
 
 class Asset(BaseModel):
+    class Meta:
+        db_table = "assets"
+
     metadata_url = models.CharField(
         max_length=1500,
         unique=True,
@@ -115,9 +121,15 @@ class Asset(BaseModel):
 
 
 class Keyword(BaseModel):
+    class Meta:
+        db_table = "keywords"
+
     word = models.CharField(max_length=250)
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
 
 
 class SearchTerm(BaseModel):
+    class Meta:
+        db_table = "search_terms"
+
     term = models.CharField(max_length=2000, blank=False)

@@ -1,12 +1,5 @@
 from django.contrib import admin
-from .models import Domain, Asset, SearchTerm
-from .models import Keyword
-
-
-@admin.register(Keyword)
-class DomainAdmin(admin.ModelAdmin):
-    ordering = ["pk"]
-    list_display = ["id", "word", "asset"]
+from .models import Domain, Asset, Keyword, SearchTerm
 
 
 @admin.register(Domain)
@@ -21,6 +14,12 @@ class AssetAdmin(admin.ModelAdmin):
     list_display = ["id", "title", "domain", "short_descr"]
     list_filter = ["domain"]
     list_per_page = 20
+
+
+@admin.register(Keyword)
+class KeywordAdmin(admin.ModelAdmin):
+    ordering = ["pk"]
+    list_display = ["id", "word", "asset"]
 
 
 @admin.register(SearchTerm)

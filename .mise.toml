@@ -1,0 +1,11 @@
+[env]
+_.file = ".env.dev"
+
+[tasks.dev_dcu]
+run = "docker compose -f compose.dev.yml up -d --build"
+
+[tasks.dev_dcs]
+run = "docker compose -f compose.dev.yml stop"
+
+[tools]
+python = {version = "3.12.5", virtualenv = ".venv"}

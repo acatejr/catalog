@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import arrow
-from app_catalog.models import Asset, Domain, Keyword
+from catalog.models import Asset, Domain, Keyword
 from django.db.models import Q
 from dotenv import load_dotenv
 
@@ -79,14 +79,14 @@ class Command(BaseCommand):
 
         for url in metadata_urls:
             url = f"https://data.fs.usda.gov/geodata/edw/{url}"
-            print(url)            
-            resp = requests.get(url)            
-            soup = BeautifulSoup(resp.content, features="xml")            
-            title = self.remove_html(soup.find("title").get_text())            
+            print(url)
+            resp = requests.get(url)
+            soup = BeautifulSoup(resp.content, features="xml")
+            title = self.remove_html(soup.find("title").get_text())
             desc_block = soup.find("descript")
             abstract = self.remove_html(desc_block.find("abstract").get_text())
             themekeys = soup.find_all("themekey")
-            keywords = [tk.get_text() for tk in themekeys]           
+            keywords = [tk.get_text() for tk in themekeys]
 
             asset = Asset.objects.filter(Q(metadata_url=url) | Q(title=title))
             if asset:
@@ -103,7 +103,7 @@ class Command(BaseCommand):
                     # modified=str(date_of_last_refresh),
                 )
                 asset.save()
-                
+
             if keywords and len(keywords):
                 self.save_keywords(asset, keywords)
             print(f"{url}")
@@ -115,4 +115,4 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         print("Loading seed asset data.")
         # self.load_data_dot_gov()
-        self.load_fsgeodata()
+        # self.load_fsgeodata()
