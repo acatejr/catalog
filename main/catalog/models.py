@@ -75,6 +75,7 @@ class Domain(BaseModel):
 
 
 class Asset(BaseModel):
+
     class Meta:
         db_table = "assets"
 
@@ -121,11 +122,21 @@ class Asset(BaseModel):
 
 
 class Keyword(BaseModel):
+
     class Meta:
         db_table = "keywords"
 
     word = models.CharField(max_length=250)
-    asset = models.ForeignKey(Asset, on_delete=models.CASCADE)
+    assets = models.ManyToManyField(Asset)
+
+    def __str__(self) -> str:
+        return f"{self.word}"
+
+
+class AssetKeyword(BaseModel):
+
+    class Meta:
+        db_table = "assets_keywords"
 
 
 class SearchTerm(BaseModel):

@@ -1,0 +1,44 @@
+[
+{
+   "model": "catalog.domain",
+   "pk": 1,
+   "fields": {
+      "created_on": "2024-08-28T20:50:25.923Z",
+      "updated_on": "2024-08-28T20:50:25.923Z",
+      "name": "data.gov",
+      "description": "data.gov",
+      "root_domain": "usfs",
+      "host_system_name": null,
+      "host_system_type": null,
+      "format": "TABULAR_AND_GEOSPATIAL"
+   }
+},
+{
+   "model": "catalog.domain",
+   "pk": 2,
+   "fields": {
+      "created_on": "2024-08-28T20:50:41.485Z",
+      "updated_on": "2024-08-28T20:50:41.485Z",
+      "name": "fsgeodata",
+      "description": "FSGeodata Clearing House",
+      "root_domain": "usfs",
+      "host_system_name": null,
+      "host_system_type": null,
+      "format": "TABULAR_AND_GEOSPATIAL"
+   }
+},
+{
+   "model": "catalog.domain",
+   "pk": 3,
+   "fields": {
+      "created_on": "2024-08-28T20:50:58.059Z",
+      "updated_on": "2024-08-28T20:50:58.059Z",
+      "name": "crv",
+      "description": "Climate Risk Viewer",
+      "root_domain": "usfs",
+      "host_system_name": null,
+      "host_system_type": null,
+      "format": "TABULAR_AND_GEOSPATIAL"
+   }
+}
+]
