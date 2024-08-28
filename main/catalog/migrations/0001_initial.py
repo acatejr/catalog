@@ -5,80 +5,204 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='AssetKeyword',
+            name="AssetKeyword",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_on', models.DateTimeField(auto_now_add=True)),
-                ('updated_on', models.DateTimeField(auto_now=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_on", models.DateTimeField(auto_now_add=True)),
+                ("updated_on", models.DateTimeField(auto_now=True)),
             ],
             options={
-                'db_table': 'assets_keywords',
+                "db_table": "assets_keywords",
             },
         ),
         migrations.CreateModel(
-            name='Domain',
+            name="Domain",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_on', models.DateTimeField(auto_now_add=True)),
-                ('updated_on', models.DateTimeField(auto_now=True)),
-                ('name', models.CharField(help_text='Domain name (required)', max_length=250, unique=True)),
-                ('description', models.CharField(help_text='Domain name description (optional)', max_length=500, null=True)),
-                ('root_domain', models.CharField(choices=[('usfs', 'United States Forest Service')], default='usfs')),
-                ('host_system_name', models.CharField(blank=True, help_text='System name currently hosting the data (i.e. Redshift,  Oracle)', max_length=500, null=True)),
-                ('host_system_type', models.CharField(blank=True, help_text='System type currently hosting the data', max_length=500, null=True)),
-                ('format', models.CharField(choices=[('TABULAR', 'Tabular'), ('TABULAR_AND_GEOSPATIAL', 'Tabular and Geospatial'), ('GEOSPATIAL', 'Geospatial'), ('N/A', 'N/A')], help_text='The data format', max_length=125, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_on", models.DateTimeField(auto_now_add=True)),
+                ("updated_on", models.DateTimeField(auto_now=True)),
+                (
+                    "name",
+                    models.CharField(
+                        help_text="Domain name (required)", max_length=250, unique=True
+                    ),
+                ),
+                (
+                    "description",
+                    models.CharField(
+                        help_text="Domain name description (optional)",
+                        max_length=500,
+                        null=True,
+                    ),
+                ),
+                (
+                    "root_domain",
+                    models.CharField(
+                        choices=[("usfs", "United States Forest Service")],
+                        default="usfs",
+                    ),
+                ),
+                (
+                    "host_system_name",
+                    models.CharField(
+                        blank=True,
+                        help_text="System name currently hosting the data (i.e. Redshift,  Oracle)",
+                        max_length=500,
+                        null=True,
+                    ),
+                ),
+                (
+                    "host_system_type",
+                    models.CharField(
+                        blank=True,
+                        help_text="System type currently hosting the data",
+                        max_length=500,
+                        null=True,
+                    ),
+                ),
+                (
+                    "format",
+                    models.CharField(
+                        choices=[
+                            ("TABULAR", "Tabular"),
+                            ("TABULAR_AND_GEOSPATIAL", "Tabular and Geospatial"),
+                            ("GEOSPATIAL", "Geospatial"),
+                            ("N/A", "N/A"),
+                        ],
+                        help_text="The data format",
+                        max_length=125,
+                        null=True,
+                    ),
+                ),
             ],
             options={
-                'db_table': 'domains',
+                "db_table": "domains",
             },
         ),
         migrations.CreateModel(
-            name='SearchTerm',
+            name="SearchTerm",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_on', models.DateTimeField(auto_now_add=True)),
-                ('updated_on', models.DateTimeField(auto_now=True)),
-                ('term', models.CharField(max_length=2000)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_on", models.DateTimeField(auto_now_add=True)),
+                ("updated_on", models.DateTimeField(auto_now=True)),
+                ("term", models.CharField(max_length=2000)),
             ],
             options={
-                'db_table': 'search_terms',
+                "db_table": "search_terms",
             },
         ),
         migrations.CreateModel(
-            name='Asset',
+            name="Asset",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_on', models.DateTimeField(auto_now_add=True)),
-                ('updated_on', models.DateTimeField(auto_now=True)),
-                ('metadata_url', models.CharField(blank=True, help_text='The url used to access/retrieve the metadata.', max_length=1500, null=True, unique=True)),
-                ('title', models.CharField(blank=True, help_text='Name describing the asset', max_length=150, null=True, unique=True)),
-                ('description', models.CharField(blank=True, help_text='The description of the metadata document.', max_length=3000, null=True)),
-                ('modified', models.DateTimeField(blank=True, help_text='Date metadata was last modified.', null=True)),
-                ('domain', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='catalog.domain')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_on", models.DateTimeField(auto_now_add=True)),
+                ("updated_on", models.DateTimeField(auto_now=True)),
+                (
+                    "metadata_url",
+                    models.CharField(
+                        blank=True,
+                        help_text="The url used to access/retrieve the metadata.",
+                        max_length=1500,
+                        null=True,
+                        unique=True,
+                    ),
+                ),
+                (
+                    "title",
+                    models.CharField(
+                        blank=True,
+                        help_text="Name describing the asset",
+                        max_length=150,
+                        null=True,
+                        unique=True,
+                    ),
+                ),
+                (
+                    "description",
+                    models.CharField(
+                        blank=True,
+                        help_text="The description of the metadata document.",
+                        max_length=3000,
+                        null=True,
+                    ),
+                ),
+                (
+                    "modified",
+                    models.DateTimeField(
+                        blank=True,
+                        help_text="Date metadata was last modified.",
+                        null=True,
+                    ),
+                ),
+                (
+                    "domain",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="catalog.domain",
+                    ),
+                ),
             ],
             options={
-                'db_table': 'assets',
+                "db_table": "assets",
             },
         ),
         migrations.CreateModel(
-            name='Keyword',
+            name="Keyword",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_on', models.DateTimeField(auto_now_add=True)),
-                ('updated_on', models.DateTimeField(auto_now=True)),
-                ('word', models.CharField(max_length=250)),
-                ('assets', models.ManyToManyField(to='catalog.asset')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_on", models.DateTimeField(auto_now_add=True)),
+                ("updated_on", models.DateTimeField(auto_now=True)),
+                ("word", models.CharField(max_length=250)),
+                ("assets", models.ManyToManyField(to="catalog.asset")),
             ],
             options={
-                'db_table': 'keywords',
+                "db_table": "keywords",
             },
         ),
     ]

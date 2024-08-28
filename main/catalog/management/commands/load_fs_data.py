@@ -26,11 +26,11 @@ class Command(BaseCommand):
         domain = Domain.objects.get(pk=1)
         for a in assets[:]:
             asset = Asset.objects.update_or_create(
-                title = a["title"],
-                description = a["description"],
-                modified = str(a["modified"]),
-                metadata_url = a["metadata_url"],
-                domain_id = domain.id
+                title=a["title"],
+                description=a["description"],
+                modified=str(a["modified"]),
+                metadata_url=a["metadata_url"],
+                domain_id=domain.id,
             )
 
             for kw in a["keywords"]:
@@ -45,14 +45,13 @@ class Command(BaseCommand):
         domain = Domain.objects.get(pk=2)
 
         for a in assets:
-
             try:
                 asset = Asset.objects.update_or_create(
-                    title = a["title"],
-                    description = a["description"],
-                    modified = str(a["modified"]),
-                    metadata_url = a["metadata_url"],
-                    domain_id = domain.id
+                    title=a["title"],
+                    description=a["description"],
+                    modified=str(a["modified"]),
+                    metadata_url=a["metadata_url"],
+                    domain_id=domain.id,
                 )
 
                 keywords = a["keywords"]
@@ -78,11 +77,11 @@ class Command(BaseCommand):
                 else:
                     modified = str(a["modified"])
                 asset = Asset.objects.update_or_create(
-                    title = a["title"],
-                    description = a["description"],
-                    modified = modified,
-                    metadata_url = a["metadata_url"],
-                    domain_id = domain.id
+                    title=a["title"],
+                    description=a["description"],
+                    modified=modified,
+                    metadata_url=a["metadata_url"],
+                    domain_id=domain.id,
                 )
 
                 keywords = a["keywords"]
@@ -96,7 +95,7 @@ class Command(BaseCommand):
                 print(e)
 
     def add_arguments(self, parser):
-        parser.add_argument('--src', nargs='+', type=str)
+        parser.add_argument("--src", nargs="+", type=str)
 
     def handle(self, *args, **options):
         if options["src"]:

@@ -10,6 +10,7 @@ class AssetInline(admin.TabularInline):
     model = Asset
     fields = ["title"]
 
+
 @admin.register(Domain)
 class DomainAdmin(admin.ModelAdmin):
     ordering = ["pk"]

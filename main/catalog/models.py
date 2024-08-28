@@ -75,7 +75,6 @@ class Domain(BaseModel):
 
 
 class Asset(BaseModel):
-
     class Meta:
         db_table = "assets"
 
@@ -122,7 +121,6 @@ class Asset(BaseModel):
 
 
 class Keyword(BaseModel):
-
     class Meta:
         db_table = "keywords"
 
@@ -134,7 +132,6 @@ class Keyword(BaseModel):
 
 
 class AssetKeyword(BaseModel):
-
     class Meta:
         db_table = "assets_keywords"
 

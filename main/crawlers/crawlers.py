@@ -5,9 +5,11 @@ import re
 import arrow
 from dotenv import load_dotenv
 
+
 def remove_html(text):
-        txt = re.sub("<[^<]+?>", "", text).replace("\n", "")
-        return txt
+    txt = re.sub("<[^<]+?>", "", text).replace("\n", "")
+    return txt
+
 
 def data_dot_gov():
     metadata_urls = [
@@ -48,6 +50,7 @@ def data_dot_gov():
 
     return assets
 
+
 def fsgeodata():
     base_url = "https://data.fs.usda.gov/geodata/edw/datasets.php"
     metadata_urls = []
@@ -75,7 +78,7 @@ def fsgeodata():
         if idinfo_citation_citeinfo_pubdate:
             modified = arrow.get(idinfo_citation_citeinfo_pubdate.get_text())
         else:
-            modified = ''
+            modified = ""
 
         asset = {
             "title": title,
@@ -88,6 +91,7 @@ def fsgeodata():
         assets.append(asset)
 
     return assets
+
 
 def climate_risk_viewer():
     assets = []
@@ -115,7 +119,7 @@ def climate_risk_viewer():
                 asset = {
                     "title": title,
                     "description": description,
-                    "modified": '',
+                    "modified": "",
                     "metadata_url": url,
                     "keywords": keywords,
                 }
@@ -123,6 +127,7 @@ def climate_risk_viewer():
                 assets.append(asset)
 
     return assets
+
 
 def main():
     import pprint
@@ -132,6 +137,7 @@ def main():
     assets.extend(climate_risk_viewer())
 
     pprint.pprint(assets)
+
 
 if __name__ == "__main__":
     main()
