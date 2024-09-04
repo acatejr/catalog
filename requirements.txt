@@ -1,0 +1,9 @@
+# test, prod
+python-dotenv
+sqlalchemy
+alembic
+
+# dev
+pytest
+pytest-sugar
+ruff
