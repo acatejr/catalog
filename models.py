@@ -58,20 +58,20 @@ class Asset(Base):
 if __name__ == "__main__":
     engine = create_engine("sqlite:///catalog.db")
     Base.metadata.create_all(engine)
-    session = Session(autoflush=True, bind=engine)
+    # session = Session(autoflush=True, bind=engine)
 
-    assets = []
-    for i in range(0, 100):
-        assets.append(
-            Asset(
-                title=f"Asset Title {i}",
-                description=f"Description {i}",
-                metadata_url=f"https://{i}",
-            )
-        )
+    # assets = []
+    # for i in range(0, 100):
+    #     assets.append(
+    #         Asset(
+    #             title=f"Asset Title {i}",
+    #             description=f"Description {i}",
+    #             metadata_url=f"https://{i}",
+    #         )
+    #     )
 
-    session.add_all(assets)
-    session.commit()
+    # session.add_all(assets)
+    # session.commit()
 
-    assets = session.query(Asset).all()
-    print(assets)
+    # assets = session.query(Asset).all()
+    # print(assets)

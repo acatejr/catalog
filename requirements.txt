@@ -2,6 +2,9 @@
 python-dotenv
 sqlalchemy
 alembic
+lxml
+requests
+bs4
 
 # dev
 pytest
