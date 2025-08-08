@@ -1,4 +1,6 @@
 from typing import List, Dict, Any
+import json
+from catalog.core.schema import USFSDocument
 
 
 def find_duplicate_documents(documents):
@@ -48,3 +50,21 @@ def merge_docs(*docs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                 document_ids.add(doc_id)
 
     return documents
+
+
+def load_docs_from_json(json_path):
+    """
+    Loads documents from a JSON file and returns a list of USFSDocument instances.
+
+    Args:
+        json_path (str): The path to the JSON file containing the documents.
+
+    Returns:
+        list: A list of USFSDocument instances created from the JSON data.
+    """
+
+    with open(json_path, "r") as f:
+        data = json.load(f)
+
+    # If the JSON is a list of dicts:
+    return [USFSDocument(**item) for item in data]

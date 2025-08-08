@@ -1,5 +1,12 @@
 import typer
-import os
+import json
+from catalog.lib.db import save_to_vector_db
+from catalog.lib.docs import load_docs_from_json
+from sentence_transformers import SentenceTransformer
+from langchain_text_splitters import (
+    RecursiveCharacterTextSplitter,
+)
+
 # from catalog.core.config import settings
 # typer.echo(f"Current settings: {settings.json()}")
 # os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -28,24 +35,19 @@ def harvest_fsgeodata() -> None:
     """
     Harvest data from FS Geodata.
     """
-    from catalog.core.crawlers import FSGeodataHarvester
 
-    fsgeodata = FSGeodataHarvester()
-    fsgeodata.download_metadata_files()
-    fsgeodata_documents = fsgeodata.parse_metadata()
+    from catalog.core.harvester import harvest_fsgeodata
+    fsgeodata_documents = harvest_fsgeodata()
     typer.echo(f"Extracted {len(fsgeodata_documents)} items from FS Geodata.")
-
 
 @cli.command()
 def harvest_datahub() -> None:
     """
     Harvest data from DataHub.
     """
-    from catalog.core.crawlers import DataHubHarvester
 
-    datahub = DataHubHarvester()
-    datahub.download_metadata_files()
-    datahub_documents = datahub.parse_metadata()
+    from catalog.core.harvester import _harvest_datahub
+    datahub_documents = _harvest_datahub()
     typer.echo(f"Extracted {len(datahub_documents)} items from DataHub.")
 
 @cli.command()
@@ -53,11 +55,9 @@ def harvest_rda() -> None:
     """
     Harvest data from RDA.
     """
-    from catalog.core.crawlers import RDAHarvester
 
-    rda = RDAHarvester()
-    rda.download_metadata_files()
-    rda_documents = rda.parse_metadata()
+    from catalog.core.harvester import harvest_rda
+    rda_documents = harvest_rda()
     typer.echo(f"Extracted {len(rda_documents)} items from RDA.")
 
 @cli.command()
@@ -65,25 +65,59 @@ def harvest_all() -> None:
     """
     Harvest data from all sources: FS Geodata, DataHub, and RDA.
     """
-    from catalog.core.crawlers import FSGeodataHarvester, DataHubHarvester, RDAHarvester
 
-    fsgeodata = FSGeodataHarvester()
-    fsgeodata.download_metadata_files()
-    fsgeodata_documents = fsgeodata.parse_metadata()
-    typer.echo(f"Extracted {len(fsgeodata_documents)} items from FS Geodata.")
+    from catalog.core.harvester import harvest_all
+    docs = harvest_all()
+    output_path = "./tmp/usfs_docs.json"
+    with open(output_path, "w") as f:
+        json.dump(docs, f, indent=3)
 
-    datahub = DataHubHarvester()
-    datahub.download_metadata_files()
-    datahub_documents = datahub.parse_metadata()
-    typer.echo(f"Extracted {len(datahub_documents)} items from DataHub.")
+    typer.echo(f"Extracted {len(docs)} items from all sources.")
 
-    rda = RDAHarvester()
-    rda.download_metadata_files()
-    rda_documents = rda.parse_metadata()
-    typer.echo(f"Extracted {len(rda_documents)} items from RDA.")
 
-    documents = fsgeodata_documents + datahub_documents + rda_documents
-    typer.echo(f"Total documents extracted: {len(documents)}")
+@cli.command()
+def load_usfs_docs_into_pgdb():
+    """Load USFS documents into the PostgreSQL database."""
+
+    model = SentenceTransformer("all-MiniLM-L6-v2")
+
+    fsdocs = load_docs_from_json("./tmp/usfs_docs.json")
+    print(f"Loading USFS {len(fsdocs)} documents into PostgreSQL database...")
+
+    recursive_text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=65, chunk_overlap=0
+    )  # ["\n\n", "\n", " ", ""] 65,450
+
+    for fsdoc in fsdocs:
+        title = fsdoc.title
+        description = fsdoc.description
+        keywords = ",".join(kw for kw in fsdoc.keywords) or []
+        combined_text = (
+            f"Title: {title}\nDescription: {description}\nKeywords: {keywords}"
+        )
+
+        chunks = recursive_text_splitter.create_documents([combined_text])
+        for idx, chunk in enumerate(chunks):
+            metadata = {
+                "doc_id": fsdoc.id,  # or fsdoc.doc_id if that's the field name
+                "chunk_type": "title+description+keywords",
+                "chunk_index": idx,
+                "chunk_text": chunk.page_content,
+                "title": fsdoc.title,
+                "description": fsdoc.description,
+                "keywords": fsdoc.keywords,
+                "src": fsdoc.src,  # or another source identifier
+            }
+
+            embedding = model.encode(chunk.page_content)
+            save_to_vector_db(
+                embedding=embedding,
+                metadata=metadata,
+                title=fsdoc.title,
+                desc=fsdoc.description,
+            )
+
+    print("USFS documents loaded into PostgreSQL database.")
 
 if __name__ == "__main__":
     cli()
