@@ -1,0 +1,9 @@
+site_name: Data Catalog
+site_url: https://acatejr.github.io/catalog/
+repo_url:
+
+plugins:
+  - search
+
+theme:
+  name: material
