@@ -3,6 +3,7 @@ import json
 from catalog.lib.db import save_to_vector_db
 from catalog.lib.docs import load_docs_from_json
 from sentence_transformers import SentenceTransformer
+import uvicorn
 from langchain_text_splitters import (
     RecursiveCharacterTextSplitter,
 )
@@ -118,6 +119,20 @@ def load_usfs_docs_into_pgdb():
             )
 
     print("USFS documents loaded into PostgreSQL database.")
+
+
+@cli.command()
+def run_adhoc() -> None:
+    """
+    Run the adhoc catalog web application.
+    """
+    typer.echo("Starting adhoc catalog web application...")
+    uvicorn.run(
+        "catalog.adhoc.app:app",
+        host="0.0.0.0",
+        port=8000,
+        reload=True
+    )
 
 if __name__ == "__main__":
     cli()

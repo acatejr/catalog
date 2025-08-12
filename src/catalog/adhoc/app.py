@@ -70,10 +70,18 @@ def create_document(
 
     return RedirectResponse(url="/", status_code=303)
 
-    # return {"id": doc.id}
+@app.post("/documents/{document_id}/delete")
+def delete_document(
+    document_id: int,
+    session: Session = Depends(get_session)
+):
+    # Find the document
+    document = session.get(Document, document_id)
+    if document:
+        # Remove associated keywords
+        document.keywords = []
+        # Delete the document
+        session.delete(document)
+        session.commit()
 
-
-# if __name__ == "__main__":
-#     init_db()
-#     uvicorn.run("catalog.adhoc.main:app", host="0.0.0.0", port=8000, reload=True)
-#     # uvicorn.run(app, host="0.0.0.0", port=8000)
+    return RedirectResponse(url="/", status_code=303)

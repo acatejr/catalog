@@ -26,7 +26,6 @@ dependencies = [
 ]
 
 [project.scripts]
-# catalog = "catalog:main"
 catalog = "catalog.cli.main:cli"
 
 [build-system]
