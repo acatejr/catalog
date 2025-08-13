@@ -20,7 +20,7 @@ def get_session():
         yield session
 
 app = FastAPI(title="USFS AdHoc Data Catalog")
-templates = Jinja2Templates(directory="./src/catalog/adhoc/templates")
+templates = Jinja2Templates(directory=os.path.join(os.path.dirname(__file__), "templates"))
 # app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @asynccontextmanager
@@ -82,6 +82,58 @@ def delete_document(
         document.keywords = []
         # Delete the document
         session.delete(document)
+        session.commit()
+
+    return RedirectResponse(url="/", status_code=303)
+
+
+@app.get("/documents/{document_id}/edit")
+def edit_document_form(
+    document_id: int,
+    request: Request,
+    session: Session = Depends(get_session)
+):
+    document = session.get(Document, document_id)
+    if not document:
+        return RedirectResponse(url="/", status_code=303)
+
+    # Format keywords as comma-separated string
+    keywords = ", ".join([keyword.name for keyword in document.keywords])
+
+    return templates.TemplateResponse(
+        "edit.html",
+        {"request": request, "document": document, "keywords": keywords}
+    )
+
+@app.post("/documents/{document_id}/edit")
+def update_document(
+    document_id: int,
+    request: Request,
+    title: str = Form(...),
+    description: str = Form(...),
+    keywords: str = Form(...),
+    session: Session = Depends(get_session)
+):
+    document = session.get(Document, document_id)
+    if document:
+        # Update basic fields
+        document.title = title
+        document.description = description
+
+        # Clear existing keywords
+        document.keywords = []
+
+        # Add new keywords
+        keyword_names = [k.strip() for k in keywords.split(",") if k.strip()]
+        for name in keyword_names:
+            keyword = session.exec(
+                select(Keyword).where(Keyword.name == name)
+            ).first()
+            if not keyword:
+                keyword = Keyword(name=name)
+                session.add(keyword)
+            document.keywords.append(keyword)
+
         session.commit()
 
     return RedirectResponse(url="/", status_code=303)
