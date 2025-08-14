@@ -1,6 +1,6 @@
 import typer
 import json
-from catalog.lib.db import save_to_vector_db
+from catalog.lib.db import save_to_vector_db, count_documents
 from catalog.lib.docs import load_docs_from_json
 from sentence_transformers import SentenceTransformer
 import uvicorn
@@ -14,6 +14,10 @@ from langchain_text_splitters import (
 
 cli = typer.Typer()
 
+@cli.command()
+def count_docs() -> None:
+    count = count_documents()
+    typer.echo(f"There are {count} documents in the documents table.")
 
 @cli.command()
 def hello() -> None:
