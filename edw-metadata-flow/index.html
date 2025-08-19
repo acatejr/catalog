@@ -225,19 +225,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    EDW Metadata
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -249,34 +236,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -324,23 +283,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -356,7 +298,24 @@
 
 
 <h1 id="datametadata-edw-integration-process">Data/Metadata EDW Integration Process</h1>
-<h2 id="_1"></h2>
+<pre class="mermaid"><code>flowchart TD
+    A[Geospatial Data]
+    B[Tabular Data]
+    C[Raster Data]
+    D[Other]
+
+    A --&gt; Advisor_Call_Process
+    B --&gt; Advisor_Call_Process
+    C --&gt; Advisor_Call_Process
+    D --&gt; Advisor_Call_Process
+
+    subgraph Advisor_Call_Process [Advisor Call Process]
+        direction TB
+        P1[Content Request Form]
+        P2[Metadata Spreadsheet]
+        P3[Powerpoint Presentation]
+    end
+</code></pre>
 
 
 
