@@ -8,6 +8,9 @@ plugins:
 theme:
   name: material
 
+extra_css:
+  - assets/usfs.css
+
 nav:
   - Home: index.md
   - EDW Metadata: edw-metadata-flow.md
