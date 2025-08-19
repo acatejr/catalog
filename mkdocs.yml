@@ -12,3 +12,16 @@ nav:
   - Home: index.md
   - EDW Metadata: edw-metadata-flow.md
   - Ad-hoc Catalog: ad-hoc-catalog.md
+
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
