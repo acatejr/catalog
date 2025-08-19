@@ -7,3 +7,8 @@ plugins:
 
 theme:
   name: material
+
+nav:
+  - Home: index.md
+  - EDW Metadata: edw-metadata-flow.md
+  - Ad-hoc Catalog: ad-hoc-catalog.md
