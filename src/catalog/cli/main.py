@@ -126,6 +126,59 @@ def load_usfs_docs_into_pgdb():
 
 
 @cli.command()
+def rag_query(
+    query_text: str = typer.Argument(..., help="Natural language query"),
+    top_k: int = typer.Option(5, "--top-k", "-k", help="Number of results to return"),
+    data_source: str = typer.Option(None, "--source", "-s", help="Filter by data source"),
+    no_llm: bool = typer.Option(False, "--no-llm", help="Disable LLM response generation"),
+    threshold: float = typer.Option(0.5, "--threshold", "-t", help="Similarity threshold (0-1)"),
+    json_output: bool = typer.Option(False, "--json", help="Output results as JSON"),
+) -> None:
+    """
+    Run natural language queries against the catalog database using RAG.
+
+    Examples:
+        catalog rag-query "Show me all forest fire related datasets"
+        catalog rag-query "Find records about erosion" --top-k 10
+        catalog rag-query "What datasets are from USGS?" --source usgs
+    """
+    from catalog.lib.rag import run_natural_language_query
+
+    result = run_natural_language_query(
+        query=query_text,
+        top_k=top_k,
+        data_source=data_source,
+        use_llm=not no_llm,
+        similarity_threshold=threshold
+    )
+
+    if json_output:
+        typer.echo(json.dumps(result, indent=2))
+    else:
+        # Simple text output for CLI
+        typer.echo(f"\nQuery: {result['query']}")
+        typer.echo(f"Type: {result['query_type']}")
+        typer.echo(f"Found {len(result['documents'])} documents")
+
+        if result['documents']:
+            typer.echo("\nTop Results:")
+            for i, doc in enumerate(result['documents'][:3]):
+                typer.echo(f"{i+1}. {doc['title']} (similarity: {doc['similarity']:.3f})")
+
+        if result['response']:
+            typer.echo(f"\nAI Response:\n{result['response']}")
+
+
+@cli.command()
+def rag_interactive() -> None:
+    """
+    Start interactive RAG query mode.
+    """
+    from catalog.cli.rag_query import run_interactive_mode
+    run_interactive_mode(5, None, True, 0.5, False)
+
+
+@cli.command()
 def run_adhoc() -> None:
     """
     Run the adhoc catalog web application.
