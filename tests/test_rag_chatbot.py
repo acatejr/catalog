@@ -1,11 +1,14 @@
 import pytest
 from unittest.mock import Mock, patch, MagicMock
 from typing import List, Dict, Any
+from catalog.rag.main import RAGChatBot
 
 class TestRAGChatbot:
 
     def test_init(self):
-        pytest.fail("Test not implemented yet")
+        self.chatbot = RAGChatBot(model_name="test_model", rag_config={"param": "value"})
+        assert self.chatbot.model_name == "test_model"
+        assert self.chatbot.rag_config == {"param": "value"}
 
     # @pytest.fixture
     # def mock_rag_chatbot(self):
