@@ -61,7 +61,7 @@ def demonstrate_vector_search(vector_store: SimpleVectorStore):
     test_queries = [
         "machine learning algorithms",
         "Python programming",
-        "database design"
+        "database design",
     ]
 
     for query_text in test_queries:
@@ -103,7 +103,7 @@ async def demonstrate_rag_agent(vector_store: SimpleVectorStore):
         test_queries = [
             "What is machine learning and how does it work?",
             "Which Python data structure should I use for storing unique items?",
-            "How do vector databases perform similarity search?"
+            "How do vector databases perform similarity search?",
         ]
 
         for query_text in test_queries:
@@ -111,9 +111,7 @@ async def demonstrate_rag_agent(vector_store: SimpleVectorStore):
 
             # Create chat query
             chat_query = ChatQuery(
-                message=query_text,
-                context_limit=3,
-                include_sources=True
+                message=query_text, context_limit=3, include_sources=True
             )
 
             # Get response from agent
@@ -127,7 +125,9 @@ async def demonstrate_rag_agent(vector_store: SimpleVectorStore):
                 if response.sources:
                     print(f"📚 Sources ({len(response.sources)}):")
                     for source in response.sources:
-                        print(f"   - {source.document.title} (similarity: {source.similarity_score:.3f})")
+                        print(
+                            f"   - {source.document.title} (similarity: {source.similarity_score:.3f})"
+                        )
 
             except Exception as e:
                 print(f"❌ Error with AI agent: {e}")
@@ -154,7 +154,7 @@ def demonstrate_simple_rag_agent(vector_store: SimpleVectorStore):
     test_queries = [
         "What is machine learning?",
         "Tell me about Python data structures",
-        "How do vector databases work?"
+        "How do vector databases work?",
     ]
 
     for query_text in test_queries:
@@ -170,7 +170,9 @@ def demonstrate_simple_rag_agent(vector_store: SimpleVectorStore):
         if response.sources:
             print(f"📚 Sources ({len(response.sources)}):")
             for source in response.sources:
-                print(f"   - {source.document.title} (similarity: {source.similarity_score:.3f})")
+                print(
+                    f"   - {source.document.title} (similarity: {source.similarity_score:.3f})"
+                )
 
 
 def interactive_demo(vector_store: SimpleVectorStore):
@@ -182,7 +184,9 @@ def interactive_demo(vector_store: SimpleVectorStore):
     """
     print("\n🎮 Interactive Demo")
     print("Ask questions about the topics in the database!")
-    print("Topics include: Machine Learning, Python, Databases, APIs, Git, Cloud Computing, etc.")
+    print(
+        "Topics include: Machine Learning, Python, Databases, APIs, Git, Cloud Computing, etc."
+    )
     print("Type 'quit' to exit.\n")
 
     # Use simple agent for interactive demo (no API keys required)
@@ -192,7 +196,7 @@ def interactive_demo(vector_store: SimpleVectorStore):
         try:
             query = input("❓ Your question: ").strip()
 
-            if query.lower() in ['quit', 'exit', 'q']:
+            if query.lower() in ["quit", "exit", "q"]:
                 print("👋 Goodbye!")
                 break
 
@@ -209,7 +213,9 @@ def interactive_demo(vector_store: SimpleVectorStore):
                 print(f"\n📚 Sources:")
                 for i, source in enumerate(response.sources, 1):
                     print(f"   {i}. {source.document.title}")
-                    print(f"      Category: {source.document.metadata.get('category', 'N/A')}")
+                    print(
+                        f"      Category: {source.document.metadata.get('category', 'N/A')}"
+                    )
                     print(f"      Similarity: {source.similarity_score:.3f}")
 
             print("-" * 50)

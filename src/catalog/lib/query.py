@@ -1,4 +1,5 @@
 import os
+
 # import sys
 # import click
 import psycopg2
@@ -49,6 +50,7 @@ def count_documents() -> int:
         cur.close()
 
     return doc_count
+
 
 def get_keyword_frequencies(
     top_k: int = 20, data_source: Optional[str] = None

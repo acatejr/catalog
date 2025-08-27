@@ -48,7 +48,9 @@ rag_agent = Agent(
 
 
 @rag_agent.tool
-async def search_vector_db(ctx: RunContext[VectorDBContext], query: str, top_k: int = 3) -> List[SearchResult]:
+async def search_vector_db(
+    ctx: RunContext[VectorDBContext], query: str, top_k: int = 3
+) -> List[SearchResult]:
     """
     Search the vector database for relevant documents.
 
@@ -77,7 +79,7 @@ async def get_vector_store_stats(ctx: RunContext[VectorDBContext]) -> dict:
         "total_documents": stats.total_documents,
         "embedding_dimension": stats.embedding_dimension,
         "index_size_mb": round(stats.index_size_mb, 2),
-        "last_updated": stats.last_updated.isoformat()
+        "last_updated": stats.last_updated.isoformat(),
     }
 
 
@@ -128,15 +130,17 @@ class RAGAgent:
             )
 
             # Extract the response
-            if hasattr(result, 'data') and isinstance(result.data, ChatResponse):
+            if hasattr(result, "data") and isinstance(result.data, ChatResponse):
                 response = result.data
             else:
                 # If the agent didn't return a ChatResponse, create one
                 response = ChatResponse(
-                    response=str(result.data) if hasattr(result, 'data') else str(result),
+                    response=str(result.data)
+                    if hasattr(result, "data")
+                    else str(result),
                     sources=[],
                     confidence=0.8,
-                    processing_time_ms=0.0
+                    processing_time_ms=0.0,
                 )
 
             # Update processing time
@@ -152,7 +156,7 @@ class RAGAgent:
                 response=f"I apologize, but I encountered an error while processing your question: {str(e)}",
                 sources=[],
                 confidence=0.0,
-                processing_time_ms=processing_time
+                processing_time_ms=processing_time,
             )
 
     def chat_sync(self, query: ChatQuery) -> ChatResponse:
@@ -166,9 +170,12 @@ class RAGAgent:
             Chat response with answer and sources
         """
         import asyncio
+
         return asyncio.run(self.chat(query))
 
-    def simple_chat(self, message: str, context_limit: int = 3, include_sources: bool = True) -> ChatResponse:
+    def simple_chat(
+        self, message: str, context_limit: int = 3, include_sources: bool = True
+    ) -> ChatResponse:
         """
         Simple chat interface that takes just a message string.
 
@@ -183,7 +190,7 @@ class RAGAgent:
         query = ChatQuery(
             message=message,
             context_limit=context_limit,
-            include_sources=include_sources
+            include_sources=include_sources,
         )
         return self.chat_sync(query)
 
@@ -232,5 +239,5 @@ class SimpleRAGAgent:
             response=response_text,
             sources=search_response.results,
             confidence=confidence,
-            processing_time_ms=processing_time
+            processing_time_ms=processing_time,
         )

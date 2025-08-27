@@ -16,6 +16,7 @@ class TestFastAPIApp:
     def test_app_instance(self):
         """Test that the app is a proper FastAPI instance."""
         from fastapi import FastAPI
+
         assert isinstance(app, FastAPI)
 
 
@@ -57,8 +58,10 @@ class TestHealthEndpoint:
         assert isinstance(timestamp, str)
 
         # Validate ISO format using regex
-        iso_pattern = r'^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}$'
-        assert re.match(iso_pattern, timestamp), f"Timestamp '{timestamp}' is not in expected ISO format"
+        iso_pattern = r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}$"
+        assert re.match(iso_pattern, timestamp), (
+            f"Timestamp '{timestamp}' is not in expected ISO format"
+        )
 
     def test_health_endpoint_timestamp_accuracy(self, client):
         """Test that the timestamp is recent and accurate."""
@@ -75,8 +78,9 @@ class TestHealthEndpoint:
         response_timestamp = datetime.fromisoformat(json_response["timestamp"])
 
         # Verify timestamp is between before and after request times
-        assert before_request <= response_timestamp <= after_request, \
+        assert before_request <= response_timestamp <= after_request, (
             f"Timestamp {response_timestamp} is not between {before_request} and {after_request}"
+        )
 
     def test_health_endpoint_content_type(self, client):
         """Test that the health endpoint returns JSON content type."""
@@ -96,9 +100,13 @@ class TestHealthEndpoint:
             assert "timestamp" in json_response
 
         # Timestamps should be different (or at least not decreasing)
-        timestamps = [datetime.fromisoformat(resp.json()["timestamp"]) for resp in responses]
+        timestamps = [
+            datetime.fromisoformat(resp.json()["timestamp"]) for resp in responses
+        ]
         for i in range(1, len(timestamps)):
-            assert timestamps[i] >= timestamps[i-1], "Timestamps should not decrease between calls"
+            assert timestamps[i] >= timestamps[i - 1], (
+                "Timestamps should not decrease between calls"
+            )
 
 
 class TestHealthEndpointHTTPMethods:

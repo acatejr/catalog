@@ -12,16 +12,22 @@ import uvicorn
 DATABASE_URL = "sqlite:///./adhoc_catalog.db"
 engine = create_engine(DATABASE_URL)
 
+
 def init_db():
     SQLModel.metadata.create_all(engine)
+
 
 def get_session():
     with Session(engine) as session:
         yield session
 
+
 app = FastAPI(title="USFS AdHoc Data Catalog")
-templates = Jinja2Templates(directory=os.path.join(os.path.dirname(__file__), "templates"))
+templates = Jinja2Templates(
+    directory=os.path.join(os.path.dirname(__file__), "templates")
+)
 # app.mount("/static", StaticFiles(directory="static"), name="static")
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -34,14 +40,15 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+
 @app.get("/")
 def home(request: Request, session: Session = Depends(get_session)):
     documents = session.exec(select(Document)).all()
 
     return templates.TemplateResponse(
-        "index.html",
-        {"request": request, "documents": documents}
+        "index.html", {"request": request, "documents": documents}
     )
+
 
 @app.post("/documents")
 def create_document(
@@ -49,7 +56,7 @@ def create_document(
     title: str = Form(...),
     description: str = Form(...),
     keywords: str = Form(...),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     # Create document
     doc = Document(title=title, description=description)
@@ -58,9 +65,7 @@ def create_document(
     # Handle keywords
     keyword_names = [k.strip() for k in keywords.split(",")]
     for name in keyword_names:
-        keyword = session.exec(
-            select(Keyword).where(Keyword.name == name)
-        ).first()
+        keyword = session.exec(select(Keyword).where(Keyword.name == name)).first()
         if not keyword:
             keyword = Keyword(name=name)
             session.add(keyword)
@@ -70,11 +75,9 @@ def create_document(
 
     return RedirectResponse(url="/", status_code=303)
 
+
 @app.post("/documents/{document_id}/delete")
-def delete_document(
-    document_id: int,
-    session: Session = Depends(get_session)
-):
+def delete_document(document_id: int, session: Session = Depends(get_session)):
     # Find the document
     document = session.get(Document, document_id)
     if document:
@@ -89,9 +92,7 @@ def delete_document(
 
 @app.get("/documents/{document_id}/edit")
 def edit_document_form(
-    document_id: int,
-    request: Request,
-    session: Session = Depends(get_session)
+    document_id: int, request: Request, session: Session = Depends(get_session)
 ):
     document = session.get(Document, document_id)
     if not document:
@@ -101,9 +102,9 @@ def edit_document_form(
     keywords = ", ".join([keyword.name for keyword in document.keywords])
 
     return templates.TemplateResponse(
-        "edit.html",
-        {"request": request, "document": document, "keywords": keywords}
+        "edit.html", {"request": request, "document": document, "keywords": keywords}
     )
+
 
 @app.post("/documents/{document_id}/edit")
 def update_document(
@@ -112,7 +113,7 @@ def update_document(
     title: str = Form(...),
     description: str = Form(...),
     keywords: str = Form(...),
-    session: Session = Depends(get_session)
+    session: Session = Depends(get_session),
 ):
     document = session.get(Document, document_id)
     if document:
@@ -126,9 +127,7 @@ def update_document(
         # Add new keywords
         keyword_names = [k.strip() for k in keywords.split(",") if k.strip()]
         for name in keyword_names:
-            keyword = session.exec(
-                select(Keyword).where(Keyword.name == name)
-            ).first()
+            keyword = session.exec(select(Keyword).where(Keyword.name == name)).first()
             if not keyword:
                 keyword = Keyword(name=name)
                 session.add(keyword)

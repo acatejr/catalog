@@ -21,7 +21,7 @@ class TestModels:
             id="test_1",
             title="Test Document",
             content="This is test content",
-            metadata={"category": "test"}
+            metadata={"category": "test"},
         )
 
         assert doc.id == "test_1"
@@ -54,9 +54,7 @@ class TestModels:
     def test_chat_query_creation(self):
         """Test ChatQuery creation."""
         chat_query = ChatQuery(
-            message="What is machine learning?",
-            context_limit=3,
-            include_sources=True
+            message="What is machine learning?", context_limit=3, include_sources=True
         )
 
         assert chat_query.message == "What is machine learning?"
@@ -91,7 +89,7 @@ class TestVectorStore:
         doc_id = vector_store.add_document(
             title="Test Document",
             content="This is a test document about machine learning.",
-            metadata={"category": "test"}
+            metadata={"category": "test"},
         )
 
         assert doc_id is not None
@@ -109,13 +107,13 @@ class TestVectorStore:
             {
                 "title": "Doc 1",
                 "content": "Content about machine learning",
-                "metadata": {"category": "AI"}
+                "metadata": {"category": "AI"},
             },
             {
                 "title": "Doc 2",
                 "content": "Content about Python programming",
-                "metadata": {"category": "Programming"}
-            }
+                "metadata": {"category": "Programming"},
+            },
         ]
 
         doc_ids = vector_store.add_documents(documents)
@@ -138,7 +136,10 @@ class TestVectorStore:
         # Check that results are sorted by similarity
         if len(response.results) > 1:
             for i in range(len(response.results) - 1):
-                assert response.results[i].similarity_score >= response.results[i + 1].similarity_score
+                assert (
+                    response.results[i].similarity_score
+                    >= response.results[i + 1].similarity_score
+                )
 
     def test_search_with_threshold(self, populated_vector_store):
         """Test search with similarity threshold."""
@@ -239,11 +240,16 @@ class TestSimpleRAGAgent:
         # Should find relevant documents
         assert len(response.sources) > 0
         assert response.confidence > 0.0
-        assert "machine learning" in response.response.lower() or "algorithm" in response.response.lower()
+        assert (
+            "machine learning" in response.response.lower()
+            or "algorithm" in response.response.lower()
+        )
 
     def test_chat_with_irrelevant_query(self, rag_agent):
         """Test chat with a query that might not find relevant documents."""
-        response = rag_agent.chat("quantum physics and space exploration", context_limit=3)
+        response = rag_agent.chat(
+            "quantum physics and space exploration", context_limit=3
+        )
 
         # Might not find highly relevant documents, but should still respond
         assert isinstance(response, ChatResponse)
@@ -352,7 +358,11 @@ class TestIntegration:
         sources3 = set(s.document.id for s in response3.sources)
 
         # At least some overlap between similar queries
-        assert len(sources1 & sources2) > 0 or len(sources1 & sources3) > 0 or len(sources2 & sources3) > 0
+        assert (
+            len(sources1 & sources2) > 0
+            or len(sources1 & sources3) > 0
+            or len(sources2 & sources3) > 0
+        )
 
 
 if __name__ == "__main__":

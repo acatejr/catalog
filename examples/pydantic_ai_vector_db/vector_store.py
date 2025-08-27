@@ -9,7 +9,13 @@ from sentence_transformers import SentenceTransformer
 from datetime import datetime
 import uuid
 
-from .models import Document, SearchQuery, SearchResult, SearchResponse, VectorStoreStats
+from .models import (
+    Document,
+    SearchQuery,
+    SearchResult,
+    SearchResponse,
+    VectorStoreStats,
+)
 
 
 class SimpleVectorStore:
@@ -30,7 +36,13 @@ class SimpleVectorStore:
         self.embedding_dimension = self.encoder.get_sentence_embedding_dimension()
         self.last_updated = datetime.now()
 
-    def add_document(self, title: str, content: str, metadata: Optional[Dict[str, Any]] = None, doc_id: Optional[str] = None) -> str:
+    def add_document(
+        self,
+        title: str,
+        content: str,
+        metadata: Optional[Dict[str, Any]] = None,
+        doc_id: Optional[str] = None,
+    ) -> str:
         """
         Add a document to the vector store.
 
@@ -59,7 +71,7 @@ class SimpleVectorStore:
             content=content,
             metadata=metadata,
             embedding=embedding,
-            created_at=datetime.now()
+            created_at=datetime.now(),
         )
 
         # Store document
@@ -88,7 +100,7 @@ class SimpleVectorStore:
                 title=doc["title"],
                 content=doc["content"],
                 metadata=doc.get("metadata", {}),
-                doc_id=doc.get("id")
+                doc_id=doc.get("id"),
             )
             doc_ids.append(doc_id)
         return doc_ids
@@ -107,10 +119,7 @@ class SimpleVectorStore:
 
         if not self.documents:
             return SearchResponse(
-                query=query.query,
-                results=[],
-                total_results=0,
-                execution_time_ms=0.0
+                query=query.query, results=[], total_results=0, execution_time_ms=0.0
             )
 
         # Generate query embedding
@@ -125,7 +134,7 @@ class SimpleVectorStore:
 
         # Sort by similarity (descending)
         sorted_indices = np.argsort(valid_similarities)[::-1]
-        top_indices = sorted_indices[:query.top_k]
+        top_indices = sorted_indices[: query.top_k]
 
         # Create results
         results = []
@@ -136,9 +145,7 @@ class SimpleVectorStore:
             similarity_score = float(valid_similarities[idx])
 
             result = SearchResult(
-                document=document,
-                similarity_score=similarity_score,
-                rank=rank + 1
+                document=document, similarity_score=similarity_score, rank=rank + 1
             )
             results.append(result)
 
@@ -148,7 +155,7 @@ class SimpleVectorStore:
             query=query.query,
             results=results,
             total_results=len(results),
-            execution_time_ms=execution_time
+            execution_time_ms=execution_time,
         )
 
     def get_document(self, doc_id: str) -> Optional[Document]:
@@ -176,7 +183,7 @@ class SimpleVectorStore:
             total_documents=len(self.documents),
             embedding_dimension=self.embedding_dimension,
             index_size_mb=index_size_mb,
-            last_updated=self.last_updated
+            last_updated=self.last_updated,
         )
 
     def _rebuild_embeddings_matrix(self):
@@ -201,7 +208,9 @@ class SimpleVectorStore:
 
         # Normalize embeddings
         query_norm = query_embedding / np.linalg.norm(query_embedding)
-        doc_norms = self.embeddings / np.linalg.norm(self.embeddings, axis=1, keepdims=True)
+        doc_norms = self.embeddings / np.linalg.norm(
+            self.embeddings, axis=1, keepdims=True
+        )
 
         # Calculate cosine similarities
         similarities = np.dot(doc_norms, query_norm)

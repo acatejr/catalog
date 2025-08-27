@@ -14,10 +14,12 @@ from langchain_text_splitters import (
 
 cli = typer.Typer()
 
+
 @cli.command()
 def count_docs() -> None:
     count = count_documents()
     typer.echo(f"There are {count} documents in the documents table.")
+
 
 @cli.command()
 def hello() -> None:
@@ -42,8 +44,10 @@ def harvest_fsgeodata() -> None:
     """
 
     from catalog.core.harvester import harvest_fsgeodata
+
     fsgeodata_documents = harvest_fsgeodata()
     typer.echo(f"Extracted {len(fsgeodata_documents)} items from FS Geodata.")
+
 
 @cli.command()
 def harvest_datahub() -> None:
@@ -52,8 +56,10 @@ def harvest_datahub() -> None:
     """
 
     from catalog.core.harvester import _harvest_datahub
+
     datahub_documents = _harvest_datahub()
     typer.echo(f"Extracted {len(datahub_documents)} items from DataHub.")
+
 
 @cli.command()
 def harvest_rda() -> None:
@@ -62,8 +68,10 @@ def harvest_rda() -> None:
     """
 
     from catalog.core.harvester import harvest_rda
+
     rda_documents = harvest_rda()
     typer.echo(f"Extracted {len(rda_documents)} items from RDA.")
+
 
 @cli.command()
 def harvest_all() -> None:
@@ -72,6 +80,7 @@ def harvest_all() -> None:
     """
 
     from catalog.core.harvester import harvest_all
+
     docs = harvest_all()
     output_path = "./tmp/usfs_docs.json"
     with open(output_path, "w") as f:
@@ -131,12 +140,8 @@ def run_adhoc() -> None:
     Run the adhoc catalog web application.
     """
     typer.echo("Starting adhoc catalog web application...")
-    uvicorn.run(
-        "catalog.adhoc.app:app",
-        host="0.0.0.0",
-        port=8000,
-        reload=True
-    )
+    uvicorn.run("catalog.adhoc.app:app", host="0.0.0.0", port=8000, reload=True)
+
 
 if __name__ == "__main__":
     cli()

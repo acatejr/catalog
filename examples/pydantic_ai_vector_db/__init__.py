@@ -43,14 +43,11 @@ __all__ = [
     "ChatQuery",
     "ChatResponse",
     "VectorStoreStats",
-
     # Vector Store
     "SimpleVectorStore",
-
     # Agents
     "RAGAgent",
     "SimpleRAGAgent",
-
     # Sample Data
     "get_sample_documents",
     "get_sample_queries",

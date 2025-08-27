@@ -28,8 +28,8 @@ def get_sample_documents() -> List[Dict[str, Any]]:
             "metadata": {
                 "category": "AI/ML",
                 "difficulty": "beginner",
-                "tags": ["machine learning", "artificial intelligence", "algorithms"]
-            }
+                "tags": ["machine learning", "artificial intelligence", "algorithms"],
+            },
         },
         {
             "id": "doc_2",
@@ -46,8 +46,8 @@ def get_sample_documents() -> List[Dict[str, Any]]:
             "metadata": {
                 "category": "Programming",
                 "difficulty": "beginner",
-                "tags": ["python", "data structures", "programming"]
-            }
+                "tags": ["python", "data structures", "programming"],
+            },
         },
         {
             "id": "doc_3",
@@ -65,8 +65,8 @@ def get_sample_documents() -> List[Dict[str, Any]]:
             "metadata": {
                 "category": "Database",
                 "difficulty": "intermediate",
-                "tags": ["vector database", "embeddings", "similarity search", "RAG"]
-            }
+                "tags": ["vector database", "embeddings", "similarity search", "RAG"],
+            },
         },
         {
             "id": "doc_4",
@@ -83,8 +83,8 @@ def get_sample_documents() -> List[Dict[str, Any]]:
             "metadata": {
                 "category": "Web Development",
                 "difficulty": "intermediate",
-                "tags": ["REST", "API", "web development", "HTTP"]
-            }
+                "tags": ["REST", "API", "web development", "HTTP"],
+            },
         },
         {
             "id": "doc_5",
@@ -101,8 +101,8 @@ def get_sample_documents() -> List[Dict[str, Any]]:
             "metadata": {
                 "category": "Database",
                 "difficulty": "intermediate",
-                "tags": ["database", "normalization", "data modeling", "SQL"]
-            }
+                "tags": ["database", "normalization", "data modeling", "SQL"],
+            },
         },
         {
             "id": "doc_6",
@@ -120,8 +120,13 @@ def get_sample_documents() -> List[Dict[str, Any]]:
             "metadata": {
                 "category": "Architecture",
                 "difficulty": "advanced",
-                "tags": ["microservices", "architecture", "distributed systems", "containers"]
-            }
+                "tags": [
+                    "microservices",
+                    "architecture",
+                    "distributed systems",
+                    "containers",
+                ],
+            },
         },
         {
             "id": "doc_7",
@@ -138,8 +143,8 @@ def get_sample_documents() -> List[Dict[str, Any]]:
             "metadata": {
                 "category": "Development Tools",
                 "difficulty": "beginner",
-                "tags": ["git", "version control", "development", "collaboration"]
-            }
+                "tags": ["git", "version control", "development", "collaboration"],
+            },
         },
         {
             "id": "doc_8",
@@ -157,9 +162,9 @@ def get_sample_documents() -> List[Dict[str, Any]]:
             "metadata": {
                 "category": "Cloud Computing",
                 "difficulty": "intermediate",
-                "tags": ["cloud", "AWS", "Azure", "infrastructure", "scalability"]
-            }
-        }
+                "tags": ["cloud", "AWS", "Azure", "infrastructure", "scalability"],
+            },
+        },
     ]
 
     return documents
@@ -187,7 +192,7 @@ def get_sample_queries() -> List[str]:
         "Which Python data structure should I use for unique items?",
         "How do vector databases perform similarity search?",
         "What HTTP methods are used in REST APIs?",
-        "What is the purpose of database normalization?"
+        "What is the purpose of database normalization?",
     ]
 
     return queries
@@ -208,7 +213,7 @@ def get_sample_metadata_filters() -> List[Dict[str, Any]]:
         {"difficulty": "advanced"},
         {"tags": ["python"]},
         {"tags": ["database"]},
-        {"category": "Web Development", "difficulty": "intermediate"}
+        {"category": "Web Development", "difficulty": "intermediate"},
     ]
 
     return filters

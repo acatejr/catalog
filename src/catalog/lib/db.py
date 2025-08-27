@@ -12,6 +12,7 @@ dbuser = os.environ.get("POSTGRES_USER")
 dbpass = os.environ.get("POSTGRES_PASSWORD")
 pg_connection_string = f"dbname={dbname} user={dbuser} password={dbpass} host='0.0.0.0'"
 
+
 def load_documents_from_json(json_path: str) -> List[USFSDocument]:
     with open(json_path, "r") as f:
         data = json.load(f)
