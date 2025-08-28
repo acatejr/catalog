@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import Mock, patch, MagicMock
 from typing import List, Dict, Any
-from catalog.rag.main import RAGChatBot
+from catalog.rag.main import RAGChatBot, OllamaChatBot
 from sentence_transformers import SentenceTransformer
 from rich.console import Console
 
@@ -46,25 +46,15 @@ class TestRAGChatbot:
             assert 0 <= doc["similarity_score"] <= 1
 
     def test_generate_llm_rag_response(self, rag_chatbot):
-        test_query = "Find wildfire relevant documents."
-
-        resp = self.chatbot.generate_llm_rag_response(prompt=test_query)
+        # test_query = "Find wildfire relevant documents."
+        # test_query = "What datasets are available for wildfire analysis?"
+        test_query = "I need to create a dashboard for soil erosion trends in California. What datasets can you recommend?"
+        chatbot = OllamaChatBot(model_name="llama3.2", rag_config={})
+        resp = chatbot.generate_llm_rag_response(prompt=test_query)
+        # resp = self.chatbot.generate_llm_rag_response(prompt=test_query)
         assert resp is None or isinstance(resp, str)
-
-        # Generate the embeddings
-        # encoder = SentenceTransformer("all-MiniLM-L6-v2")
-        # query_embedding = encoder.encode(query).tolist()
-        # assert len(query_embedding) > 0  # Should have embedding dimensions
-
-        # docs = self.chatbot.search_docs(query_embedding, limit=5)
-        # assert isinstance(docs, list)
-
-        # context = "\n\n".join(
-        #     [
-        #         f"Title: {doc['title']}\nDescription: {doc['description']}\nKeywords: {doc['keywords']}"
-        #         for doc in docs
-        #     ]
-        # )
+        if resp:
+            console.print(f"Response: {resp}")
 
         # # Librarian prompt
         # prompt_messages = [

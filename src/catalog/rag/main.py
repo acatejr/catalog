@@ -3,10 +3,16 @@ import os
 from dotenv import load_dotenv
 from sentence_transformers import SentenceTransformer
 from openai import OpenAI
+import ollama
 
 load_dotenv()
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+# Database connection parameters
+dbname = os.environ.get("PG_DBNAME") or "postgres"
+dbuser = os.environ.get("POSTGRES_USER")
+dbpass = os.environ.get("POSTGRES_PASSWORD")
 
 
 class RAGChatBot:
@@ -89,10 +95,6 @@ class RAGChatBot:
         if not query_embedding:
             return []
 
-        # Database connection parameters
-        dbname = os.environ.get("PG_DBNAME") or "postgres"
-        dbuser = os.environ.get("POSTGRES_USER")
-        dbpass = os.environ.get("POSTGRES_PASSWORD")
         pg_connection_string = (
             f"dbname={dbname} user={dbuser} password={dbpass} host='0.0.0.0'"
         )
@@ -135,6 +137,107 @@ class RAGChatBot:
 
                 cur.close()
 
+        except Exception as e:
+            print(f"Error searching documents: {e}")
+            return []
+
+        return docs
+
+
+class OllamaChatBot:
+    def __init__(self, model_name: str, rag_config: dict):
+        self.model_name = model_name
+        self.rag_config = rag_config
+        self.initialize_model()
+
+    def initialize_model(self):
+        # Placeholder for model initialization logic
+        pass
+
+    def chat(self, user_input: str) -> str:
+        print(f"User input: {user_input}")
+        return "This is a response from the Ollama RAG model."
+
+    def generate_llm_rag_response(self, prompt: str) -> str:
+        """
+        Generate a response using Ollama and the provided documents.
+
+        Args:
+            prompt: The user prompt/question
+        Returns:
+            The generated response from the LLM
+        """
+
+        documents = []
+        response = None
+
+        if prompt and len(prompt):
+            encoder = SentenceTransformer("all-MiniLM-L6-v2")
+            query_embedding = encoder.encode(prompt).tolist()
+
+            if len(query_embedding) > 0:
+                documents = self.search_docs(query_embedding)
+                if len(documents) > 0:
+                    context = "\n\n".join(
+                        [
+                            f"Title: {doc['title']}\nDescription: {doc['description']}\nKeywords: {doc['keywords']}"
+                            for doc in documents
+                        ]
+                    )
+
+                    ollama_prompt = f"Context: {context}\n\nQuestion: {prompt}"
+                    result = ollama.chat(
+                        model=self.model_name,  # e.g., "llama3"
+                        messages=[
+                            {
+                                "role": "system",
+                                "content": "You are a helpful assistant. Use the provided context to answer questions.",
+                            },
+                            {
+                                "role": "user",
+                                "content": ollama_prompt,
+                            },
+                        ],
+                    )
+                    response = result["message"]["content"]
+
+        return response
+
+    def search_docs(self, query_embedding: list[float], limit: int = 10) -> list:
+        if not query_embedding:
+            return []
+
+        pg_connection_string = (
+            f"dbname={dbname} user={dbuser} password={dbpass} host='0.0.0.0'"
+        )
+
+        docs = []
+
+        try:
+            with psycopg2.connect(pg_connection_string) as conn:
+                cur = conn.cursor()
+                if limit is None:
+                    sql_query = """
+                    SELECT id, title, description, keywords, 1 - (embedding <=> %s::vector) AS similarity_score
+                    FROM documents
+                    WHERE embedding IS NOT NULL
+                    ORDER BY embedding <=> %s::vector;
+                    """
+                else:
+                    sql_query = """
+                    SELECT id, title, description, keywords, 1 - (embedding <=> %s::vector) AS similarity_score
+                    FROM documents
+                    WHERE embedding IS NOT NULL
+                    ORDER BY embedding <=> %s::vector
+                    LIMIT %s;
+                    """
+                cur.execute(sql_query, (query_embedding, query_embedding, limit))
+                columns = [desc[0] for desc in cur.description]
+                rows = cur.fetchall()
+                for row in rows:
+                    doc_dict = dict(zip(columns, row))
+                    docs.append(doc_dict)
+                cur.close()
         except Exception as e:
             print(f"Error searching documents: {e}")
             return []
