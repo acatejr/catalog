@@ -7,11 +7,48 @@ authors = [
     { name = "acatejr@gmail.com", email = "acatejr@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "bs4>=0.0.2",
+    # "bs4>=0.0.2",
+    # "fastapi[standard]>=0.116.1",
+    # "jinja2>=3.1.6",
+    # "langchain-community>=0.3.27",
+    # "lxml>=6.0.0",
+    # "psycopg2-binary>=2.9.10",
+    # "pydantic>=2.11.7",
+    # "pydantic-settings>=2.10.1",
+    # "python-dotenv>=1.1.1",
+    # "python-multipart>=0.0.20",
+    # "requests>=2.32.4",
+    # "sentence-transformers>=5.1.0",
+    # "sqlmodel>=0.0.24",
+    # "typer>=0.16.0",
+    # "uvicorn>=0.35.0",
+    "lxml>=6.0.1",
+    "python-dotenv>=1.1.1",
+    "requests>=2.32.5",
+]
 
 [project.scripts]
-catalog = "catalog:main"
+catalog = "catalog.cli.main:main"
 
 [build-system]
-requires = ["uv_build>=0.8.11,<0.9.0"]
-build-backend = "uv_build"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "pytest-sugar>=1.0.0",
+    "ruff>=0.12.8",
+    "mkdocs-material>=9.6.16",
+    "fire>=0.7.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+norecursedirs = ["scratch"]

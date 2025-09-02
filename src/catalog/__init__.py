@@ -1,2 +1,2 @@
-def main() -> None:
-    print("Hello from catalog!")
+# def main() -> None:
+#     print("Hello from catalog!")
