@@ -4,7 +4,14 @@ import os
 import json
 from bs4 import BeautifulSoup
 import requests
-from utils.main import hash_string, strip_html_tags, get_keywords, merge_docs
+from catalog.utils.main import hash_string, strip_html_tags, get_keywords, merge_docs
+from typing import List
+from catalog.db.schema import USFSDocument
+from catalog.db.main import save_to_vector_db
+from sentence_transformers import SentenceTransformer
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from catalog.db.main import empty_documents_table
+
 
 DEST_OUTPUT_DIR = "tmp/catalog"
 
@@ -21,49 +28,49 @@ def health():
 
 
 def _parse_fsgeodata_metadata():
+    xml_files = [f for f in os.listdir(DEST_OUTPUT_DIR) if f.endswith(".xml")]
 
-        xml_files = [f for f in os.listdir(DEST_OUTPUT_DIR) if f.endswith(".xml")]
+    assets = []
 
-        assets = []
+    for xml_file in xml_files:
+        url = f"https://data.fs.usda.gov/geodata/edw/edw_resources/meta/{xml_file}"
+        with open(f"{DEST_OUTPUT_DIR}/{xml_file}", "r") as f:
+            soup = BeautifulSoup(f, "xml")
+            if soup.find("title"):
+                title = strip_html_tags(soup.find("title").get_text())
+            else:
+                title = ""
 
-        for xml_file in xml_files:
-            url = f"https://data.fs.usda.gov/geodata/edw/edw_resources/meta/{xml_file}"
-            with open(f"{DEST_OUTPUT_DIR}/{xml_file}", "r") as f:
-                soup = BeautifulSoup(f, "xml")
-                if soup.find("title"):
-                    title = strip_html_tags(soup.find("title").get_text())
-                else:
-                    title = ""
+            desc_block = ""
+            abstract = ""
+            if soup.find("descript"):
+                desc_block = soup.find("descript")
+                abstract = strip_html_tags(desc_block.find("abstract").get_text())
+            themekeys = soup.find_all("themekey")
+            keywords = [tk.get_text() for tk in themekeys]
+            # idinfo_citation_citeinfo_pubdate = soup.find("pubdate")
 
-                desc_block = ""
-                abstract = ""
-                if soup.find("descript"):
-                    desc_block = soup.find("descript")
-                    abstract = strip_html_tags(desc_block.find("abstract").get_text())
-                themekeys = soup.find_all("themekey")
-                keywords = [tk.get_text() for tk in themekeys]
-                # idinfo_citation_citeinfo_pubdate = soup.find("pubdate")
+            # if idinfo_citation_citeinfo_pubdate:
+            #     modified = str(
+            #         arrow.get(idinfo_citation_citeinfo_pubdate.get_text())
+            #     )
+            # else:
+            #     modified = ""
 
-                # if idinfo_citation_citeinfo_pubdate:
-                #     modified = str(
-                #         arrow.get(idinfo_citation_citeinfo_pubdate.get_text())
-                #     )
-                # else:
-                #     modified = ""
+            asset = {
+                "id": hash_string(title.lower().strip()),
+                "title": title,
+                "description": abstract,
+                # "modified": modified,
+                "metadata_source_url": url,
+                "keywords": keywords,
+                "src": "fsgeodata",
+            }
 
-                asset = {
-                    "id": hash_string(title.lower().strip()),
-                    "title": title,
-                    "description": abstract,
-                    # "modified": modified,
-                    "metadata_source_url": url,
-                    "keywords": keywords,
-                    "src": "fsgeodata",
-                }
+            assets.append(asset)
 
-                assets.append(asset)
+    return assets
 
-        return assets
 
 def _harvesest_fsgeodata(dl=False):
     base_url = "https://data.fs.usda.gov/geodata/edw/datasets.php"
@@ -93,7 +100,6 @@ def _harvesest_fsgeodata(dl=False):
                     file_count += 1
 
 
-
 def harvest_fsgeodata(dl=False):
     """Harvests data from fsgeodata.
 
@@ -108,7 +114,6 @@ def harvest_fsgeodata(dl=False):
 
 
 def _parse_datahub_metadata():
-
     assets = []
 
     with open(f"{DEST_OUTPUT_DIR}/datahub_metadata.json", "r") as f:
@@ -163,8 +168,8 @@ def _harvest_rda(dl=False):
             with open(f"{DEST_OUTPUT_DIR}/rda_metadata.json", "w") as f:
                 f.write(response.text)
 
-def _parse_rda_metadata():
 
+def _parse_rda_metadata():
     assets = []
 
     with open(f"{DEST_OUTPUT_DIR}/rda_metadata.json", "r") as f:
@@ -218,6 +223,53 @@ def parse_all():
     print(f"Total unique documents after merging: {len(documents)}")
 
 
+def clear_docs_table():
+
+    empty_documents_table()
+    print("Emptied documents table in vector database.")
+
+
+def embed_and_store():
+
+    model = SentenceTransformer("all-MiniLM-L6-v2")
+    recursive_text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=65, chunk_overlap=0
+    )
+
+    docs = merge_docs(_parse_all())
+    fsdocs = [USFSDocument(**item) for item in docs]
+
+    for doc in fsdocs:
+        title = doc.title
+        description = doc.description
+        keywords = ",".join(kw for kw in doc.keywords) or []
+        combined_text = (
+            f"Title: {title}\nDescription: {description}\nKeywords: {keywords}"
+        )
+
+        chunks = recursive_text_splitter.create_documents([combined_text])
+
+        for idx, chunk in enumerate(chunks):
+            metadata = {
+                "doc_id": doc.id,  # or fsdoc.doc_id if that's the field name
+                "chunk_type": "title+description+keywords",
+                "chunk_index": idx,
+                "chunk_text": chunk.page_content,
+                "title": title,
+                "description": description,
+                "keywords": doc.keywords,
+                "src": doc.src,  # or another source identifier
+            }
+
+            embedding = model.encode(chunk.page_content)
+
+            save_to_vector_db(
+                embedding=embedding,
+                metadata=metadata,
+                title=title,
+                desc=description,
+            )
+
 
 def main():
     fire.Fire(
@@ -227,6 +279,8 @@ def main():
             "harvest-datahub": harvest_datahub,
             "harvest-rda": harvest_rda,
             "parse-all": parse_all,
+            "embed-and-store": embed_and_store,
+            "clear-docs-table": clear_docs_table,
         }
     )
 
