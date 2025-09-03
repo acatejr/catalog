@@ -1,10 +1,13 @@
 import fire
 import datetime
 import os
+import json
 from bs4 import BeautifulSoup
 import requests
+from utils.main import hash_string, strip_html_tags, get_keywords, merge_docs
 
 DEST_OUTPUT_DIR = "tmp/catalog"
+
 
 def create_output_dir():
     if not os.path.exists(DEST_OUTPUT_DIR):
@@ -16,6 +19,51 @@ def health():
     now = datetime.datetime.now()
     print(f"Health check at {now.isoformat()}")
 
+
+def _parse_fsgeodata_metadata():
+
+        xml_files = [f for f in os.listdir(DEST_OUTPUT_DIR) if f.endswith(".xml")]
+
+        assets = []
+
+        for xml_file in xml_files:
+            url = f"https://data.fs.usda.gov/geodata/edw/edw_resources/meta/{xml_file}"
+            with open(f"{DEST_OUTPUT_DIR}/{xml_file}", "r") as f:
+                soup = BeautifulSoup(f, "xml")
+                if soup.find("title"):
+                    title = strip_html_tags(soup.find("title").get_text())
+                else:
+                    title = ""
+
+                desc_block = ""
+                abstract = ""
+                if soup.find("descript"):
+                    desc_block = soup.find("descript")
+                    abstract = strip_html_tags(desc_block.find("abstract").get_text())
+                themekeys = soup.find_all("themekey")
+                keywords = [tk.get_text() for tk in themekeys]
+                # idinfo_citation_citeinfo_pubdate = soup.find("pubdate")
+
+                # if idinfo_citation_citeinfo_pubdate:
+                #     modified = str(
+                #         arrow.get(idinfo_citation_citeinfo_pubdate.get_text())
+                #     )
+                # else:
+                #     modified = ""
+
+                asset = {
+                    "id": hash_string(title.lower().strip()),
+                    "title": title,
+                    "description": abstract,
+                    # "modified": modified,
+                    "metadata_source_url": url,
+                    "keywords": keywords,
+                    "src": "fsgeodata",
+                }
+
+                assets.append(asset)
+
+        return assets
 
 def _harvesest_fsgeodata(dl=False):
     base_url = "https://data.fs.usda.gov/geodata/edw/datasets.php"
@@ -45,6 +93,7 @@ def _harvesest_fsgeodata(dl=False):
                     file_count += 1
 
 
+
 def harvest_fsgeodata(dl=False):
     """Harvests data from fsgeodata.
 
@@ -52,33 +101,90 @@ def harvest_fsgeodata(dl=False):
         dl (bool): If True, download new data from fsgeodata. If False, use existing data.
     """
 
-    _harvesest_fsgeodata(dl=dl)
     print("Harvesting data from fsgeodata...")
+    _harvesest_fsgeodata(dl=dl)
+    assets = _parse_fsgeodata_metadata()
+    return assets
 
 
-def _harvest_datahub():
-    pass
+def _parse_datahub_metadata():
 
-def harvest_datahub():
+    assets = []
+
+    with open(f"{DEST_OUTPUT_DIR}/datahub_metadata.json", "r") as f:
+        json_data = json.load(f)
+
+        for item in json_data.get("dataset", []):
+            title = item.get("title", "").strip().lower()
+            keywords = get_keywords(item.get("keyword", []))
+            data = {
+                "id": hash_string(title),
+                "title": item.get("title"),
+                "identifier": item.get("identifier"),
+                "description": strip_html_tags(item.get("description")),
+                "url": item.get("url"),
+                "keywords": keywords,
+                "src": "datahub",
+            }
+            assets.append(data)
+
+    return assets
+
+
+def _harvest_datahub(dl):
+    source_url = "https://data-usfs.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+
+    create_output_dir()
+
+    if dl:
+        response = requests.get(source_url)
+        if response.status_code == 200:
+            with open(f"{DEST_OUTPUT_DIR}/datahub_metadata.json", "w") as f:
+                f.write(response.text)
+
+
+def harvest_datahub(dl=False):
     """Harvests data from datahub."""
 
-    _harvest_datahub
-    print("Harvesting data from datahub...")
+    _harvest_datahub(dl=dl)
+    assets = _parse_datahub_metadata()
+    return assets
 
 
 def _harvest_rda(dl=False):
-
     source_url = "https://www.fs.usda.gov/rds/archive/webservice/datagov"
 
     if not os.path.exists(DEST_OUTPUT_DIR):
         os.makedirs(DEST_OUTPUT_DIR)
 
-    response = requests.get(source_url)
-    if response.status_code == 200:
-        with open(f"{DEST_OUTPUT_DIR}/rda_metadata.json", "w") as f:
-            f.write(response.text)
-    else:
-        print(f"Failed to download metadata files: {response.status_code}")
+    if dl:
+        response = requests.get(source_url)
+        if response.status_code == 200:
+            with open(f"{DEST_OUTPUT_DIR}/rda_metadata.json", "w") as f:
+                f.write(response.text)
+
+def _parse_rda_metadata():
+
+    assets = []
+
+    with open(f"{DEST_OUTPUT_DIR}/rda_metadata.json", "r") as f:
+        json_data = json.load(f)
+
+        for item in json_data.get("dataset", []):
+            title = item.get("title", "").strip().lower()
+            keywords = get_keywords(item.get("keyword", []))
+            data = {
+                "id": hash_string(title),
+                "title": item.get("title"),
+                "identifier": item.get("identifier"),
+                "description": strip_html_tags(item.get("description")),
+                "url": item.get("url"),
+                "keywords": keywords,
+                "src": "rda",
+            }
+            assets.append(data)
+
+    return assets
 
 
 def harvest_rda(dl=False):
@@ -89,16 +195,28 @@ def harvest_rda(dl=False):
     """
 
     _harvest_rda(dl=dl)
+    assets = _parse_rda_metadata()
+    print(f"Harvested {len(assets)} assets from RDA.")
 
 
-def _harvest_all():
-    pass
+def _parse_all():
+    fsgeodata_assets = _parse_fsgeodata_metadata()
+    datahub_assets = _parse_datahub_metadata()
+    rda_assets = _parse_rda_metadata()
 
-def harvest_all():
-    """Harvests data from all sources."""
+    all_assets = fsgeodata_assets + datahub_assets + rda_assets
+    return all_assets
 
-    _harvest_all()
-    print("Harvesting data from all sources...")
+
+def parse_all():
+    """Parse data from all sources."""
+
+    assets = _parse_all()
+    print(f"Total assets parsed: {len(assets)}")
+
+    documents = merge_docs(assets)
+    print(f"Total unique documents after merging: {len(documents)}")
+
 
 
 def main():
@@ -108,7 +226,7 @@ def main():
             "harvest-fsgeodata": harvest_fsgeodata,
             "harvest-datahub": harvest_datahub,
             "harvest-rda": harvest_rda,
-            "harvest-all": harvest_all,
+            "parse-all": parse_all,
         }
     )
 

@@ -172,4 +172,3 @@ class RDAHarvester:
             assets.append(data)
 
         return assets
-
