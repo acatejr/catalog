@@ -2,12 +2,12 @@ import os, json
 import psycopg2
 from dotenv import load_dotenv
 from typing import List
-from catalog.core.schema import USFSDocument
+from catalog.db.schema import USFSDocument
 
 load_dotenv()
 
 
-dbname = os.environ.get("PG_DBNAME") or "postgres"
+dbname = os.environ.get("POSTGRES_DB") or "postgres"
 dbuser = os.environ.get("POSTGRES_USER")
 dbpass = os.environ.get("POSTGRES_PASSWORD")
 pg_connection_string = f"dbname={dbname} user={dbuser} password={dbpass} host='0.0.0.0'"
