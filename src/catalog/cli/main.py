@@ -11,6 +11,7 @@ from catalog.db.main import save_to_vector_db
 from sentence_transformers import SentenceTransformer
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from catalog.db.main import empty_documents_table
+import uvicorn
 
 
 DEST_OUTPUT_DIR = "tmp/catalog"
@@ -271,6 +272,23 @@ def embed_and_store():
             )
 
 
+def run_api(host="127.0.0.1", port=8000, reload=True):
+    """Run the FastAPI server.
+
+    Args:
+        host (str): Host to bind the server to. Defaults to "127.0.0.1".
+        port (int): Port to bind the server to. Defaults to 8000.
+        reload (bool): Enable auto-reload for development. Defaults to True.
+    """
+    print(f"Starting Catalog API server on {host}:{port}")
+    uvicorn.run(
+        "catalog.api.main:app",
+        host=host,
+        port=port,
+        reload=reload
+    )
+
+
 def main():
     fire.Fire(
         {
@@ -281,6 +299,7 @@ def main():
             "parse-all": parse_all,
             "embed-and-store": embed_and_store,
             "clear-docs-table": clear_docs_table,
+            "run-api": run_api,
         }
     )
 
