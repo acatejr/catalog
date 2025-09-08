@@ -1,6 +1,8 @@
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
+from sentence_transformers import SentenceTransformer
+from catalog.db.main import search_docs
 
 load_dotenv()
 
@@ -20,6 +22,20 @@ class ChatBot():
         self.model = "Llama-3.2-11B-Vision-Instruct"
         # self.model = "anvilgpt/llama2:latest"
 
+    def get_documents(self, query: str) -> str:
+        """
+        Placeholder for RAG query method
+        """
+
+        encoder = SentenceTransformer("all-MiniLM-L6-v2")
+        query_embedding = encoder.encode(query).tolist()
+
+        if len(query_embedding) > 0:  # Should have embedding dimensions
+            documents = search_docs(query_embedding)
+            return documents
+        else:
+            return []
+
     def chat(self, message: str = "Hello, how can you help me?") -> str:
         """
         Send a message to the ESIIL LLM and return the response
@@ -30,42 +46,73 @@ class ChatBot():
         Returns:
             The LLM's response as a string
         """
-        try:
+
+        documents = self.get_documents(message)
+        if len(documents) > 0:
+            context = "\n\n".join(
+                [
+                    f"Title: {doc['title']}\nDescription: {doc['description']}\nKeywords: {doc['keywords']}"
+                    for doc in documents
+                ]
+            )
+            # Use the LLM to generate an answer
             response = self.client.chat.completions.create(
-                model=self.model,
+                model="Llama-3.2-11B-Vision-Instruct",
                 messages=[
                     {
                         "role": "system",
-                        "content": "You are a helpful assistant specialized in environmental science and data analysis."
+                        "content": "You are a helpful assistant. Use the provided context to answer questions.",
                     },
                     {
                         "role": "user",
-                        "content": message
-                    }
+                        "content": f"Context: {context}\n\nQuestion: {message}",
+                    },
                 ],
-                max_tokens=1000,
-                temperature=0.7
             )
+            reponse = response.choices[0].message.content
+            return reponse
 
-            return response.choices[0].message.content
 
-        except Exception as e:
-            print(f"Error calling ESIIL LLM: {e}")
-            return f"Sorry, I encountered an error: {str(e)}"
+        # try:
+        #     response = self.client.chat.completions.create(
+        #         model=self.model,
+        #         messages=[
+        #             {
+        #                 "role": "system",
+        #                 "content": "You are a helpful assistant specialized in environmental science, data analysis, data cataloging and metadata."
+        #             },
+        #             {
+        #                 "role": "user",
+        #                 "content": message
+        #             }
+        #         ],
+        #         max_tokens=1000,
+        #         temperature=0.7
+        #     )
+
+        #     return response.choices[0].message.content
+
+        # except Exception as e:
+        #     print(f"Error calling ESIIL LLM: {e}")
+        #     return f"Sorry, I encountered an error: {str(e)}"
 
 
 def main():
-    print("Testing ESIIL ChatBot...")
+    #print("Testing ESIIL ChatBot...")
     chatbot = ChatBot()
 
     # Test with a default message
-    response = chatbot.chat()
-    print(f"ChatBot Response: {response}")
+    # response = chatbot.chat()
+    # print(f"ChatBot Response: {response}")
 
     # Test with a custom message
-    custom_message = "What can you tell me about environmental data analysis?"
+    custom_message = "Describe what wildfire data is available in the data store."
     custom_response = chatbot.chat(custom_message)
-    print(f"\nCustom Message: {custom_message}")
+    # print(f"\nCustom Message: {custom_message}")
+    print(f"ChatBot Response: {custom_response}")
+
+    custom_message = "Is there erosion data in NRM?"
+    custom_response = chatbot.chat(custom_message)
     print(f"ChatBot Response: {custom_response}")
 
 if __name__ == "__main__":

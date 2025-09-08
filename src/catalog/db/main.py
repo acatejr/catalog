@@ -93,3 +93,67 @@ def save_to_vector_db(embedding, metadata, title="", desc=""):
 
         cur.close()
         conn.commit()
+
+
+def search_docs(query_embedding: list[float], limit: int = 10) -> list:
+        """
+        Search documents using vector similarity with the query embedding.
+
+        Args:
+            query_embedding: The embedding vector to search with
+            limit: Maximum number of documents to return (default: 10)
+
+        Returns:
+            List of dictionaries containing document information and similarity scores
+        """
+
+        if not query_embedding:
+            return []
+
+        pg_connection_string = (
+            f"dbname={dbname} user={dbuser} password={dbpass} host='0.0.0.0'"
+        )
+
+        docs = []
+
+        try:
+            with psycopg2.connect(pg_connection_string) as conn:
+                cur = conn.cursor()
+
+                # SQL query using cosine similarity for vector search
+                # The <=> operator computes cosine distance (1 - cosine similarity)
+                # Lower distance means higher similarity
+                if limit is None:
+                    sql_query = """
+                    SELECT id, title, description, keywords, 1 - (embedding <=> %s::vector) AS similarity_score
+                    FROM documents
+                    WHERE embedding IS NOT NULL
+                    ORDER BY embedding <=> %s::vector;
+                    """
+                else:
+                    sql_query = """
+                    SELECT id, title, description, keywords, 1 - (embedding <=> %s::vector) AS similarity_score
+                    FROM documents
+                    WHERE embedding IS NOT NULL
+                    ORDER BY embedding <=> %s::vector
+                    LIMIT %s;
+                    """
+
+                # Execute the query with the embedding vector
+                cur.execute(sql_query, (query_embedding, query_embedding, limit))
+
+                # Fetch results and convert to list of dictionaries
+                columns = [desc[0] for desc in cur.description]
+                rows = cur.fetchall()
+
+                for row in rows:
+                    doc_dict = dict(zip(columns, row))
+                    docs.append(doc_dict)
+
+                cur.close()
+
+        except Exception as e:
+            print(f"Error searching documents: {e}")
+            return []
+
+        return docs
