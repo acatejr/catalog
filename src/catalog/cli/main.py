@@ -244,8 +244,9 @@ def embed_and_store():
         title = doc.title
         description = doc.description
         keywords = ",".join(kw for kw in doc.keywords) or []
+        src = doc.src
         combined_text = (
-            f"Title: {title}\nDescription: {description}\nKeywords: {keywords}"
+            f"Title: {title}\nDescription: {description}\nKeywords: {keywords}\nSource: {src}"
         )
 
         chunks = recursive_text_splitter.create_documents([combined_text])
