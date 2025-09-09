@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 import datetime
+from catalog.llm.client import ChatBot
 
 app = FastAPI(title="Catalog API", version="0.0.1")
 
@@ -19,6 +20,10 @@ async def query(q: str):
     """
 
     response = None
+
+    bot = ChatBot()
+    response = bot.chat(q)
+    print(f"Received query: {q}, response: {response}")
 
     return {
         "query": q,
