@@ -37,7 +37,7 @@ class TestCatalogAPI:
         except ValueError:
             pytest.fail(f"Timestamp format is incorrect: {timestamp_part}")
 
-    @patch('src.catalog.api.main.datetime')
+    @patch("src.catalog.api.main.datetime")
     def test_health_endpoint_with_mocked_time(self, mock_datetime, client):
         """Test health endpoint with a specific mocked timestamp."""
         # Mock the datetime to return a specific time
