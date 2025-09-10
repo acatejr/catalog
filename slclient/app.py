@@ -6,4 +6,8 @@ import streamlit as st
 # )
 
 st.title("Data Catalog")
-st.write("Welcome to the Data Catalog app!")
+# st.write("Welcome to the Data Catalog app!")
+
+prompt = st.chat_input("Ask me anything about the data catalog.")
+if prompt:
+    st.write(f"User has sent the following prompt: {prompt}")
