@@ -225,13 +225,11 @@ def parse_all():
 
 
 def clear_docs_table():
-
     empty_documents_table()
     print("Emptied documents table in vector database.")
 
 
 def embed_and_store():
-
     model = SentenceTransformer("all-MiniLM-L6-v2")
     recursive_text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=65, chunk_overlap=0
@@ -245,9 +243,7 @@ def embed_and_store():
         description = doc.description
         keywords = ",".join(kw for kw in doc.keywords) or []
         src = doc.src
-        combined_text = (
-            f"Title: {title}\nDescription: {description}\nKeywords: {keywords}\nSource: {src}"
-        )
+        combined_text = f"Title: {title}\nDescription: {description}\nKeywords: {keywords}\nSource: {src}"
 
         chunks = recursive_text_splitter.create_documents([combined_text])
 
@@ -282,12 +278,7 @@ def run_api(host="127.0.0.1", port=8000, reload=True):
         reload (bool): Enable auto-reload for development. Defaults to True.
     """
     print(f"Starting Catalog API server on {host}:{port}")
-    uvicorn.run(
-        "catalog.api.main:app",
-        host=host,
-        port=port,
-        reload=reload
-    )
+    uvicorn.run("catalog.api.main:app", host=host, port=port, reload=reload)
 
 
 def main():

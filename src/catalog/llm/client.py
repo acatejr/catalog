@@ -11,13 +11,12 @@ ESIIL_API_KEY = os.getenv("ESIIL_API_KEY")
 ESIIL_API_URL = os.getenv("ESIIL_API_URL")
 
 
-class ChatBot():
-
+class ChatBot:
     def __init__(self):
         """Initialize the ChatBot with ESIIL LLM configuration"""
         self.client = OpenAI(
             api_key=ESIIL_API_KEY or "dummy-key",
-            base_url=ESIIL_API_URL or "https://llm-api.cyverse.ai/v1"
+            base_url=ESIIL_API_URL or "https://llm-api.cyverse.ai/v1",
         )
         self.model = "Llama-3.2-11B-Vision-Instruct"
         # self.model = "anvilgpt/llama2:latest"
@@ -69,9 +68,8 @@ class ChatBot():
                 # model="js2/DeepSeek-R1", # Speed was good and results were very interesting.  Still interesting results after adding src field to context.
                 # model="nrp/phi3", # Speed good, not sure about results.  Same results after adding src field to context.
                 # model = "nrp/gorilla", # Speed needs to be reviewed, but results were very interesting.  Same results after adding src field to context.  Still interesting.
-                model = "nrp/olmo", # *** Speed good and results were very interesting
+                model="nrp/olmo",  # *** Speed good and results were very interesting
                 # model="gemma-3-12b-it", # Fast but no response
-
                 messages=[
                     {
                         "role": "system",
@@ -88,7 +86,6 @@ class ChatBot():
 
 
 def main():
-
     chatbot = ChatBot()
 
     # Test with a custom message
@@ -102,6 +99,7 @@ def main():
 
     custom_response = chatbot.chat(custom_message)
     print(f"ChatBot Response: {custom_response}")
+
 
 if __name__ == "__main__":
     main()
