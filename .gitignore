@@ -1,3 +1,4 @@
+.streamlit/
 adhoc_catalog.db
 tmp/
 .DS_Store

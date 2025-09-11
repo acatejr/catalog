@@ -177,6 +177,7 @@ source = { editable = "." }
 dependencies = [
     { name = "bs4" },
     { name = "fastapi", extra = ["standard"] },
+    { name = "httpx" },
     { name = "langchain-community" },
     { name = "lxml" },
     { name = "openai" },
@@ -202,6 +203,7 @@ dev = [
 requires-dist = [
     { name = "bs4", specifier = ">=0.0.2" },
     { name = "fastapi", extras = ["standard"], specifier = ">=0.116.1" },
+    { name = "httpx", specifier = ">=0.28.1" },
     { name = "langchain-community", specifier = ">=0.3.29" },
     { name = "lxml", specifier = ">=6.0.1" },
     { name = "openai", specifier = ">=1.106.1" },
