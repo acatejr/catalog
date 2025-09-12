@@ -1,24 +1,24 @@
 services:
-#   app:
-#     build:
-#       context: .
-#       dockerfile: Dockerfile
-#     ports:
-#       - "8000:8000"
-#     volumes:
-#       - .:/app
-#     env_file:
-#       - .env
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.tst
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
 
-#     # Optional: if you need to override the default command from Dockerfile
-#     # command: python main.py
-#     # Optional: if you need to wait for other services
-#     # depends_on:
-#     #   - db
+    # Optional: if you need to override the default command from Dockerfile
+    # command: python main.py
+    # Optional: if you need to wait for other services
+    depends_on:
+      - postgres
 
-#     # Enable interactive terminal
-#     tty: true
-#     stdin_open: true
+    # Enable interactive terminal
+    tty: true
+    stdin_open: true
 
   postgres:
     image: ankane/pgvector:latest

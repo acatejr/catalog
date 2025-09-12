@@ -1,3 +1,23 @@
+.devcontainer/
+.docker/
+.dockerignore
+.docker-compose*
+slclient/
+tmp/
+.env
+.gitignore
+compose.tst.yml
+compose.prod.yml
+compose.dev.yml
+compose.yml
+Dockerfile
+Dockerfile.dev
+Dockerfile.prod
+Dockerfile.tst
+*scratch*
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
 .pytest_cache/
 .venv/
 .ruff_cache/

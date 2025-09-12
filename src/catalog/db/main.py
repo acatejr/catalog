@@ -10,7 +10,7 @@ load_dotenv()
 dbname = os.environ.get("POSTGRES_DB") or "postgres"
 dbuser = os.environ.get("POSTGRES_USER")
 dbpass = os.environ.get("POSTGRES_PASSWORD")
-pg_connection_string = f"dbname={dbname} user={dbuser} password={dbpass} host='0.0.0.0'"
+pg_connection_string = f"dbname={dbname} user={dbuser} password={dbpass} host='catalog-postgres-1'"
 
 
 def load_documents_from_json(json_path: str) -> List[USFSDocument]:
