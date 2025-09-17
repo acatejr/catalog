@@ -12,7 +12,7 @@ ENV UV_NO_CACHE=true
 
 # Install the project into `/app`
 WORKDIR /app
-ADD pyproject.toml .
-ADD uv.lock .
+# ADD pyproject.toml .
+# ADD uv.lock .
 
-RUN uv sync --locked
+# RUN uv sync --locked

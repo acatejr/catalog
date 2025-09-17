@@ -46,4 +46,3 @@ if question := st.chat_input("Ask me anything about the catalog."):
             st.markdown(answer)
             # Add assistant response to chat history
             st.session_state.messages.append({"role": "assistant", "content": answer})
-
