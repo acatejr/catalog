@@ -1,6 +1,12 @@
 from fastapi import FastAPI
+from fastapi import Depends, HTTPException
+from fastapi.security.api_key import APIKeyHeader
+from typing import Optional
 import datetime
 from catalog.llm import ChatBot
+import os
+
+X_API_KEY = os.environ.get("X_API_KEY")
 
 api = FastAPI(title="Catalog API", version="0.0.1")
 
