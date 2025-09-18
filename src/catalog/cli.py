@@ -117,6 +117,12 @@ def _download_fsgeodata_metadata():
 
 
 def _parse_fsgeodata_metadata():
+    """Read all xml files in the DEST_OUTPUT_DIR and parse them into a list of metadata dictionaries.
+
+    Returns:
+        list: List of metadata dictionaries.
+    """
+
     xml_files = [f for f in os.listdir(DEST_OUTPUT_DIR) if f.endswith(".xml")]
 
     assets = []
@@ -165,6 +171,7 @@ def _fsgeodata():
 
 
 def _download_datahub_metadata():
+    """Download all json metadata from datahub and store in DEST_OUTPUT_DIR."""
     source_url = "https://data-usfs.hub.arcgis.com/api/feed/dcat-us/1.1.json"
 
     response = requests.get(source_url)
@@ -174,6 +181,11 @@ def _download_datahub_metadata():
 
 
 def _parse_datahub_metadata():
+    """Parse the datahub metadata json file and return a list of metadata dictionaries.
+
+    Returns:
+        list: List of metadata dictionaries.
+    """
     assets = []
 
     with open(f"{DEST_OUTPUT_DIR}/datahub_metadata.json", "r") as f:
@@ -198,6 +210,7 @@ def _parse_datahub_metadata():
 
 def _datahub():
     """Download all json metadata from datahub."""
+
     print("\tDownloading all datahub metadata.")
     _download_datahub_metadata()
     datahub_assets = _parse_datahub_metadata()
@@ -207,6 +220,8 @@ def _datahub():
 
 
 def _download_rda_metadata():
+    """Download all json metadata from rda and store in DEST_OUTPUT_DIR."""
+
     source_url = "https://www.fs.usda.gov/rds/archive/webservice/datagov"
 
     response = requests.get(source_url)
@@ -216,6 +231,12 @@ def _download_rda_metadata():
 
 
 def _parse_rda_metadata():
+    """Parse the rda metadata json file and return a list of metadata dictionaries.
+
+    Returns:
+        list: List of metadata dictionaries.
+    """
+
     assets = []
 
     with open(f"{DEST_OUTPUT_DIR}/rda_metadata.json", "r") as f:
@@ -240,6 +261,7 @@ def _parse_rda_metadata():
 
 def _rda():
     """Download all xml and json metadata from rda."""
+
     print("\tDownloading all rda metadata.")
     _download_rda_metadata()
     rda_assets = _parse_rda_metadata()
@@ -275,11 +297,19 @@ def run_api():
 
 @cli.command()
 def clear_docs_table():
+    """Empty the documents table in the documents database table."""
+
     empty_documents_table()
     print("Emptied documents table in vector database.")
 
 
 def _parse_all():
+    """Parse all metadata files and return a list of metadata dictionaries.
+
+    Returns:
+        list: List of metadata dictionaries.
+    """
+
     fsgeodata_assets = _parse_fsgeodata_metadata()
     datahub_assets = _parse_datahub_metadata()
     rda_assets = _parse_rda_metadata()
@@ -290,6 +320,8 @@ def _parse_all():
 
 @cli.command()
 def embed_and_store():
+    """Embed all documents in the documents table and store the embeddings in the vector column."""
+
     model = SentenceTransformer("all-MiniLM-L6-v2")
     recursive_text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=65, chunk_overlap=0
@@ -298,7 +330,7 @@ def embed_and_store():
     docs = merge_docs(_parse_all())
     fsdocs = [USFSDocument(**item) for item in docs]
 
-    for doc in fsdocs[0:10]:
+    for doc in fsdocs:
         title = doc.title
         description = doc.description
         keywords = ",".join(kw for kw in doc.keywords) or []

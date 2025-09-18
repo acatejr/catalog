@@ -7,6 +7,7 @@ import os, json
 query_url = os.getenv("CATALOG_API_BASE_URL", "http://127.0.0.1:8000") + "/query?q="
 
 st.title("Catalog Chatbot")
+st.set_page_config(page_title="Catalog")
 
 # Initialize session state for messages if not exists
 if "messages" not in st.session_state:

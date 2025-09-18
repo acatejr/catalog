@@ -10,6 +10,7 @@ load_dotenv()
 dbname = os.environ.get("POSTGRES_DB") or "postgres"
 dbuser = os.environ.get("POSTGRES_USER")
 dbpass = os.environ.get("POSTGRES_PASSWORD")
+
 pg_connection_string = (
     f"dbname={dbname} user={dbuser} password={dbpass} host='catalog-postgres-1'"
 )
@@ -112,9 +113,6 @@ def search_docs(query_embedding: list[float], limit: int = 10) -> list:
     if not query_embedding:
         return []
 
-    pg_connection_string = (
-        f"dbname={dbname} user={dbuser} password={dbpass} host='0.0.0.0'"
-    )
 
     docs = []
 
