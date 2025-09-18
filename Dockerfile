@@ -10,9 +10,6 @@ RUN apt-get update && apt-get install -y \
 
 ENV UV_NO_CACHE=true
 
-# Install the project into `/app`
 WORKDIR /app
-# ADD pyproject.toml .
-# ADD uv.lock .
+CMD ["uv", "run", "fastapi", "dev", "--host=0.0.0.0", "src/catalog/api.py"]
 
-# RUN uv sync --locked
