@@ -2,7 +2,7 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 from sentence_transformers import SentenceTransformer
-from catalog.db.main import search_docs
+from catalog.db import search_docs
 
 load_dotenv()
 
@@ -83,23 +83,3 @@ class ChatBot:
             )
             reponse = response.choices[0].message.content
             return reponse
-
-
-def main():
-    chatbot = ChatBot()
-
-    # Test with a custom message
-    # custom_message = "Describe what wildfire data is available in the data store."
-    # custom_message = "Is there erosion data in NRM?"
-    # custom_message = "I need to create a dashboard that shows recreational maintenance costs at a US National Forest.  What data sets should I consider?"
-
-    # custom_message = "How many datasets are in the catalog where the source is NRM?"
-    # custom_message = "How many datasets are in the catalog where the source is EDW?"
-    custom_message = "What is the most frequent type in the src field in the catalog?"
-
-    custom_response = chatbot.chat(custom_message)
-    print(f"ChatBot Response: {custom_response}")
-
-
-if __name__ == "__main__":
-    main()
