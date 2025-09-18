@@ -4,6 +4,7 @@ import httpx
 import os, json
 
 # API Configuration
+X_API_KEY = os.getenv("X_API_KEY")
 query_url = os.getenv("CATALOG_API_BASE_URL", "http://127.0.0.1:8000") + "/query?q="
 
 st.title("Catalog Chatbot")
@@ -33,7 +34,11 @@ if question := st.chat_input("Ask me anything about the catalog."):
         with st.spinner("Thinking..."):
             try:
                 # Make API call to your catalog endpoint
-                response = httpx.get(query_url + question, timeout=30.0)
+                response = httpx.get(
+                    query_url + question,
+                    headers={"X-API-KEY": X_API_KEY},
+                    timeout=30.0
+                )
 
                 if response.status_code == 200:
                     answer = json.loads(response.text)["response"]

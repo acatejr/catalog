@@ -4,6 +4,17 @@ from catalog.llm import ChatBot
 
 api = FastAPI(title="Catalog API", version="0.0.1")
 
+# Create API key header dependency
+api_key_header = APIKeyHeader(name="x-api-key", auto_error=False)
+
+def verify_api_key(api_key: Optional[str] = Depends(api_key_header)):
+    """Verify the API key from the x-api-key header"""
+    if api_key is None or api_key != X_API_KEY:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid API key"
+        )
+    return api_key
 
 @api.get("/health", tags=["Health"])
 async def health():
