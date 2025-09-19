@@ -1,0 +1,18 @@
+site_name: Catalog
+
+plugins:
+  - search
+  - tags
+  - blog
+
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Sources: data-sources.md
+  - Harvesting: data-harvesting.md
+  - Storage: data-storage.md
+  - API: api.md
+  - LLM: llm.md
+  - Client: client.md
