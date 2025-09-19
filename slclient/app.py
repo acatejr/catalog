@@ -37,7 +37,7 @@ if question := st.chat_input("Ask me anything about the catalog."):
                 response = httpx.get(
                     query_url + question,
                     headers={"X-API-KEY": X_API_KEY},
-                    timeout=30.0
+                    timeout=90.0
                 )
 
                 if response.status_code == 200:
