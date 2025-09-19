@@ -8,4 +8,8 @@ The metadata for this project has harvested through publicly available online da
 
 ## DataHub
 
+The U.S. Forest Service has configured an open data [site](https://data-usfs.hub.arcgis.com/) to help partners and the public discover geospatial data published by the Agency.
+
 ## Research Data Archive (RDA)
+
+The FS [Research Data Archive](https://www.fs.usda.gov/rds/archive/) offers a catalog of hundreds of research datasets funded by Forest Service Research and Development (FS R&D) or by the Joint Fire Science Program (JFSP). Of special interest, the collection includes long-term datasets from a number of Forest Service Experimental Forests, Ranges, and Watersheds (FS EFRs).
