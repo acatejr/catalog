@@ -1,6 +1,10 @@
+---
+title: USFS Metadata Sources
+date: 2025-09-22
+---
 # Data Sources
 
-The metadata for this project was harvested through publicly available online data sources made available from the United States Forest Service.
+The metadata for this project was harvested from publicly available online data sources.  Each metadata source described below can be accessed by the general public using a web browser like Google Chrome or Firefox.
 
 ## FSGeodata
 
