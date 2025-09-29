@@ -93,6 +93,8 @@ create_output_dir()
 
 
 def _download_fsgeodata_metadata():
+    """Download all xml metadata from fsgeodata and store in DEST_OUTPUT_DIR."""
+
     base_url = "https://data.fs.usda.gov/geodata/edw/datasets.php"
     metadata_urls = []
     file_count = 0
@@ -360,6 +362,16 @@ def embed_and_store():
                 desc=description,
             )
 
+
+@cli.command()
+def make_usfs_catalog():
+    """Create a usfs_catalog.json file with all metadata."""
+
+    all_assets = _parse_all()
+    file_path = "./tmp/catalog/usfs_catalog.json"
+    with open(file_path, "w") as f:
+        json.dump(all_assets, f, indent=4)
+    print(f"Created {file_path} with {len(all_assets)} assets.")
 
 if __name__ == "__main__":
     cli()
