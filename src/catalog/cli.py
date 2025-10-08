@@ -107,8 +107,8 @@ def _download_fsgeodata_metadata():
         if anchor and anchor.get_text() == "metadata":
             metadata_urls.append(anchor["href"])
 
-    for u in metadata_urls:
-        url = f"https://data.fs.usda.gov/geodata/edw/{u}"
+    for metadata_url in metadata_urls:
+        url = f"https://data.fs.usda.gov/geodata/edw/{metadata_url}"
         outfile_name = f"{DEST_OUTPUT_DIR}/{u.split('/')[-1]}"
 
         if not os.path.exists(outfile_name):
@@ -131,8 +131,8 @@ def _parse_fsgeodata_metadata():
 
     for xml_file in xml_files:
         url = f"https://data.fs.usda.gov/geodata/edw/edw_resources/meta/{xml_file}"
-        with open(f"{DEST_OUTPUT_DIR}/{xml_file}", "r") as f:
-            soup = BeautifulSoup(f, "xml")
+        with open(f"{DEST_OUTPUT_DIR}/{xml_file}", "r") as file_pointer:
+            soup = BeautifulSoup(file_pointer, "xml")
             if soup.find("title"):
                 title = strip_html_tags(soup.find("title").get_text())
             else:
@@ -144,7 +144,7 @@ def _parse_fsgeodata_metadata():
                 desc_block = soup.find("descript")
                 abstract = strip_html_tags(desc_block.find("abstract").get_text())
             themekeys = soup.find_all("themekey")
-            keywords = [tk.get_text() for tk in themekeys]
+            keywords = [key.get_text() for key in themekeys]
 
             asset = {
                 "id": hash_string(title.lower().strip()),
@@ -274,7 +274,7 @@ def _rda():
 
 @cli.command()
 def load_catalog_data():
-    """Download all xml and json metadata, parse all dadta into a metadata dictionary.  Load the metadata
+    """Download all xml and json metadata, parse all data into a metadata dictionary.  Load the metadata
     dictionary into a documents table.
     """
     assets = []
@@ -288,13 +288,6 @@ def load_catalog_data():
 
     assets = merge_docs(fsgeodata_assets, datahub_assets, rda_assets)
     print(f"Total unique assets: {len(assets)}")
-
-
-@cli.command()
-def run_api():
-    """Run the catalog api."""
-
-    print("Running catalog api.")
 
 
 @cli.command()
