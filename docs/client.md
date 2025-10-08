@@ -1,3 +1,15 @@
+---
+title: Streamlit Web Client
+description: Web-based chat interface built with Streamlit for conversational interaction with the Catalog API
+tags:
+  - streamlit
+  - client
+  - ui
+  - chat
+  - frontend
+  - web-app
+---
+
 # Streamlit Client
 
 ## Overview

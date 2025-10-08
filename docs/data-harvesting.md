@@ -1,3 +1,17 @@
+---
+title: Data Harvesting
+description: Metadata harvesting from USFS sources using CLI commands for downloading and parsing XML and JSON data
+tags:
+  - harvesting
+  - cli
+  - metadata
+  - web-scraping
+  - beautifulsoup
+  - xml
+  - json
+  - etl
+---
+
 # Data Harvesting
 
 Metadata needs to be harvested in order to construct the supporting database and vector database table.  The metadata have been harvested from the three sources referenced in the [metadata sources page](/metadata-sources).  For proof-of-concept the metadata from the sources are collected and a subset of the fields in each source's records were stored as a collection of json documents in one json file. The fields used in each document object are:  

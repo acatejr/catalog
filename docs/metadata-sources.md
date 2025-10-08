@@ -1,6 +1,15 @@
 ---
 title: USFS Metadata Sources
+description: Public data sources for USFS metadata including FSGeodata, DataHub, and Research Data Archive
 date: 2025-09-22
+tags:
+  - data-sources
+  - usfs
+  - fsgeodata
+  - datahub
+  - rda
+  - metadata
+  - geospatial
 ---
 # Data Sources
 

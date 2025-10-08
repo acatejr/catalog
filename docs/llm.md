@@ -1,3 +1,17 @@
+---
+title: LLM Integration and RAG System
+description: Retrieval-Augmented Generation implementation using vector embeddings, sentence transformers, and ESIIL LLM API
+tags:
+  - llm
+  - rag
+  - openai
+  - embeddings
+  - ai
+  - chatbot
+  - vector-search
+  - sentence-transformersß
+---
+
 # LLM Integration
 
 ## Overview

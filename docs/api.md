@@ -1,3 +1,15 @@
+---
+title: Catalog REST API
+description: FastAPI REST API endpoints for querying the catalog system with API key authentication
+tags:
+  - api
+  - rest
+  - fastapi
+  - authentication
+  - endpoints
+  - http
+---
+
 # API
 
 ## Overview

@@ -1,3 +1,17 @@
+---
+title: Data Storage and Database Schema
+description: PostgreSQL vector database implementation for storing metadata chunks with embeddings for RAG-based semantic search
+tags:
+  - database
+  - postgresql
+  - vector-database
+  - pgvector
+  - embeddings
+  - schema
+  - storage
+  - rag
+---
+
 # Data Storage
 
 ## Overview

@@ -1,3 +1,18 @@
+---
+title: Catalog Documentation Home
+description: Proof-of-concept metadata catalog system using vector database, RAG, and LLM for intelligent search of USFS datasets
+tags:
+  - catalog
+  - metadata
+  - rag
+  - vector-database
+  - llm
+  - usfs
+  - documentation
+search:
+  boost: 2.0
+---
+
 # Welcome to Catalog Documentation
 
 A proof-of-concept project used to demonstrate the possibilities that may exist in building a data/metadata catalog based on publicly available data harvested and stored in vector database table and used to augment LLM search functionality through [Retrieval-Augmented-Generation (RAG)](https://en.wikipedia.org/wiki/Retrieval-augmented_generation) 

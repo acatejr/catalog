@@ -2,7 +2,8 @@ site_name: Catalog
 
 plugins:
   - search
-  - tags
+  - tags:
+      tags_file: tags.md
   - blog
 
 theme:
