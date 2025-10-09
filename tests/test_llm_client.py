@@ -3,7 +3,6 @@ from catalog.llm import ChatBot
 
 
 class TestLLMClient:
-
     @pytest.fixture
     def chatbot(self):
         """Create a test chatbot."""
@@ -13,7 +12,6 @@ class TestLLMClient:
     def test_init_client(self, chatbot):
         assert chatbot.client is not None
         assert chatbot.model == "Llama-3.2-11B-Vision-Instruct"
-
 
     def test_chat_method(self, chatbot):
         response = chatbot.chat("What is CyVerse?")
@@ -37,5 +35,3 @@ class TestLLMClient:
 # custom_message = "How many datasets are in the catalog where the source is NRM?"
 # custom_message = "How many datasets are in the catalog where the source is EDW?"
 # custom_message = "What is the most frequent type in the src field in the catalog?"
-
-

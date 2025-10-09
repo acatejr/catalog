@@ -366,5 +366,6 @@ def make_usfs_catalog():
         json.dump(all_assets, f, indent=4)
     print(f"Created {file_path} with {len(all_assets)} assets.")
 
+
 if __name__ == "__main__":
     cli()

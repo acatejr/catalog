@@ -10,10 +10,9 @@ load_dotenv()
 dbname = os.environ.get("POSTGRES_DB") or "postgres"
 dbuser = os.environ.get("POSTGRES_USER")
 dbpass = os.environ.get("POSTGRES_PASSWORD")
+dbhost = os.environ.get("POSTGRES_HOST") or "catalog-postgres-1"
 
-pg_connection_string = (
-    f"dbname={dbname} user={dbuser} password={dbpass} host='catalog-postgres-1'"
-)
+pg_connection_string = f"dbname={dbname} user={dbuser} password={dbpass} host={dbhost}"
 
 
 def load_documents_from_json(json_path: str) -> List[USFSDocument]:
@@ -112,7 +111,6 @@ def search_docs(query_embedding: list[float], limit: int = 10) -> list:
 
     if not query_embedding:
         return []
-
 
     docs = []
 

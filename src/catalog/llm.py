@@ -9,6 +9,7 @@ load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 ESIIL_API_KEY = os.getenv("ESIIL_API_KEY")
 ESIIL_API_URL = os.getenv("ESIIL_API_URL")
+ESIIL_MODEL = os.getenv("ESIIL_MODEL") or "Llama-3.2-11B-Vision-Instruct"
 
 
 class ChatBot:
@@ -18,8 +19,7 @@ class ChatBot:
             api_key=ESIIL_API_KEY or "dummy-key",
             base_url=ESIIL_API_URL or "https://llm-api.cyverse.ai/v1",
         )
-        self.model = "Llama-3.2-11B-Vision-Instruct"
-        # self.model = "anvilgpt/llama2:latest"
+        self.model = ESIIL_MODEL
 
     def get_documents(self, query: str) -> str:
         """
@@ -56,20 +56,8 @@ class ChatBot:
             )
             # Use the LLM to generate an answer
             response = self.client.chat.completions.create(
-                # model="Llama-3.2-11B-Vision-Instruct", # Slow
+                model="Llama-3.2-11B-Vision-Instruct",  # Slow
                 # model="Llama-3.3-70B-Instruct-quantized", # A little faster
-                # model = "anvilgpt/llama3.3:70b",
-                # model = "anvilgpt/llama3.2:latest", # Worked but poor response
-                # model = "anvilgpt/codegemma:latest", # Worked but could not deal with context
-                # model="anvilgpt/gemma:latest", # Worked but could not deal with context
-                # model="anvilgpt/deepseek-r1:70b", # Speed is decent and has real potential
-                # model="anvilgpt/mistral:latest", # Speed seems decent and has real potential.  Interesting, after adding src field to context, made a python code suggestion.
-                # model="js2/llama-4-scout", # Speed was decent and results had potential.  After adding src field to context, made interesting response inferences.
-                # model="js2/DeepSeek-R1", # Speed was good and results were very interesting.  Still interesting results after adding src field to context.
-                # model="nrp/phi3", # Speed good, not sure about results.  Same results after adding src field to context.
-                # model = "nrp/gorilla", # Speed needs to be reviewed, but results were very interesting.  Same results after adding src field to context.  Still interesting.
-                model="nrp/olmo",  # *** Speed good and results were very interesting
-                # model="gemma-3-12b-it", # Fast but no response
                 messages=[
                     {
                         "role": "system",

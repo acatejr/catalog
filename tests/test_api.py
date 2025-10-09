@@ -51,6 +51,7 @@ class TestCatalogAPI:
         assert data["query"] == test_query
         assert data["response"] is not None  # Currently returns None
 
+
 #     @patch("src.catalog.api.main.datetime")
 #     def test_health_endpoint_with_mocked_time(self, mock_datetime, client):
 #         """Test health endpoint with a specific mocked timestamp."""

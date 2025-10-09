@@ -35,9 +35,7 @@ if question := st.chat_input("Ask me anything about the catalog."):
             try:
                 # Make API call to your catalog endpoint
                 response = httpx.get(
-                    query_url + question,
-                    headers={"X-API-KEY": X_API_KEY},
-                    timeout=90.0
+                    query_url + question, headers={"X-API-KEY": X_API_KEY}, timeout=90.0
                 )
 
                 if response.status_code == 200:
