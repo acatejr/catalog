@@ -4,7 +4,6 @@ description: Public data sources for USFS metadata including FSGeodata, DataHub,
 date: 2025-09-22
 tags:
   - data-sources
-  - usfs
   - fsgeodata
   - datahub
   - rda
