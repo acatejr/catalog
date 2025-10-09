@@ -9,7 +9,7 @@ tags:
   - ai
   - chatbot
   - vector-search
-  - sentence-transformersß
+  - sentence-transformers
 ---
 
 # LLM Integration
@@ -37,7 +37,7 @@ Build Context → LLM Generation → Response
 
 ## ChatBot Class
 
-The `ChatBot` class (llm.py:14-86) is the main interface for interacting with the LLM system.
+The `ChatBot` class (llm.py:15-74) is the main interface for interacting with the LLM system.
 
 ### Initialization
 
@@ -45,10 +45,10 @@ The `ChatBot` class (llm.py:14-86) is the main interface for interacting with th
 chatbot = ChatBot()
 ```
 
-**Implementation Details (llm.py:15-22):**
+**Implementation Details (llm.py:16-22):**
 
 - Initializes OpenAI client with ESIIL API configuration
-- Sets default model to `"Llama-3.2-11B-Vision-Instruct"`
+- Sets model from `ESIIL_MODEL` environment variable or defaults to `"Llama-3.2-11B-Vision-Instruct"`
 - Falls back to dummy credentials if environment variables are not set
 
 **Code:**
@@ -60,7 +60,7 @@ def __init__(self):
         api_key=ESIIL_API_KEY or "dummy-key",
         base_url=ESIIL_API_URL or "https://llm-api.cyverse.ai/v1",
     )
-    self.model = "Llama-3.2-11B-Vision-Instruct"
+    self.model = ESIIL_MODEL
 ```
 
 ## Methods
@@ -139,7 +139,7 @@ def chat(self, message: str = "Hello, how can you help me?") -> str
 
 - String containing the LLM's response
 
-**Implementation (llm.py:38-86):**
+**Implementation (llm.py:38-73):**
 
 1. **Retrieve Documents**: Calls `get_documents()` with the user's message
 2. **Build Context**: Constructs formatted context from retrieved documents
@@ -148,7 +148,7 @@ def chat(self, message: str = "Hello, how can you help me?") -> str
 
 **Context Format:**
 
-```
+```text
 Title: {title}
 Description: {description}
 Keywords: {keywords}
@@ -161,13 +161,13 @@ Keywords: {keywords}
 
 **System Prompt:**
 
-```
+```text
 You are a helpful assistant. Use the provided context to answer questions.
 ```
 
 **User Prompt Template:**
 
-```
+```text
 Context: {context}
 
 Question: {message}
@@ -185,7 +185,7 @@ def chat(self, message: str = "Hello, how can you help me?") -> str:
         ])
 
         response = self.client.chat.completions.create(
-            model="nrp/olmo",
+            model="Llama-3.2-11B-Vision-Instruct",
             messages=[
                 {
                     "role": "system",
@@ -233,34 +233,34 @@ graph LR
 
 ## Model Selection
 
-The current implementation uses `"nrp/olmo"` as the default model (llm.py:71). The code includes extensive comments documenting other models that were tested:
+The current implementation hardcodes `"Llama-3.2-11B-Vision-Instruct"` in the `chat()` method (llm.py:59). The model can be configured via the `ESIIL_MODEL` environment variable (used in `__init__`), but the chat method currently overrides this. The code includes comments documenting other models that were tested:
 
 ### Tested Models
 
 | Model | Notes | Status |
 |-------|-------|--------|
-| `Llama-3.2-11B-Vision-Instruct` | Slow performance | Initial default |
-| `Llama-3.3-70B-Instruct-quantized` | Slightly faster than 11B | Tested |
-| `anvilgpt/llama3.3:70b` | - | Tested |
-| `anvilgpt/llama3.2:latest` | Poor response quality | Tested |
-| `anvilgpt/codegemma:latest` | Could not handle context | Tested |
-| `anvilgpt/gemma:latest` | Could not handle context | Tested |
-| `anvilgpt/deepseek-r1:70b` | Decent speed, real potential | Tested |
-| `anvilgpt/mistral:latest` | Decent speed, real potential | Tested |
-| `js2/llama-4-scout` | Decent speed, potential results | Tested |
-| `js2/DeepSeek-R1` | Good speed, very interesting results | Tested |
-| `nrp/phi3` | Good speed | Tested |
-| `nrp/gorilla` | Very interesting results | Tested |
-| `nrp/olmo` | ⭐ Good speed and very interesting results | **Current** |
-| `gemma-3-12b-it` | Fast but no response | Tested |
+| `Llama-3.2-11B-Vision-Instruct` | Slow performance | **Current (hardcoded)** |
+| `Llama-3.3-70B-Instruct-quantized` | Slightly faster than 11B | Commented option |
+
+The code currently includes commented references to these two models with performance notes.
 
 ### Changing Models
 
-To use a different model, modify line 71 in `llm.py`:
+To use a different model, modify line 59 in `llm.py` or set the `ESIIL_MODEL` environment variable:
+
+#### Option 1: Update code
 
 ```python
 model="your-preferred-model"
 ```
+
+#### Option 2: Set environment variable
+
+```bash
+export ESIIL_MODEL="your-preferred-model"
+```
+
+Note: The hardcoded model in `chat()` currently overrides the environment variable setting.
 
 ## Usage Examples
 
@@ -397,5 +397,5 @@ Potential improvements to consider:
 All LLM functionality is implemented in:
 
 - **File**: `src/catalog/llm.py`
-- **Lines**: 1-86
-- **Class**: `ChatBot` (lines 14-86)
+- **Lines**: 1-74
+- **Class**: `ChatBot` (lines 15-74)
