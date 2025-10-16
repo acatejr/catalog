@@ -2,7 +2,7 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 from sentence_transformers import SentenceTransformer
-from catalog.db import search_docs
+from db import search_docs
 
 load_dotenv()
 

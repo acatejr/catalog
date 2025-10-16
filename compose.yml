@@ -1,37 +1,40 @@
 services:
-
-  app:
+  db:
+    platform: linux/amd64
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.db
+    container_name: catalog_db
     env_file:
       - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sh:/docker-entrypoint-initdb.d/01-init-db.sh
+      - ./schema.sql:/docker-entrypoint-initdb.d/02-schema.sql
     ports:
-      - 8000:8000
-      - 8080:8080
-    # depends_on:
-    #   postgres:
-    #     condition: service_healthy
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U catalog_user -d catalog"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build: .
+    container_name: catalog_web
+    # command: uv run python manage.py runserver 0.0.0.0:8000
+    command: python cli.py run-api
     volumes:
       - .:/app
-    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
     tty: true
     stdin_open: true
-
-  postgres:
-    image: ankane/pgvector:latest
-    env_file:
-        - .env
-    restart: unless-stopped
-    volumes:
-        - pgdata:/var/lib/postgresql/data
-    ports:
-        - 5432:5432
-    # healthcheck:
-    #     test: ["CMD-SHELL", "pg_isready -U postgres"]
-    #     interval: 10s
-    #     timeout: 5s
-    #     retries: 5
+    depends_on:
+      db:
+        condition: service_healthy
 
 volumes:
-  pgdata:
+  postgres_data:

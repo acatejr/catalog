@@ -1,1 +1,16 @@
+bs4
+fastapi
+langchain-community
+lxml
+openai
+psycopg2-binary
+python-dotenv
+requests
+sentence-transformers
+typer
 mkdocs-material
+pytest
+pytest-cov
+pytest-sugar
+ruff
+uvicorn

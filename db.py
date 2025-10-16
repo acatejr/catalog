@@ -2,7 +2,7 @@ import os, json
 import psycopg2
 from dotenv import load_dotenv
 from typing import List
-from catalog.schema import USFSDocument
+from schema import USFSDocument
 
 load_dotenv()
 
