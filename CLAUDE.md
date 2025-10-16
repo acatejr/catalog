@@ -12,7 +12,7 @@ A proof-of-concept metadata catalog that harvests publicly available data, store
 - **Linting**: Ruff
 
 ## Project Structure
-- `src/catalog/` - Main application code
+- `.` - Main application code
   - `cli.py` - Command-line interface (Typer)
   - `api.py` - FastAPI endpoints
   - `db.py` - Database operations
