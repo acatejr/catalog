@@ -47,6 +47,7 @@
 - [ ] Refactor the Dockerfile, Dockerfile.db, compose.tst.yml, compose.yml so it is optimized for local dev and deploymebnt to tst
 - [ ] Locally hosted web chat ui
 - [ ] Caddy if locally hosted web ui
+- [ ] Move dev db to do instance
 
 ---
 
