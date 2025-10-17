@@ -1,0 +1,38 @@
+services:
+  db:
+    # platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    container_name: catalog_db
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sh:/docker-entrypoint-initdb.d/01-init-db.sh
+      - ./schema.sql:/docker-entrypoint-initdb.d/02-schema.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U catalog_user -d catalog"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    image: ghcr.io/acatejr/catalog:latest
+    container_name: catalog_web
+    command: python src/cli.py run-api
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+    env_file:
+      - .env
+    tty: true
+    stdin_open: true
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

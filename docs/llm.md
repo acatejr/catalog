@@ -37,7 +37,7 @@ Build Context → LLM Generation → Response
 
 ## ChatBot Class
 
-The `ChatBot` class (llm.py:15-74) is the main interface for interacting with the LLM system.
+The `ChatBot` class (src/llm.py) is the main interface for interacting with the LLM system.
 
 ### Initialization
 
@@ -45,7 +45,7 @@ The `ChatBot` class (llm.py:15-74) is the main interface for interacting with th
 chatbot = ChatBot()
 ```
 
-**Implementation Details (llm.py:16-22):**
+**Implementation Details (src/llm.py):**
 
 - Initializes OpenAI client with ESIIL API configuration
 - Sets model from `ESIIL_MODEL` environment variable or defaults to `"Llama-3.2-11B-Vision-Instruct"`
@@ -83,11 +83,11 @@ def get_documents(self, query: str) -> str
 
 - List of document dictionaries matching the query, or empty list if no results
 
-**Implementation (llm.py:24-36):**
+**Implementation (src/llm.py):**
 
 1. Encodes the query using `all-MiniLM-L6-v2` sentence transformer (same model used for document embeddings)
 2. Converts embedding to list format
-3. Calls `search_docs()` from `db.py` with the query embedding
+3. Calls `search_docs()` from `src/db.py` with the query embedding
 4. Returns matching documents ranked by similarity
 
 **Code:**
@@ -139,7 +139,7 @@ def chat(self, message: str = "Hello, how can you help me?") -> str
 
 - String containing the LLM's response
 
-**Implementation (llm.py:38-73):**
+**Implementation (src/llm.py):**
 
 1. **Retrieve Documents**: Calls `get_documents()` with the user's message
 2. **Build Context**: Constructs formatted context from retrieved documents
@@ -233,7 +233,7 @@ graph LR
 
 ## Model Selection
 
-The current implementation hardcodes `"Llama-3.2-11B-Vision-Instruct"` in the `chat()` method (llm.py:59). The model can be configured via the `ESIIL_MODEL` environment variable (used in `__init__`), but the chat method currently overrides this. The code includes comments documenting other models that were tested:
+The current implementation hardcodes `"Llama-3.2-11B-Vision-Instruct"` in the `chat()` method. The model can be configured via the `ESIIL_MODEL` environment variable (used in `__init__`), but the chat method currently overrides this. The code includes comments documenting other models that were tested:
 
 ### Tested Models
 
@@ -246,7 +246,7 @@ The code currently includes commented references to these two models with perfor
 
 ### Changing Models
 
-To use a different model, modify line 59 in `llm.py` or set the `ESIIL_MODEL` environment variable:
+To use a different model, modify the code in `src/llm.py` or set the `ESIIL_MODEL` environment variable:
 
 #### Option 1: Update code
 
@@ -311,7 +311,7 @@ print(f"Response: {response}")
 
 ### API Integration
 
-The ChatBot is used in `api.py` for the `/query` endpoint:
+The ChatBot is used in `src/api.py` for the `/query` endpoint:
 
 ```python
 @api.get("/query", tags=["Query"])
@@ -323,10 +323,10 @@ async def query(q: str):
 
 ### Database Integration
 
-The `get_documents()` method calls `search_docs()` from `db.py`:
+The `get_documents()` method calls `search_docs()` from `src/db.py`:
 
 - **Function**: `search_docs(query_embedding, limit=10)`
-- **Location**: `db.py:101-159`
+- **Location**: `src/db.py`
 - **Returns**: Top-K similar documents using cosine distance
 
 ## Performance Considerations
@@ -390,12 +390,11 @@ Potential improvements to consider:
 - `openai`: OpenAI client library (used for ESIIL API)
 - `sentence-transformers`: For query embedding generation
 - `dotenv`: Environment variable management
-- `catalog.db.search_docs`: Vector database search function
+- `src/db.search_docs`: Vector database search function
 
 ## Code Location
 
 All LLM functionality is implemented in:
 
-- **File**: `src/catalog/llm.py`
-- **Lines**: 1-74
-- **Class**: `ChatBot` (lines 15-74)
+- **File**: `src/llm.py`
+- **Class**: `ChatBot`

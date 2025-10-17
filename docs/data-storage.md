@@ -83,9 +83,9 @@ Metadata is harvested from three sources, each producing a standardized dictiona
 
 | Source | Format | Parser Function | Fields Extracted |
 |--------|--------|----------------|------------------|
-| FS GeoData | XML | `_parse_fsgeodata_metadata()` (cli.py:121-160) | title, abstract, keywords, metadata_source_url |
-| DataHub | JSON | `_parse_datahub_metadata()` (cli.py:185-210) | title, description, keywords, identifier, url |
-| RDA | JSON | `_parse_rda_metadata()` (cli.py:235-261) | title, description, keywords, identifier, url |
+| FS GeoData | XML | `_parse_fsgeodata_metadata()` (src/cli.py) | title, abstract, keywords, metadata_source_url |
+| DataHub | JSON | `_parse_datahub_metadata()` (src/cli.py) | title, description, keywords, identifier, url |
+| RDA | JSON | `_parse_rda_metadata()` (src/cli.py) | title, description, keywords, identifier, url |
 
 Each parser generates a dictionary with these common fields:
 - `id`: SHA-256 hash of the lowercase title (for deduplication)
@@ -96,14 +96,14 @@ Each parser generates a dictionary with these common fields:
 
 ### 2. Document Merging
 
-All parsed metadata is merged into a single list using the `merge_docs()` function (cli.py:55-75), which:
+All parsed metadata is merged into a single list using the `merge_docs()` function (src/cli.py:59-79), which:
 - Combines documents from all sources
 - Removes duplicates based on the `id` field
 - Ensures unique documents across all data sources
 
 ### 3. Embedding and Storage
 
-The `embed_and_store()` command (cli.py:317-356) performs the final processing:
+The `embed_and_store()` command (src/cli.py:280-320) performs the final processing:
 
 #### Text Chunking
 
@@ -121,7 +121,7 @@ Each chunk is embedded using the `all-MiniLM-L6-v2` sentence transformer model, 
 
 #### Database Insertion
 
-The `save_to_vector_db()` function (db.py:71-98) inserts each chunk into the `documents` table with:
+The `save_to_vector_db()` function (src/db.py) inserts each chunk into the `documents` table with:
 - The embedding vector
 - Chunk metadata (doc_id, chunk_index, chunk_type, chunk_text)
 - Original document metadata (title, description, keywords, data_source)
@@ -144,7 +144,7 @@ Located in `db.py:71-98`. Inserts a single document chunk with its embedding and
 empty_documents_table()
 ```
 
-Located in `db.py:26-48`. Deletes all records from the `documents` table and performs a `VACUUM FULL` to reclaim storage space.
+Located in `src/db.py`. Deletes all records from the `documents` table and performs a `VACUUM FULL` to reclaim storage space.
 
 ### Count Documents
 
@@ -152,7 +152,7 @@ Located in `db.py:26-48`. Deletes all records from the `documents` table and per
 count_documents()
 ```
 
-Located in `db.py:51-68`. Returns the total number of records in the `documents` table.
+Located in `src/db.py`. Returns the total number of records in the `documents` table.
 
 ### Search Documents
 
@@ -160,7 +160,7 @@ Located in `db.py:51-68`. Returns the total number of records in the `documents`
 search_docs(query_embedding, limit=10)
 ```
 
-Located in `db.py:101-159`. Performs vector similarity search using cosine distance:
+Located in `src/db.py`. Performs vector similarity search using cosine distance:
 
 ```sql
 SELECT id, title, description, keywords,
@@ -175,18 +175,18 @@ Returns documents ranked by similarity score (higher = more similar).
 
 ## CLI Commands
 
-### Load Catalog Data
+### Download All Metadata
 
 ```bash
-uv run catalog load-catalog-data
+PYTHONPATH=src python src/cli.py download-all
 ```
 
-Downloads and parses metadata from all three sources, reporting the total number of unique assets found.
+Downloads metadata from all three sources (FSGeoData, DataHub, RDA).
 
 ### Embed and Store
 
 ```bash
-uv run catalog embed-and-store
+PYTHONPATH=src python src/cli.py embed-and-store
 ```
 
 Processes all parsed metadata, generates embeddings, and stores chunks in the database.
@@ -194,18 +194,18 @@ Processes all parsed metadata, generates embeddings, and stores chunks in the da
 ### Clear Documents Table
 
 ```bash
-uv run catalog clear-docs-table
+PYTHONPATH=src python src/cli.py clear-docs-table
 ```
 
 Empties the `documents` table completely.
 
-### Make USFS Catalog
+### Run API
 
 ```bash
-uv run catalog make-usfs-catalog
+PYTHONPATH=src python src/cli.py run-api
 ```
 
-Creates a JSON file (`tmp/catalog/usfs_catalog.json`) with all parsed metadata for inspection or backup.
+Starts the FastAPI server for querying the catalog.
 
 ## Example Data Flow
 

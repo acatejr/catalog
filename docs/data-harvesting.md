@@ -54,40 +54,68 @@ langchain-text-splitters # Text chunking
 The CLI creates and uses the following directory structure for storing temporary files and output files:
 
 ```
-tmp/
+data/
 └── catalog/          # Default output directory (DEST_OUTPUT_DIR)
 ```
 
 ## Commands Reference
 
-### `load_catalog_data`
+### `download-all`
 
-Downloads and processes metadata from all configured sources (FSGeoData, DataHub, and RDA).
+Downloads metadata from all configured sources (FSGeoData, DataHub, and RDA).
 
 ```bash
-python -m catalog.cli load_catalog_data
+PYTHONPATH=src python src/cli.py download-all
 ```
 
 **What it does:**
 1. Downloads metadata from FSGeoData (XML files)
 2. Downloads metadata from DataHub (JSON)
 3. Downloads metadata from RDA (JSON)
-4. Parses all metadata into a unified format
-5. Merges documents and removes duplicates
-6. Reports total unique assets found
 
 **Output:**
-- Downloaded files stored in `tmp/catalog/`
-- Console output showing progress and asset counts
+- Downloaded files stored in `data/catalog/`
+- Console output showing progress
+
+### `embed-and-store`
+
+Embeds all downloaded and parsed metadata and stores it in the vector database.
+
+```bash
+PYTHONPATH=src python src/cli.py embed-and-store
+```
+
+**What it does:**
+1. Parses all downloaded metadata
+2. Combines title, description, keywords, and source into searchable text
+3. Splits text into manageable chunks
+4. Generates vector embeddings for each chunk
+5. Stores chunks with embeddings in PostgreSQL
 
 **Processing details:**
-- Combines title, description, keywords, and source into searchable text
-- Splits text into manageable chunks for embedding
+- Uses `all-MiniLM-L6-v2` model for embeddings
+- 65-character chunks with no overlap
 - Maintains metadata for each chunk including:
   - Document ID
   - Chunk type and index
   - Original title and description
   - Keywords and source
+
+### `clear-docs-table`
+
+Clears all records from the documents table.
+
+```bash
+PYTHONPATH=src python src/cli.py clear-docs-table
+```
+
+### `run-api`
+
+Starts the FastAPI server.
+
+```bash
+PYTHONPATH=src python src/cli.py run-api
+```
 
 ### Utility Functions
 
@@ -232,25 +260,17 @@ graph TD
 
 1. **Download all metadata**:
 ```bash
-python -m catalog.cli load_catalog_data
+PYTHONPATH=src python src/cli.py download-all
 ```
 
-Output example:
+2. **Embed and store in database**:
+```bash
+PYTHONPATH=src python src/cli.py embed-and-store
 ```
-Loading all catalog data.
-    Downloading all fsgeodata metadata.
-    Found 523 fsgeodata assets.
-    Done downloading all fsgeodata metadata!
------
-    Downloading all datahub metadata.
-    Found 312 datahub assets.
-    Done downloading all datahub metadata!
------
-    Downloading all rda metadata.
-    Found 89 rda assets.
-    Done downloading all rda metadata!
-Done loading all catalog data!
-Total unique assets: 924
+
+3. **Run the API**:
+```bash
+PYTHONPATH=src python src/cli.py run-api
 ```
 
 ## Error Handling
@@ -278,7 +298,7 @@ Potential improvements to consider:
 
 ## Related Modules
 
-- `catalog.db`: Database operations and vector storage
-- `catalog.schema`: Data models (USFSDocument)
-- `catalog.api`: API service implementation
-- `catalog.llm`: Language model integration
+- `src/db.py`: Database operations and vector storage
+- `src/schema.py`: Data models (USFSDocument)
+- `src/api.py`: API service implementation
+- `src/llm.py`: Language model integration

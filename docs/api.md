@@ -185,7 +185,7 @@ Returned when request parameters are invalid or missing.
 The API uses the following key dependencies:
 
 - **FastAPI:** Web framework for building the API
-- **catalog.llm.ChatBot:** AI agent for processing queries
+- **llm.ChatBot:** AI agent for processing queries (imported from `src/llm.py`)
 - **fastapi.security.api_key:** API key authentication
 
 ### Code Structure
@@ -283,10 +283,23 @@ export X_API_KEY="your-secure-api-key"
 
 ### Starting the Server
 
-Use uvicorn or another ASGI server to run the FastAPI application:
+Use the CLI command to run the API:
 
 ```bash
-uvicorn catalog.api:api --host 0.0.0.0 --port 8000
+PYTHONPATH=src python src/cli.py run-api
+```
+
+Or use uvicorn directly:
+
+```bash
+cd src
+uvicorn api:api --host 0.0.0.0 --port 8000 --reload
+```
+
+Or with Docker Compose:
+
+```bash
+docker compose up -d
 ```
 
 ### Interactive Documentation

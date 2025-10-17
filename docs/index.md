@@ -33,6 +33,8 @@ This project demonstrates how to build a data/metadata catalog that:
 
 ## Quick Start
 
+### Using Docker Compose (Recommended)
+
 1. **Clone the repository:**
 
    ```sh
@@ -40,19 +42,42 @@ This project demonstrates how to build a data/metadata catalog that:
    cd catalog
    ```
 
-2. **Install dependencies:**
+2. **Create .env file:**
+
+   ```sh
+   echo "OPENAI_API_KEY=your_key_here" > .env
+   ```
+
+3. **Start services:**
+
+   ```sh
+   docker compose up -d
+   ```
+
+4. **Access the API:**
+
+   ```sh
+   curl http://localhost:8000/health
+   ```
+
+### Local Development
+
+1. **Install dependencies:**
 
    ```sh
    pip install -r requirements.txt
    ```
 
-3. **Run the API server:**
+2. **Run CLI commands:**
 
    ```sh
-   uvicorn src.catalog.main:app --reload
+   PYTHONPATH=src python src/cli.py --help
+   PYTHONPATH=src python src/cli.py download-all
+   PYTHONPATH=src python src/cli.py embed-and-store
+   PYTHONPATH=src python src/cli.py run-api
    ```
 
-4. **Start the chatbot UI:**
+3. **Start the chatbot UI:**
 
    ```sh
    streamlit run slclient/app.py
@@ -76,9 +101,14 @@ catalog/
 
 ## Learn More
 
-- [API Reference](api.md)
-- [Setup Guide](setup.md)
-- [Contributing](contributing.md)
+- [API Reference](api.md) - REST API endpoints and authentication
+- [Data Harvesting](data-harvesting.md) - CLI commands for downloading metadata
+- [Data Storage](data-storage.md) - Database schema and vector storage
+- [LLM Integration](llm.md) - RAG implementation and chatbot
+- [Streamlit Client](client.md) - Web-based chat interface
+- [Metadata Sources](metadata-sources.md) - USFS data sources
+- [Docker Publishing](docker-publishing.md) - Publishing images to GHCR
+- [Test Server Deployment](test-server-deployment.md) - Deploying to test servers
 
 ---
 
