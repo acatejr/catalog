@@ -45,6 +45,8 @@
 - [ ] Ask claude to review entire project and ask for ideas about making it a robust data catalog
 - [ ] Catalog feature for tracking and asking about a data set's lineage
 - [ ] Refactor the Dockerfile, Dockerfile.db, compose.tst.yml, compose.yml so it is optimized for local dev and deploymebnt to tst
+- [ ] Locally hosted web chat ui
+- [ ] Caddy if locally hosted web ui
 
 ---
 
