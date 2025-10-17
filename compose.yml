@@ -22,8 +22,7 @@ services:
   web:
     build: .
     container_name: catalog_web
-    # command: uv run python manage.py runserver 0.0.0.0:8000
-    command: python cli.py run-api
+    command: python src/cli.py run-api
     volumes:
       - .:/app
     ports:

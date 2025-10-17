@@ -5,14 +5,14 @@ A proof-of-concept metadata catalog that harvests publicly available data, store
 
 ## Tech Stack
 - **Language**: Python 3.13+
-- **Package Manager**: uv
+- **Package Manager**: pip (requirements.txt)
 - **Key Dependencies**: FastAPI, LangChain, OpenAI, PostgreSQL (psycopg2), Sentence Transformers
 - **Testing**: pytest with coverage
 - **Documentation**: MkDocs Material
 - **Linting**: Ruff
 
 ## Project Structure
-- `.` - Main application code
+- `src/` - Main application code
   - `cli.py` - Command-line interface (Typer)
   - `api.py` - FastAPI endpoints
   - `db.py` - Database operations
@@ -20,20 +20,26 @@ A proof-of-concept metadata catalog that harvests publicly available data, store
   - `schema.py` - Data schemas
 - `docs/` - MkDocs documentation
 - `tests/` - Test suite
+- `data/` - Downloaded metadata storage
 
 ## Development Setup
 ```bash
 # Install dependencies
-uv sync
+pip install -r requirements.txt
 
-# Run CLI
-uv run catalog --help
+# Run CLI (requires PYTHONPATH since code is in src/)
+PYTHONPATH=src python src/cli.py --help
+
+# Run specific commands
+PYTHONPATH=src python src/cli.py download-all
+PYTHONPATH=src python src/cli.py embed-and-store
+PYTHONPATH=src python src/cli.py run-api
 
 # Run tests
-uv run pytest
+pytest
 
 # Serve docs locally
-uv run mkdocs serve
+mkdocs serve
 ```
 
 ## Key Conventions
@@ -54,11 +60,13 @@ uv run mkdocs serve
 
 ## When Making Changes
 - Update tests for new functionality
-- Run `uv run pytest` before committing
+- Run `pytest` before committing
 - Update documentation in `docs/` if adding features
-- Follow existing patterns in `cli.py` for new commands
+- Follow existing patterns in `src/cli.py` for new commands
+- All source code is in `src/` directory
 
 ## Git Commit Guidelines
+
 - Use conventional commits format: `type(scope): message`
   - **Types**: feat, fix, docs, refactor, test, chore, style
   - **Example**: `feat(cli): add search command` or `fix(db): resolve connection timeout`
@@ -67,12 +75,15 @@ uv run mkdocs serve
 - Stage only relevant files for each commit
 
 ### Using Claude for Commits
+
 Simply ask Claude to commit your changes with commands like:
+
 - "Commit these changes"
 - "Create a commit for the CLI updates"
 - "Commit with message 'feat: add vector search'"
 
 Claude will automatically:
+
 1. Check `git status` and `git diff` to review changes
 2. Review recent commits for style consistency
 3. Draft an appropriate commit message
@@ -80,6 +91,7 @@ Claude will automatically:
 5. Create the commit with attribution footer
 
 **Safety Notes**:
+
 - Claude follows Git Safety Protocol (no force pushes, no skipping hooks)
 - Claude will not push to remote unless explicitly requested
 - Pre-commit hooks will be respected

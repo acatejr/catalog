@@ -323,7 +323,7 @@ def run_api():
     """Run the FastAPI server."""
 
     console.print("[blue]Starting API server...[/blue]")
-    uvicorn.run("api:api", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("api:api", host="0.0.0.0", port=8000, reload=True, workers=2)
 
 if __name__ == "__main__":
     cli()
