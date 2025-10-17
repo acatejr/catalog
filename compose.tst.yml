@@ -1,6 +1,5 @@
 services:
   db:
-    # platform: linux/amd64
     build:
       context: .
       dockerfile: Dockerfile.db
@@ -25,7 +24,6 @@ services:
     command: python src/cli.py run-api
     ports:
       - "8000:8000"
-      - "9000:9000"
     env_file:
       - .env
     tty: true
