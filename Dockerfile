@@ -28,7 +28,6 @@ COPY --from=builder /opt/venv /opt/venv
 # Set working directory and copy application code
 WORKDIR /app
 COPY src/ /app/src/
-COPY data/ /app/data/
 
 # Use the virtual environment
 ENV PATH="/opt/venv/bin:$PATH"
