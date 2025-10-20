@@ -1,0 +1,6 @@
+# Development and testing dependencies
+mkdocs-material
+pytest
+pytest-cov
+pytest-sugar
+ruff

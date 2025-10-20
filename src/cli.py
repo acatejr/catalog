@@ -16,19 +16,20 @@ import uvicorn
 from schema import USFSDocument
 from sentence_transformers import SentenceTransformer
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-
+from db import bulk_upsert_to_vector_db
 
 DEST_OUTPUT_DIR = "data/fsgeodata_metadata"
 
 cli = typer.Typer(
     name="catalog-cli",
     no_args_is_help=True,
-    help="Catalog CLI - Metadata catalog with AI-enhanced search"
+    help="Catalog CLI - Metadata catalog with AI-enhanced search",
 )
 
 console = Console()
 
 DEST_OUTPUT_DIR = "./data/catalog"
+
 
 def create_output_dir():
     if not os.path.exists(DEST_OUTPUT_DIR):
@@ -39,11 +40,13 @@ def hash_string(s):
     """Generate a SHA-256 hash of the input string."""
     return hashlib.sha256(s.encode("utf-8")).hexdigest()
 
+
 def strip_html_tags(text):
     soup = BeautifulSoup(text, "html.parser")
     stripped_text = soup.get_text()
     stripped_text = stripped_text.replace("\n", " ")
     return stripped_text
+
 
 def get_keywords(item):
     """Extract keywords from the item."""
@@ -55,6 +58,7 @@ def get_keywords(item):
             if keyword.strip()
         ]
     return keywords
+
 
 def merge_docs(*docs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """
@@ -78,6 +82,7 @@ def merge_docs(*docs: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 
     return documents
 
+
 def find_duplicate_documents(documents):
     seen = set()
     duplicates = []
@@ -90,6 +95,7 @@ def find_duplicate_documents(documents):
             seen.add(id)
 
     return duplicates
+
 
 def _download_fsgeodata_metadata():
     """Download all xml metadata from fsgeodata and store in DEST_OUTPUT_DIR."""
@@ -112,12 +118,15 @@ def _download_fsgeodata_metadata():
         url = f"https://data.fs.usda.gov/geodata/edw/{metadata_url}"
 
         outfile_name = f"{DEST_OUTPUT_DIR}/{url.split('/')[-1]}"
-        console.print(f"Downloading {url} to {outfile_name} ({file_count + 1}/{len(metadata_urls)})")
+        console.print(
+            f"Downloading {url} to {outfile_name} ({file_count + 1}/{len(metadata_urls)})"
+        )
         if not os.path.exists(outfile_name):
             resp = requests.get(url)
             with open(outfile_name, "wb") as f:
                 f.write(resp.content)
                 file_count += 1
+
 
 def _download_datahub_metadata():
     """Download all json metadata from datahub and store in DEST_OUTPUT_DIR."""
@@ -125,10 +134,13 @@ def _download_datahub_metadata():
     source_url = "https://data-usfs.hub.arcgis.com/api/feed/dcat-us/1.1.json"
 
     response = requests.get(source_url)
-    console.print(f"Downloading {source_url} to {DEST_OUTPUT_DIR}/datahub_metadata.json")
+    console.print(
+        f"Downloading {source_url} to {DEST_OUTPUT_DIR}/datahub_metadata.json"
+    )
     if response.status_code == 200:
         with open(f"{DEST_OUTPUT_DIR}/datahub_metadata.json", "w") as f:
             f.write(response.text)
+
 
 def _download_rda_metadata():
     """Download all json metadata from rda and store in DEST_OUTPUT_DIR."""
@@ -137,9 +149,12 @@ def _download_rda_metadata():
 
     response = requests.get(source_url)
     if response.status_code == 200:
-        console.print(f"Downloading {source_url} to {DEST_OUTPUT_DIR}/rda_metadata.json")
+        console.print(
+            f"Downloading {source_url} to {DEST_OUTPUT_DIR}/rda_metadata.json"
+        )
         with open(f"{DEST_OUTPUT_DIR}/rda_metadata.json", "w") as f:
             f.write(response.text)
+
 
 def _parse_fsgeodata_metadata():
     """Read all xml files in the DEST_OUTPUT_DIR and parse them into a list of metadata dictionaries.
@@ -181,6 +196,7 @@ def _parse_fsgeodata_metadata():
             assets.append(asset)
 
     return assets
+
 
 def _parse_datahub_metadata():
     """Parse the datahub metadata json file and return a list of metadata dictionaries.
@@ -238,9 +254,9 @@ def _parse_rda_metadata():
 
     return assets
 
+
 def _parse_all_metadata():
-    """Parses all downloaded metadata and stores into one json file.
-    """
+    """Parses all downloaded metadata and stores into one json file."""
 
     fsgeodata_assets = _parse_fsgeodata_metadata()
     datahub_assets = _parse_datahub_metadata()
@@ -254,6 +270,7 @@ def _parse_all_metadata():
 
     return assets
 
+
 @cli.command()
 def clear_docs_table():
     """
@@ -262,6 +279,7 @@ def clear_docs_table():
     console.print("[red]Clearing documents table...[/red]")
     empty_documents_table()
     console.print("[green]Documents table cleared![/green]")
+
 
 @cli.command(name="download-all", short_help="Download all metadata from the catalog")
 def download_all_metadata():
@@ -288,6 +306,9 @@ def embed_and_store():
     docs = merge_docs(_parse_all_metadata())
     fsdocs = [USFSDocument(**item) for item in docs]
 
+    # Collect all records for bulk insert
+    records = []
+
     for doc in fsdocs:
         title = doc.title
         description = doc.description
@@ -311,12 +332,21 @@ def embed_and_store():
 
             embedding = model.encode(chunk.page_content)
 
-            save_to_vector_db(
-                embedding=embedding,
-                metadata=metadata,
-                title=title,
-                desc=description,
+            records.append(
+                {
+                    "embedding": embedding,
+                    "metadata": metadata,
+                    "title": title,
+                    "description": description,
+                }
             )
+
+    # Perform bulk upsert
+    bulk_upsert_to_vector_db(records)
+    console.print(
+        f"[green]Successfully upserted {len(records)} document chunks![/green]"
+    )
+
 
 @cli.command()
 def run_api():
@@ -324,6 +354,7 @@ def run_api():
 
     console.print("[blue]Starting API server...[/blue]")
     uvicorn.run("api:api", host="0.0.0.0", port=8000, reload=True, workers=2)
+
 
 if __name__ == "__main__":
     cli()

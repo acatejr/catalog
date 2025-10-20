@@ -13,5 +13,6 @@ CREATE table if not exists documents (
     created_at TIMESTAMP DEFAULT NOW(),
     doc_id varchar(255),
     chunk_type varchar(255),
-    data_source varchar(75)
+    data_source varchar(75),
+    UNIQUE(doc_id, chunk_index)  -- Enables upsert functionality
 );

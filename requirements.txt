@@ -1,3 +1,4 @@
+# Runtime dependencies only
 bs4
 fastapi
 langchain-community
@@ -8,9 +9,4 @@ python-dotenv
 requests
 sentence-transformers
 typer
-mkdocs-material
-pytest
-pytest-cov
-pytest-sugar
-ruff
 uvicorn

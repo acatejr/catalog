@@ -97,6 +97,91 @@ def save_to_vector_db(embedding, metadata, title="", desc=""):
         conn.commit()
 
 
+def bulk_upsert_to_vector_db(records: List[dict], use_upsert: bool = False):
+    """
+    Bulk insert/upsert documents to the 'documents' table using a single SQL transaction.
+
+    Args:
+        records: List of dictionaries containing document data with keys:
+                 - embedding: numpy array or list
+                 - metadata: dict with doc_id, chunk_type, chunk_index, chunk_text, keywords, src
+                 - title: str
+                 - description: str
+        use_upsert: If True, uses ON CONFLICT to update existing records.
+                    Requires UNIQUE constraint on (doc_id, chunk_index).
+                    Run migrations/001_add_unique_constraint.sql first.
+
+    Note: Set use_upsert=True only after adding the unique constraint:
+    ALTER TABLE documents ADD CONSTRAINT documents_doc_id_chunk_idx_key
+    UNIQUE (doc_id, chunk_index);
+    """
+    if not records:
+        return
+
+    with psycopg2.connect(pg_connection_string) as conn:
+        try:
+            cur = conn.cursor()
+
+            # Prepare data for bulk insert
+            values = []
+            for record in records:
+                embedding = record["embedding"]
+                metadata = record["metadata"]
+                title = record.get("title", "")
+                desc = record.get("description", "")
+
+                values.append(
+                    (
+                        metadata["doc_id"],
+                        metadata["chunk_type"],
+                        metadata["chunk_index"],
+                        metadata["chunk_text"],
+                        embedding.tolist()
+                        if hasattr(embedding, "tolist")
+                        else embedding,
+                        title,
+                        desc,
+                        metadata["keywords"],
+                        metadata["src"],
+                    )
+                )
+
+            # Use execute_values for efficient bulk insert
+            from psycopg2.extras import execute_values
+
+            if use_upsert:
+                # True upsert - requires unique constraint
+                sql = """
+                    INSERT INTO documents (doc_id, chunk_type, chunk_index, chunk_text, embedding, title, description, keywords, data_source)
+                    VALUES %s
+                    ON CONFLICT (doc_id, chunk_index)
+                    DO UPDATE SET
+                        chunk_type = EXCLUDED.chunk_type,
+                        chunk_text = EXCLUDED.chunk_text,
+                        embedding = EXCLUDED.embedding,
+                        title = EXCLUDED.title,
+                        description = EXCLUDED.description,
+                        keywords = EXCLUDED.keywords,
+                        data_source = EXCLUDED.data_source
+                """
+            else:
+                # Simple bulk insert - faster but will fail on duplicates
+                sql = """
+                    INSERT INTO documents (doc_id, chunk_type, chunk_index, chunk_text, embedding, title, description, keywords, data_source)
+                    VALUES %s
+                """
+
+            execute_values(cur, sql, values, page_size=100)
+
+            conn.commit()
+            cur.close()
+
+        except Exception as e:
+            print(f"Error during bulk {'upsert' if use_upsert else 'insert'}: {e}")
+            conn.rollback()
+            raise
+
+
 def search_docs(query_embedding: list[float], limit: int = 10) -> list:
     """
     Search documents using vector similarity with the query embedding.
