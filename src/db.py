@@ -240,3 +240,31 @@ def search_docs(query_embedding: list[float], limit: int = 10) -> list:
         return []
 
     return docs
+
+
+def get_all_distinct_keywords() -> list[str]:
+    """
+    Get a list of all distinct keywords in the database.
+
+    Returns:
+        List of unique keyword strings, sorted alphabetically
+    """
+    try:
+        with psycopg2.connect(pg_connection_string) as conn:
+            cur = conn.cursor()
+
+            cur.execute("""
+                SELECT DISTINCT unnest(keywords) as keyword
+                FROM documents
+                WHERE keywords IS NOT NULL AND array_length(keywords, 1) > 0
+                ORDER BY keyword
+            """)
+
+            results = cur.fetchall()
+            cur.close()
+
+            return [row[0] for row in results]
+
+    except Exception as e:
+        print(f"Error getting distinct keywords: {e}")
+        return []

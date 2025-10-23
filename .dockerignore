@@ -1,4 +1,8 @@
+data/
 docs/
+migrations/
+.github/
+.python-version
 scratch/*
 scratch.txt
 .devcontainer/
@@ -6,6 +10,7 @@ scratch.txt
 .dockerignore
 .docker-compose*
 slclient/
+site/
 tmp/
 .env
 .gitignore
