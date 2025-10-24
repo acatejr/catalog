@@ -17,7 +17,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
-            cd /app/scatalog
+            cd /app/catalog
             git pull origin main
             echo "Deployment to Test Server completed."
             # pip install -r requirements.txt  # if needed
