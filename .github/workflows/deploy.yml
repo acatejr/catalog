@@ -18,6 +18,6 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         key: ${{ secrets.DEPLOY_KEY }}
         script: |
-          cd /apps/catalog
+          cd /root/apps/catalog
           git pull origin main
           echo "Deployment to Test Server completed."
