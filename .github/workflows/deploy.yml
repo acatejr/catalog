@@ -1,0 +1,36 @@
+name: Deploy to Servers
+
+on:
+  push:
+    branches:
+      - main  # Deploy when pushing to main
+  workflow_dispatch:  # Allow manual triggers
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Test Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.TEST_SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          script: |
+            cd /app/scatalog
+            git pull origin main
+            echo "Deployment to Test Server completed."
+            # pip install -r requirements.txt  # if needed
+            # systemctl restart your-app-service  # or your restart command
+
+    #   - name: Deploy to Prod Server
+    #     uses: appleboy/ssh-action@master
+    #     with:
+    #       host: ${{ secrets.PROD_SERVER_IP }}
+    #       username: ${{ secrets.SERVER_USERNAME }}
+    #       key: ${{ secrets.DEPLOY_KEY }}
+    #       script: |
+    #         cd /path/to/your/app
+    #         git pull origin main
+    #         pip install -r requirements.txt  # if needed
+    #         systemctl restart your-app-service
