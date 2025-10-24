@@ -1,6 +1,6 @@
 # Catalog
 
-A proof-of-concept metadata catalog that harvests publicly available data, stores it in a vector database, and enables LLM-enhanced search using Retrieval-Augmented Generation (RAG).
+A proof-of-concept (POC) metadata catalog that harvests publicly available data, stores it in a vector database, and enables LLM-enhanced search using Retrieval-Augmented Generation (RAG).
 
 [![Documentation](https://img.shields.io/badge/docs-online-blue)](https://main.catalog-6fe.pages.dev/)
 [![Streamlit Demo](https://img.shields.io/badge/demo-streamlit-red)](https://catalog-6zpfd6vrnnekbke3k8ga89.streamlit.app/)
