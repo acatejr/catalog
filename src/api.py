@@ -5,7 +5,7 @@ from typing import Optional
 import datetime
 from llm import ChatBot
 import os, json
-from db import get_all_distinct_keywords
+from db import get_all_distinct_keywords, get_top_distinct_keywords
 
 X_API_KEY = os.environ.get("X_API_KEY")
 
@@ -48,6 +48,7 @@ async def query(q: str, api_key: str = Depends(verify_api_key)):
         "all unique keywords",
         "unique keywords",
         "distinct keywords",
+        "keywords list",
     ]):
         if any(phrase in q.lower() for phrase in [
             "unique",
@@ -55,7 +56,20 @@ async def query(q: str, api_key: str = Depends(verify_api_key)):
             "no duplicates",
             "without duplicates"
         ]):
-            query_type = {"type": "list_keywords", "params": {"distinct": True}}
+            if any(phrase in q.lower() for phrase in [
+                "how many",
+                "number of",
+                "count of",
+                "total",
+                "top",
+                "count",
+                "most frequent",
+                "frequent",
+                "frequencies"
+            ]):
+                query_type = {"type": "list_keywords", "params": {"distinct": True, "count": True}}
+            else:
+                query_type = {"type": "list_keywords", "params": {"distinct": True}}
         else:
             query_type = {"type": "list_keywords", "params": {}}
     else:
@@ -74,8 +88,12 @@ async def query(q: str, api_key: str = Depends(verify_api_key)):
                 message=f"Distince keywords in the catalog: {', '.join(keyword_dict.values())}."
             )
         else:
-            keywords = get_all_distinct_keywords()
-            response = '\n\n'.join(kw for kw in keywords)
+            if query_type["params"].get("count", False):
+                keywords = get_all_distinct_keywords()
+                response = '\n\n'.join(kw for kw in keywords)
+            else:
+                keywords = get_top_distinct_keywords()
+                response = '\n\n'.join(kw for kw in keywords)
 
     if query_type["type"] == "llm_chat":
         bot = ChatBot()

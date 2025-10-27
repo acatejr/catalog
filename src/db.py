@@ -268,3 +268,36 @@ def get_all_distinct_keywords() -> list[str]:
     except Exception as e:
         print(f"Error getting distinct keywords: {e}")
         return []
+
+
+def get_top_distinct_keywords(limit: int = 10) -> list[str]:
+    """
+    Get a list of the most frequent distinct keywords in the database.
+
+    Args:
+        limit: Maximum number of keywords to return (default: 50)
+
+    Returns:
+        List of top keyword strings, sorted by frequency descending
+    """
+    try:
+        with psycopg2.connect(pg_connection_string) as conn:
+            cur = conn.cursor()
+
+            sql = f"""
+            select kw, count(kw) as freq from (
+	            select unnest(keywords) as kw from documents d
+            )
+            group by kw
+            order by count(kw) desc
+            limit {str(limit)};
+            """
+
+            cur.execute(sql)
+            results = cur.fetchall()
+
+            return [row[0] for row in results]
+
+    except Exception as e:
+        print(f"Error getting top distinct keywords: {e}")
+        return []
