@@ -20,4 +20,6 @@ jobs:
         script: |
           cd /root/apps/catalog
           git pull origin main
+          docker compose stop
+          docker compose start
           echo "Deployment to Test Server completed."
