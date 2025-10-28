@@ -20,6 +20,9 @@ jobs:
         script: |
           cd /root/apps/catalog
           git pull origin main
-        #   docker compose stop
-        #   docker compose start
+          docker compose down
+          docker compose up -d --build
           echo "Deployment to Test Server completed."
+          echo "Waiting for services to be healthy..."
+          sleep 10
+          docker compose ps

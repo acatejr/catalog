@@ -7,10 +7,10 @@ from schema import USFSDocument
 load_dotenv()
 
 
-dbname = os.environ.get("POSTGRES_DB") or "postgres"
+dbname = os.environ.get("POSTGRES_DB")
 dbuser = os.environ.get("POSTGRES_USER")
 dbpass = os.environ.get("POSTGRES_PASSWORD")
-dbhost = os.environ.get("POSTGRES_HOST") or "catalog-postgres-1"
+dbhost = os.environ.get("POSTGRES_HOST")
 
 pg_connection_string = f"dbname={dbname} user={dbuser} password={dbpass} host={dbhost}"
 

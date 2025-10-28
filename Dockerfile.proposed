@@ -1,0 +1,45 @@
+FROM python:3.14-slim
+
+# Build argument to determine environment (dev or prod)
+ARG ENVIRONMENT=prod
+
+# Don't write .pyc files and run in unbuffered mode
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Install system dependencies for PostGIS and build tools
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    g++ \
+    libpq-dev \
+    gdal-bin \
+    libgdal-dev \
+    binutils \
+    libproj-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Upgrade pip
+RUN pip install --upgrade pip
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements files
+COPY requirements.txt /app/
+COPY requirements-dev.txt /app/
+
+# Install dependencies based on environment
+RUN if [ "$ENVIRONMENT" = "dev" ]; then \
+        pip install --no-cache-dir -r requirements-dev.txt; \
+    else \
+        pip install --no-cache-dir -r requirements.txt; \
+    fi
+
+# Copy application code
+COPY . /app/
+
+# Expose API port
+EXPOSE 8000
+
+# Default command - can be overridden in docker-compose
+CMD ["sh", "-c", "PYTHONPATH=/app/src python /app/src/cli.py run-api"]
