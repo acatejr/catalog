@@ -13,6 +13,7 @@ from catalog.core.db import (
     get_all_keywords,
     get_keywords_with_counts,
     get_distinct_keywords_only,
+    dbhealth,
 )
 
 X_API_KEY = os.environ.get("X_API_KEY")
@@ -44,6 +45,30 @@ async def health():
     now = datetime.datetime.now()
 
     return {"status": "ok - " + now.strftime("%Y-%m-%d %H:%M:%S")}
+
+
+@api.get("/dbhealth", tags=["Health"])
+async def get_dbhealth():
+    """Get basic health information about the database connection"""
+
+    rec_count = dbhealth()
+
+    return {
+        "data": {
+            "record_count": rec_count[0],
+        },
+    }
+
+
+@api.get("/info", tags=["Info"])
+async def info():
+    """Get basic information about the API"""
+
+    return {
+        "api_name": "Catalog API",
+        "version": "0.0.1",
+        "description": "An API for querying the catalog and retrieving keywords.",
+    }
 
 
 @api.get("/query", tags=["Query"])
@@ -134,7 +159,7 @@ async def get_keywords(
     ),
     limit: Optional[int] = Query(None, description="Limit number of results"),
     sort: Optional[str] = Query(None, description="Sort by 'alpha' or 'frequency'"),
-    # api_key: str = Depends(verify_api_key)
+    api_key: str = Depends(verify_api_key),
 ):
     """
     Get keywords from the catalog.

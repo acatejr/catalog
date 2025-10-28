@@ -446,3 +446,25 @@ def get_distinct_keywords_only(
     except Exception as e:
         print(f"Error getting distinct keywords: {e}")
         return []
+
+
+def dbhealth() -> list:
+    try:
+        with psycopg2.connect(pg_connection_string) as conn:
+            cur = conn.cursor()
+
+            sql = """
+                SELECT COUNT(*)
+                FROM documents
+                LIMIT 1
+            """
+
+            cur.execute(sql)
+            results = cur.fetchall()
+            cur.close()
+
+        return results[0]
+
+    except Exception as e:
+        print(f"Error checking db health: {e}")
+        return []
