@@ -1,8 +1,8 @@
 import os, json
 import psycopg2
 from dotenv import load_dotenv
-from typing import List
-from schema import USFSDocument
+from typing import List, Optional
+from catalog.core.schema import USFSDocument
 
 load_dotenv()
 
@@ -296,8 +296,175 @@ def get_top_distinct_keywords(limit: int = 10) -> list[str]:
             cur.execute(sql)
             results = cur.fetchall()
 
-            return [row[0] for row in results]
+            keywords = []
+            for row in results:
+                rec = {"keyword": row[0], "count": row[1]}
+                keywords.append(rec)
+
+            return keywords
 
     except Exception as e:
         print(f"Error getting top distinct keywords: {e}")
+        return []
+
+
+def get_all_keywords(limit: Optional[int] = None) -> list[str]:
+    """
+    Get ALL keywords including duplicates from the database.
+
+    Args:
+        limit: Maximum number of keywords to return
+
+    Returns:
+        List of all keyword strings (may contain duplicates)
+    """
+    try:
+        with psycopg2.connect(pg_connection_string) as conn:
+            cur = conn.cursor()
+
+            if limit:
+                sql = """
+                    SELECT unnest(keywords) as keyword
+                    FROM documents
+                    WHERE keywords IS NOT NULL AND array_length(keywords, 1) > 0
+                    LIMIT %s
+                """
+                cur.execute(sql, (limit,))
+            else:
+                sql = """
+                    SELECT unnest(keywords) as keyword
+                    FROM documents
+                    WHERE keywords IS NOT NULL AND array_length(keywords, 1) > 0
+                """
+                cur.execute(sql)
+
+            results = cur.fetchall()
+            cur.close()
+
+            return [row[0] for row in results]
+
+    except Exception as e:
+        print(f"Error getting all keywords: {e}")
+        return []
+
+
+def get_keywords_with_counts(
+    limit: Optional[int] = None, sort: Optional[str] = None
+) -> list[dict]:
+    """
+    Get distinct keywords with their frequency counts.
+
+    Args:
+        limit: Maximum number of keywords to return
+        sort: Sort order - 'alpha' for alphabetical, 'frequency' for most common
+
+    Returns:
+        List of dictionaries with 'keyword' and 'count' keys
+    """
+    try:
+        with psycopg2.connect(pg_connection_string) as conn:
+            cur = conn.cursor()
+
+            # Build SQL with appropriate sorting
+            if sort == "alpha":
+                order_clause = "ORDER BY keyword"
+            else:  # default to frequency
+                order_clause = "ORDER BY count DESC"
+
+            sql = f"""
+                SELECT keyword, COUNT(*) as count
+                FROM (
+                    SELECT unnest(keywords) as keyword
+                    FROM documents
+                    WHERE keywords IS NOT NULL AND array_length(keywords, 1) > 0
+                ) AS all_keywords
+                GROUP BY keyword
+                {order_clause}
+            """
+
+            if limit:
+                sql += f" LIMIT {limit}"
+
+            cur.execute(sql)
+            results = cur.fetchall()
+            cur.close()
+
+            return [{"keyword": row[0], "count": row[1]} for row in results]
+
+    except Exception as e:
+        print(f"Error getting keywords with counts: {e}")
+        return []
+
+
+def get_distinct_keywords_only(
+    limit: Optional[int] = None, sort: Optional[str] = None
+) -> list[str]:
+    """
+    Get distinct keywords without counts.
+
+    Args:
+        limit: Maximum number of keywords to return
+        sort: Sort order - 'alpha' for alphabetical, 'frequency' for most common
+
+    Returns:
+        List of unique keyword strings
+    """
+    try:
+        with psycopg2.connect(pg_connection_string) as conn:
+            cur = conn.cursor()
+
+            # Base query with sorting
+            if sort == "frequency":
+                sql = """
+                    SELECT keyword, COUNT(*) as freq
+                    FROM (
+                        SELECT unnest(keywords) as keyword
+                        FROM documents
+                        WHERE keywords IS NOT NULL AND array_length(keywords, 1) > 0
+                    ) AS all_keywords
+                    GROUP BY keyword
+                    ORDER BY freq DESC
+                """
+            else:  # default to alphabetical
+                sql = """
+                    SELECT DISTINCT unnest(keywords) as keyword
+                    FROM documents
+                    WHERE keywords IS NOT NULL AND array_length(keywords, 1) > 0
+                    ORDER BY keyword
+                """
+
+            if limit:
+                sql += f" LIMIT {limit}"
+
+            cur.execute(sql)
+            results = cur.fetchall()
+            cur.close()
+
+            # Return just the keyword (first column)
+            return [row[0] for row in results]
+
+    except Exception as e:
+        print(f"Error getting distinct keywords: {e}")
+        return []
+
+
+def dbhealth() -> list:
+    try:
+        with psycopg2.connect(pg_connection_string) as conn:
+            cur = conn.cursor()
+
+            sql = """
+                SELECT COUNT(*)
+                FROM documents
+                LIMIT 1
+            """
+
+            cur.execute(sql)
+            results = cur.fetchall()
+            cur.close()
+
+        return results[0]
+
+    except Exception as e:
+        print(f"Error checking db health: {e}")
         return []

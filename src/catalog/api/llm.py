@@ -2,7 +2,7 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 from sentence_transformers import SentenceTransformer
-from db import search_docs
+from catalog.core.db import search_docs
 
 load_dotenv()
 
@@ -12,15 +12,15 @@ ESIIL_API_URL = os.getenv("ESIIL_API_URL")
 ESIIL_MODEL = os.getenv("ESIIL_MODEL") or "Llama-3.2-11B-Vision-Instruct"
 OLLAMA_API_KEY_CATALOG = os.getenv("OLLAMA_API_KEY_CATALOG")
 
-class ChatBot:
 
+class ChatBot:
     def __init__(self):
         """Initialize the ChatBot with ESIIL LLM configuration"""
 
-        self.client = OpenAI(
-            base_url = 'http://host.docker.internal:4000/',
-            api_key='sk-AORA_B-SzW8Srg0PguYzDg', # required, but unused
-        )
+        # self.client = OpenAI(
+        #     base_url = 'http://localhost:4000/',
+        #     api_key='sk-AORA_B-SzW8Srg0PguYzDg', # required, but unused
+        # )
 
         self.model = "ollama/llama3.2"
 
@@ -38,11 +38,11 @@ class ChatBot:
 
         # self.model = "llama3.1"
 
-        # self.client = OpenAI(
-        #     api_key=ESIIL_API_KEY or "dummy-key",
-        #     base_url=ESIIL_API_URL or "https://llm-api.cyverse.ai/v1",
-        # )
-        # self.model = ESIIL_MODEL
+        self.client = OpenAI(
+            api_key=ESIIL_API_KEY or "dummy-key",
+            base_url=ESIIL_API_URL or "https://llm-api.cyverse.ai/v1",
+        )
+        self.model = ESIIL_MODEL
 
     def get_documents(self, query: str) -> str:
         """
@@ -80,7 +80,7 @@ class ChatBot:
             # Use the LLM to generate an answer
             response = self.client.chat.completions.create(
                 # model="Llama-3.2-11B-Vision-Instruct",  # Slow
-                model= self.model,
+                model=self.model,
                 messages=[
                     {
                         "role": "system",
@@ -107,7 +107,9 @@ class ChatBot:
             reponse = response.choices[0].message.content
             return reponse
 
-    def keyword_chat(self, message: str = "Hello, how can you help me?", params=None) -> str:
+    def keyword_chat(
+        self, message: str = "Hello, how can you help me?", params=None
+    ) -> str:
         """
         Send a message to the ESIIL LLM and return the response
 

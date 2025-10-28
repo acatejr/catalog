@@ -1,25 +1,19 @@
-FROM python:3.14-slim
+FROM postgis/postgis:17-3.5
 
-# # Don't write .pyc files and run in unbuffered mode
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
-# Install system dependencies for PostGIS and build tools
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc \
-    g++ \
-    libpq-dev \
-    gdal-bin \
-    libgdal-dev \
-    binutils \
-    libproj-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install uv (Python package manager)
-# RUN pip install --upgrade pip && pip install uv
-RUN pip install --upgrade pip
-
-# Set working directory
-WORKDIR /app
-COPY . /app/
-RUN pip install --no-cache-dir -r requirements.txt
+# Install build dependencies, build pgvector, then clean up
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        git \
+        postgresql-server-dev-17 && \
+    cd /tmp && \
+    git clone --branch v0.8.0 https://github.com/pgvector/pgvector.git && \
+    cd pgvector && \
+    make && \
+    make install && \
+    cd / && \
+    rm -rf /tmp/pgvector && \
+    apt-get remove -y build-essential git postgresql-server-dev-17 && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*

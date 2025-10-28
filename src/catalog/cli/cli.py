@@ -8,15 +8,15 @@ import json
 from datetime import datetime
 from typing import List, Dict, Any
 import hashlib
-from db import (
+from catalog.core.db import (
     empty_documents_table,
     save_to_vector_db,
+    bulk_upsert_to_vector_db,
 )
 import uvicorn
-from schema import USFSDocument
+from catalog.core.schema import USFSDocument
 from sentence_transformers import SentenceTransformer
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from db import bulk_upsert_to_vector_db
 
 DEST_OUTPUT_DIR = "data/fsgeodata_metadata"
 

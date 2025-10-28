@@ -1,203 +1,92 @@
 # Catalog
 
-A proof-of-concept (POC) metadata catalog that harvests publicly available data, stores it in a vector database, and enables LLM-enhanced search using Retrieval-Augmented Generation (RAG).
+## Dockerfile.cli
 
-[![Documentation](https://img.shields.io/badge/docs-online-blue)](https://main.catalog-6fe.pages.dev/)
-[![Streamlit Demo](https://img.shields.io/badge/demo-streamlit-red)](https://catalog-6zpfd6vrnnekbke3k8ga89.streamlit.app/)
+- Uses Python 3.14-slim base image
+- Installs system dependencies (gcc, PostGIS libraries, GDAL) needed for data processing
+- Installs Python dependencies from requirements.txt
+- Copies the src/ directory structure
+- Sets PYTHONPATH to include the src directory
+- Defaults to showing CLI help (can be overridden when running the container)
 
-## Features
+You can use this to run CLI commands like:
+docker build -f Dockerfile.cli -t catalog-cli .
+docker run catalog-cli python -m cli download-all
+docker run catalog-cli python -m cli embed-and-store
 
-- **Metadata Harvesting**: Automatically collect metadata from public sources
-- **Vector Embeddings**: Store and index data using vector embeddings for semantic search
-- **RAG-Enhanced Search**: Query data using LLMs with retrieval-augmented generation
-- **REST API**: FastAPI-based endpoints for integration
-- **CLI Interface**: Command-line tools for data management
-- **Docker Support**: Containerized deployment with Docker Compose
+## Dockerfile.api
 
-## Tech Stack
+- Uses Python 3.14-slim base image
+- Installs minimal system dependencies (gcc, g++, libpq-dev for database connectivity)
+- References requirements-api.txt (you'll need to create this with FastAPI, uvicorn, langchain, etc.)
+- Copies only the API and core code (excludes src/cli/)
+- Exposes port 8000
+- Defaults to running the FastAPI server with uvicorn
 
-- **Language**: Python 3.13+
-- **Framework**: FastAPI, LangChain
-- **Database**: PostgreSQL with vector extension
-- **LLM**: OpenAI API
-- **Embeddings**: Sentence Transformers
-- **Testing**: pytest
-- **Documentation**: MkDocs Material
+Note: You'll need to create requirements-api.txt with API-specific dependencies like:
 
-## Prerequisites
+- fastapi
+- uvicorn
+- langchain
+- openai
+- pydantic
+- etc.
 
-- Python 3.13 or higher
-- PostgreSQL (or use Docker Compose)
-- OpenAI API key
-- Docker & Docker Compose (optional, for containerized setup)
+## Dockerfile.core
 
-## Quick Start
+1. Dockerfile.core - Base image with core components
 
-### Using Docker Compose (Recommended)
+2. requirements-core.txt - Shared dependencies:
 
-```bash
-# Clone the repository
-git clone https://github.com/acatejr/catalog.git
-cd catalog
+- psycopg2-binary (database access)
+- pydantic (schemas)
+- python-dotenv (environment variables)
 
-# Create .env file with your OpenAI API key
-echo "OPENAI_API_KEY=your_key_here" > .env
+3. build-core.sh - Build script
 
-# Start services
-docker compose up -d
+Note: This core image could be used as a base for both CLI and API Dockerfiles using multi-stage builds, which would:
 
-# Access the API
-curl http://localhost:8000
-```
+- Reduce duplication
+- Speed up builds (shared layers)
+- Ensure consistency between CLI and API
 
-### Local Development
+## Compose.yml
 
-```bash
-# Install dependencies
-pip install -r requirements.txt
+Services:
 
-# Set environment variables
-export OPENAI_API_KEY=your_key_here
-export DATABASE_URL=postgresql://user:pass@localhost:5432/catalog
+1. db - PostgreSQL with pgvector extension
 
-# Run CLI commands
-PYTHONPATH=src python src/cli.py --help
-PYTHONPATH=src python src/cli.py download-all
-PYTHONPATH=src python src/cli.py embed-and-store
-PYTHONPATH=src python src/cli.py run-api
-```
+- Health check to ensure it's ready
+- Persistent volume for data storage
+- Port 5432 exposed
 
-## Usage
+2. api - FastAPI application
 
-### CLI Commands
+- Builds from Dockerfile.api
+- Exposes port 8000
+- Waits for db to be healthy
+- Includes all necessary environment variables
 
-```bash
-# Download metadata from sources
-PYTHONPATH=src python src/cli.py download-all
+3. cli - CLI tool
 
-# Process and store embeddings
-PYTHONPATH=src python src/cli.py embed-and-store
+- Builds from Dockerfile.cli
+- Uses Docker profile (won't start automatically)
+- Mounts ./data directory for storing downloaded metadata
+- Waits for db to be healthy
 
-# Start the API server
-PYTHONPATH=src python src/cli.py run-api
+Usage:
 
-# View all available commands
-PYTHONPATH=src python src/cli.py --help
-```
+### Start db and api
 
-### API Endpoints
+docker compose up
 
-Once the API is running (default: `http://localhost:8000`):
+### Run CLI commands
 
-- `GET /` - API status
-- `GET /search?q=query` - Search metadata
-- Full API documentation at `/docs` (Swagger UI)
+docker compose run cli python -m cli download-all
+docker compose run cli python -m cli embed-and-store
 
-## Project Structure
+### Or start everything including CLI
 
-```
-catalog/
-├── src/                # Source code
-│   ├── cli.py         # Command-line interface
-│   ├── api.py         # FastAPI endpoints
-│   ├── db.py          # Database operations
-│   ├── llm.py         # LLM integration
-│   └── schema.py      # Data schemas
-├── docs/              # MkDocs documentation
-├── tests/             # Test suite
-├── data/              # Downloaded metadata
-├── compose.yml        # Docker Compose for development
-├── compose.tst.yml    # Docker Compose for testing/deployment
-└── requirements.txt   # Python dependencies
-```
+docker compose --profile cli up
 
-## Development
-
-### Running Tests
-
-```bash
-pytest
-pytest --cov  # With coverage report
-```
-
-### Code Quality
-
-```bash
-# Lint with Ruff
-ruff check .
-
-# Format with Ruff
-ruff format .
-```
-
-### Documentation
-
-```bash
-# Serve documentation locally
-mkdocs serve
-
-# Build documentation
-mkdocs build
-```
-
-## Deployment
-
-### Docker Image
-
-Pre-built Docker images are available at:
-```
-ghcr.io/acatejr/catalog:latest
-ghcr.io/acatejr/catalog:v1.0.0
-```
-
-### Test Server Deployment
-
-See [Test Server Deployment Guide](docs/test-server-deployment.md) for detailed instructions.
-
-Quick deployment:
-```bash
-docker compose -f compose.tst.yml pull
-docker compose -f compose.tst.yml up -d
-```
-
-### Publishing Updates
-
-See [Docker Publishing Guide](docs/docker-publishing.md) for information on:
-- Triggering rebuilds
-- Version tagging
-- Manual workflow dispatch
-
-## Documentation
-
-- **Full Documentation**: [https://main.catalog-6fe.pages.dev/](https://main.catalog-6fe.pages.dev/)
-- **Live Demo**: [Streamlit Prototype](https://catalog-6zpfd6vrnnekbke3k8ga89.streamlit.app/)
-- **Deployment Guide**: [docs/test-server-deployment.md](docs/test-server-deployment.md)
-- **Publishing Guide**: [docs/docker-publishing.md](docs/docker-publishing.md)
-
-## Architecture
-
-The catalog system consists of several key components:
-
-1. **Data Harvester**: Scrapes and downloads metadata from public sources
-2. **Embedding Engine**: Generates vector embeddings using sentence transformers
-3. **Vector Database**: PostgreSQL with pgvector for similarity search
-4. **LLM Layer**: Integrates with OpenAI for RAG-enhanced queries
-5. **API Layer**: FastAPI REST endpoints for programmatic access
-6. **CLI**: Typer-based command-line interface for operations
-
-## Contributing
-
-This is a proof-of-concept project. When contributing:
-
-1. Run tests before committing: `pytest`
-2. Follow code style: `ruff check . && ruff format .`
-3. Update documentation for new features
-4. Use conventional commits: `feat: description` or `fix: description`
-
-## License
-
-[Add your license here]
-
-## Acknowledgments
-
-Built with Python, FastAPI, LangChain, and OpenAI.
+The CLI uses a Docker profile so it doesn't auto-start (since CLI is typically run on-demand), but the API runs continuously.
