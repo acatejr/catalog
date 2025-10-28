@@ -16,15 +16,13 @@ jobs:
           echo "This is a placeholder for deployment steps."
           ls -l
 
-    # - name: Execute SSH commands
-    #   uses: appleboy/ssh-action@master
-    #   with:
-    #     host: ${{ secrets.TEST_SERVER_IP }}
-    #     username: ${{ secrets.SERVER_USERNAME }}
-    #     key: ${{ secrets.DEPLOY_KEY }}
-    #     script: |
-    #       cd /root/apps/catalog
-    #       git pull origin main
-    #     #   docker compose stop
-    #     #   docker compose start
-    #       echo "Deployment to Test Server completed."
+      - name: Execute SSH commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.TEST_SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          script: |
+            cd /root/apps/catalog
+            git pull origin main
+            echo "Deployment to Test Server completed."
