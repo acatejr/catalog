@@ -1,0 +1,40 @@
+# Usage:
+
+#   Start the services (db + api):
+#   docker compose up -d
+
+#   Run CLI commands:
+#   # Run any CLI command
+#   docker compose -f compose.cli.yml run --rm cli python -m cli download-all
+#   docker compose -f compose.cli.yml run --rm cli python -m cli embed-and-store
+#   docker compose -f compose.cli.yml run --rm cli python -m cli clear-docs-table
+
+#   The CLI compose file:
+#   - Connects to the external catalog_catalog-network created by the main compose.yml
+#   - Shares the same database connection
+#   - Mounts ./data directory for downloaded metadata
+#   - Uses --rm flag to clean up containers after each run
+
+#   Note: You need to start the main services first (docker compose up -d) before running CLI commands, so the network and database are available.
+
+services:
+  cli:
+    build:
+      context: .
+      dockerfile: Dockerfile.cli
+    container_name: catalog-cli
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-catalog}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_HOST: db
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    volumes:
+      - ./data:/app/data
+    networks:
+      - catalog_catalog-network
+    command: ["python", "-m", "cli", "--help"]
+
+networks:
+  catalog_catalog-network:
+    external: true

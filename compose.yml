@@ -1,0 +1,48 @@
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    container_name: catalog-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-catalog}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: catalog-api
+    ports:
+      - "8000:8000"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-catalog}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_HOST: db
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      X_API_KEY: ${X_API_KEY}
+      ESIIL_API_KEY: ${ESIIL_API_KEY:-}
+      ESIIL_API_URL: ${ESIIL_API_URL:-}
+      ESIIL_MODEL: ${ESIIL_MODEL:-}
+      OLLAMA_API_KEY_CATALOG: ${OLLAMA_API_KEY_CATALOG:-}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - catalog-network
+
+volumes:
+  postgres_data:
+
+networks:
+  catalog-network:
+    driver: bridge

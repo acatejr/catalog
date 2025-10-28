@@ -1,0 +1,19 @@
+FROM catalog-core
+
+# Install additional system dependencies for CLI (GDAL for geospatial data)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gdal-bin \
+    libgdal-dev \
+    binutils \
+    libproj-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy CLI-specific requirements and install dependencies
+COPY requirements-cli.txt /app/
+RUN pip install --no-cache-dir -r requirements-cli.txt
+
+# Copy CLI source code (core is already in base image)
+COPY src/cli/ /app/src/cli/
+
+# Default command runs the CLI help
+CMD ["python", "-m", "cli", "--help"]
