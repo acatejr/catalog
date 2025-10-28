@@ -12,7 +12,9 @@ jobs:
 
     steps:
       - name: Ready for deploy
-        run: echo "This is a placeholder for deployment steps."
+        run: |
+          echo "This is a placeholder for deployment steps."
+          ls -l
 
     # - name: Execute SSH commands
     #   uses: appleboy/ssh-action@master
