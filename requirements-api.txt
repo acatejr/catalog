@@ -1,7 +1,0 @@
-fastapi
-uvicorn
-openai
-sentence-transformers
-psycopg2-binary
-pydantic
-python-dotenv
