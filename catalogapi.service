@@ -17,7 +17,7 @@ Environment="PYTHONUNBUFFERED=1"
 EnvironmentFile=/home/ubuntu/workspace/github.com/acatejr/catalog/.env
 
 # Start command
-ExecStart=PYTHONPATH=/home/ubuntu/workspace/github.com/acatejr/catalog/src /home/ubuntu/workspace/github.com/acatejr/catalog/.venv/bin/python /home/ubuntu/workspace/github.com/acatejr/catalog/src/catalog/cli/cli.py run-api
+ExecStart=/home/ubuntu/workspace/github.com/acatejr/catalog/run-api-usfs.sh
 
 # Restart policy
 Restart=on-failure
