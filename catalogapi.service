@@ -1,0 +1,35 @@
+[Unit]
+Description=Catalog API Service
+# Documentation=https://main.catalog-6fe.pages.dev/
+# After=network.target postgresql.service
+# Wants=postgresql.service
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/workspace/github.com/acatejr/catalog
+
+# Environment
+Environment="PYTHONPATH=/home/ubuntu/workspace/github.com/acatejr/catalog/src"
+Environment="PYTHONDONTWRITEBYTECODE=1"
+Environment="PYTHONUNBUFFERED=1"
+EnvironmentFile=/home/ubuntu/workspace/github.com/acatejr/catalog/.env
+
+# Start command
+ExecStart=/home/ubuntu/workspace/github.com/acatejr/catalog/.venv/bin/python /home/ubuntu/workspace/github.com/acatejr/catalog/src/cli.py run-api
+
+# Restart policy
+Restart=on-failure
+RestartSec=10
+
+# Resource limits
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=catalog-api
+
+# Security
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
