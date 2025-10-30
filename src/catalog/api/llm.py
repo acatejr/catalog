@@ -18,18 +18,18 @@ class ChatBot:
     def __init__(self):
         """Initialize the ChatBot with ESIIL LLM configuration"""
 
-        self.client = OpenAI(
-            base_url="http://localhost:4000/",
-            api_key=LITELLM_API_KEY,
-        )
-
-        self.model = "ollama/llama3.1"
-
         # self.client = OpenAI(
-        #     api_key=ESIIL_API_KEY or "dummy-key",
-        #     base_url=ESIIL_API_URL or "https://llm-api.cyverse.ai/v1",
+        #     base_url="http://localhost:4000/",
+        #     api_key=LITELLM_API_KEY,
         # )
-        # self.model = ESIIL_MODEL
+
+        # self.model = "ollama/llama3.1"
+
+        self.client = OpenAI(
+            api_key=ESIIL_API_KEY or "dummy-key",
+            base_url=ESIIL_API_URL or "https://llm-api.cyverse.ai/v1",
+        )
+        self.model = ESIIL_MODEL
 
     def get_documents(self, query: str) -> str:
         """
