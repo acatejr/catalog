@@ -10,6 +10,7 @@ from catalog.core.db import (
     empty_documents_table,
     bulk_upsert_to_vector_db,
     count_documents,
+    db_health_check
 )
 
 import uvicorn
@@ -364,6 +365,16 @@ def doc_count():
     count = count_documents()
     console.print(f"[green]Document count: {count}[/green]")
 
+
+@cli.command(name="db-health", short_help="Check the health of the database connection")
+def db_health():
+
+
+    healthy = db_health_check()
+    if healthy:
+        console.print("[green]Database connection is healthy![/green]")
+    else:
+        console.print("[red]Database connection is not healthy![/red]")
 
 if __name__ == "__main__":
     cli()
