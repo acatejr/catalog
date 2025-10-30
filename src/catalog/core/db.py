@@ -1,4 +1,5 @@
-import os, json
+import os
+import json
 import psycopg2
 from dotenv import load_dotenv
 from typing import List, Optional

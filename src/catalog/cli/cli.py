@@ -3,9 +3,7 @@ from rich.console import Console
 import requests
 from bs4 import BeautifulSoup
 import os
-from dotenv import load_dotenv
 import json
-from datetime import datetime
 from typing import List, Dict, Any
 import hashlib
 from catalog.core.db import (

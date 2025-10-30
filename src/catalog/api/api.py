@@ -7,8 +7,6 @@ import datetime
 from catalog.api.llm import ChatBot
 import os
 from catalog.core.db import (
-    get_all_distinct_keywords,
-    get_top_distinct_keywords,
     get_all_keywords,
     get_keywords_with_counts,
     get_distinct_keywords_only,
