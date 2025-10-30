@@ -3,10 +3,9 @@ from fastapi import Depends, HTTPException
 from fastapi.security.api_key import APIKeyHeader
 from typing import Optional
 from fastapi import Query
-from typing import Optional
 import datetime
 from catalog.api.llm import ChatBot
-import os, json
+import os
 from catalog.core.db import (
     get_all_distinct_keywords,
     get_top_distinct_keywords,
@@ -77,76 +76,79 @@ async def query(q: str, api_key: str = Depends(verify_api_key)):
 
     response = ""
 
-    query_type = {}
+    # query_type = {}
 
-    if any(
-        phrase in q.lower()
-        for phrase in [
-            "list keywords",
-            "keyword list",
-            "show keywords",
-            "all keywords",
-            "all the keywords",
-            "keywords in the catalog",
-            "keywords catalog",
-            "all unique keywords",
-            "unique keywords",
-            "distinct keywords",
-            "keywords list",
-        ]
-    ):
-        if any(
-            phrase in q.lower()
-            for phrase in ["unique", "distinct", "no duplicates", "without duplicates"]
-        ):
-            if any(
-                phrase in q.lower()
-                for phrase in [
-                    "how many",
-                    "number of",
-                    "count of",
-                    "total",
-                    "top",
-                    "count",
-                    "most frequent",
-                    "frequent",
-                    "frequencies",
-                ]
-            ):
-                query_type = {
-                    "type": "list_keywords",
-                    "params": {"distinct": True, "count": True},
-                }
-            else:
-                query_type = {"type": "list_keywords", "params": {"distinct": True}}
-        else:
-            query_type = {"type": "list_keywords", "params": {}}
-    else:
-        query_type = {"type": "llm_chat", "params": {}}
+    # if any(
+    #     phrase in q.lower()
+    #     for phrase in [
+    #         "list keywords",
+    #         "keyword list",
+    #         "show keywords",
+    #         "all keywords",
+    #         "all the keywords",
+    #         "keywords in the catalog",
+    #         "keywords catalog",
+    #         "all unique keywords",
+    #         "unique keywords",
+    #         "distinct keywords",
+    #         "keywords list",
+    #     ]
+    # ):
+    #     if any(
+    #         phrase in q.lower()
+    #         for phrase in ["unique", "distinct", "no duplicates", "without duplicates"]
+    #     ):
+    #         if any(
+    #             phrase in q.lower()
+    #             for phrase in [
+    #                 "how many",
+    #                 "number of",
+    #                 "count of",
+    #                 "total",
+    #                 "top",
+    #                 "count",
+    #                 "most frequent",
+    #                 "frequent",
+    #                 "frequencies",
+    #             ]
+    #         ):
+    #             query_type = {
+    #                 "type": "list_keywords",
+    #                 "params": {"distinct": True, "count": True},
+    #             }
+    #         else:
+    #             query_type = {"type": "list_keywords", "params": {"distinct": True}}
+    #     else:
+    #         query_type = {"type": "list_keywords", "params": {}}
+    # else:
+    #     query_type = {"type": "llm_chat", "params": {}}
 
-    if query_type["type"] == "list_keywords":
-        if query_type["params"].get("distinct", False):
-            keywords = get_all_distinct_keywords()
-            keyword_dict = {}
-            for kw in keywords:
-                if kw.lower() not in keyword_dict:
-                    keyword_dict[kw.lower()] = kw
+    # if query_type["type"] == "list_keywords":
+    #     if query_type["params"].get("distinct", False):
+    #         keywords = get_all_distinct_keywords()
+    #         keyword_dict = {}
+    #         for kw in keywords:
+    #             if kw.lower() not in keyword_dict:
+    #                 keyword_dict[kw.lower()] = kw
 
-            bot = ChatBot()
-            response = bot.keyword_chat(
-                message=f"Distince keywords in the catalog: {', '.join(keyword_dict.values())}."
-            )
-        else:
-            if query_type["params"].get("count", False):
-                keywords = get_all_distinct_keywords()
-                response = "\n\n".join(kw for kw in keywords)
-            else:
-                keywords = get_top_distinct_keywords()
-                response = "\n\n".join(kw for kw in keywords)
+    #         bot = ChatBot()
+    #         response = bot.keyword_chat(
+    #             message=f"Distince keywords in the catalog: {', '.join(keyword_dict.values())}."
+    #         )
+    #     else:
+    #         if query_type["params"].get("count", False):
+    #             keywords = get_all_distinct_keywords()
+    #             response = "\n\n".join(kw for kw in keywords)
+    #         else:
+    #             keywords = get_top_distinct_keywords()
+    #             response = "\n\n".join(kw for kw in keywords)
 
-    if query_type["type"] == "llm_chat":
-        bot = ChatBot()
-        response = bot.chat(message=q)
+    # if query_type["type"] == "llm_chat":
+    #     bot = ChatBot()
+    #     response = bot.chat(message=q)
+
+    bot = ChatBot()
+    response = bot.chat(message=q)
 
     return {"query": q, "response": response}
 

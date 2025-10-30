@@ -10,9 +10,10 @@ from typing import List, Dict, Any
 import hashlib
 from catalog.core.db import (
     empty_documents_table,
-    save_to_vector_db,
     bulk_upsert_to_vector_db,
+    count_documents,
 )
+
 import uvicorn
 from catalog.core.schema import USFSDocument
 from sentence_transformers import SentenceTransformer
@@ -354,6 +355,16 @@ def run_api():
 
     console.print("[blue]Starting API server...[/blue]")
     uvicorn.run("api:api", host="0.0.0.0", port=8000, reload=True, workers=2)
+
+
+@cli.command(
+    name="doc-count", short_help="Get the count of documents in the vector database"
+)
+def doc_count():
+    """Get the count of documents in the vector database."""
+
+    count = count_documents()
+    console.print(f"[green]Document count: {count}[/green]")
 
 
 if __name__ == "__main__":

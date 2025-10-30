@@ -23,6 +23,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
-            cd /root/apps/catalog
+            cd /ubuntu/apps/catalog
             git pull origin main
+            # sudo systemctl restart catalog.service
             echo "Deployment to Test Server completed."

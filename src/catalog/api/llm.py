@@ -11,38 +11,25 @@ ESIIL_API_KEY = os.getenv("ESIIL_API_KEY")
 ESIIL_API_URL = os.getenv("ESIIL_API_URL")
 ESIIL_MODEL = os.getenv("ESIIL_MODEL") or "Llama-3.2-11B-Vision-Instruct"
 OLLAMA_API_KEY_CATALOG = os.getenv("OLLAMA_API_KEY_CATALOG")
+LITELLM_API_KEY = os.getenv("LITELLM_API_KEY")
 
 
 class ChatBot:
     def __init__(self):
         """Initialize the ChatBot with ESIIL LLM configuration"""
 
-        # self.client = OpenAI(
-        #     base_url = 'http://localhost:4000/',
-        #     api_key='sk-AORA_B-SzW8Srg0PguYzDg', # required, but unused
-        # )
-
-        self.model = "ollama/llama3.2"
-
-        # self.client = OpenAI(
-        #     base_url = 'http://host.docker.internal:4000/',
-        #     api_key='sk-AORA_B-SzW8Srg0PguYzDg', # required, but unused
-        # )
-
-        # self.model = "claude-haiku-4-5"
-
-        # self.client = OpenAI(
-        #     base_url = 'http://host.docker.internal:11434/v1',
-        #     api_key='ollama', # required, but unused
-        # )
-
-        # self.model = "llama3.1"
-
         self.client = OpenAI(
-            api_key=ESIIL_API_KEY or "dummy-key",
-            base_url=ESIIL_API_URL or "https://llm-api.cyverse.ai/v1",
+            base_url="http://localhost:4000/",
+            api_key=LITELLM_API_KEY,
         )
-        self.model = ESIIL_MODEL
+
+        self.model = "ollama/llama3.1"
+
+        # self.client = OpenAI(
+        #     api_key=ESIIL_API_KEY or "dummy-key",
+        #     base_url=ESIIL_API_URL or "https://llm-api.cyverse.ai/v1",
+        # )
+        # self.model = ESIIL_MODEL
 
     def get_documents(self, query: str) -> str:
         """
