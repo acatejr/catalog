@@ -8,9 +8,9 @@ import psycopg2
 from psycopg2 import pool
 from dotenv import load_dotenv
 import os
+
 # Use execute_values for efficient bulk insert
 from psycopg2.extras import execute_values
-
 
 load_dotenv()
 
@@ -20,6 +20,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class DatabaseConfig:
     """Database connection configuration."""
+
     dbname: str
     user: str
     password: str
@@ -30,7 +31,7 @@ class DatabaseConfig:
     bulk_insert_page_size: int = 100
 
     @classmethod
-    def from_env(cls) -> 'DatabaseConfig':
+    def from_env(cls) -> "DatabaseConfig":
         """Load configuration from environment variables."""
         load_dotenv()
 
@@ -45,8 +46,11 @@ class DatabaseConfig:
 
     def validate(self) -> None:
         """Validate that all required fields are set."""
-        missing = [field for field in ["dbname", "user", "password", "host"]
-                   if not getattr(self, field)]
+        missing = [
+            field
+            for field in ["dbname", "user", "password", "host"]
+            if not getattr(self, field)
+        ]
         if missing:
             raise ValueError(f"Missing required config: {missing}")
 
@@ -67,7 +71,7 @@ class DatabaseConnection:
             user=config.user,
             password=config.password,
             host=config.host,
-            port=config.port
+            port=config.port,
         )
 
     def get_connection(self):
@@ -98,6 +102,7 @@ def get_db() -> DatabaseConnection:
 
 def retry_on_db_error(max_retries=3, delay=1):
     """Retry decorator for transient database errors."""
+
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -113,7 +118,9 @@ def retry_on_db_error(max_retries=3, delay=1):
                     )
                     time.sleep(delay * (attempt + 1))
             return func(*args, **kwargs)
+
         return wrapper
+
     return decorator
 
 
@@ -195,7 +202,6 @@ def bulk_upsert_to_vector_db(records: List[dict], use_upsert: bool = False):
 
     try:
         with conn.cursor() as cur:
-
             # Prepare data for bulk insert
             values = []
             for record in records:
@@ -271,235 +277,295 @@ def db_health_check() -> list:
     finally:
         db.return_connection(conn)
 
-    # try:
-    #     with psycopg2.connect(_db.config.get_connection_string()) as conn:
-    #         cur = conn.cursor()
 
-    #         sql = """
-    #             SELECT COUNT(*)
-    #             FROM documents
-    #             LIMIT 1
-    #         """
+@retry_on_db_error(max_retries=3)
+def search_docs(query_embedding: list[float], limit: int = 10) -> list:
+    """
+    Search documents using vector similarity with the query embedding.
 
-    #         cur.execute(sql)
-    #         results = cur.fetchall()
-    #         cur.close()
+    Args:
+        query_embedding: The embedding vector to search with
+        limit: Maximum number of documents to return (default: 10)
 
-    #     return results[0]
+    Returns:
+        List of dictionaries containing document information and similarity scores
+    """
 
-    # except Exception as e:
-    #     print(f"Error checking db health: {e}")
-    #     return []
+    if not query_embedding:
+        return []
 
-# def search_docs(query_embedding: list[float], limit: int = 10) -> list:
-#     """
-#     Search documents using vector similarity with the query embedding.
+    docs = []
+    db = get_db()
+    conn = db.get_connection()
 
-#     Args:
-#         query_embedding: The embedding vector to search with
-#         limit: Maximum number of documents to return (default: 10)
+    try:
+        with conn.cursor() as cur:
+            # SQL query using cosine similarity for vector search
+            # The <=> operator computes cosine distance (1 - cosine similarity)
+            # Lower distance means higher similarity
+            if limit is None:
+                sql_query = """
+                    SELECT id, title, description, keywords, 1 - (embedding <=> %s::vector) AS similarity_score
+                    FROM documents
+                    WHERE embedding IS NOT NULL
+                    ORDER BY embedding <=> %s::vector;
+                    """
+            else:
+                sql_query = """
+                    SELECT id, title, description, keywords, 1 - (embedding <=> %s::vector) AS similarity_score
+                    FROM documents
+                    WHERE embedding IS NOT NULL
+                    ORDER BY embedding <=> %s::vector
+                    LIMIT %s;
+                    """
 
-#     Returns:
-#         List of dictionaries containing document information and similarity scores
-#     """
+            # Execute the query with the embedding vector
+            cur.execute(sql_query, (query_embedding, query_embedding, limit))
 
-#     if not query_embedding:
-#         return []
+            # Fetch results and convert to list of dictionaries
+            columns = [desc[0] for desc in cur.description]
+            rows = cur.fetchall()
 
-#     docs = []
+            for row in rows:
+                doc_dict = dict(zip(columns, row))
+                docs.append(doc_dict)
 
-#     try:
-#         with psycopg2.connect(_db.config.get_connection_string()) as conn:
-#             cur = conn.cursor()
+            cur.close()
 
-#             # SQL query using cosine similarity for vector search
-#             # The <=> operator computes cosine distance (1 - cosine similarity)
-#             # Lower distance means higher similarity
-#             if limit is None:
-#                 sql_query = """
-#                     SELECT id, title, description, keywords, 1 - (embedding <=> %s::vector) AS similarity_score
-#                     FROM documents
-#                     WHERE embedding IS NOT NULL
-#                     ORDER BY embedding <=> %s::vector;
-#                     """
-#             else:
-#                 sql_query = """
-#                     SELECT id, title, description, keywords, 1 - (embedding <=> %s::vector) AS similarity_score
-#                     FROM documents
-#                     WHERE embedding IS NOT NULL
-#                     ORDER BY embedding <=> %s::vector
-#                     LIMIT %s;
-#                     """
+    except Exception as e:
+        print(f"Error searching documents: {e}")
+        return []
 
-#             # Execute the query with the embedding vector
-#             cur.execute(sql_query, (query_embedding, query_embedding, limit))
+    finally:
+        db.return_connection(conn)
 
-#             # Fetch results and convert to list of dictionaries
-#             columns = [desc[0] for desc in cur.description]
-#             rows = cur.fetchall()
-
-#             for row in rows:
-#                 doc_dict = dict(zip(columns, row))
-#                 docs.append(doc_dict)
-
-#             cur.close()
-
-#     except Exception as e:
-#         print(f"Error searching documents: {e}")
-#         return []
-
-#     return docs
+    return docs
 
 
-# def get_all_distinct_keywords() -> list[str]:
-#     """
-#     Get a list of all distinct keywords in the database.
+@retry_on_db_error(max_retries=3)
+def get_all_distinct_keywords() -> list[str]:
+    """
+    Get a list of all distinct keywords in the database.
 
-#     Returns:
-#         List of unique keyword strings, sorted alphabetically
-#     """
-#     try:
-#         with psycopg2.connect(_db.config.get_connection_string()) as conn:
-#             cur = conn.cursor()
+    Returns:
+        List of unique keyword strings, sorted alphabetically
+    """
 
-#             cur.execute("""
-#                 SELECT DISTINCT unnest(keywords) as keyword
-#                 FROM documents
-#                 WHERE keywords IS NOT NULL AND array_length(keywords, 1) > 0
-#                 ORDER BY keyword
-#             """)
+    db = get_db()
+    conn = db.get_connection()
 
-#             results = cur.fetchall()
-#             cur.close()
+    try:
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT DISTINCT unnest(keywords) as keyword
+                FROM documents
+                WHERE keywords IS NOT NULL AND array_length(keywords, 1) > 0
+                ORDER BY keyword
+            """)
 
-#             return [row[0] for row in results]
+            results = cur.fetchall()
+            cur.close()
 
-#     except Exception as e:
-#         print(f"Error getting distinct keywords: {e}")
-#         return []
+            return [row[0] for row in results]
 
+    except Exception as e:
+        logger.error(f"Error getting all distinct keywords: {e}")
+        return []
 
-# def get_top_distinct_keywords(limit: int = 10) -> list[str]:
-#     """
-#     Get a list of the most frequent distinct keywords in the database.
-
-#     Args:
-#         limit: Maximum number of keywords to return (default: 50)
-
-#     Returns:
-#         List of top keyword strings, sorted by frequency descending
-#     """
-#     try:
-#         with psycopg2.connect(_db.config.get_connection_string()) as conn:
-#             cur = conn.cursor()
-
-#             sql = f"""
-#             select kw, count(kw) as freq from (
-# 	            select unnest(keywords) as kw from documents d
-#             )
-#             group by kw
-#             order by count(kw) desc
-#             limit {str(limit)};
-#             """
-
-#             cur.execute(sql)
-#             results = cur.fetchall()
-
-#             keywords = []
-#             for row in results:
-#                 rec = {"keyword": row[0], "count": row[1]}
-#                 keywords.append(rec)
-
-#             return keywords
-
-#     except Exception as e:
-#         print(f"Error getting top distinct keywords: {e}")
-#         return []
+    finally:
+        db.return_connection(conn)
 
 
-# def get_all_keywords(limit: Optional[int] = None) -> list[str]:
-#     """
-#     Get ALL keywords including duplicates from the database.
+@retry_on_db_error(max_retries=3)
+def get_top_distinct_keywords(limit: int = 10) -> list[str]:
+    """
+    Get a list of the most frequent distinct keywords in the database.
 
-#     Args:
-#         limit: Maximum number of keywords to return
+    Args:
+        limit: Maximum number of keywords to return (default: 50)
 
-#     Returns:
-#         List of all keyword strings (may contain duplicates)
-#     """
-#     try:
-#         with psycopg2.connect(_db.config.get_connection_string()) as conn:
-#             cur = conn.cursor()
+    Returns:
+        List of top keyword strings, sorted by frequency descending
+    """
 
-#             if limit:
-#                 sql = """
-#                     SELECT unnest(keywords) as keyword
-#                     FROM documents
-#                     WHERE keywords IS NOT NULL AND array_length(keywords, 1) > 0
-#                     LIMIT %s
-#                 """
-#                 cur.execute(sql, (limit,))
-#             else:
-#                 sql = """
-#                     SELECT unnest(keywords) as keyword
-#                     FROM documents
-#                     WHERE keywords IS NOT NULL AND array_length(keywords, 1) > 0
-#                 """
-#                 cur.execute(sql)
+    db = get_db()
+    conn = db.get_connection()
 
-#             results = cur.fetchall()
-#             cur.close()
+    try:
+        with conn.cursor() as cur:
+            sql = f"""
+            select kw, count(kw) as freq from (
+	            select unnest(keywords) as kw from documents d
+            )
+            group by kw
+            order by count(kw) desc
+            limit {str(limit)};
+            """
 
-#             return [row[0] for row in results]
+            cur.execute(sql)
+            results = cur.fetchall()
 
-#     except Exception as e:
-#         print(f"Error getting all keywords: {e}")
-#         return []
+            keywords = []
+            for row in results:
+                rec = {"keyword": row[0], "count": row[1]}
+                keywords.append(rec)
+
+            return keywords
+
+    except Exception as e:
+        logger.error(f"Error getting top distinct keywords: {e}")
+        return []
+
+    finally:
+        db.return_connection(conn)
 
 
-# def get_keywords_with_counts(
-#     limit: Optional[int] = None, sort: Optional[str] = None
-# ) -> list[dict]:
-#     """
-#     Get distinct keywords with their frequency counts.
+@retry_on_db_error(max_retries=3)
+def get_all_keywords(limit: Optional[int] = None) -> list[str]:
+    """
+    Get ALL keywords including duplicates from the database.
 
-#     Args:
-#         limit: Maximum number of keywords to return
-#         sort: Sort order - 'alpha' for alphabetical, 'frequency' for most common
+    Args:
+        limit: Maximum number of keywords to return
 
-#     Returns:
-#         List of dictionaries with 'keyword' and 'count' keys
-#     """
-#     try:
-#         with psycopg2.connect(_db.config.get_connection_string()) as conn:
-#             cur = conn.cursor()
+    Returns:
+        List of all keyword strings (may contain duplicates)
+    """
+    db = get_db()
+    conn = db.get_connection()
 
-#             # Build SQL with appropriate sorting
-#             if sort == "alpha":
-#                 order_clause = "ORDER BY keyword"
-#             else:  # default to frequency
-#                 order_clause = "ORDER BY count DESC"
+    try:
+        with conn.cursor() as cur:
+            if limit:
+                sql = """
+                    SELECT unnest(keywords) as keyword
+                    FROM documents
+                    WHERE keywords IS NOT NULL AND array_length(keywords, 1) > 0
+                    LIMIT %s
+                """
+                cur.execute(sql, (limit,))
+            else:
+                sql = """
+                    SELECT unnest(keywords) as keyword
+                    FROM documents
+                    WHERE keywords IS NOT NULL AND array_length(keywords, 1) > 0
+                """
+                cur.execute(sql)
 
-#             sql = f"""
-#                 SELECT keyword, COUNT(*) as count
-#                 FROM (
-#                     SELECT unnest(keywords) as keyword
-#                     FROM documents
-#                     WHERE keywords IS NOT NULL AND array_length(keywords, 1) > 0
-#                 ) AS all_keywords
-#                 GROUP BY keyword
-#                 {order_clause}
-#             """
+            results = cur.fetchall()
+            cur.close()
 
-#             if limit:
-#                 sql += f" LIMIT {limit}"
+            return [row[0] for row in results]
 
-#             cur.execute(sql)
-#             results = cur.fetchall()
-#             cur.close()
+    except Exception as e:
+        logger.error(f"Error getting all keywords: {e}")
+        return []
 
-#             return [{"keyword": row[0], "count": row[1]} for row in results]
+    finally:
+        db.return_connection(conn)
 
-#     except Exception as e:
-#         print(f"Error getting keywords with counts: {e}")
-#         return []
+
+@retry_on_db_error(max_retries=3)
+def get_keywords_with_counts(
+    limit: Optional[int] = None, sort: Optional[str] = None
+) -> list[dict]:
+    """
+    Get distinct keywords with their frequency counts.
+
+    Args:
+        limit: Maximum number of keywords to return
+        sort: Sort order - 'alpha' for alphabetical, 'frequency' for most common
+
+    Returns:
+        List of dictionaries with 'keyword' and 'count' keys
+    """
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            # Build SQL with appropriate sorting
+            if sort == "alpha":
+                order_clause = "ORDER BY keyword"
+            else:  # default to frequency
+                order_clause = "ORDER BY count DESC"
+
+            sql = f"""
+                SELECT keyword, COUNT(*) as count
+                FROM (
+                    SELECT unnest(keywords) as keyword
+                    FROM documents
+                    WHERE keywords IS NOT NULL AND array_length(keywords, 1) > 0
+                ) AS all_keywords
+                GROUP BY keyword
+                {order_clause}
+            """
+
+            if limit:
+                sql += f" LIMIT {limit}"
+
+            cur.execute(sql)
+            results = cur.fetchall()
+            cur.close()
+
+            return [{"keyword": row[0], "count": row[1]} for row in results]
+
+    except Exception as e:
+        logger.error(f"Error getting keywords with counts: {e}")
+        return []
+
+    finally:
+        db.return_connection(conn)
+
+
+@retry_on_db_error(max_retries=3)
+def get_distinct_keywords_only(
+    limit: Optional[int] = None, sort: Optional[str] = None
+) -> list[str]:
+    """
+    Get distinct keywords without counts.
+
+    Args:
+        limit: Maximum number of keywords to return
+        sort: Sort order - 'alpha' for alphabetical, 'frequency' for most common
+
+    Returns:
+        List of unique keyword strings
+    """
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            # Build SQL with appropriate sorting
+            # if sort == "alpha":
+            #     order_clause = "ORDER BY keyword"
+            # else:  # default to frequency
+            #     order_clause = "ORDER BY count DESC"
+
+            sql = """
+                SELECT keyword
+                FROM (
+                    SELECT unnest(keywords) as keyword
+                    FROM documents
+                    WHERE keywords IS NOT NULL AND array_length(keywords, 1) > 0
+                ) AS all_keywords
+                GROUP BY keyword
+                ORDER BY keyword
+            """
+
+            if limit:
+                sql += f" LIMIT {limit}"
+
+            cur.execute(sql)
+            results = cur.fetchall()
+            cur.close()
+
+            return [row[0] for row in results]
+
+    except Exception as e:
+        logger.error(f"Error getting distinct keywords only: {e}")
+        return []
+
+    finally:
+        db.return_connection(conn)
