@@ -219,3 +219,6 @@ static/
 .venv/
 .env.test
 mise.local.toml
+
+# Claude Code local settings (contains API keys)
+.claude/settings.local.json
