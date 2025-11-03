@@ -1,5 +1,7 @@
 # Catalog
 
+Proof-of-Concept Catalog App
+
 ## Dockerfile.cli
 
 - Uses Python 3.14-slim base image
@@ -23,7 +25,8 @@ docker run catalog-cli python -m cli embed-and-store
 - Exposes port 8000
 - Defaults to running the FastAPI server with uvicorn
 
-Note: You'll need to create requirements-api.txt with API-specific dependencies like:
+Note: You'll need to create requirements-api.txt with API-specific dependenci
+es like:
 
 - fastapi
 - uvicorn
