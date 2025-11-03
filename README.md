@@ -1,5 +1,7 @@
 # Catalog
 
+Proof-of-Concept Catalog App
+
 ## Dockerfile.cli
 
 - Uses Python 3.14-slim base image
