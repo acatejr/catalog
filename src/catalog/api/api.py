@@ -10,8 +10,9 @@ from catalog.core.db import (
     get_all_keywords,
     get_keywords_with_counts,
     get_distinct_keywords_only,
-    dbhealth,
+    db_health_check,
 )
+from catalog.api.query_classifier import classify_query, format_keyword_response
 
 X_API_KEY = os.environ.get("X_API_KEY")
 
@@ -48,7 +49,7 @@ async def health():
 async def get_dbhealth():
     """Get basic health information about the database connection"""
 
-    rec_count = dbhealth()
+    rec_count = db_health_check()
 
     return {
         "data": {
@@ -68,87 +69,15 @@ async def info():
     }
 
 
-@api.get("/query", tags=["Query"])
-async def query(q: str, api_key: str = Depends(verify_api_key)):
-    """A simple query endpoint that passes the query string onto the ai agent and returns the result."""
+# @api.get("/query", tags=["Query"])
+# async def query(q: str, api_key: str = Depends(verify_api_key)):
+#     """A simple query endpoint that passes the query string onto the ai agent and returns the result."""
 
-    response = ""
+#     response = ""
+#     bot = ChatBot()
+#     response = bot.chat(message=q)
 
-    # query_type = {}
-
-    # if any(
-    #     phrase in q.lower()
-    #     for phrase in [
-    #         "list keywords",
-    #         "keyword list",
-    #         "show keywords",
-    #         "all keywords",
-    #         "all the keywords",
-    #         "keywords in the catalog",
-    #         "keywords catalog",
-    #         "all unique keywords",
-    #         "unique keywords",
-    #         "distinct keywords",
-    #         "keywords list",
-    #     ]
-    # ):
-    #     if any(
-    #         phrase in q.lower()
-    #         for phrase in ["unique", "distinct", "no duplicates", "without duplicates"]
-    #     ):
-    #         if any(
-    #             phrase in q.lower()
-    #             for phrase in [
-    #                 "how many",
-    #                 "number of",
-    #                 "count of",
-    #                 "total",
-    #                 "top",
-    #                 "count",
-    #                 "most frequent",
-    #                 "frequent",
-    #                 "frequencies",
-    #             ]
-    #         ):
-    #             query_type = {
-    #                 "type": "list_keywords",
-    #                 "params": {"distinct": True, "count": True},
-    #             }
-    #         else:
-    #             query_type = {"type": "list_keywords", "params": {"distinct": True}}
-    #     else:
-    #         query_type = {"type": "list_keywords", "params": {}}
-    # else:
-    #     query_type = {"type": "llm_chat", "params": {}}
-
-    # if query_type["type"] == "list_keywords":
-    #     if query_type["params"].get("distinct", False):
-    #         keywords = get_all_distinct_keywords()
-    #         keyword_dict = {}
-    #         for kw in keywords:
-    #             if kw.lower() not in keyword_dict:
-    #                 keyword_dict[kw.lower()] = kw
-
-    #         bot = ChatBot()
-    #         response = bot.keyword_chat(
-    #             message=f"Distince keywords in the catalog: {', '.join(keyword_dict.values())}."
-    #         )
-    #     else:
-    #         if query_type["params"].get("count", False):
-    #             keywords = get_all_distinct_keywords()
-    #             response = "\n\n".join(kw for kw in keywords)
-    #         else:
-    #             keywords = get_top_distinct_keywords()
-    #             response = "\n\n".join(kw for kw in keywords)
-
-    # if query_type["type"] == "llm_chat":
-    #     bot = ChatBot()
-    #     response = bot.chat(message=q)
-
-    bot = ChatBot()
-    response = bot.chat(message=q)
-
-    return {"query": q, "response": response}
+#     return {"query": q, "response": response}
 
 
 @api.get("/keywords", tags=["Keywords"])
@@ -187,3 +116,47 @@ async def get_keywords(
 
     keywords = get_distinct_keywords_only(limit=limit, sort=sort)
     return {"unique_keywords": len(keywords), "keywords": keywords}
+
+
+@api.get("/query", tags=["Query"])
+async def query(q: str, api_key: str = Depends(verify_api_key)):
+    """
+    Natural language query endpoint with intelligent routing.
+
+    Implements the pattern from commented code (lines 77-146) using
+    a clean, maintainable architecture.
+    """
+
+    # Classify the query using our new classifier
+    query_type = classify_query(q)
+
+    if query_type["type"] == "list_keywords":
+        # Get structured data based on classification
+        params = query_type["params"]
+
+        # Route to appropriate database function (fixes reference code issues)
+        if params["distinct"] and params["count"]:
+            data = get_keywords_with_counts(limit=params.get("limit"), sort="frequency")
+        elif params["distinct"]:
+            data = get_distinct_keywords_only(limit=params.get("limit"), sort="alpha")
+        else:
+            data = get_all_keywords(limit=params.get("limit"))
+
+        # Format the response
+        formatted_response = format_keyword_response(data, params)
+
+        # Option A: Return structured data directly (recommended for start)
+        return {"query": q, "response": formatted_response, "data": data}
+
+        # Option B: Enhance with LLM for natural language (future enhancement)
+        # bot = ChatBot()
+        # llm_response = bot.chat(
+        #     message=f"User asked: '{q}'. Data: {formatted_response}"
+        # )
+        # return {"query": q, "response": llm_response, "raw_data": data}
+
+    else:
+        # Fall back to full LLM chat for complex queries (ref: lines 144-146)
+        bot = ChatBot()
+        response = bot.chat(message=q)
+        return {"query": q, "response": response}
