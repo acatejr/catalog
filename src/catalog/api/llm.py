@@ -10,20 +10,17 @@ LLM_API_KEY = os.getenv("LLM_API_KEY")
 LLM_BASE_URL = os.getenv("LLM_BASE_URL")
 LLM_MODEL = os.getenv("LLM_MODEL") or "Llama-3.2-11B-Vision-Instruct"
 
+
 class ChatBot:
     def __init__(self):
         """Initialize the ChatBot with ESIIL LLM configuration"""
 
-        self.client = OpenAI(
-            api_key=LLM_API_KEY,
-            base_url=LLM_BASE_URL
-        )
+        self.client = OpenAI(api_key=LLM_API_KEY, base_url=LLM_BASE_URL)
         self.model = LLM_MODEL
 
         # Initialize embedding model once during initialization for performance
         # This provides ~40-60x speedup for subsequent queries
         self.encoder = SentenceTransformer("all-MiniLM-L6-v2")
-
 
     def get_documents(self, query: str) -> list:
         """
@@ -71,7 +68,6 @@ class ChatBot:
             return documents
         else:
             return []
-
 
     def chat(self, message: str = "Hello, how can you help me?") -> str:
         """
