@@ -6,30 +6,27 @@ from catalog.core.db import search_docs
 
 load_dotenv()
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-ESIIL_API_KEY = os.getenv("ESIIL_API_KEY")
-ESIIL_API_URL = os.getenv("ESIIL_API_URL")
-ESIIL_MODEL = os.getenv("ESIIL_MODEL") or "Llama-3.2-11B-Vision-Instruct"
-OLLAMA_API_KEY_CATALOG = os.getenv("OLLAMA_API_KEY_CATALOG")
-LITELLM_API_KEY = os.getenv("LITELLM_API_KEY")
+LLM_API_KEY = os.getenv("LLM_API_KEY")
+LLM_BASE_URL = os.getenv("LLM_BASE_URL")
+LLM_MODEL = os.getenv("LLM_MODEL") or "Llama-3.2-11B-Vision-Instruct"
+
+# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# ESIIL_API_KEY = os.getenv("ESIIL_API_KEY")
+# ESIIL_API_URL = os.getenv("ESIIL_API_URL")
+# ESIIL_MODEL = os.getenv("ESIIL_MODEL") or "Llama-3.2-11B-Vision-Instruct"
+# OLLAMA_API_KEY_CATALOG = os.getenv("OLLAMA_API_KEY_CATALOG")
+# LITELLM_API_KEY = os.getenv("LITELLM_API_KEY")
 
 
 class ChatBot:
     def __init__(self):
         """Initialize the ChatBot with ESIIL LLM configuration"""
 
-        # self.client = OpenAI(
-        #     base_url="http://localhost:4000/",
-        #     api_key=LITELLM_API_KEY,
-        # )
-
-        # self.model = "ollama/llama3.1"
-
         self.client = OpenAI(
-            api_key=ESIIL_API_KEY or "dummy-key",
-            base_url=ESIIL_API_URL or "https://llm-api.cyverse.ai/v1",
+            api_key=LLM_API_KEY,
+            base_url=LLM_BASE_URL
         )
-        self.model = ESIIL_MODEL
+        self.model = LLM_MODEL
 
         # Initialize embedding model once during initialization for performance
         # This provides ~40-60x speedup for subsequent queries
