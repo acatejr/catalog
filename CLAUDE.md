@@ -119,3 +119,7 @@ Claude will automatically:
 - Claude follows Git Safety Protocol (no force pushes, no skipping hooks)
 - Claude will not push to remote unless explicitly requested
 - Pre-commit hooks will be respected
+
+## General Instructions
+
+Save all responses to the responses folder in markdown.
