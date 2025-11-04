@@ -10,14 +10,6 @@ LLM_API_KEY = os.getenv("LLM_API_KEY")
 LLM_BASE_URL = os.getenv("LLM_BASE_URL")
 LLM_MODEL = os.getenv("LLM_MODEL") or "Llama-3.2-11B-Vision-Instruct"
 
-# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-# ESIIL_API_KEY = os.getenv("ESIIL_API_KEY")
-# ESIIL_API_URL = os.getenv("ESIIL_API_URL")
-# ESIIL_MODEL = os.getenv("ESIIL_MODEL") or "Llama-3.2-11B-Vision-Instruct"
-# OLLAMA_API_KEY_CATALOG = os.getenv("OLLAMA_API_KEY_CATALOG")
-# LITELLM_API_KEY = os.getenv("LITELLM_API_KEY")
-
-
 class ChatBot:
     def __init__(self):
         """Initialize the ChatBot with ESIIL LLM configuration"""
