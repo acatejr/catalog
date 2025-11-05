@@ -122,4 +122,4 @@ Claude will automatically:
 
 ## General Instructions
 
-Save all responses to the responses folder in markdown.
+Save all responses to the docs/incoming folder.  Save the files as markdown and include the final history, assessment, summary, or instructions created by Claude Code..

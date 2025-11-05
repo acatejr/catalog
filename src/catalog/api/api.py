@@ -11,6 +11,10 @@ from catalog.core.db import (
     get_keywords_with_counts,
     get_distinct_keywords_only,
     db_health_check,
+    search_entity_by_name,
+    get_field_lineage,
+    get_dataset_relationships,
+    list_all_datasets,
 )
 from catalog.api.query_classifier import classify_query, format_keyword_response
 
@@ -67,17 +71,6 @@ async def info():
         "version": "0.0.1",
         "description": "An API for querying the catalog and retrieving keywords.",
     }
-
-
-# @api.get("/query", tags=["Query"])
-# async def query(q: str, api_key: str = Depends(verify_api_key)):
-#     """A simple query endpoint that passes the query string onto the ai agent and returns the result."""
-
-#     response = ""
-#     bot = ChatBot()
-#     response = bot.chat(message=q)
-
-#     return {"query": q, "response": response}
 
 
 @api.get("/keywords", tags=["Keywords"])
@@ -160,3 +153,144 @@ async def query(q: str, api_key: str = Depends(verify_api_key)):
         bot = ChatBot()
         response = bot.chat(message=q)
         return {"query": q, "response": response}
+
+
+@api.get("/datasets", tags=["Datasets"])
+async def get_datasets(
+    dataset_type: Optional[str] = Query(
+        None, description="Filter by dataset type (feature_class, table, view, etc.)"
+    ),
+    source_system: Optional[str] = Query(None, description="Filter by source system"),
+    limit: int = Query(100, description="Maximum number of datasets to return"),
+    api_key: str = Depends(verify_api_key),
+):
+    """
+    List all datasets with optional filtering.
+
+    Query parameters:
+    - dataset_type: Filter by type (feature_class, table, view, raster, etc.)
+    - source_system: Filter by source system (USFS GIS, ArcGIS Online, etc.)
+    - limit: Maximum number of results (default: 100)
+
+    Returns:
+        List of datasets with basic metadata
+    """
+    try:
+        datasets = list_all_datasets(
+            dataset_type=dataset_type, source_system=source_system, limit=limit
+        )
+        return {"total": len(datasets), "datasets": datasets}
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Error retrieving datasets: {str(e)}"
+        )
+
+
+@api.get("/datasets/{dataset_name}", tags=["Datasets"])
+async def get_dataset_schema(
+    dataset_name: str,
+    api_key: str = Depends(verify_api_key),
+):
+    """
+    Get complete schema for a specific dataset.
+
+    Path parameters:
+    - dataset_name: Name of the dataset to retrieve
+
+    Returns:
+        Complete dataset information including:
+        - Dataset metadata (name, type, source, etc.)
+        - All attributes/fields with technical metadata
+        - Domain constraints and validation rules
+    """
+    try:
+        entity = search_entity_by_name(dataset_name)
+
+        if not entity:
+            raise HTTPException(
+                status_code=404, detail=f"Dataset '{dataset_name}' not found in catalog"
+            )
+
+        return entity
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Error retrieving dataset schema: {str(e)}"
+        )
+
+
+@api.get("/datasets/{dataset_name}/fields/{field_name}/lineage", tags=["Datasets"])
+async def get_field_lineage_endpoint(
+    dataset_name: str,
+    field_name: str,
+    api_key: str = Depends(verify_api_key),
+):
+    """
+    Get data lineage for a specific field.
+
+    Path parameters:
+    - dataset_name: Name of the dataset
+    - field_name: Name of the field
+
+    Returns:
+        Complete lineage information including:
+        - Upstream sources (where this field comes from)
+        - Downstream dependents (what uses this field)
+        - Transformation types and logic
+        - Verification status and confidence scores
+    """
+    try:
+        lineage = get_field_lineage(dataset_name, field_name)
+
+        if not lineage:
+            raise HTTPException(
+                status_code=404,
+                detail=f"Lineage information not found for field '{field_name}' in dataset '{dataset_name}'",
+            )
+
+        return lineage
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Error retrieving field lineage: {str(e)}"
+        )
+
+
+@api.get("/datasets/{dataset_name}/relationships", tags=["Datasets"])
+async def get_dataset_relationships_endpoint(
+    dataset_name: str,
+    api_key: str = Depends(verify_api_key),
+):
+    """
+    Get all relationships for a dataset.
+
+    Path parameters:
+    - dataset_name: Name of the dataset
+
+    Returns:
+        Relationship information including:
+        - Outgoing relationships (this dataset references other datasets)
+        - Incoming relationships (other datasets reference this one)
+        - Foreign key details and cardinality
+        - Enforcement status
+    """
+    try:
+        relationships = get_dataset_relationships(dataset_name)
+
+        if not relationships:
+            raise HTTPException(
+                status_code=404, detail=f"Dataset '{dataset_name}' not found in catalog"
+            )
+
+        return relationships
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=f"Error retrieving dataset relationships: {str(e)}"
+        )
