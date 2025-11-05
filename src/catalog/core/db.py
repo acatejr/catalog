@@ -914,3 +914,526 @@ def empty_eainfo_tables():
         raise
     finally:
         db.return_connection(conn)
+
+
+# ============================================================================
+# DATA LIBRARIAN ENHANCED FUNCTIONS
+# ============================================================================
+
+
+@retry_on_db_error(max_retries=3)
+def search_entity_by_name(dataset_name: str) -> Optional[dict]:
+    """
+    Search for a dataset by name (exact or fuzzy match).
+
+    Returns complete entity information including schema.
+    Uses pg_trgm for fuzzy matching if exact match not found.
+
+    Args:
+        dataset_name: Name to search for
+
+    Returns:
+        Dict with entity metadata, attributes, and domain values
+    """
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            # Try exact match on dataset_name or label
+            cur.execute(
+                """
+                SELECT id, label, definition, definition_source, eainfo_id,
+                       dataset_name, display_name, dataset_type, source_system,
+                       record_count, last_updated_at, metadata
+                FROM entity_type
+                WHERE LOWER(dataset_name) = LOWER(%s)
+                   OR LOWER(label) = LOWER(%s)
+            """,
+                (dataset_name, dataset_name),
+            )
+
+            result = cur.fetchone()
+
+            if not result:
+                # Try fuzzy match using similarity (requires pg_trgm extension)
+                cur.execute(
+                    """
+                    SELECT id, label, definition, definition_source, eainfo_id,
+                           dataset_name, display_name, dataset_type, source_system,
+                           record_count, last_updated_at, metadata,
+                           GREATEST(
+                               similarity(COALESCE(dataset_name, ''), %s),
+                               similarity(label, %s)
+                           ) as score
+                    FROM entity_type
+                    WHERE similarity(COALESCE(dataset_name, ''), %s) > 0.3
+                       OR similarity(label, %s) > 0.3
+                    ORDER BY score DESC
+                    LIMIT 1
+                """,
+                    (dataset_name, dataset_name, dataset_name, dataset_name),
+                )
+                result = cur.fetchone()
+
+            if not result:
+                return None
+
+            entity = {
+                "id": result[0],
+                "label": result[1],
+                "definition": result[2],
+                "definition_source": result[3],
+                "eainfo_id": result[4],
+                "dataset_name": result[5],
+                "display_name": result[6],
+                "dataset_type": result[7],
+                "source_system": result[8],
+                "record_count": result[9],
+                "last_updated_at": result[10],
+                "metadata": result[11],
+            }
+
+            # Get attributes with technical metadata
+            entity["attributes"] = get_entity_attributes_extended(entity["id"])
+
+            return entity
+
+    finally:
+        db.return_connection(conn)
+
+
+@retry_on_db_error(max_retries=3)
+def get_entity_attributes_extended(entity_type_id: int) -> list[dict]:
+    """
+    Get all attributes for an entity with technical metadata and domain values.
+
+    Args:
+        entity_type_id: ID of the entity type
+
+    Returns:
+        List of attribute dicts with complete metadata
+    """
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                SELECT
+                    a.id, a.label, a.definition, a.definition_source,
+                    a.data_type, a.is_nullable, a.is_primary_key, a.is_foreign_key,
+                    a.max_length, a.field_precision, a.field_scale, a.default_value,
+                    a.completeness_percent, a.uniqueness_percent,
+                    a.min_value, a.max_value, a.sample_values,
+                    a.last_profiled_at, a.field_metadata
+                FROM attribute a
+                WHERE a.entity_type_id = %s
+                ORDER BY
+                    CASE WHEN a.is_primary_key THEN 0 ELSE 1 END,
+                    a.id
+            """,
+                (entity_type_id,),
+            )
+
+            attributes = []
+            for row in cur.fetchall():
+                attr = {
+                    "id": row[0],
+                    "label": row[1],
+                    "definition": row[2],
+                    "definition_source": row[3],
+                    "technical": {
+                        "data_type": row[4],
+                        "is_nullable": row[5],
+                        "is_primary_key": row[6],
+                        "is_foreign_key": row[7],
+                        "max_length": row[8],
+                        "precision": row[9],
+                        "scale": row[10],
+                        "default_value": row[11],
+                    },
+                    "quality": {
+                        "completeness_percent": float(row[12]) if row[12] else None,
+                        "uniqueness_percent": float(row[13]) if row[13] else None,
+                        "min_value": row[14],
+                        "max_value": row[15],
+                        "sample_values": row[16],
+                        "last_profiled_at": row[17],
+                    },
+                    "metadata": row[18],
+                }
+
+                # Get domain values for this attribute
+                cur.execute(
+                    """
+                    SELECT domain_type, domain_data
+                    FROM attribute_domain
+                    WHERE attribute_id = %s
+                """,
+                    (row[0],),
+                )
+
+                attr["domain_values"] = [
+                    {"type": dv[0], "data": dv[1]} for dv in cur.fetchall()
+                ]
+
+                attributes.append(attr)
+
+            return attributes
+
+    finally:
+        db.return_connection(conn)
+
+
+@retry_on_db_error(max_retries=3)
+def get_field_lineage(dataset_name: str, field_name: str) -> Optional[dict]:
+    """
+    Get complete lineage for a specific field.
+
+    Returns both upstream sources and downstream dependents.
+
+    Args:
+        dataset_name: Name of the dataset
+        field_name: Name of the field
+
+    Returns:
+        Dict with upstream sources and downstream dependents
+    """
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            # Find the target attribute
+            cur.execute(
+                """
+                SELECT a.id, et.label as entity_label
+                FROM attribute a
+                JOIN entity_type et ON a.entity_type_id = et.id
+                WHERE (LOWER(et.dataset_name) = LOWER(%s) OR LOWER(et.label) = LOWER(%s))
+                  AND LOWER(a.label) = LOWER(%s)
+            """,
+                (dataset_name, dataset_name, field_name),
+            )
+
+            result = cur.fetchone()
+            if not result:
+                return None
+
+            attribute_id = result[0]
+            entity_label = result[1]
+
+            # Get upstream sources (where this field comes from)
+            cur.execute(
+                """
+                SELECT
+                    src_et.dataset_name,
+                    src_et.label as entity_label,
+                    src_a.label as field_name,
+                    fl.transformation_type,
+                    fl.transformation_logic,
+                    fl.confidence_score,
+                    fl.is_verified,
+                    fl.notes
+                FROM field_lineage fl
+                JOIN attribute src_a ON fl.source_attribute_id = src_a.id
+                JOIN entity_type src_et ON src_a.entity_type_id = src_et.id
+                WHERE fl.target_attribute_id = %s
+                ORDER BY fl.created_at
+            """,
+                (attribute_id,),
+            )
+
+            upstream = []
+            for row in cur.fetchall():
+                upstream.append(
+                    {
+                        "source_dataset": row[0] or row[1],
+                        "source_field": row[2],
+                        "transformation_type": row[3],
+                        "transformation_logic": row[4],
+                        "confidence_score": float(row[5]) if row[5] else None,
+                        "is_verified": row[6],
+                        "notes": row[7],
+                    }
+                )
+
+            # Get downstream dependents (what uses this field)
+            cur.execute(
+                """
+                SELECT
+                    tgt_et.dataset_name,
+                    tgt_et.label as entity_label,
+                    tgt_a.label as field_name,
+                    fl.transformation_type,
+                    fl.transformation_logic,
+                    fl.is_verified
+                FROM field_lineage fl
+                JOIN attribute tgt_a ON fl.target_attribute_id = tgt_a.id
+                JOIN entity_type tgt_et ON tgt_a.entity_type_id = tgt_et.id
+                WHERE fl.source_attribute_id = %s
+                ORDER BY fl.created_at
+            """,
+                (attribute_id,),
+            )
+
+            downstream = []
+            for row in cur.fetchall():
+                downstream.append(
+                    {
+                        "target_dataset": row[0] or row[1],
+                        "target_field": row[2],
+                        "transformation_type": row[3],
+                        "transformation_logic": row[4],
+                        "is_verified": row[5],
+                    }
+                )
+
+            return {
+                "dataset": dataset_name,
+                "entity_label": entity_label,
+                "field": field_name,
+                "upstream_sources": upstream,
+                "downstream_dependents": downstream,
+                "is_source_field": len(upstream) == 0,
+            }
+
+    finally:
+        db.return_connection(conn)
+
+
+@retry_on_db_error(max_retries=3)
+def get_dataset_relationships(dataset_name: str) -> Optional[dict]:
+    """
+    Get all relationships for a dataset (foreign keys, references).
+
+    Args:
+        dataset_name: Name of the dataset
+
+    Returns:
+        Dict with outgoing and incoming relationships
+    """
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            # Find the entity
+            cur.execute(
+                """
+                SELECT id FROM entity_type
+                WHERE LOWER(dataset_name) = LOWER(%s) OR LOWER(label) = LOWER(%s)
+            """,
+                (dataset_name, dataset_name),
+            )
+
+            result = cur.fetchone()
+            if not result:
+                return None
+
+            entity_id = result[0]
+
+            # Get outgoing relationships (this dataset references others)
+            cur.execute(
+                """
+                SELECT
+                    from_a.label as from_field,
+                    to_et.dataset_name as to_dataset,
+                    to_et.label as to_entity_label,
+                    to_a.label as to_field,
+                    dr.relationship_type,
+                    dr.relationship_name,
+                    dr.is_enforced,
+                    dr.notes
+                FROM dataset_relationships dr
+                JOIN attribute from_a ON dr.from_attribute_id = from_a.id
+                JOIN entity_type to_et ON dr.to_entity_id = to_et.id
+                JOIN attribute to_a ON dr.to_attribute_id = to_a.id
+                WHERE dr.from_entity_id = %s
+            """,
+                (entity_id,),
+            )
+
+            outgoing = []
+            for row in cur.fetchall():
+                outgoing.append(
+                    {
+                        "from_field": row[0],
+                        "to_dataset": row[1] or row[2],
+                        "to_field": row[3],
+                        "relationship_type": row[4],
+                        "relationship_name": row[5],
+                        "is_enforced": row[6],
+                        "notes": row[7],
+                    }
+                )
+
+            # Get incoming relationships (other datasets reference this one)
+            cur.execute(
+                """
+                SELECT
+                    from_et.dataset_name as from_dataset,
+                    from_et.label as from_entity_label,
+                    from_a.label as from_field,
+                    to_a.label as to_field,
+                    dr.relationship_type,
+                    dr.relationship_name,
+                    dr.is_enforced,
+                    dr.notes
+                FROM dataset_relationships dr
+                JOIN entity_type from_et ON dr.from_entity_id = from_et.id
+                JOIN attribute from_a ON dr.from_attribute_id = from_a.id
+                JOIN attribute to_a ON dr.to_attribute_id = to_a.id
+                WHERE dr.to_entity_id = %s
+            """,
+                (entity_id,),
+            )
+
+            incoming = []
+            for row in cur.fetchall():
+                incoming.append(
+                    {
+                        "from_dataset": row[0] or row[1],
+                        "from_field": row[2],
+                        "to_field": row[3],
+                        "relationship_type": row[4],
+                        "relationship_name": row[5],
+                        "is_enforced": row[6],
+                        "notes": row[7],
+                    }
+                )
+
+            return {
+                "dataset": dataset_name,
+                "outgoing_relationships": outgoing,
+                "incoming_relationships": incoming,
+            }
+
+    finally:
+        db.return_connection(conn)
+
+
+@retry_on_db_error(max_retries=3)
+def list_all_datasets(
+    dataset_type: Optional[str] = None,
+    source_system: Optional[str] = None,
+    limit: int = 100,
+) -> list[dict]:
+    """
+    List all datasets with optional filtering.
+
+    Args:
+        dataset_type: Filter by dataset type
+        source_system: Filter by source system
+        limit: Maximum number of results
+
+    Returns:
+        List of dataset summary dicts
+    """
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            query = """
+                SELECT
+                    et.id,
+                    COALESCE(et.dataset_name, et.label) as name,
+                    et.display_name,
+                    et.dataset_type,
+                    et.source_system,
+                    et.record_count,
+                    et.last_updated_at,
+                    COUNT(a.id) as attribute_count
+                FROM entity_type et
+                LEFT JOIN attribute a ON a.entity_type_id = et.id
+                WHERE 1=1
+            """
+
+            params = []
+            if dataset_type:
+                query += " AND et.dataset_type = %s"
+                params.append(dataset_type)
+
+            if source_system:
+                query += " AND et.source_system = %s"
+                params.append(source_system)
+
+            query += """
+                GROUP BY et.id, et.dataset_name, et.label, et.display_name,
+                         et.dataset_type, et.source_system, et.record_count, et.last_updated_at
+                ORDER BY COALESCE(et.dataset_name, et.label)
+                LIMIT %s
+            """
+            params.append(limit)
+
+            cur.execute(query, params)
+
+            datasets = []
+            for row in cur.fetchall():
+                datasets.append(
+                    {
+                        "id": row[0],
+                        "name": row[1],
+                        "display_name": row[2],
+                        "dataset_type": row[3],
+                        "source_system": row[4],
+                        "record_count": row[5],
+                        "last_updated_at": row[6],
+                        "attribute_count": row[7],
+                    }
+                )
+
+            return datasets
+
+    finally:
+        db.return_connection(conn)
+
+
+@retry_on_db_error(max_retries=3)
+def update_entity_extended_metadata(entity_type_id: int, metadata: dict) -> None:
+    """
+    Update extended metadata fields for an entity_type.
+
+    Args:
+        entity_type_id: ID of the entity_type to update
+        metadata: Dictionary containing dataset_name, display_name, dataset_type, source_system, etc.
+    """
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                UPDATE entity_type
+                SET dataset_name = %s,
+                    display_name = %s,
+                    dataset_type = %s,
+                    source_system = %s,
+                    source_url = %s
+                WHERE id = %s
+            """,
+                (
+                    metadata.get("dataset_name"),
+                    metadata.get("display_name"),
+                    metadata.get("dataset_type"),
+                    metadata.get("source_system"),
+                    metadata.get("source_url"),
+                    entity_type_id,
+                ),
+            )
+            conn.commit()
+            logger.info(
+                f"Updated extended metadata for entity_type id={entity_type_id}"
+            )
+
+    except Exception as e:
+        conn.rollback()
+        logger.error(f"Error updating entity extended metadata: {e}")
+        raise
+
+    finally:
+        db.return_connection(conn)

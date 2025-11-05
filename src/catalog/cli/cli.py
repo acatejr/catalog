@@ -13,7 +13,11 @@ from catalog.core.db import (
     db_health_check,
 )
 
-from catalog.core.db import save_eainfo, empty_eainfo_tables
+from catalog.core.db import (
+    save_eainfo,
+    empty_eainfo_tables,
+    update_entity_extended_metadata,
+)
 import uvicorn
 from catalog.core.schema import USFSDocument
 from sentence_transformers import SentenceTransformer
@@ -377,19 +381,90 @@ def db_health():
         console.print("[red]Database connection is not healthy![/red]")
 
 
+def extract_dataset_name_from_label(label: str, xml_filename: str) -> str:
+    """
+    Extract a short dataset name from the entity label.
+
+    Handles labels like "S_USA.Activity_BrushDisposal" → "BrushDisposal"
+    Falls back to filename if label doesn't contain a dot.
+    """
+    if "." in label:
+        # Extract the part after the last dot
+        return label.split(".")[-1]
+    elif label:
+        # Use the label as-is if it doesn't have dots
+        return label
+    else:
+        # Fall back to filename without extension
+        return xml_filename.replace(".xml", "")
+
+
 @cli.command()
 def parse_all_schema():
+    """Parse all XML schema files and save to database with extended metadata."""
     xml_src_path = f"{DEST_OUTPUT_DIR}"
 
     xml_files = [f for f in os.listdir(xml_src_path) if f.endswith(".xml")]
-    for xml_file in xml_files:
-        # Parse XML file
-        parser = EAInfoParser()
-        in_file = f"{xml_src_path}/{xml_file}"
-        eainfo = parser.parse_xml_file(in_file)
+    console.print(f"[blue]Parsing {len(xml_files)} schema files...[/blue]")
 
-        id = save_eainfo(eainfo)
-        # console.print(f"[cyan]Parsed schema for {xml_file} (ID: {id}):[/cyan] {eainfo}")
+    success_count = 0
+    error_count = 0
+
+    for xml_file in xml_files:
+        try:
+            # Parse XML file
+            parser = EAInfoParser()
+            in_file = f"{xml_src_path}/{xml_file}"
+            eainfo = parser.parse_xml_file(in_file)
+
+            # Save the basic eainfo structure
+            eainfo_id = save_eainfo(eainfo)
+
+            # If we have detailed entity information, extract and save extended metadata
+            if eainfo.has_detailed_info and eainfo.detailed:
+                label = eainfo.detailed.entity_type.label
+
+                # Extract dataset name from the label
+                dataset_name = extract_dataset_name_from_label(label, xml_file)
+
+                # Create extended metadata
+                extended_metadata = {
+                    "dataset_name": dataset_name,
+                    "display_name": dataset_name.replace("_", " "),
+                    "dataset_type": "feature_class",  # Default type
+                    "source_system": "USFS GIS",
+                    "source_url": f"https://data.fs.usda.gov/geodata/edw/edw_resources/meta/{xml_file}",
+                }
+
+                # Get the entity_type_id from the database to update it
+                # We need to query for it since save_eainfo doesn't return it
+                from catalog.core.db import get_eainfo_by_id
+
+                saved_eainfo = get_eainfo_by_id(eainfo_id)
+
+                if saved_eainfo and saved_eainfo.get("entity_type"):
+                    entity_type_id = saved_eainfo["entity_type"]["id"]
+                    update_entity_extended_metadata(entity_type_id, extended_metadata)
+                    console.print(
+                        f"[green]✓[/green] {dataset_name} ({len(eainfo.detailed.attributes)} attributes)"
+                    )
+                else:
+                    console.print(
+                        f"[yellow]⚠[/yellow] {xml_file}: No entity type found"
+                    )
+
+                success_count += 1
+            else:
+                console.print(f"[yellow]⚠[/yellow] {xml_file}: No detailed info")
+                success_count += 1
+
+        except Exception as e:
+            console.print(f"[red]✗[/red] {xml_file}: {str(e)}")
+            error_count += 1
+
+    console.print(f"\n[green]Parsed {success_count} schemas successfully[/green]")
+    if error_count > 0:
+        console.print(f"[red]Failed to parse {error_count} schemas[/red]")
 
 
 @cli.command()

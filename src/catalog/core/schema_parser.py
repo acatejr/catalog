@@ -1,14 +1,11 @@
-import os
-from bs4 import BeautifulSoup
 from pydantic import BaseModel, Field, field_validator, model_validator
 from typing import Optional, List, Union, Literal
 from enum import Enum
 from datetime import datetime
 from xml.etree import ElementTree as ET
 from pathlib import Path
-from typing import Optional
 import logging
-from db import save_eainfo, get_eainfo_by_id, list_all_entities
+from catalog.core.db import save_eainfo, get_eainfo_by_id, list_all_entities
 
 logger = logging.getLogger(__name__)
 
@@ -266,6 +263,126 @@ class DetailedEntityInfo(BaseModel):
         return [attr for attr in self.attributes if attr.has_enumerated_values]
 
 
+class DatasetMetadata(BaseModel):
+    """Dataset-level metadata to extend EntityType
+
+    Additional metadata not present in FGDC XML but useful for data librarian features
+    """
+
+    dataset_name: Optional[str] = Field(
+        None, description="Short name for lookups (e.g., 'BrushDisposal')"
+    )
+    display_name: Optional[str] = Field(None, description="Human-friendly display name")
+    dataset_type: Optional[str] = Field(
+        None, description="Type: feature_class, table, view, raster, etc."
+    )
+    source_system: Optional[str] = Field(
+        None, description="Source system (e.g., 'USFS GIS', 'ArcGIS Online')"
+    )
+    source_url: Optional[str] = Field(None, description="URL to source data or service")
+    record_count: Optional[int] = Field(None, description="Number of records/features")
+    last_updated_at: Optional[datetime] = Field(
+        None, description="Last data update timestamp"
+    )
+    spatial_extent: Optional[dict] = Field(
+        None, description="Bounding box or extent as GeoJSON"
+    )
+    tags: Optional[List[str]] = Field(default_factory=list, description="Search tags")
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "dataset_name": "BrushDisposal",
+                "display_name": "Brush Disposal Sites",
+                "dataset_type": "feature_class",
+                "source_system": "USFS GIS",
+                "record_count": 1247,
+                "tags": ["fire management", "disposal", "geospatial"],
+            }
+        }
+
+
+class TechnicalFieldMetadata(BaseModel):
+    """Technical field metadata to extend Attribute
+
+    Technical details about fields not typically in FGDC XML
+    """
+
+    data_type: Optional[str] = Field(
+        None, description="Data type: Integer, String, Float, Date, Geometry, etc."
+    )
+    is_nullable: bool = Field(True, description="Can this field contain NULL values?")
+    is_primary_key: bool = Field(False, description="Is this a primary key field?")
+    is_foreign_key: bool = Field(
+        False, description="Is this a foreign key to another table?"
+    )
+    max_length: Optional[int] = Field(
+        None, description="Maximum length (for string fields)"
+    )
+    precision: Optional[int] = Field(None, description="Numeric precision")
+    scale: Optional[int] = Field(None, description="Numeric scale")
+    default_value: Optional[str] = Field(
+        None, description="Default value if not provided"
+    )
+
+    # Quality metrics (computed from data profiling)
+    completeness_percent: Optional[float] = Field(
+        None, description="Percentage of non-null values"
+    )
+    uniqueness_percent: Optional[float] = Field(
+        None, description="Percentage of unique values"
+    )
+    min_value: Optional[str] = Field(None, description="Minimum observed value")
+    max_value: Optional[str] = Field(None, description="Maximum observed value")
+    sample_values: Optional[List[str]] = Field(
+        None, description="Example values from the data"
+    )
+    last_profiled_at: Optional[datetime] = Field(
+        None, description="When profiling was last run"
+    )
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "data_type": "Integer",
+                "is_nullable": False,
+                "is_primary_key": True,
+                "completeness_percent": 100.0,
+                "uniqueness_percent": 100.0,
+                "min_value": "1",
+                "max_value": "1247",
+            }
+        }
+
+
+class FieldLineage(BaseModel):
+    """Field-level lineage information"""
+
+    source_dataset: str
+    source_field: str
+    transformation_type: str = Field(
+        ..., description="direct_copy, calculation, aggregation, etc."
+    )
+    transformation_logic: Optional[str] = None
+    confidence_score: Optional[float] = Field(
+        None, ge=0.0, le=1.0, description="Confidence score 0.0-1.0"
+    )
+    is_verified: bool = Field(False, description="Manually verified lineage?")
+    notes: Optional[str] = None
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "source_dataset": "DisposalSites_Raw",
+                "source_field": "SITE_ID",
+                "transformation_type": "direct_copy",
+                "transformation_logic": "Copied without transformation during ETL",
+                "confidence_score": 1.0,
+                "is_verified": True,
+            }
+        }
+
+
 class EntityAttributeInfo(BaseModel):
     """Top-level eainfo structure
 
@@ -289,6 +406,11 @@ class EntityAttributeInfo(BaseModel):
         None, description="Timestamp when this metadata was parsed"
     )
     source_file: Optional[str] = Field(None, description="Source XML file path")
+
+    # Extended metadata (not from XML)
+    dataset_metadata: Optional[DatasetMetadata] = Field(
+        None, description="Additional dataset-level metadata"
+    )
 
     @property
     def has_detailed_info(self) -> bool:
