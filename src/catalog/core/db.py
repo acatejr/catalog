@@ -569,3 +569,348 @@ def get_distinct_keywords_only(
 
     finally:
         db.return_connection(conn)
+
+
+# ============================================================================
+# EAINFO (Entity and Attribute Information) FUNCTIONS
+# ============================================================================
+
+
+@retry_on_db_error(max_retries=3)
+def save_eainfo(eainfo: "EntityAttributeInfo") -> int:
+    """
+    Save an EntityAttributeInfo instance to the database.
+
+    Args:
+        eainfo: EntityAttributeInfo instance to save
+
+    Returns:
+        int: The ID of the created eainfo record
+
+    Raises:
+        psycopg2.Error: If database operation fails after retries
+
+    Note:
+        Requires the eainfo tables to be created first. Run sql/migrations/001_add_eainfo_tables.sql
+    """
+    import json
+
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            # Insert root eainfo record
+            cur.execute(
+                """
+                INSERT INTO eainfo (overview, citation, parsed_at, source_file)
+                VALUES (%s, %s, %s, %s)
+                RETURNING id
+            """,
+                (
+                    eainfo.overview,
+                    eainfo.citation,
+                    eainfo.parsed_at,
+                    eainfo.source_file,
+                ),
+            )
+
+            eainfo_id = cur.fetchone()[0]
+            logger.info(f"Created eainfo record with id={eainfo_id}")
+
+            # If detailed information exists, save it
+            if eainfo.has_detailed_info and eainfo.detailed:
+                # Insert entity_type
+                cur.execute(
+                    """
+                    INSERT INTO entity_type (eainfo_id, label, definition, definition_source)
+                    VALUES (%s, %s, %s, %s)
+                    RETURNING id
+                """,
+                    (
+                        eainfo_id,
+                        eainfo.detailed.entity_type.label,
+                        eainfo.detailed.entity_type.definition,
+                        eainfo.detailed.entity_type.definition_source,
+                    ),
+                )
+
+                entity_type_id = cur.fetchone()[0]
+                logger.info(
+                    f"Created entity_type record with id={entity_type_id} for '{eainfo.detailed.entity_type.label}'"
+                )
+
+                # Insert attributes and their domain values
+                for attr in eainfo.detailed.attributes:
+                    cur.execute(
+                        """
+                        INSERT INTO attribute (entity_type_id, label, definition, definition_source)
+                        VALUES (%s, %s, %s, %s)
+                        RETURNING id
+                    """,
+                        (
+                            entity_type_id,
+                            attr.label,
+                            attr.definition,
+                            attr.definition_source,
+                        ),
+                    )
+
+                    attribute_id = cur.fetchone()[0]
+
+                    # Insert domain values for this attribute
+                    for domain_value in attr.domain_values:
+                        # Convert domain value to dict and store as JSONB
+                        domain_data = domain_value.model_dump(exclude={"type"})
+
+                        cur.execute(
+                            """
+                            INSERT INTO attribute_domain (attribute_id, domain_type, domain_data)
+                            VALUES (%s, %s, %s)
+                        """,
+                            (
+                                attribute_id,
+                                domain_value.type.value,
+                                json.dumps(domain_data),
+                            ),
+                        )
+
+                logger.info(
+                    f"Saved {len(eainfo.detailed.attributes)} attributes for entity '{eainfo.detailed.entity_type.label}'"
+                )
+
+            conn.commit()
+            return eainfo_id
+
+    except Exception as e:
+        conn.rollback()
+        logger.error(f"Error saving eainfo: {e}")
+        raise
+
+    finally:
+        db.return_connection(conn)
+
+
+@retry_on_db_error(max_retries=3)
+def get_eainfo_by_id(eainfo_id: int) -> Optional[dict]:
+    """
+    Retrieve eainfo record with all related data by ID.
+
+    Args:
+        eainfo_id: The ID of the eainfo record
+
+    Returns:
+        Dictionary containing eainfo data with nested entity, attributes, and domain values
+        None if not found
+    """
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            # Get eainfo root record
+            cur.execute(
+                """
+                SELECT id, overview, citation, parsed_at, source_file, created_at
+                FROM eainfo
+                WHERE id = %s
+            """,
+                (eainfo_id,),
+            )
+
+            eainfo_row = cur.fetchone()
+            if not eainfo_row:
+                return None
+
+            result = {
+                "id": eainfo_row[0],
+                "overview": eainfo_row[1],
+                "citation": eainfo_row[2],
+                "parsed_at": eainfo_row[3],
+                "source_file": eainfo_row[4],
+                "created_at": eainfo_row[5],
+                "entity_type": None,
+            }
+
+            # Get entity_type
+            cur.execute(
+                """
+                SELECT id, label, definition, definition_source
+                FROM entity_type
+                WHERE eainfo_id = %s
+            """,
+                (eainfo_id,),
+            )
+
+            entity_row = cur.fetchone()
+            if entity_row:
+                entity_type_id = entity_row[0]
+                result["entity_type"] = {
+                    "id": entity_row[0],
+                    "label": entity_row[1],
+                    "definition": entity_row[2],
+                    "definition_source": entity_row[3],
+                    "attributes": [],
+                }
+
+                # Get attributes
+                cur.execute(
+                    """
+                    SELECT id, label, definition, definition_source
+                    FROM attribute
+                    WHERE entity_type_id = %s
+                """,
+                    (entity_type_id,),
+                )
+
+                for attr_row in cur.fetchall():
+                    attribute_id = attr_row[0]
+                    attribute = {
+                        "id": attr_row[0],
+                        "label": attr_row[1],
+                        "definition": attr_row[2],
+                        "definition_source": attr_row[3],
+                        "domain_values": [],
+                    }
+
+                    # Get domain values for this attribute
+                    cur.execute(
+                        """
+                        SELECT domain_type, domain_data
+                        FROM attribute_domain
+                        WHERE attribute_id = %s
+                    """,
+                        (attribute_id,),
+                    )
+
+                    for domain_row in cur.fetchall():
+                        attribute["domain_values"].append(
+                            {"type": domain_row[0], "data": domain_row[1]}
+                        )
+
+                    result["entity_type"]["attributes"].append(attribute)
+
+            return result
+
+    except Exception as e:
+        logger.error(f"Error getting eainfo by id: {e}")
+        return None
+
+    finally:
+        db.return_connection(conn)
+
+
+@retry_on_db_error(max_retries=3)
+def get_eainfo_by_source_file(source_file: str) -> Optional[dict]:
+    """
+    Retrieve eainfo record by source file path.
+
+    Args:
+        source_file: The source file path
+
+    Returns:
+        Dictionary containing eainfo data or None if not found
+    """
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                SELECT id
+                FROM eainfo
+                WHERE source_file = %s
+                ORDER BY created_at DESC
+                LIMIT 1
+            """,
+                (source_file,),
+            )
+
+            row = cur.fetchone()
+            if row:
+                return get_eainfo_by_id(row[0])
+            return None
+
+    except Exception as e:
+        logger.error(f"Error getting eainfo by source file: {e}")
+        return None
+
+    finally:
+        db.return_connection(conn)
+
+
+@retry_on_db_error(max_retries=3)
+def list_all_entities() -> list[dict]:
+    """
+    List all entity types in the database with their basic information.
+
+    Returns:
+        List of dictionaries with entity_type information
+    """
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT
+                    et.id,
+                    et.label,
+                    et.definition,
+                    ea.source_file,
+                    COUNT(a.id) as attribute_count
+                FROM entity_type et
+                JOIN eainfo ea ON et.eainfo_id = ea.id
+                LEFT JOIN attribute a ON a.entity_type_id = et.id
+                GROUP BY et.id, et.label, et.definition, ea.source_file
+                ORDER BY et.label
+            """)
+
+            results = []
+            for row in cur.fetchall():
+                results.append(
+                    {
+                        "id": row[0],
+                        "label": row[1],
+                        "definition": row[2],
+                        "source_file": row[3],
+                        "attribute_count": row[4],
+                    }
+                )
+
+            return results
+
+    except Exception as e:
+        logger.error(f"Error listing all entities: {e}")
+        return []
+
+    finally:
+        db.return_connection(conn)
+
+
+@retry_on_db_error(max_retries=3)
+def empty_eainfo_tables():
+    """
+    Deletes all records from eainfo and all related tables (entity_type, attribute, attribute_domain).
+    Uses CASCADE deletes automatically via foreign key constraints, so only need to delete from parent table.
+
+    Raises:
+        psycopg2.DatabaseError: If there is an error connecting to the database or executing the SQL commands.
+    """
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            # Delete from eainfo only - CASCADE will handle related tables
+            # This is more efficient and safer than manual deletion
+            cur.execute("DELETE FROM eainfo")
+            conn.commit()
+            logger.info("Emptied eainfo and all related tables via CASCADE.")
+    except Exception as e:
+        conn.rollback()
+        logger.error(f"Error emptying eainfo tables: {e}")
+        raise
+    finally:
+        db.return_connection(conn)

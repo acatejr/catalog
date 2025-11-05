@@ -8,6 +8,7 @@ from xml.etree import ElementTree as ET
 from pathlib import Path
 from typing import Optional
 import logging
+from db import save_eainfo, get_eainfo_by_id, list_all_entities
 
 logger = logging.getLogger(__name__)
 
@@ -554,11 +555,17 @@ if __name__ == "__main__":
     parser = EAInfoParser()
     eainfo = parser.parse_xml_file(xml_file_path)
 
-    # Access entity information
-    if eainfo.has_detailed_info:
-        print(f"Entity: {eainfo.detailed.entity_type.label}")
-        print(f"Attributes: {eainfo.total_attributes}")
+    # Parse and save
+    parser = EAInfoParser()
+    eainfo = parser.parse_xml_file("data/catalog/Actv_BrushDisposal.xml")
+    eainfo_id = save_eainfo(eainfo)
 
-    # List all attributes
-    for attr in eainfo.detailed.attributes:
-        print(f"  - {attr.label}: {attr.definition}")
+    # Retrieve
+    saved_eainfo = get_eainfo_by_id(eainfo_id)
+    print(f"Entity: {saved_eainfo['entity_type']['label']}")
+    print(f"Attributes: {len(saved_eainfo['entity_type']['attributes'])}")
+
+    # List all
+    entities = list_all_entities()
+    for entity in entities:
+        print(f"{entity['label']}: {entity['attribute_count']} attributes")

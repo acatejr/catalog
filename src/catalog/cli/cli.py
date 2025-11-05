@@ -13,12 +13,14 @@ from catalog.core.db import (
     db_health_check,
 )
 
+from catalog.core.db import save_eainfo, empty_eainfo_tables
 import uvicorn
 from catalog.core.schema import USFSDocument
 from sentence_transformers import SentenceTransformer
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-DEST_OUTPUT_DIR = "data/fsgeodata_metadata"
+from src.catalog.core.schema_parser import EAInfoParser
+
 
 cli = typer.Typer(
     name="catalog-cli",
@@ -373,6 +375,26 @@ def db_health():
         console.print("[green]Database connection is healthy![/green]")
     else:
         console.print("[red]Database connection is not healthy![/red]")
+
+
+@cli.command()
+def parse_all_schema():
+    xml_src_path = f"{DEST_OUTPUT_DIR}"
+
+    xml_files = [f for f in os.listdir(xml_src_path) if f.endswith(".xml")]
+    for xml_file in xml_files:
+        # Parse XML file
+        parser = EAInfoParser()
+        in_file = f"{xml_src_path}/{xml_file}"
+        eainfo = parser.parse_xml_file(in_file)
+
+        id = save_eainfo(eainfo)
+        # console.print(f"[cyan]Parsed schema for {xml_file} (ID: {id}):[/cyan] {eainfo}")
+
+
+@cli.command()
+def clear_eainfo():
+    empty_eainfo_tables()
 
 
 if __name__ == "__main__":
