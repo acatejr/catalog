@@ -7,10 +7,8 @@ from catalog.core.db import (
     search_entity_by_name,
     get_field_lineage,
     get_dataset_relationships,
-    list_all_datasets,
 )
 from enum import Enum
-from typing import Optional
 
 load_dotenv()
 
@@ -389,8 +387,47 @@ Outgoing Relationships (this dataset references):
         return "Quality query handling is not yet implemented. Please ask about dataset schemas, lineage, or relationships."
 
     def _handle_discovery_query(self, message: str) -> str:
-        """Handle dataset discovery queries."""
-        return "Discovery query handling is not yet implemented. Please ask about specific datasets."
+        """Handle dataset discovery queries using RAG."""
+        # Use vector search to find relevant datasets
+        documents = self.get_documents(message)
+
+        if len(documents) > 0:
+            context = "\n\n".join(
+                [
+                    f"Title: {doc['title']}\nDescription: {doc['description']}\nKeywords: {doc['keywords']}"
+                    for doc in documents
+                ]
+            )
+
+            # Use LLM to format a discovery-focused response
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {
+                        "role": "system",
+                        "content": (
+                            "You are a professional data librarian specializing in dataset discovery. "
+                            "Your role is to help researchers find relevant datasets in the catalog. "
+                            "When answering discovery questions:\n"
+                            "- List the relevant datasets found in the catalog\n"
+                            "- Briefly explain why each dataset matches the user's query\n"
+                            "- Highlight key characteristics (keywords, descriptions) that make them relevant\n"
+                            "- If multiple datasets are found, organize them by relevance\n"
+                            "- Be direct and concise - focus on what datasets ARE available\n"
+                            "- If the query asks about existence (like 'is there'), give a clear yes/no answer first, then list the datasets\n"
+                            "Use the provided context from the catalog to give accurate, evidence-based responses."
+                        ),
+                    },
+                    {
+                        "role": "user",
+                        "content": f"Context: {context}\n\nQuestion: {message}",
+                    },
+                ],
+            )
+
+            return response.choices[0].message.content
+        else:
+            return "I couldn't find any datasets matching your query in the catalog. Try rephrasing your question or using different keywords."
 
     def _handle_general_query(self, message: str) -> str:
         """Handle general queries using existing RAG approach."""
@@ -434,7 +471,7 @@ Outgoing Relationships (this dataset references):
             return "I couldn't find any relevant information in the catalog for your query."
 
     def keyword_chat(
-        self, message: str = "Hello, how can you help me?", params=None
+        self, message: str = "Hello, how can you help me?"
     ) -> str:
         """
         Send a message to the ESIIL LLM and return the response
