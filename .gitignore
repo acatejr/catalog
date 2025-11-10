@@ -223,3 +223,13 @@ mise.local.toml
 
 # Claude Code local settings (contains API keys)
 .claude/settings.local.json
+
+# SolidJS Client Frontend
+client/node_modules/
+client/dist/
+client/build/
+client/.env
+client/.env.local
+client/.vite/
+client/*.log
+client/.DS_Store
