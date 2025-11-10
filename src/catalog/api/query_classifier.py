@@ -183,9 +183,9 @@ def format_keyword_response(keywords_data, params: dict) -> str:
     Returns:
         str: Formatted natural language response
     """
-    if params.get("count", False) and params.get("distinct", False):
-        # Ref: lines 137-139 (but fixes the logic)
-        # Format: "There are X unique keywords. Top 10: keyword1 (5), keyword2 (3)..."
+    if params.get("count", False):
+        # Format with counts - keywords_data should be list of dicts with 'keyword' and 'count' keys
+        # Format: "There are X unique keywords. Top keywords: keyword1 (5), keyword2 (3)..."
         total = len(keywords_data)
         formatted_items = [
             f"{kw['keyword']} ({kw['count']})" for kw in keywords_data[:10]
@@ -193,10 +193,10 @@ def format_keyword_response(keywords_data, params: dict) -> str:
         return f"There are {total} unique keywords in the catalog. Top keywords: {', '.join(formatted_items)}"
 
     elif params.get("distinct", False):
-        # Ref: lines 125-135 (corrects the logic flow)
+        # Format distinct keywords without counts
         # Format: "Here are the X unique keywords: keyword1, keyword2, ..."
         return f"There are {len(keywords_data)} unique keywords: {', '.join(keywords_data)}"
 
     else:
-        # All keywords including duplicates (missing from reference code)
+        # All keywords including duplicates (no counts)
         return f"Here are {len(keywords_data)} keywords: {', '.join(keywords_data)}"

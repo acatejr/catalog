@@ -128,11 +128,15 @@ async def query(q: str, api_key: str = Depends(verify_api_key)):
         params = query_type["params"]
 
         # Route to appropriate database function (fixes reference code issues)
-        if params["distinct"] and params["count"]:
+        # Note: If count is requested, we need distinct keywords (can't count frequencies with duplicates)
+        if params["count"]:
+            # Requesting counts implies we want unique keywords with their frequencies
             data = get_keywords_with_counts(limit=params.get("limit"), sort="frequency")
         elif params["distinct"]:
+            # Just unique keywords without counts
             data = get_distinct_keywords_only(limit=params.get("limit"), sort="alpha")
         else:
+            # All keywords including duplicates
             data = get_all_keywords(limit=params.get("limit"))
 
         # Format the response
