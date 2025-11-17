@@ -1,0 +1,1453 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../eainfo-data-model/">
+      
+      
+        <link rel="next" href="../xml-parsing-comparison/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Schema Parser Testing - Catalog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#schema-parser-testing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Catalog" class="md-header__button md-logo" aria-label="Catalog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Catalog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Schema Parser Testing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Catalog" class="md-nav__button md-logo" aria-label="Catalog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Catalog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-lineage-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Schema &amp; Lineage Support Enhancement Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eainfo-data-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EAINFO Data Model - Refined Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema Parser Testing
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema Parser Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test File
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests-implemented" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tests Implemented
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tests Implemented">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-test_parse_actv_brush_disposal_xml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. test_parse_actv_brush_disposal_xml()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-test_parse_actv_brush_disposal_to_schema_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. test_parse_actv_brush_disposal_to_schema_dict()
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running the Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-both-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run Both Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-individual-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run Individual Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-debug-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        With Debug Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expected-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected Results
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Design Principles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Design Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integration-over-unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Over Unit Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graceful-degradation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graceful Degradation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-friendly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug-Friendly
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationship-to-database-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship to Database Storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-test-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future Test Recommendations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Future Test Recommendations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-tests-currently-commented-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unit Tests (Currently Commented Out)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Integration Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Known Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pylance-import-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pylance Import Warning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xml-parsing-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XML Parsing Comparison: ElementTree vs BeautifulSoup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incoming
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Incoming
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../incoming/implementation-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Librarian Implementation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../incoming/query-enhancements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Enhancement Design: Data Librarian Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../incoming/quick-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Librarian Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../incoming/solidjs-chatbot-frontend-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SolidJS Chatbot Frontend Implementation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test File
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tests-implemented" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tests Implemented
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tests Implemented">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-test_parse_actv_brush_disposal_xml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. test_parse_actv_brush_disposal_xml()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-test_parse_actv_brush_disposal_to_schema_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. test_parse_actv_brush_disposal_to_schema_dict()
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-the-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Running the Tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running the Tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#run-both-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run Both Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-individual-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run Individual Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-debug-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        With Debug Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Data
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expected-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected Results
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Design Principles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Design Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#integration-over-unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Over Unit Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graceful-degradation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Graceful Degradation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debug-friendly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Debug-Friendly
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationship-to-database-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship to Database Storage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-test-recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future Test Recommendations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Future Test Recommendations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-tests-currently-commented-out" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unit Tests (Currently Commented Out)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Integration Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Known Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pylance-import-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pylance Import Warning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="schema-parser-testing">Schema Parser Testing</h1>
+<h2 id="overview">Overview</h2>
+<p>Integration tests for the FGDC Entity and Attribute Information (eainfo) parser, based on the <code>__main__</code> block in <code>schema_parser.py</code>.</p>
+<h2 id="test-file">Test File</h2>
+<p><strong>Location:</strong> <code>tests/test_eainfo.py</code></p>
+<h2 id="tests-implemented">Tests Implemented</h2>
+<h3 id="1-test_parse_actv_brush_disposal_xml">1. <code>test_parse_actv_brush_disposal_xml()</code></h3>
+<p>Integration test that parses the actual <code>Actv_BrushDisposal.xml</code> file.</p>
+<p><strong>Purpose:</strong> Validate the complete parsing workflow with real-world FGDC metadata</p>
+<p><strong>Test Coverage:</strong></p>
+<ul>
+<li>Parse XML file using <code>EAInfoParser.parse_xml_file()</code></li>
+<li>Verify eainfo metadata (source_file, parsed_at timestamp)</li>
+<li>Validate detailed information exists</li>
+<li>Check entity type structure and label</li>
+<li>Verify attribute count &gt; 0</li>
+<li>Iterate through all attributes</li>
+<li>Validate attribute structure (label, definition)</li>
+<li>Check for expected attributes (OBJECTID)</li>
+</ul>
+<p><strong>Key Assertions:</strong></p>
+<pre><code class="language-python">assert eainfo.has_detailed_info
+assert eainfo.total_attributes &gt; 0
+assert eainfo.detailed.entity_type.label is not None
+assert &quot;OBJECTID&quot; in attribute_labels
+</code></pre>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Uses <code>pytest.skip()</code> if test file doesn't exist (graceful handling)</li>
+<li>Includes debug print statements for manual verification</li>
+<li>Validates both structure and content</li>
+</ul>
+<h3 id="2-test_parse_actv_brush_disposal_to_schema_dict">2. <code>test_parse_actv_brush_disposal_to_schema_dict()</code></h3>
+<p>Test conversion of parsed eainfo to schema dictionary format.</p>
+<p><strong>Purpose:</strong> Validate the <code>to_schema_dict()</code> method for database storage preparation</p>
+<p><strong>Test Coverage:</strong></p>
+<ul>
+<li>Parse XML file</li>
+<li>Convert eainfo to schema dictionary</li>
+<li>Verify schema dict structure</li>
+<li>Validate required fields</li>
+<li>Check attribute format in dictionary</li>
+</ul>
+<p><strong>Key Assertions:</strong></p>
+<pre><code class="language-python">assert &quot;entity_label&quot; in schema_dict
+assert &quot;entity_definition&quot; in schema_dict
+assert &quot;attributes&quot; in schema_dict
+assert &quot;name&quot; in first_attr
+assert &quot;definition&quot; in first_attr
+assert &quot;domain_type&quot; in first_attr
+</code></pre>
+<p><strong>Use Case:</strong> Prepares data structure for database insertion</p>
+<h2 id="running-the-tests">Running the Tests</h2>
+<h3 id="run-both-tests">Run Both Tests</h3>
+<pre><code class="language-bash">pytest tests/test_eainfo.py -v
+</code></pre>
+<h3 id="run-individual-test">Run Individual Test</h3>
+<pre><code class="language-bash"># Test parsing
+pytest tests/test_eainfo.py::test_parse_actv_brush_disposal_xml -v -s
+
+# Test schema dict conversion
+pytest tests/test_eainfo.py::test_parse_actv_brush_disposal_to_schema_dict -v -s
+</code></pre>
+<h3 id="with-debug-output">With Debug Output</h3>
+<pre><code class="language-bash">pytest tests/test_eainfo.py -v -s
+</code></pre>
+<p>The <code>-s</code> flag shows print statements for debugging.</p>
+<h2 id="test-data">Test Data</h2>
+<p><strong>Required File:</strong> <code>data/catalog/Actv_BrushDisposal.xml</code></p>
+<p>This is a real FGDC metadata file for the U.S. Forest Service Activity - Brush Disposal feature class.</p>
+<h2 id="expected-results">Expected Results</h2>
+<p>When tests pass, you should see output similar to:</p>
+<pre><code>Entity: S_USA.Activity_BrushDisposal
+Attributes: 42
+  - OBJECTID: Internal feature number...
+  - SHAPE: Feature geometry...
+  - ACTIVITY_CODE: Activity code from FACTS system...
+  ...
+
+Schema for S_USA.Activity_BrushDisposal with 42 attributes
+</code></pre>
+<h2 id="test-design-principles">Test Design Principles</h2>
+<h3 id="integration-over-unit-tests">Integration Over Unit Tests</h3>
+<p>These are integration tests rather than unit tests because:</p>
+<ul>
+<li>They test the complete parsing workflow</li>
+<li>They use real XML data files</li>
+<li>They validate the entire data pipeline from file to Python objects</li>
+</ul>
+<h3 id="graceful-degradation">Graceful Degradation</h3>
+<pre><code class="language-python">if not os.path.exists(xml_file_path):
+    pytest.skip(f&quot;Test file not found: {xml_file_path}&quot;)
+</code></pre>
+<p>Tests skip gracefully if data files are missing, preventing false negatives in CI/CD environments.</p>
+<h3 id="debug-friendly">Debug-Friendly</h3>
+<p>Print statements included to help diagnose issues:</p>
+<pre><code class="language-python">print(f&quot;Entity: {entity_label}&quot;)
+print(f&quot;Attributes: {eainfo.total_attributes}&quot;)
+</code></pre>
+<h2 id="relationship-to-database-storage">Relationship to Database Storage</h2>
+<p>These tests validate the data structures before they're saved to the database:</p>
+<ol>
+<li><strong>Parse</strong> - <code>test_parse_actv_brush_disposal_xml()</code> validates parsing</li>
+<li><strong>Transform</strong> - <code>test_parse_actv_brush_disposal_to_schema_dict()</code> validates transformation</li>
+<li><strong>Save</strong> - Future test should validate <code>save_eainfo()</code> from <code>db.py</code></li>
+</ol>
+<h2 id="future-test-recommendations">Future Test Recommendations</h2>
+<h3 id="unit-tests-currently-commented-out">Unit Tests (Currently Commented Out)</h3>
+<p>The file contains comprehensive unit tests (lines 1-242) that are currently commented out. These should be uncommented and maintained:</p>
+<ul>
+<li>Domain value type tests (unrepresentable, enumerated, codeset, range)</li>
+<li>Attribute tests (enumerated values, domain filtering)</li>
+<li>Entity type tests</li>
+<li>Parser method tests (parse_domain_value, parse_attribute, etc.)</li>
+</ul>
+<h3 id="additional-integration-tests">Additional Integration Tests</h3>
+<ol>
+<li><strong>Test Multiple XML Files</strong></li>
+</ol>
+<p><code>python
+   @pytest.mark.parametrize("xml_file", [
+       "Actv_BrushDisposal.xml",
+       "Actv_Burning.xml",
+       # ... other files
+   ])
+   def test_parse_various_xml_files(xml_file):
+       # Test parsing multiple file types</code></p>
+<ol>
+<li><strong>Test Database Round-Trip</strong></li>
+</ol>
+<p>```python
+   def test_save_and_retrieve_eainfo():
+       # Parse XML
+       eainfo = parser.parse_xml_file(xml_file_path)</p>
+<pre><code>   # Save to database
+   eainfo_id = save_eainfo(eainfo)
+
+   # Retrieve from database
+   saved_eainfo = get_eainfo_by_id(eainfo_id)
+
+   # Verify data integrity
+   assert saved_eainfo['entity_type']['label'] == eainfo.detailed.entity_type.label
+</code></pre>
+<p>```</p>
+<ol>
+<li><strong>Test Error Handling</strong></li>
+</ol>
+<p>```python
+   def test_parse_invalid_xml():
+       # Test with malformed XML</p>
+<p>def test_parse_missing_required_fields():
+       # Test with incomplete metadata
+   ```</p>
+<ol>
+<li><strong>Performance Tests</strong></li>
+</ol>
+<p><code>python
+   def test_parse_large_xml_performance():
+       # Test with XML files containing many attributes</code></p>
+<h2 id="known-issues">Known Issues</h2>
+<h3 id="pylance-import-warning">Pylance Import Warning</h3>
+<pre><code>⚠ Import &quot;catalog.core.schema_parser&quot; could not be resolved
+</code></pre>
+<p><strong>Resolution:</strong> Ensure PYTHONPATH includes <code>src/</code> directory when running tests:</p>
+<pre><code class="language-bash">PYTHONPATH=src pytest tests/test_eainfo.py
+</code></pre>
+<p>Or use the project's helper script:</p>
+<pre><code class="language-bash">./run-tests.sh
+</code></pre>
+<h2 id="summary">Summary</h2>
+<p>The tests validate:</p>
+<ul>
+<li>✅ XML parsing with real FGDC metadata</li>
+<li>✅ Entity and attribute structure</li>
+<li>✅ Data transformation to schema dictionary</li>
+<li>✅ Graceful handling of missing files</li>
+<li>✅ Debug-friendly output</li>
+</ul>
+<p>Next steps:</p>
+<ol>
+<li>Uncomment and update unit tests</li>
+<li>Add database round-trip tests</li>
+<li>Add parametrized tests for multiple XML files</li>
+<li>Create CI/CD pipeline integration</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

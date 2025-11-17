@@ -1,0 +1,1958 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="../eainfo-data-model/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Data Schema & Lineage Support Enhancement Plan - Catalog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-schema-lineage-support-enhancement-plan" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Catalog" class="md-header__button md-logo" aria-label="Catalog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Catalog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Schema &amp; Lineage Support Enhancement Plan
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Catalog" class="md-nav__button md-logo" aria-label="Catalog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Catalog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Schema &amp; Lineage Support Enhancement Plan
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Schema &amp; Lineage Support Enhancement Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-data-structure-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current Data Structure Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Current Data Structure Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xml-metadata-files-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XML Metadata Files Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-xml-sections-example-actv_brushdisposalxml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key XML Sections (Example: Actv_BrushDisposal.xml)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key XML Sections (Example: Actv_BrushDisposal.xml)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-entity-and-attribute-information-eainfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Entity and Attribute Information (&lt;eainfo&gt;)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-data-lineage-lineage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Data Lineage (&lt;lineage&gt;)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-data-quality-dataqual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Data Quality (&lt;dataqual&gt;)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-system-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current System Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Current System Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#existing-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Existing Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed Enhancement
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposed Enhancement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task-1-schema-parser-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 1: Schema Parser Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-2-database-schema-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 2: Database Schema Enhancement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-3-embedding-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 3: Embedding Enhancement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-4-query-classification-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 4: Query Classification Enhancement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-5-llm-prompt-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 5: LLM Prompt Enhancement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-6-api-endpoint-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 6: API Endpoint Enhancement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-query-flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Query Flows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example Query Flows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1-schema-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1: Schema Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-lineage-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2: Lineage Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3-field-specific-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3: Field-Specific Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Priority
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation Priority">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-core-schema-support-tasks-1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Core Schema Support (Tasks 1-2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-integration-tasks-3-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Integration (Tasks 3-4)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-api-llm-tasks-5-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: API &amp; LLM (Tasks 5-6)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../eainfo-data-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EAINFO Data Model - Refined Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema_parser_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema Parser Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xml-parsing-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XML Parsing Comparison: ElementTree vs BeautifulSoup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incoming
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Incoming
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../incoming/implementation-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Librarian Implementation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../incoming/query-enhancements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Enhancement Design: Data Librarian Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../incoming/quick-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Librarian Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../incoming/solidjs-chatbot-frontend-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SolidJS Chatbot Frontend Implementation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-data-structure-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current Data Structure Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Current Data Structure Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xml-metadata-files-location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        XML Metadata Files Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-xml-sections-example-actv_brushdisposalxml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key XML Sections (Example: Actv_BrushDisposal.xml)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key XML Sections (Example: Actv_BrushDisposal.xml)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-entity-and-attribute-information-eainfo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Entity and Attribute Information (&lt;eainfo&gt;)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-data-lineage-lineage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Data Lineage (&lt;lineage&gt;)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-data-quality-dataqual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Data Quality (&lt;dataqual&gt;)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-system-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current System Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Current System Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#existing-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Existing Components
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed Enhancement
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposed Enhancement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task-1-schema-parser-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 1: Schema Parser Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-2-database-schema-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 2: Database Schema Enhancement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-3-embedding-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 3: Embedding Enhancement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-4-query-classification-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 4: Query Classification Enhancement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-5-llm-prompt-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 5: LLM Prompt Enhancement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-6-api-endpoint-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task 6: API Endpoint Enhancement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-query-flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Query Flows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example Query Flows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1-schema-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1: Schema Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-lineage-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2: Lineage Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3-field-specific-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3: Field-Specific Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Priority
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation Priority">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-core-schema-support-tasks-1-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Core Schema Support (Tasks 1-2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-integration-tasks-3-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Integration (Tasks 3-4)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-api-llm-tasks-5-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: API &amp; LLM (Tasks 5-6)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Benefits
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Considerations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="data-schema-lineage-support-enhancement-plan">Data Schema &amp; Lineage Support Enhancement Plan</h1>
+<p><strong>Date:</strong> November 3, 2025
+<strong>Project:</strong> Catalog - Metadata Catalog with AI-Enhanced Search</p>
+<h2 id="overview">Overview</h2>
+<p>Enhancement plan to enable natural language queries about data schemas and lineage, such as:
+- "Describe the data lineage of Actv_BrushDisposal.xml?"
+- "What fields are in the Brush Disposal dataset?"
+- "What is the data type for REGION_CODE?"</p>
+<h2 id="current-data-structure-analysis">Current Data Structure Analysis</h2>
+<h3 id="xml-metadata-files-location">XML Metadata Files Location</h3>
+<p><code>data/catalog/*.xml</code> - 191 XML files containing USFS dataset metadata</p>
+<h3 id="key-xml-sections-example-actv_brushdisposalxml">Key XML Sections (Example: Actv_BrushDisposal.xml)</h3>
+<h4 id="1-entity-and-attribute-information-eainfo">1. Entity and Attribute Information (<code>&lt;eainfo&gt;</code>)</h4>
+<p>Located at line 139+, contains:
+- <strong>Field names</strong> (<code>&lt;attrlabl&gt;</code>): e.g., OBJECTID, REGION_CODE, ADMIN_FOREST_CODE
+- <strong>Field definitions</strong> (<code>&lt;attrdef&gt;</code>): Detailed descriptions of each field
+- <strong>Data types/domains</strong> (<code>&lt;attrdomv&gt;</code>): Type constraints and value ranges
+- <strong>Enumerated values</strong> (<code>&lt;edom&gt;</code>): Coded values with descriptions
+  - Example: Activity codes (1000=Fire, 2000=Range, etc.)</p>
+<p>Example structure:</p>
+<pre><code class="language-xml">&lt;attr&gt;
+    &lt;attrlabl&gt;REGION_CODE&lt;/attrlabl&gt;
+    &lt;attrdef&gt;U.S. Forest Service Region, consisting of Region 01...&lt;/attrdef&gt;
+    &lt;attrdefs&gt;U.S. Forest Service&lt;/attrdefs&gt;
+    &lt;attrdomv&gt;
+        &lt;udom&gt;Region numbers as text.&lt;/udom&gt;
+    &lt;/attrdomv&gt;
+&lt;/attr&gt;
+</code></pre>
+<h4 id="2-data-lineage-lineage">2. Data Lineage (<code>&lt;lineage&gt;</code>)</h4>
+<p>Located at line 115+, contains:
+- <strong>Process steps</strong> (<code>&lt;procstep&gt;</code>): Processing methodology
+- <strong>Process dates</strong> (<code>&lt;procdate&gt;</code>): When processing occurred
+- <strong>Process descriptions</strong> (<code>&lt;procdesc&gt;</code>): Detailed processing steps</p>
+<p>Example:</p>
+<pre><code class="language-xml">&lt;procstep&gt;
+    &lt;procdesc&gt;Forest Service Activity Tracking (FACTS) spatial features in
+        ActivityPolygon_Subunit and tabular data from ACTIVITY_FACTS_ATTRIBUTES are
+        merged based on like spatial identification codes (SUID)...&lt;/procdesc&gt;
+    &lt;procdate&gt;20160101&lt;/procdate&gt;
+&lt;/procstep&gt;
+</code></pre>
+<h4 id="3-data-quality-dataqual">3. Data Quality (<code>&lt;dataqual&gt;</code>)</h4>
+<p>Located at line 102+, contains:
+- <strong>Logic</strong>: Data entry methodology
+- <strong>Completeness</strong>: Currency and accuracy information
+- <strong>Positional accuracy</strong>: Spatial data quality</p>
+<h2 id="current-system-architecture">Current System Architecture</h2>
+<h3 id="existing-components">Existing Components</h3>
+<p><strong>CLI Module</strong> (<code>src/catalog/cli/cli.py</code>)
+- Downloads metadata from 3 sources (fsgeodata, datahub, RDA)
+- Parses XML/JSON metadata
+- Creates embeddings and stores in vector DB</p>
+<p><strong>API Module</strong> (<code>src/catalog/api/api.py</code>)
+- FastAPI endpoints: <code>/query</code>, <code>/keywords</code>, <code>/health</code>
+- Query classification system
+- LLM-enhanced search via ChatBot</p>
+<p><strong>Database</strong> (<code>src/catalog/core/db.py</code>)
+- PostgreSQL with pgvector extension
+- Current schema: documents table with:
+  - <code>doc_id</code>, <code>title</code>, <code>description</code>, <code>keywords</code>
+  - <code>embedding</code> (vector)
+  - <code>chunk_text</code>, <code>chunk_type</code>, <code>chunk_index</code>
+  - <code>data_source</code></p>
+<p><strong>LLM Integration</strong> (<code>src/catalog/api/llm.py</code>)
+- ChatBot class with RAG pattern
+- Retrieves relevant documents via vector search
+- Sends context + query to LLM (ESIIL or OpenAI)
+- System prompt: "professional data librarian"</p>
+<p><strong>Schema Models</strong> (<code>src/catalog/core/schema.py</code>)
+- USFSDocument Pydantic model
+- Fields: id, title, description, keywords, src</p>
+<h2 id="proposed-enhancement">Proposed Enhancement</h2>
+<h3 id="task-1-schema-parser-module">Task 1: Schema Parser Module</h3>
+<p><strong>New file:</strong> <code>src/catalog/core/schema_parser.py</code></p>
+<p><strong>Functions:</strong></p>
+<pre><code class="language-python">def parse_xml_schema(xml_file_path: str) -&gt; DatasetSchema:
+    &quot;&quot;&quot;Extract field definitions from XML &lt;eainfo&gt; section&quot;&quot;&quot;
+
+def parse_xml_lineage(xml_file_path: str) -&gt; DatasetLineage:
+    &quot;&quot;&quot;Extract processing steps from XML &lt;lineage&gt; section&quot;&quot;&quot;
+
+def parse_data_quality(xml_file_path: str) -&gt; DataQualityInfo:
+    &quot;&quot;&quot;Extract data quality information&quot;&quot;&quot;
+</code></pre>
+<p><strong>Data Models:</strong></p>
+<pre><code class="language-python">class FieldDefinition(BaseModel):
+    field_name: str
+    field_definition: str
+    field_source: Optional[str]
+    domain_type: str  # &quot;udom&quot;, &quot;edom&quot;, &quot;rdom&quot;
+    domain_values: Optional[List[EnumeratedValue]]
+
+class EnumeratedValue(BaseModel):
+    code: str
+    description: str
+    source: Optional[str]
+
+class DatasetSchema(BaseModel):
+    dataset_id: str
+    entity_type: str
+    entity_definition: str
+    fields: List[FieldDefinition]
+
+class DatasetLineage(BaseModel):
+    dataset_id: str
+    process_steps: List[ProcessStep]
+
+class ProcessStep(BaseModel):
+    description: str
+    date: Optional[str]
+    sources: Optional[List[str]]
+</code></pre>
+<h3 id="task-2-database-schema-enhancement">Task 2: Database Schema Enhancement</h3>
+<p><strong>New tables to add via migration:</strong></p>
+<pre><code class="language-sql">-- Table for dataset schemas
+CREATE TABLE dataset_schemas (
+    id SERIAL PRIMARY KEY,
+    dataset_id VARCHAR(255) NOT NULL,
+    entity_type VARCHAR(255),
+    entity_definition TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (dataset_id) REFERENCES documents(doc_id)
+);
+
+-- Table for field definitions
+CREATE TABLE dataset_fields (
+    id SERIAL PRIMARY KEY,
+    schema_id INTEGER REFERENCES dataset_schemas(id),
+    field_name VARCHAR(255) NOT NULL,
+    field_definition TEXT,
+    field_source VARCHAR(255),
+    domain_type VARCHAR(50),
+    domain_values JSONB,  -- Store enumerated values as JSON
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Table for lineage information
+CREATE TABLE dataset_lineage (
+    id SERIAL PRIMARY KEY,
+    dataset_id VARCHAR(255) NOT NULL,
+    process_step TEXT NOT NULL,
+    process_date VARCHAR(50),
+    process_sources TEXT[],
+    step_order INTEGER,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (dataset_id) REFERENCES documents(doc_id)
+);
+
+-- Indexes for performance
+CREATE INDEX idx_dataset_fields_schema_id ON dataset_fields(schema_id);
+CREATE INDEX idx_dataset_lineage_dataset_id ON dataset_lineage(dataset_id);
+</code></pre>
+<p><strong>New DB functions in</strong> <code>db.py</code>:</p>
+<pre><code class="language-python">def store_dataset_schema(schema: DatasetSchema) -&gt; int
+def store_dataset_lineage(lineage: DatasetLineage) -&gt; int
+def get_schema_by_dataset_id(dataset_id: str) -&gt; Optional[DatasetSchema]
+def get_lineage_by_dataset_id(dataset_id: str) -&gt; Optional[DatasetLineage]
+def search_fields(field_name_pattern: str) -&gt; List[FieldDefinition]
+</code></pre>
+<h3 id="task-3-embedding-enhancement">Task 3: Embedding Enhancement</h3>
+<p><strong>Update</strong> <code>cli.py</code> <code>embed_and_store()</code> function:</p>
+<pre><code class="language-python">def embed_and_store():
+    &quot;&quot;&quot;Enhanced to include schema information in embeddings&quot;&quot;&quot;
+
+    # Existing code...
+
+    for doc in fsdocs:
+        # Parse schema from XML
+        schema = parse_xml_schema(xml_file_path)
+        lineage = parse_xml_lineage(xml_file_path)
+
+        # Store schema separately
+        store_dataset_schema(schema)
+        store_dataset_lineage(lineage)
+
+        # Create schema summary for embedding
+        schema_text = format_schema_for_embedding(schema)
+        lineage_text = format_lineage_for_embedding(lineage)
+
+        # Create chunks with different types
+        chunks = [
+            # Existing title+desc+keywords chunk
+            create_metadata_chunk(doc),
+            # New schema chunk
+            create_schema_chunk(schema_text, chunk_type=&quot;schema&quot;),
+            # New lineage chunk
+            create_lineage_chunk(lineage_text, chunk_type=&quot;lineage&quot;)
+        ]
+
+        # Embed and store all chunks
+</code></pre>
+<p><strong>Benefits:</strong>
+- Schema information becomes searchable via vector similarity
+- Separate chunk types allow targeted retrieval
+- Maintains backward compatibility with existing embeddings</p>
+<h3 id="task-4-query-classification-enhancement">Task 4: Query Classification Enhancement</h3>
+<p><strong>Update</strong> <code>src/catalog/api/query_classifier.py</code>:</p>
+<pre><code class="language-python">def classify_query(query: str) -&gt; dict:
+    &quot;&quot;&quot;Enhanced to detect schema and lineage queries&quot;&quot;&quot;
+
+    # Existing patterns...
+
+    # New patterns
+    schema_patterns = [
+        r&quot;(what|which|list)\s+(fields|columns|attributes|variables)&quot;,
+        r&quot;(describe|explain|show)\s+.*\s+(schema|structure|fields)&quot;,
+        r&quot;(data\s+type|field\s+type|column\s+type)&quot;,
+        r&quot;(field\s+definition|attribute\s+definition)&quot;,
+    ]
+
+    lineage_patterns = [
+        r&quot;(data\s+lineage|data\s+provenance)&quot;,
+        r&quot;(where.*come\s+from|data\s+source)&quot;,
+        r&quot;(how.*processed|processing\s+steps)&quot;,
+        r&quot;(data\s+pipeline|data\s+flow)&quot;,
+    ]
+
+    # Classification logic...
+    if matches_any(query, schema_patterns):
+        return {
+            &quot;type&quot;: &quot;schema_query&quot;,
+            &quot;dataset&quot;: extract_dataset_name(query),
+            &quot;specific_field&quot;: extract_field_name(query)
+        }
+
+    if matches_any(query, lineage_patterns):
+        return {
+            &quot;type&quot;: &quot;lineage_query&quot;,
+            &quot;dataset&quot;: extract_dataset_name(query)
+        }
+</code></pre>
+<h3 id="task-5-llm-prompt-enhancement">Task 5: LLM Prompt Enhancement</h3>
+<p><strong>Update</strong> <code>src/catalog/api/llm.py</code> ChatBot class:</p>
+<pre><code class="language-python">def chat_with_schema(self, message: str, include_schema: bool = True) -&gt; str:
+    &quot;&quot;&quot;Enhanced chat with schema context&quot;&quot;&quot;
+
+    # Detect dataset being asked about
+    dataset_id = extract_dataset_id_from_query(message)
+
+    # Retrieve schema and lineage if available
+    schema = get_schema_by_dataset_id(dataset_id) if dataset_id else None
+    lineage = get_lineage_by_dataset_id(dataset_id) if dataset_id else None
+
+    # Build enhanced context
+    context = self.get_documents(message)
+
+    if schema:
+        context += f&quot;\n\nDATASET SCHEMA:\n{format_schema_for_llm(schema)}&quot;
+
+    if lineage:
+        context += f&quot;\n\nDATA LINEAGE:\n{format_lineage_for_llm(lineage)}&quot;
+
+    # Enhanced system prompt
+    system_prompt = &quot;&quot;&quot;
+    You are a professional data librarian specializing in scientific data discovery,
+    metadata curation, and data governance. You have expertise in:
+    - Dataset discovery and evaluation
+    - Data schema interpretation (field types, domains, constraints)
+    - Data lineage and provenance tracking
+    - Data quality assessment
+
+    When answering questions about:
+    - SCHEMAS: Provide clear field-by-field descriptions, data types, and valid values
+    - LINEAGE: Explain data sources, processing steps, and update frequency
+    - QUALITY: Describe completeness, accuracy, and known limitations
+
+    Use the provided schema and lineage information to give precise, technical answers.
+    &quot;&quot;&quot;
+
+    # Rest of chat logic...
+</code></pre>
+<h3 id="task-6-api-endpoint-enhancement">Task 6: API Endpoint Enhancement</h3>
+<p><strong>Add new endpoints in</strong> <code>api.py</code>:</p>
+<pre><code class="language-python">@api.get(&quot;/schema/{dataset_id}&quot;, tags=[&quot;Schema&quot;])
+async def get_dataset_schema(
+    dataset_id: str,
+    api_key: str = Depends(verify_api_key)
+):
+    &quot;&quot;&quot;
+    Get structured schema information for a specific dataset.
+
+    Returns:
+    - Entity type and definition
+    - List of all fields with definitions
+    - Enumerated domain values where applicable
+    &quot;&quot;&quot;
+    schema = get_schema_by_dataset_id(dataset_id)
+
+    if not schema:
+        raise HTTPException(status_code=404, detail=&quot;Schema not found&quot;)
+
+    return {
+        &quot;dataset_id&quot;: dataset_id,
+        &quot;schema&quot;: schema.dict()
+    }
+
+@api.get(&quot;/lineage/{dataset_id}&quot;, tags=[&quot;Lineage&quot;])
+async def get_dataset_lineage(
+    dataset_id: str,
+    api_key: str = Depends(verify_api_key)
+):
+    &quot;&quot;&quot;
+    Get data lineage information for a specific dataset.
+
+    Returns:
+    - Processing steps in order
+    - Data sources
+    - Process dates
+    &quot;&quot;&quot;
+    lineage = get_lineage_by_dataset_id(dataset_id)
+
+    if not lineage:
+        raise HTTPException(status_code=404, detail=&quot;Lineage not found&quot;)
+
+    return {
+        &quot;dataset_id&quot;: dataset_id,
+        &quot;lineage&quot;: lineage.dict()
+    }
+
+@api.get(&quot;/query&quot;, tags=[&quot;Query&quot;])
+async def query(q: str, api_key: str = Depends(verify_api_key)):
+    &quot;&quot;&quot;Enhanced query endpoint with schema/lineage support&quot;&quot;&quot;
+
+    query_type = classify_query(q)
+
+    if query_type[&quot;type&quot;] == &quot;schema_query&quot;:
+        # Handle schema-specific queries
+        dataset_id = query_type[&quot;dataset&quot;]
+        schema = get_schema_by_dataset_id(dataset_id)
+
+        # Format for LLM
+        bot = ChatBot()
+        response = bot.chat_with_schema(message=q, include_schema=True)
+
+        return {
+            &quot;query&quot;: q,
+            &quot;response&quot;: response,
+            &quot;schema&quot;: schema.dict() if schema else None
+        }
+
+    elif query_type[&quot;type&quot;] == &quot;lineage_query&quot;:
+        # Handle lineage-specific queries
+        dataset_id = query_type[&quot;dataset&quot;]
+        lineage = get_lineage_by_dataset_id(dataset_id)
+
+        bot = ChatBot()
+        response = bot.chat_with_schema(message=q, include_schema=True)
+
+        return {
+            &quot;query&quot;: q,
+            &quot;response&quot;: response,
+            &quot;lineage&quot;: lineage.dict() if lineage else None
+        }
+
+    # Existing query handling...
+</code></pre>
+<h2 id="example-query-flows">Example Query Flows</h2>
+<h3 id="example-1-schema-query">Example 1: Schema Query</h3>
+<p><strong>User Query:</strong> "What fields are in the Actv_BrushDisposal dataset?"</p>
+<p><strong>Flow:</strong>
+1. Query classifier detects "schema_query"
+2. Extract dataset name: "Actv_BrushDisposal"
+3. Retrieve schema from <code>dataset_schemas</code> + <code>dataset_fields</code> tables
+4. Format schema context for LLM
+5. LLM generates natural language response listing all fields</p>
+<p><strong>Expected Response:</strong></p>
+<pre><code>The Actv_BrushDisposal dataset contains the following fields:
+
+1. OBJECTID - Internal feature number (auto-generated sequential ID)
+2. REGION_CODE - U.S. Forest Service Region (01-10, text format)
+3. ADMIN_FOREST_CODE - Numerical code of administering forest
+4. ADMIN_FOREST_NAME - Name of administering forest
+5. PROCLAIMED_FOREST_CODE - Physical location forest code
+6. ADMIN_DISTRICT_NAME - Ranger District name
+7. DISTRICT_CODE - Unique district identifier (format: XX-XX-XX)
+8. HOME_ORG - Home organization code (6 digits: region-forest-district)
+9. ACTIVITY_UNIT_ORG - Activity unit organization code
+10. SUID - Subunit ID (19-digit concatenated identifier)
+11. FACTS_ID - Activity unit identifier (10 alphanumeric chars)
+12. SUBUNIT - Activity subunit portion identifier
+13. SALE_NAME - Timber sale contract name
+14. ACTIVITY_CODE - 4-digit activity code (1000=Fire, 2000=Range, etc.)
+
+[... additional fields ...]
+
+This schema represents brush disposal activities tracked through the Forest Service
+Activity Tracking System (FACTS).
+</code></pre>
+<h3 id="example-2-lineage-query">Example 2: Lineage Query</h3>
+<p><strong>User Query:</strong> "Describe the data lineage of Actv_BrushDisposal.xml"</p>
+<p><strong>Flow:</strong>
+1. Query classifier detects "lineage_query"
+2. Extract dataset name: "Actv_BrushDisposal"
+3. Retrieve lineage from <code>dataset_lineage</code> table
+4. Format lineage context for LLM
+5. LLM generates natural language response explaining provenance</p>
+<p><strong>Expected Response:</strong></p>
+<pre><code>The Actv_BrushDisposal dataset has the following data lineage:
+
+**Source Systems:**
+- Forest Service Activity Tracking System (FACTS) - tabular data
+- ActivityPolygon_Subunit - spatial features
+
+**Processing Steps:**
+1. Spatial features from ActivityPolygon_Subunit and tabular data from
+   ACTIVITY_FACTS_ATTRIBUTES are merged based on Subunit ID (SUID)
+
+2. A spatial feature is created for every activity record in the
+   Activity_Facts_Attribute table
+
+3. Only changed or new data from sources are processed incrementally
+
+4. Features deleted from source are also deleted from Activity_BrushDisposal
+
+5. GIS acres are calculated nightly for each feature
+
+**Update Frequency:** Weekly (as of publication date 2025-10-24)
+
+**Data Quality Notes:**
+- Spatial data entry is optional but becoming required
+- Not all brush disposal activities may be represented
+- Quality expected to improve as spatial requirements are enforced
+
+**Processing Start Date:** 2016-01-01
+</code></pre>
+<h3 id="example-3-field-specific-query">Example 3: Field-Specific Query</h3>
+<p><strong>User Query:</strong> "What is the ACTIVITY_CODE field and what values can it have?"</p>
+<p><strong>Flow:</strong>
+1. Classifier detects schema query with specific field
+2. Retrieve field definition for "ACTIVITY_CODE"
+3. Retrieve enumerated domain values
+4. Format for LLM with field details and value codes</p>
+<p><strong>Expected Response:</strong></p>
+<pre><code>The ACTIVITY_CODE field is a 4-digit code representing the type of activity performed.
+
+**Definition:** Activity codes numerically categorize Forest Service activities into
+groups such as Fire, Range, Timber, Wildlife, etc.
+
+**Valid Values:**
+- 1000 series: Fire/Fuels Activities
+  - 1001: Fire Protection Inventory
+  - 1100: Fuel Inventory
+  - 1111: Broadcast Burning
+  [... more codes ...]
+
+- 2000 series: Range Activities
+- 3000 series: Cultural Resources and Recreation
+- 4000 series: Timber and Silviculture
+- 5000 series: Soil, Air and Watershed
+- 6000 series: Wildlife, Threatened/Endangered, and Fisheries
+- 7000 series: Vegetation/Restoration
+- 8000 series: Miscellaneous
+- 9000 series: Engineering
+
+**Source:** FACTS User Guide, Appendix B: Activity Codes
+</code></pre>
+<h2 id="implementation-priority">Implementation Priority</h2>
+<h3 id="phase-1-core-schema-support-tasks-1-2">Phase 1: Core Schema Support (Tasks 1-2)</h3>
+<ul>
+<li>Build XML schema parser</li>
+<li>Create database schema</li>
+<li>Test with sample datasets</li>
+</ul>
+<h3 id="phase-2-integration-tasks-3-4">Phase 2: Integration (Tasks 3-4)</h3>
+<ul>
+<li>Update embedding pipeline</li>
+<li>Add query classification</li>
+<li>Test schema retrieval</li>
+</ul>
+<h3 id="phase-3-api-llm-tasks-5-6">Phase 3: API &amp; LLM (Tasks 5-6)</h3>
+<ul>
+<li>Enhance LLM prompts</li>
+<li>Add API endpoints</li>
+<li>End-to-end testing</li>
+</ul>
+<h2 id="testing-strategy">Testing Strategy</h2>
+<ol>
+<li><strong>Unit Tests:</strong></li>
+<li>XML parsing functions</li>
+<li>Database CRUD operations</li>
+<li>
+<p>Query classification patterns</p>
+</li>
+<li>
+<p><strong>Integration Tests:</strong></p>
+</li>
+<li>Full pipeline: XML → Parse → Store → Retrieve → Embed</li>
+<li>API endpoint responses</li>
+<li>
+<p>LLM context building</p>
+</li>
+<li>
+<p><strong>Test Queries:</strong></p>
+</li>
+<li>"List all fields in Actv_BrushDisposal"</li>
+<li>"What is the data lineage for brush disposal data?"</li>
+<li>"Explain the REGION_CODE field"</li>
+<li>"What activity codes are used for fire management?"</li>
+</ol>
+<h2 id="benefits">Benefits</h2>
+<ol>
+<li><strong>Enhanced Discovery:</strong> Users can understand dataset structure before use</li>
+<li><strong>Data Governance:</strong> Track data lineage and processing steps</li>
+<li><strong>Better Search:</strong> Schema-aware embeddings improve retrieval accuracy</li>
+<li><strong>Transparency:</strong> Clear field definitions and domain values</li>
+<li><strong>Compliance:</strong> Support data provenance requirements</li>
+</ol>
+<h2 id="technical-considerations">Technical Considerations</h2>
+<ol>
+<li><strong>Performance:</strong></li>
+<li>Schema/lineage stored separately from embeddings</li>
+<li>Indexed for fast retrieval</li>
+<li>
+<p>Can be cached at API layer</p>
+</li>
+<li>
+<p><strong>Scalability:</strong></p>
+</li>
+<li>Schema tables normalized (one row per field)</li>
+<li>JSONB for flexible domain value storage</li>
+<li>
+<p>Incremental updates supported</p>
+</li>
+<li>
+<p><strong>Backward Compatibility:</strong></p>
+</li>
+<li>New tables don't affect existing queries</li>
+<li>Schema enrichment is additive</li>
+<li>
+<p>Old API endpoints unchanged</p>
+</li>
+<li>
+<p><strong>Data Quality:</strong></p>
+</li>
+<li>Not all XML files may have complete schema info</li>
+<li>Parser should handle missing sections gracefully</li>
+<li>Log parsing errors for review</li>
+</ol>
+<h2 id="next-steps">Next Steps</h2>
+<p><strong>Decision Points:</strong>
+1. Implement all 6 tasks or start with subset?
+2. Natural language queries only, or also structured API endpoints?
+3. Store lineage/schema separately or combined in document metadata?</p>
+<p><strong>Recommended Start:</strong>
+- Begin with Tasks 1-2 (parser + database)
+- Validate with 5-10 sample XML files
+- Then proceed to integration tasks</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

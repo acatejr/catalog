@@ -1,0 +1,3265 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../implementation-summary/">
+      
+      
+        <link rel="next" href="../quick-reference/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Query Enhancement Design: Data Librarian Capabilities - Catalog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#query-enhancement-design-data-librarian-capabilities" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Catalog" class="md-header__button md-logo" aria-label="Catalog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Catalog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Query Enhancement Design: Data Librarian Capabilities
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Catalog" class="md-nav__button md-logo" aria-label="Catalog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Catalog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-lineage-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Schema &amp; Lineage Support Enhancement Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../eainfo-data-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EAINFO Data Model - Refined Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../schema_parser_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema Parser Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../xml-parsing-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XML Parsing Comparison: ElementTree vs BeautifulSoup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incoming
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Incoming
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../implementation-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Librarian Implementation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Enhancement Design: Data Librarian Capabilities
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Enhancement Design: Data Librarian Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Executive Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#target-query-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Target Query Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-state-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current State Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Current State Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#existing-schema-infrastructure-schema_parserpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Existing Schema Infrastructure (schema_parser.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-already-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's Already Working
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's Missing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enhancement-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enhancement Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enhancement Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-leverage-existing-schema-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Leverage Existing Schema Infrastructure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Leverage Existing Schema Infrastructure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-extend-entity_type-with-dataset-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Extend entity_type with Dataset Metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-extend-attribute-with-technical-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Extend attribute with Technical Metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-new-data-lineage-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 New: Data Lineage Tables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-new-cross-dataset-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 New: Cross-Dataset Relationships
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-enhanced-pydantic-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Enhanced Pydantic Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-enhanced-database-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Enhanced Database Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-enhanced-chatbot-with-query-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Enhanced ChatBot with Query Classification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-enhanced-harvesting-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Enhanced Harvesting Process
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-new-api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. New API Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-implementation-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Implementation Phases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Implementation Phases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-extend-database-schema-week-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Extend Database Schema (Week 1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-enhance-database-functions-week-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Enhance Database Functions (Week 2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-query-classification-week-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: Query Classification (Week 3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-enhanced-harvesting-week-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: Enhanced Harvesting (Week 4)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-5-api-enhancement-week-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5: API Enhancement (Week 5)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-6-quality-optimization-week-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 6: Quality &amp; Optimization (Week 6)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-example-query-flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Example Query Flows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Example Query Flows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1-schema-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1: Schema Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-lineage-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2: Lineage Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-migration-sql-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Migration SQL Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-testing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Testing Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Testing Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unit Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conclusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-were-adding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What We're Adding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Librarian Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solidjs-chatbot-frontend-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SolidJS Chatbot Frontend Implementation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Executive Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#target-query-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Target Query Types
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#current-state-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Current State Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Current State Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#existing-schema-infrastructure-schema_parserpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Existing Schema Infrastructure (schema_parser.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-already-working" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's Already Working
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-missing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's Missing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enhancement-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enhancement Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enhancement Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-leverage-existing-schema-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Leverage Existing Schema Infrastructure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Leverage Existing Schema Infrastructure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-extend-entity_type-with-dataset-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Extend entity_type with Dataset Metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-extend-attribute-with-technical-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Extend attribute with Technical Metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-new-data-lineage-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 New: Data Lineage Tables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-new-cross-dataset-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 New: Cross-Dataset Relationships
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-enhanced-pydantic-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Enhanced Pydantic Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-enhanced-database-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Enhanced Database Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-enhanced-chatbot-with-query-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Enhanced ChatBot with Query Classification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-enhanced-harvesting-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Enhanced Harvesting Process
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-new-api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. New API Endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-implementation-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Implementation Phases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Implementation Phases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-extend-database-schema-week-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Extend Database Schema (Week 1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-enhance-database-functions-week-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Enhance Database Functions (Week 2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-query-classification-week-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: Query Classification (Week 3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-enhanced-harvesting-week-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: Enhanced Harvesting (Week 4)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-5-api-enhancement-week-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5: API Enhancement (Week 5)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-6-quality-optimization-week-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 6: Quality &amp; Optimization (Week 6)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-example-query-flows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Example Query Flows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Example Query Flows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1-schema-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1: Schema Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-lineage-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2: Lineage Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-migration-sql-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Migration SQL Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-testing-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Testing Strategy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Testing Strategy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unit-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unit Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conclusion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Benefits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-were-adding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What We're Adding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next Steps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="query-enhancement-design-data-librarian-capabilities">Query Enhancement Design: Data Librarian Capabilities</h1>
+<h2 id="executive-summary">Executive Summary</h2>
+<p>This document outlines enhancements to enable the Catalog API to function as an intelligent data librarian, capable of answering sophisticated queries about schema definitions, data lineage, field-level metadata, and dataset relationships.</p>
+<p>The system already has robust schema storage via <code>schema_parser.py</code> and the <code>eainfo</code> database tables. This enhancement focuses on:</p>
+<ol>
+<li>Adding query classification and intelligent routing</li>
+<li>Implementing data lineage tracking</li>
+<li>Enhancing dataset-level metadata capture</li>
+<li>Building cross-dataset relationship tracking</li>
+<li>Adding specialized retrieval strategies for structured queries</li>
+</ol>
+<h3 id="target-query-types">Target Query Types</h3>
+<ol>
+<li><strong>Schema Queries</strong>: "Is there a schema definition for BrushDisposal? If so, what is that schema?"</li>
+<li><strong>Lineage Queries</strong>: "What is the data lineage of the field OBJECTID in BrushDisposal?"</li>
+<li><strong>Relationship Queries</strong>: "What datasets reference the BrushDisposal table?"</li>
+<li><strong>Quality Queries</strong>: "What is the data quality profile for the OBJECTID field?"</li>
+<li><strong>Discovery Queries</strong>: "Show me all datasets that contain geospatial coordinates"</li>
+</ol>
+<hr />
+<h2 id="current-state-analysis">Current State Analysis</h2>
+<h3 id="existing-schema-infrastructure-schema_parserpy">Existing Schema Infrastructure (schema_parser.py)</h3>
+<p>The system already has comprehensive Pydantic models for metadata storage:</p>
+<p><strong>Data Models</strong> (<code>src/catalog/core/schema_parser.py</code>):</p>
+<ul>
+<li><strong>EntityAttributeInfo</strong> - Top-level container for entity/attribute metadata</li>
+<li><code>overview</code>: Optional description text</li>
+<li><code>citation</code>: Optional reference citation</li>
+<li><code>parsed_at</code>: Timestamp of parsing</li>
+<li><code>source_file</code>: Path to source XML file</li>
+<li>
+<p><code>detailed</code>: DetailedEntityInfo object</p>
+</li>
+<li>
+<p><strong>DetailedEntityInfo</strong> - Contains entity type and attribute list</p>
+</li>
+<li><code>entity_type</code>: EntityType object</li>
+<li><code>attributes</code>: List of Attribute objects</li>
+<li>
+<p>Helper methods: <code>get_attribute()</code>, <code>get_attributes_with_enumerated_domains()</code></p>
+</li>
+<li>
+<p><strong>EntityType</strong> - Dataset/table definition</p>
+</li>
+<li><code>label</code>: Name of the feature class/table</li>
+<li><code>definition</code>: Description of the entity</li>
+<li>
+<p><code>definition_source</code>: Source of the definition</p>
+</li>
+<li>
+<p><strong>Attribute</strong> - Individual field/column definition</p>
+</li>
+<li><code>label</code>: Column name</li>
+<li><code>definition</code>: Field description</li>
+<li><code>definition_source</code>: Source of definition</li>
+<li><code>domain_values</code>: List of domain value constraints</li>
+<li>
+<p>Helper methods: <code>has_enumerated_values</code>, <code>allowed_values</code></p>
+</li>
+<li>
+<p><strong>AttributeDomainValue</strong> - Union of domain types:</p>
+</li>
+<li><strong>UnrepresentableDomain</strong>: Free-text description</li>
+<li><strong>EnumeratedDomain</strong>: Discrete allowed values (e.g., status codes)</li>
+<li><strong>CodesetDomain</strong>: External codeset reference</li>
+<li><strong>RangeDomain</strong>: Numeric min/max constraints with units</li>
+</ul>
+<p><strong>Database Tables</strong> (already implemented):</p>
+<ul>
+<li><strong>eainfo</strong> - Top-level metadata container</li>
+<li>
+<p><code>overview</code>, <code>citation</code>, <code>parsed_at</code>, <code>source_file</code></p>
+</li>
+<li>
+<p><strong>entity_type</strong> - Entity definitions</p>
+</li>
+<li>
+<p><code>label</code>, <code>definition</code>, <code>definition_source</code>, <code>eainfo_id</code></p>
+</li>
+<li>
+<p><strong>attribute</strong> - Field definitions</p>
+</li>
+<li>
+<p><code>label</code>, <code>definition</code>, <code>definition_source</code>, <code>entity_type_id</code></p>
+</li>
+<li>
+<p><strong>attribute_domain</strong> - Domain constraints (stored as JSONB)</p>
+</li>
+<li><code>domain_type</code>, <code>domain_data</code>, <code>attribute_id</code></li>
+</ul>
+<p><strong>Existing Database Functions</strong> (<code>src/catalog/core/db.py</code>):</p>
+<ul>
+<li><code>save_eainfo()</code> - Saves EntityAttributeInfo to database</li>
+<li><code>get_eainfo_by_id()</code> - Retrieves full eainfo with nested structure</li>
+<li><code>get_eainfo_by_source_file()</code> - Finds eainfo by source file path</li>
+<li><code>list_all_entities()</code> - Lists all entity types with attribute counts</li>
+</ul>
+<h3 id="whats-already-working">What's Already Working</h3>
+<p>✅ <strong>Schema Storage</strong>: Complete entity and attribute definitions with domain constraints</p>
+<p>✅ <strong>Parser</strong>: Robust XML parser for FGDC metadata (EAInfoParser)</p>
+<p>✅ <strong>Database Persistence</strong>: Full CRUD operations for schema metadata</p>
+<p>✅ <strong>Data Librarian Persona</strong>: LLM system prompt already configured</p>
+<p>✅ <strong>Vector Search</strong>: RAG-based document retrieval for general queries</p>
+<h3 id="whats-missing">What's Missing</h3>
+<p>❌ <strong>Query Classification</strong>: No intelligent routing based on query intent</p>
+<p>❌ <strong>Structured Retrieval</strong>: Can't efficiently answer "What's the schema for X?"</p>
+<p>❌ <strong>Data Lineage</strong>: No tracking of field origins or transformations</p>
+<p>❌ <strong>Cross-Dataset Relationships</strong>: No foreign key or reference tracking</p>
+<p>❌ <strong>Dataset-Level Metadata</strong>: Missing source system, record counts, update timestamps</p>
+<p>❌ <strong>Technical Field Metadata</strong>: No explicit data types, nullable flags, or primary key indicators</p>
+<p>❌ <strong>Quality Metrics</strong>: No completeness, uniqueness, or distribution statistics</p>
+<hr />
+<h2 id="enhancement-architecture">Enhancement Architecture</h2>
+<h3 id="1-leverage-existing-schema-infrastructure">1. Leverage Existing Schema Infrastructure</h3>
+<p>Rather than creating new parallel structures, we'll extend the existing <code>eainfo</code> tables with additional metadata.</p>
+<h4 id="11-extend-entity_type-with-dataset-metadata">1.1 Extend entity_type with Dataset Metadata</h4>
+<p>Add dataset-level fields to the existing <code>entity_type</code> table:</p>
+<pre><code class="language-sql">-- Add dataset-level metadata to existing entity_type table
+ALTER TABLE entity_type ADD COLUMN dataset_name VARCHAR(255);
+ALTER TABLE entity_type ADD COLUMN display_name VARCHAR(255);
+ALTER TABLE entity_type ADD COLUMN dataset_type VARCHAR(50);  -- feature_class, table, view, etc.
+ALTER TABLE entity_type ADD COLUMN source_system VARCHAR(100);
+ALTER TABLE entity_type ADD COLUMN source_url TEXT;
+ALTER TABLE entity_type ADD COLUMN record_count INTEGER;
+ALTER TABLE entity_type ADD COLUMN last_updated_at TIMESTAMP;
+ALTER TABLE entity_type ADD COLUMN spatial_extent JSONB;  -- Store as GeoJSON
+ALTER TABLE entity_type ADD COLUMN metadata JSONB;  -- Flexible extra metadata
+
+-- Create indexes for efficient lookups
+CREATE INDEX idx_entity_type_dataset_name ON entity_type(dataset_name);
+CREATE INDEX idx_entity_type_dataset_type ON entity_type(dataset_type);
+CREATE INDEX idx_entity_type_source_system ON entity_type(source_system);
+
+-- Enable fuzzy text search
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+CREATE INDEX idx_entity_type_dataset_name_trgm ON entity_type USING gin (dataset_name gin_trgm_ops);
+</code></pre>
+<h4 id="12-extend-attribute-with-technical-metadata">1.2 Extend attribute with Technical Metadata</h4>
+<p>Add technical field information to the existing <code>attribute</code> table:</p>
+<pre><code class="language-sql">-- Add technical field metadata to existing attribute table
+ALTER TABLE attribute ADD COLUMN data_type VARCHAR(50);  -- Integer, String, Float, Date, Geometry
+ALTER TABLE attribute ADD COLUMN is_nullable BOOLEAN DEFAULT true;
+ALTER TABLE attribute ADD COLUMN is_primary_key BOOLEAN DEFAULT false;
+ALTER TABLE attribute ADD COLUMN is_foreign_key BOOLEAN DEFAULT false;
+ALTER TABLE attribute ADD COLUMN max_length INTEGER;
+ALTER TABLE attribute ADD COLUMN field_precision INTEGER;
+ALTER TABLE attribute ADD COLUMN field_scale INTEGER;
+ALTER TABLE attribute ADD COLUMN default_value TEXT;
+
+-- Quality metrics (computed from actual data if available)
+ALTER TABLE attribute ADD COLUMN completeness_percent DECIMAL(5,2);
+ALTER TABLE attribute ADD COLUMN uniqueness_percent DECIMAL(5,2);
+ALTER TABLE attribute ADD COLUMN min_value TEXT;
+ALTER TABLE attribute ADD COLUMN max_value TEXT;
+ALTER TABLE attribute ADD COLUMN sample_values TEXT[];
+ALTER TABLE attribute ADD COLUMN last_profiled_at TIMESTAMP;
+ALTER TABLE attribute ADD COLUMN field_metadata JSONB;  -- Flexible stats storage
+
+CREATE INDEX idx_attribute_data_type ON attribute(data_type);
+CREATE INDEX idx_attribute_is_primary_key ON attribute(is_primary_key) WHERE is_primary_key = true;
+CREATE INDEX idx_attribute_is_foreign_key ON attribute(is_foreign_key) WHERE is_foreign_key = true;
+</code></pre>
+<h4 id="13-new-data-lineage-tables">1.3 New: Data Lineage Tables</h4>
+<p>Add new tables to track field-level lineage:</p>
+<pre><code class="language-sql">-- Track field-level lineage and transformations
+CREATE TABLE field_lineage (
+    id SERIAL PRIMARY KEY,
+    target_attribute_id INTEGER REFERENCES attribute(id) ON DELETE CASCADE,
+    source_attribute_id INTEGER REFERENCES attribute(id) ON DELETE CASCADE,
+    transformation_type VARCHAR(50),  -- direct_copy, calculation, aggregation, concatenation, etc.
+    transformation_logic TEXT,  -- SQL formula, description, or algorithm
+    confidence_score DECIMAL(3,2),  -- 0.00 to 1.00 (for inferred lineage)
+    is_verified BOOLEAN DEFAULT false,  -- manually verified vs. auto-detected
+    created_at TIMESTAMP DEFAULT NOW(),
+    created_by VARCHAR(100),  -- system, user, or process name
+    notes TEXT,
+    metadata JSONB
+);
+
+CREATE INDEX idx_lineage_target ON field_lineage(target_attribute_id);
+CREATE INDEX idx_lineage_source ON field_lineage(source_attribute_id);
+CREATE INDEX idx_lineage_confidence ON field_lineage(confidence_score);
+
+-- Track dataset-level dependencies
+CREATE TABLE dataset_lineage (
+    id SERIAL PRIMARY KEY,
+    downstream_entity_id INTEGER REFERENCES entity_type(id) ON DELETE CASCADE,
+    upstream_entity_id INTEGER REFERENCES entity_type(id) ON DELETE CASCADE,
+    dependency_type VARCHAR(50),  -- foreign_key, view_source, derived_table, data_flow, etc.
+    description TEXT,
+    is_verified BOOLEAN DEFAULT false,
+    created_at TIMESTAMP DEFAULT NOW(),
+    metadata JSONB,
+    UNIQUE(downstream_entity_id, upstream_entity_id)
+);
+
+CREATE INDEX idx_dataset_lineage_downstream ON dataset_lineage(downstream_entity_id);
+CREATE INDEX idx_dataset_lineage_upstream ON dataset_lineage(upstream_entity_id);
+</code></pre>
+<h4 id="14-new-cross-dataset-relationships">1.4 New: Cross-Dataset Relationships</h4>
+<p>Track relationships between datasets:</p>
+<pre><code class="language-sql">-- Track foreign key and reference relationships
+CREATE TABLE dataset_relationships (
+    id SERIAL PRIMARY KEY,
+    from_entity_id INTEGER REFERENCES entity_type(id) ON DELETE CASCADE,
+    from_attribute_id INTEGER REFERENCES attribute(id) ON DELETE CASCADE,
+    to_entity_id INTEGER REFERENCES entity_type(id) ON DELETE CASCADE,
+    to_attribute_id INTEGER REFERENCES attribute(id) ON DELETE CASCADE,
+    relationship_type VARCHAR(50),  -- one_to_one, one_to_many, many_to_many
+    relationship_name VARCHAR(255),  -- descriptive name (e.g., &quot;disposal_site_monitoring&quot;)
+    is_enforced BOOLEAN DEFAULT false,  -- database constraint exists?
+    cardinality VARCHAR(50),  -- optional, required, etc.
+    created_at TIMESTAMP DEFAULT NOW(),
+    notes TEXT,
+    metadata JSONB
+);
+
+CREATE INDEX idx_rel_from_entity ON dataset_relationships(from_entity_id);
+CREATE INDEX idx_rel_to_entity ON dataset_relationships(to_entity_id);
+CREATE INDEX idx_rel_from_attribute ON dataset_relationships(from_attribute_id);
+CREATE INDEX idx_rel_to_attribute ON dataset_relationships(to_attribute_id);
+</code></pre>
+<hr />
+<h3 id="2-enhanced-pydantic-models">2. Enhanced Pydantic Models</h3>
+<p>Extend the existing models in <code>schema_parser.py</code>:</p>
+<pre><code class="language-python"># Add to schema_parser.py - Extended models
+
+class DatasetMetadata(BaseModel):
+    &quot;&quot;&quot;Dataset-level metadata to extend EntityType&quot;&quot;&quot;
+
+    dataset_name: Optional[str] = Field(None, description=&quot;Short name for lookups (e.g., 'BrushDisposal')&quot;)
+    display_name: Optional[str] = Field(None, description=&quot;Human-friendly display name&quot;)
+    dataset_type: Optional[str] = Field(None, description=&quot;Type: feature_class, table, view, raster, etc.&quot;)
+    source_system: Optional[str] = Field(None, description=&quot;Source system (e.g., 'USFS GIS', 'ArcGIS Online')&quot;)
+    source_url: Optional[str] = Field(None, description=&quot;URL to source data or service&quot;)
+    record_count: Optional[int] = Field(None, description=&quot;Number of records/features&quot;)
+    last_updated_at: Optional[datetime] = Field(None, description=&quot;Last data update timestamp&quot;)
+    spatial_extent: Optional[dict] = Field(None, description=&quot;Bounding box or extent as GeoJSON&quot;)
+    tags: Optional[List[str]] = Field(default_factory=list, description=&quot;Search tags&quot;)
+
+    class Config:
+        json_schema_extra = {
+            &quot;example&quot;: {
+                &quot;dataset_name&quot;: &quot;BrushDisposal&quot;,
+                &quot;display_name&quot;: &quot;Brush Disposal Sites&quot;,
+                &quot;dataset_type&quot;: &quot;feature_class&quot;,
+                &quot;source_system&quot;: &quot;USFS GIS&quot;,
+                &quot;record_count&quot;: 1247,
+                &quot;tags&quot;: [&quot;fire management&quot;, &quot;disposal&quot;, &quot;geospatial&quot;]
+            }
+        }
+
+
+class TechnicalFieldMetadata(BaseModel):
+    &quot;&quot;&quot;Technical field metadata to extend Attribute&quot;&quot;&quot;
+
+    data_type: Optional[str] = Field(None, description=&quot;Data type: Integer, String, Float, Date, Geometry, etc.&quot;)
+    is_nullable: bool = Field(True, description=&quot;Can this field contain NULL values?&quot;)
+    is_primary_key: bool = Field(False, description=&quot;Is this a primary key field?&quot;)
+    is_foreign_key: bool = Field(False, description=&quot;Is this a foreign key to another table?&quot;)
+    max_length: Optional[int] = Field(None, description=&quot;Maximum length (for string fields)&quot;)
+    precision: Optional[int] = Field(None, description=&quot;Numeric precision&quot;)
+    scale: Optional[int] = Field(None, description=&quot;Numeric scale&quot;)
+    default_value: Optional[str] = Field(None, description=&quot;Default value if not provided&quot;)
+
+    # Quality metrics (computed from data profiling)
+    completeness_percent: Optional[float] = Field(None, description=&quot;Percentage of non-null values&quot;)
+    uniqueness_percent: Optional[float] = Field(None, description=&quot;Percentage of unique values&quot;)
+    min_value: Optional[str] = Field(None, description=&quot;Minimum observed value&quot;)
+    max_value: Optional[str] = Field(None, description=&quot;Maximum observed value&quot;)
+    sample_values: Optional[List[str]] = Field(None, description=&quot;Example values from the data&quot;)
+    last_profiled_at: Optional[datetime] = Field(None, description=&quot;When profiling was last run&quot;)
+
+    class Config:
+        json_schema_extra = {
+            &quot;example&quot;: {
+                &quot;data_type&quot;: &quot;Integer&quot;,
+                &quot;is_nullable&quot;: False,
+                &quot;is_primary_key&quot;: True,
+                &quot;completeness_percent&quot;: 100.0,
+                &quot;uniqueness_percent&quot;: 100.0,
+                &quot;min_value&quot;: &quot;1&quot;,
+                &quot;max_value&quot;: &quot;1247&quot;
+            }
+        }
+
+
+class FieldLineage(BaseModel):
+    &quot;&quot;&quot;Field-level lineage information&quot;&quot;&quot;
+
+    source_dataset: str
+    source_field: str
+    transformation_type: str  # direct_copy, calculation, aggregation, etc.
+    transformation_logic: Optional[str] = None
+    confidence_score: Optional[float] = None
+    is_verified: bool = False
+    notes: Optional[str] = None
+
+    class Config:
+        json_schema_extra = {
+            &quot;example&quot;: {
+                &quot;source_dataset&quot;: &quot;DisposalSites_Raw&quot;,
+                &quot;source_field&quot;: &quot;SITE_ID&quot;,
+                &quot;transformation_type&quot;: &quot;direct_copy&quot;,
+                &quot;transformation_logic&quot;: &quot;Copied without transformation during ETL&quot;,
+                &quot;confidence_score&quot;: 1.0,
+                &quot;is_verified&quot;: True
+            }
+        }
+</code></pre>
+<hr />
+<h3 id="3-enhanced-database-functions">3. Enhanced Database Functions</h3>
+<p>Add new retrieval functions to <code>db.py</code> that work with the extended schema:</p>
+<pre><code class="language-python"># Add to src/catalog/core/db.py
+
+@retry_on_db_error(max_retries=3)
+def search_entity_by_name(dataset_name: str) -&gt; Optional[dict]:
+    &quot;&quot;&quot;
+    Search for a dataset by name (exact or fuzzy match).
+
+    Returns complete entity information including schema.
+    Uses pg_trgm for fuzzy matching if exact match not found.
+
+    Args:
+        dataset_name: Name to search for
+
+    Returns:
+        Dict with entity metadata, attributes, and domain values
+    &quot;&quot;&quot;
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            # Try exact match on dataset_name or label
+            cur.execute(&quot;&quot;&quot;
+                SELECT id, label, definition, definition_source, eainfo_id,
+                       dataset_name, display_name, dataset_type, source_system,
+                       record_count, last_updated_at, metadata
+                FROM entity_type
+                WHERE LOWER(dataset_name) = LOWER(%s)
+                   OR LOWER(label) = LOWER(%s)
+            &quot;&quot;&quot;, (dataset_name, dataset_name))
+
+            result = cur.fetchone()
+
+            if not result:
+                # Try fuzzy match using similarity
+                cur.execute(&quot;&quot;&quot;
+                    SELECT id, label, definition, definition_source, eainfo_id,
+                           dataset_name, display_name, dataset_type, source_system,
+                           record_count, last_updated_at, metadata,
+                           GREATEST(
+                               similarity(COALESCE(dataset_name, ''), %s),
+                               similarity(label, %s)
+                           ) as score
+                    FROM entity_type
+                    WHERE similarity(COALESCE(dataset_name, ''), %s) &gt; 0.3
+                       OR similarity(label, %s) &gt; 0.3
+                    ORDER BY score DESC
+                    LIMIT 1
+                &quot;&quot;&quot;, (dataset_name, dataset_name, dataset_name, dataset_name))
+                result = cur.fetchone()
+
+            if not result:
+                return None
+
+            entity = {
+                'id': result[0],
+                'label': result[1],
+                'definition': result[2],
+                'definition_source': result[3],
+                'eainfo_id': result[4],
+                'dataset_name': result[5],
+                'display_name': result[6],
+                'dataset_type': result[7],
+                'source_system': result[8],
+                'record_count': result[9],
+                'last_updated_at': result[10],
+                'metadata': result[11]
+            }
+
+            # Get attributes with technical metadata
+            entity['attributes'] = get_entity_attributes_extended(entity['id'])
+
+            return entity
+
+    finally:
+        db.return_connection(conn)
+
+
+@retry_on_db_error(max_retries=3)
+def get_entity_attributes_extended(entity_type_id: int) -&gt; list[dict]:
+    &quot;&quot;&quot;
+    Get all attributes for an entity with technical metadata and domain values.
+
+    Args:
+        entity_type_id: ID of the entity type
+
+    Returns:
+        List of attribute dicts with complete metadata
+    &quot;&quot;&quot;
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            cur.execute(&quot;&quot;&quot;
+                SELECT
+                    a.id, a.label, a.definition, a.definition_source,
+                    a.data_type, a.is_nullable, a.is_primary_key, a.is_foreign_key,
+                    a.max_length, a.field_precision, a.field_scale, a.default_value,
+                    a.completeness_percent, a.uniqueness_percent,
+                    a.min_value, a.max_value, a.sample_values,
+                    a.last_profiled_at, a.field_metadata
+                FROM attribute a
+                WHERE a.entity_type_id = %s
+                ORDER BY
+                    CASE WHEN a.is_primary_key THEN 0 ELSE 1 END,
+                    a.id
+            &quot;&quot;&quot;, (entity_type_id,))
+
+            attributes = []
+            for row in cur.fetchall():
+                attr = {
+                    'id': row[0],
+                    'label': row[1],
+                    'definition': row[2],
+                    'definition_source': row[3],
+                    'technical': {
+                        'data_type': row[4],
+                        'is_nullable': row[5],
+                        'is_primary_key': row[6],
+                        'is_foreign_key': row[7],
+                        'max_length': row[8],
+                        'precision': row[9],
+                        'scale': row[10],
+                        'default_value': row[11]
+                    },
+                    'quality': {
+                        'completeness_percent': float(row[12]) if row[12] else None,
+                        'uniqueness_percent': float(row[13]) if row[13] else None,
+                        'min_value': row[14],
+                        'max_value': row[15],
+                        'sample_values': row[16],
+                        'last_profiled_at': row[17]
+                    },
+                    'metadata': row[18]
+                }
+
+                # Get domain values for this attribute
+                cur.execute(&quot;&quot;&quot;
+                    SELECT domain_type, domain_data
+                    FROM attribute_domain
+                    WHERE attribute_id = %s
+                &quot;&quot;&quot;, (row[0],))
+
+                attr['domain_values'] = [
+                    {'type': dv[0], 'data': dv[1]}
+                    for dv in cur.fetchall()
+                ]
+
+                attributes.append(attr)
+
+            return attributes
+
+    finally:
+        db.return_connection(conn)
+
+
+@retry_on_db_error(max_retries=3)
+def get_field_lineage(dataset_name: str, field_name: str) -&gt; Optional[dict]:
+    &quot;&quot;&quot;
+    Get complete lineage for a specific field.
+
+    Returns both upstream sources and downstream dependents.
+
+    Args:
+        dataset_name: Name of the dataset
+        field_name: Name of the field
+
+    Returns:
+        Dict with upstream sources and downstream dependents
+    &quot;&quot;&quot;
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            # Find the target attribute
+            cur.execute(&quot;&quot;&quot;
+                SELECT a.id, et.label as entity_label
+                FROM attribute a
+                JOIN entity_type et ON a.entity_type_id = et.id
+                WHERE (LOWER(et.dataset_name) = LOWER(%s) OR LOWER(et.label) = LOWER(%s))
+                  AND LOWER(a.label) = LOWER(%s)
+            &quot;&quot;&quot;, (dataset_name, dataset_name, field_name))
+
+            result = cur.fetchone()
+            if not result:
+                return None
+
+            attribute_id = result[0]
+            entity_label = result[1]
+
+            # Get upstream sources (where this field comes from)
+            cur.execute(&quot;&quot;&quot;
+                SELECT
+                    src_et.dataset_name,
+                    src_et.label as entity_label,
+                    src_a.label as field_name,
+                    fl.transformation_type,
+                    fl.transformation_logic,
+                    fl.confidence_score,
+                    fl.is_verified,
+                    fl.notes
+                FROM field_lineage fl
+                JOIN attribute src_a ON fl.source_attribute_id = src_a.id
+                JOIN entity_type src_et ON src_a.entity_type_id = src_et.id
+                WHERE fl.target_attribute_id = %s
+                ORDER BY fl.created_at
+            &quot;&quot;&quot;, (attribute_id,))
+
+            upstream = []
+            for row in cur.fetchall():
+                upstream.append({
+                    'source_dataset': row[0] or row[1],
+                    'source_field': row[2],
+                    'transformation_type': row[3],
+                    'transformation_logic': row[4],
+                    'confidence_score': float(row[5]) if row[5] else None,
+                    'is_verified': row[6],
+                    'notes': row[7]
+                })
+
+            # Get downstream dependents (what uses this field)
+            cur.execute(&quot;&quot;&quot;
+                SELECT
+                    tgt_et.dataset_name,
+                    tgt_et.label as entity_label,
+                    tgt_a.label as field_name,
+                    fl.transformation_type,
+                    fl.transformation_logic,
+                    fl.is_verified
+                FROM field_lineage fl
+                JOIN attribute tgt_a ON fl.target_attribute_id = tgt_a.id
+                JOIN entity_type tgt_et ON tgt_a.entity_type_id = tgt_et.id
+                WHERE fl.source_attribute_id = %s
+                ORDER BY fl.created_at
+            &quot;&quot;&quot;, (attribute_id,))
+
+            downstream = []
+            for row in cur.fetchall():
+                downstream.append({
+                    'target_dataset': row[0] or row[1],
+                    'target_field': row[2],
+                    'transformation_type': row[3],
+                    'transformation_logic': row[4],
+                    'is_verified': row[5]
+                })
+
+            return {
+                'dataset': dataset_name,
+                'entity_label': entity_label,
+                'field': field_name,
+                'upstream_sources': upstream,
+                'downstream_dependents': downstream,
+                'is_source_field': len(upstream) == 0
+            }
+
+    finally:
+        db.return_connection(conn)
+
+
+@retry_on_db_error(max_retries=3)
+def get_dataset_relationships(dataset_name: str) -&gt; Optional[dict]:
+    &quot;&quot;&quot;
+    Get all relationships for a dataset (foreign keys, references).
+
+    Args:
+        dataset_name: Name of the dataset
+
+    Returns:
+        Dict with outgoing and incoming relationships
+    &quot;&quot;&quot;
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            # Find the entity
+            cur.execute(&quot;&quot;&quot;
+                SELECT id FROM entity_type
+                WHERE LOWER(dataset_name) = LOWER(%s) OR LOWER(label) = LOWER(%s)
+            &quot;&quot;&quot;, (dataset_name, dataset_name))
+
+            result = cur.fetchone()
+            if not result:
+                return None
+
+            entity_id = result[0]
+
+            # Get outgoing relationships (this dataset references others)
+            cur.execute(&quot;&quot;&quot;
+                SELECT
+                    from_a.label as from_field,
+                    to_et.dataset_name as to_dataset,
+                    to_et.label as to_entity_label,
+                    to_a.label as to_field,
+                    dr.relationship_type,
+                    dr.relationship_name,
+                    dr.is_enforced,
+                    dr.notes
+                FROM dataset_relationships dr
+                JOIN attribute from_a ON dr.from_attribute_id = from_a.id
+                JOIN entity_type to_et ON dr.to_entity_id = to_et.id
+                JOIN attribute to_a ON dr.to_attribute_id = to_a.id
+                WHERE dr.from_entity_id = %s
+            &quot;&quot;&quot;, (entity_id,))
+
+            outgoing = []
+            for row in cur.fetchall():
+                outgoing.append({
+                    'from_field': row[0],
+                    'to_dataset': row[1] or row[2],
+                    'to_field': row[3],
+                    'relationship_type': row[4],
+                    'relationship_name': row[5],
+                    'is_enforced': row[6],
+                    'notes': row[7]
+                })
+
+            # Get incoming relationships (other datasets reference this one)
+            cur.execute(&quot;&quot;&quot;
+                SELECT
+                    from_et.dataset_name as from_dataset,
+                    from_et.label as from_entity_label,
+                    from_a.label as from_field,
+                    to_a.label as to_field,
+                    dr.relationship_type,
+                    dr.relationship_name,
+                    dr.is_enforced,
+                    dr.notes
+                FROM dataset_relationships dr
+                JOIN entity_type from_et ON dr.from_entity_id = from_et.id
+                JOIN attribute from_a ON dr.from_attribute_id = from_a.id
+                JOIN attribute to_a ON dr.to_attribute_id = to_a.id
+                WHERE dr.to_entity_id = %s
+            &quot;&quot;&quot;, (entity_id,))
+
+            incoming = []
+            for row in cur.fetchall():
+                incoming.append({
+                    'from_dataset': row[0] or row[1],
+                    'from_field': row[2],
+                    'to_field': row[3],
+                    'relationship_type': row[4],
+                    'relationship_name': row[5],
+                    'is_enforced': row[6],
+                    'notes': row[7]
+                })
+
+            return {
+                'dataset': dataset_name,
+                'outgoing_relationships': outgoing,
+                'incoming_relationships': incoming
+            }
+
+    finally:
+        db.return_connection(conn)
+
+
+@retry_on_db_error(max_retries=3)
+def list_all_datasets(
+    dataset_type: Optional[str] = None,
+    source_system: Optional[str] = None,
+    limit: int = 100
+) -&gt; list[dict]:
+    &quot;&quot;&quot;
+    List all datasets with optional filtering.
+
+    Args:
+        dataset_type: Filter by dataset type
+        source_system: Filter by source system
+        limit: Maximum number of results
+
+    Returns:
+        List of dataset summary dicts
+    &quot;&quot;&quot;
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            query = &quot;&quot;&quot;
+                SELECT
+                    et.id,
+                    COALESCE(et.dataset_name, et.label) as name,
+                    et.display_name,
+                    et.dataset_type,
+                    et.source_system,
+                    et.record_count,
+                    et.last_updated_at,
+                    COUNT(a.id) as attribute_count
+                FROM entity_type et
+                LEFT JOIN attribute a ON a.entity_type_id = et.id
+                WHERE 1=1
+            &quot;&quot;&quot;
+
+            params = []
+            if dataset_type:
+                query += &quot; AND et.dataset_type = %s&quot;
+                params.append(dataset_type)
+
+            if source_system:
+                query += &quot; AND et.source_system = %s&quot;
+                params.append(source_system)
+
+            query += &quot;&quot;&quot;
+                GROUP BY et.id, et.dataset_name, et.label, et.display_name,
+                         et.dataset_type, et.source_system, et.record_count, et.last_updated_at
+                ORDER BY COALESCE(et.dataset_name, et.label)
+                LIMIT %s
+            &quot;&quot;&quot;
+            params.append(limit)
+
+            cur.execute(query, params)
+
+            datasets = []
+            for row in cur.fetchall():
+                datasets.append({
+                    'id': row[0],
+                    'name': row[1],
+                    'display_name': row[2],
+                    'dataset_type': row[3],
+                    'source_system': row[4],
+                    'record_count': row[5],
+                    'last_updated_at': row[6],
+                    'attribute_count': row[7]
+                })
+
+            return datasets
+
+    finally:
+        db.return_connection(conn)
+</code></pre>
+<hr />
+<h3 id="4-enhanced-chatbot-with-query-classification">4. Enhanced ChatBot with Query Classification</h3>
+<p>Update <code>src/catalog/api/llm.py</code>:</p>
+<pre><code class="language-python"># Add to src/catalog/api/llm.py
+
+from enum import Enum
+
+class QueryType(str, Enum):
+    &quot;&quot;&quot;Types of queries the system can handle&quot;&quot;&quot;
+    GENERAL = &quot;general&quot;
+    SCHEMA = &quot;schema&quot;
+    LINEAGE = &quot;lineage&quot;
+    RELATIONSHIPS = &quot;relationships&quot;
+    QUALITY = &quot;quality&quot;
+    DISCOVERY = &quot;discovery&quot;
+
+
+def classify_query(self, query: str) -&gt; QueryType:
+    &quot;&quot;&quot;
+    Classify the user's query intent using the LLM.
+
+    This routes queries to appropriate retrieval strategies.
+    &quot;&quot;&quot;
+    classification_prompt = f&quot;&quot;&quot;Classify this data catalog query into ONE category:
+
+1. SCHEMA - Asking about table/dataset structure, fields, data types, or schema definitions
+   Examples: &quot;What is the schema for X?&quot;, &quot;What fields are in Y?&quot;, &quot;Show me the structure of Z&quot;
+
+2. LINEAGE - Asking about data origins, transformations, or field derivation
+   Examples: &quot;Where does field X come from?&quot;, &quot;What is the lineage of Y?&quot;, &quot;How is Z calculated?&quot;
+
+3. RELATIONSHIPS - Asking about connections between datasets
+   Examples: &quot;What datasets reference X?&quot;, &quot;How is Y related to Z?&quot;, &quot;Show foreign keys&quot;
+
+4. QUALITY - Asking about data quality, completeness, or statistics
+   Examples: &quot;What is the quality of X?&quot;, &quot;How complete is field Y?&quot;, &quot;Show stats for Z&quot;
+
+5. DISCOVERY - Searching for datasets by characteristics
+   Examples: &quot;Find datasets with coordinates&quot;, &quot;Show me spatial data&quot;, &quot;What has timestamps?&quot;
+
+6. GENERAL - General questions or document search
+
+Query: &quot;{query}&quot;
+
+Respond with ONLY the category name.&quot;&quot;&quot;
+
+    response = self.client.chat.completions.create(
+        model=self.model,
+        messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: classification_prompt}],
+        max_tokens=10
+    )
+
+    classification = response.choices[0].message.content.strip().upper()
+
+    try:
+        return QueryType[classification]
+    except KeyError:
+        return QueryType.GENERAL
+
+
+def chat(self, message: str = &quot;Hello, how can you help me?&quot;) -&gt; str:
+    &quot;&quot;&quot;
+    Enhanced chat with query classification and specialized retrieval.
+    &quot;&quot;&quot;
+    # Classify the query
+    query_type = self.classify_query(message)
+
+    # Route to appropriate handler
+    if query_type == QueryType.SCHEMA:
+        return self._handle_schema_query(message)
+    elif query_type == QueryType.LINEAGE:
+        return self._handle_lineage_query(message)
+    elif query_type == QueryType.RELATIONSHIPS:
+        return self._handle_relationship_query(message)
+    elif query_type == QueryType.QUALITY:
+        return self._handle_quality_query(message)
+    elif query_type == QueryType.DISCOVERY:
+        return self._handle_discovery_query(message)
+    else:
+        return self._handle_general_query(message)
+
+
+def _handle_schema_query(self, message: str) -&gt; str:
+    &quot;&quot;&quot;Handle schema-specific queries with structured retrieval.&quot;&quot;&quot;
+    # Extract dataset name using LLM
+    extraction_prompt = f&quot;&quot;&quot;Extract the dataset/table name from this query.
+Respond with ONLY the dataset name, nothing else.
+
+Query: &quot;{message}&quot;
+
+Dataset name:&quot;&quot;&quot;
+
+    response = self.client.chat.completions.create(
+        model=self.model,
+        messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: extraction_prompt}],
+        max_tokens=20
+    )
+
+    dataset_name = response.choices[0].message.content.strip()
+
+    # Search for the dataset using existing infrastructure
+    from catalog.core.db import search_entity_by_name
+    entity = search_entity_by_name(dataset_name)
+
+    if not entity:
+        return f&quot;I couldn't find a dataset named '{dataset_name}' in the catalog. Would you like me to search for similar datasets?&quot;
+
+    # Format schema information
+    schema_context = f&quot;&quot;&quot;Dataset: {entity.get('dataset_name') or entity['label']}
+Display Name: {entity.get('display_name', 'N/A')}
+Type: {entity.get('dataset_type', 'N/A')}
+Description: {entity.get('definition', 'N/A')}
+Source System: {entity.get('source_system', 'N/A')}
+Record Count: {entity.get('record_count', 'Unknown')}
+
+Schema (Fields):
+&quot;&quot;&quot;
+
+    for attr in entity.get('attributes', []):
+        tech = attr.get('technical', {})
+        schema_context += f&quot;&quot;&quot;
+- {attr['label']} ({tech.get('data_type', 'Unknown')})
+  Definition: {attr.get('definition', 'N/A')}
+  Nullable: {tech.get('is_nullable', 'Yes')}
+  Primary Key: {'Yes' if tech.get('is_primary_key') else 'No'}
+  Foreign Key: {'Yes' if tech.get('is_foreign_key') else 'No'}
+&quot;&quot;&quot;
+
+        # Add domain constraints if present
+        domain_values = attr.get('domain_values', [])
+        if domain_values:
+            schema_context += f&quot;  Domain: {len(domain_values)} constraint(s) defined\n&quot;
+
+    # Use LLM to format a natural response
+    response = self.client.chat.completions.create(
+        model=self.model,
+        messages=[
+            {
+                &quot;role&quot;: &quot;system&quot;,
+                &quot;content&quot;: &quot;You are a professional data librarian. Provide clear, well-organized information about dataset schemas.&quot;
+            },
+            {
+                &quot;role&quot;: &quot;user&quot;,
+                &quot;content&quot;: f&quot;Context:\n{schema_context}\n\nQuestion: {message}\n\nProvide a clear, professional response about this dataset's schema.&quot;
+            }
+        ]
+    )
+
+    return response.choices[0].message.content
+
+
+def _handle_lineage_query(self, message: str) -&gt; str:
+    &quot;&quot;&quot;Handle data lineage queries.&quot;&quot;&quot;
+    # Extract dataset and field name
+    extraction_prompt = f&quot;&quot;&quot;Extract the dataset name and field name from this lineage query.
+Respond in the format: &quot;dataset_name|field_name&quot;
+
+Query: &quot;{message}&quot;
+
+Answer:&quot;&quot;&quot;
+
+    response = self.client.chat.completions.create(
+        model=self.model,
+        messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: extraction_prompt}],
+        max_tokens=50
+    )
+
+    answer = response.choices[0].message.content.strip()
+
+    try:
+        dataset_name, field_name = answer.split('|')
+        dataset_name = dataset_name.strip()
+        field_name = field_name.strip()
+    except:
+        return &quot;I couldn't identify the dataset and field name. Please ask like: 'What is the lineage of field OBJECTID in BrushDisposal?'&quot;
+
+    # Get lineage information
+    from catalog.core.db import get_field_lineage
+    lineage = get_field_lineage(dataset_name, field_name)
+
+    if not lineage:
+        return f&quot;I couldn't find lineage information for field '{field_name}' in dataset '{dataset_name}'.&quot;
+
+    # Format lineage context
+    lineage_context = f&quot;&quot;&quot;Field: {lineage['entity_label']}.{lineage['field']}
+
+Upstream Sources (where this field comes from):
+&quot;&quot;&quot;
+
+    if lineage['upstream_sources']:
+        for source in lineage['upstream_sources']:
+            verified = &quot; [VERIFIED]&quot; if source['is_verified'] else &quot;&quot;
+            lineage_context += f&quot;&quot;&quot;
+- Source: {source['source_dataset']}.{source['source_field']}{verified}
+  Transformation: {source['transformation_type']}
+  Logic: {source.get('transformation_logic', 'N/A')}
+  Confidence: {source.get('confidence_score', 'N/A')}
+&quot;&quot;&quot;
+            if source.get('notes'):
+                lineage_context += f&quot;  Notes: {source['notes']}\n&quot;
+    else:
+        lineage_context += &quot;  (No upstream sources - this is a source field)\n&quot;
+
+    lineage_context += &quot;\nDownstream Dependents (what uses this field):\n&quot;
+
+    if lineage['downstream_dependents']:
+        for dep in lineage['downstream_dependents']:
+            verified = &quot; [VERIFIED]&quot; if dep['is_verified'] else &quot;&quot;
+            lineage_context += f&quot;&quot;&quot;
+- Target: {dep['target_dataset']}.{dep['target_field']}{verified}
+  Transformation: {dep['transformation_type']}
+  Logic: {dep.get('transformation_logic', 'N/A')}
+&quot;&quot;&quot;
+    else:
+        lineage_context += &quot;  (No downstream dependents recorded)\n&quot;
+
+    # Use LLM to format response
+    response = self.client.chat.completions.create(
+        model=self.model,
+        messages=[
+            {
+                &quot;role&quot;: &quot;system&quot;,
+                &quot;content&quot;: &quot;You are a professional data librarian specializing in data lineage and provenance.&quot;
+            },
+            {
+                &quot;role&quot;: &quot;user&quot;,
+                &quot;content&quot;: f&quot;Context:\n{lineage_context}\n\nQuestion: {message}\n\nProvide a clear explanation of this field's data lineage.&quot;
+            }
+        ]
+    )
+
+    return response.choices[0].message.content
+
+
+def _handle_relationship_query(self, message: str) -&gt; str:
+    &quot;&quot;&quot;Handle dataset relationship queries.&quot;&quot;&quot;
+    # Extract dataset name
+    extraction_prompt = f&quot;&quot;&quot;Extract the dataset/table name from this query.
+Respond with ONLY the dataset name.
+
+Query: &quot;{message}&quot;
+
+Dataset name:&quot;&quot;&quot;
+
+    response = self.client.chat.completions.create(
+        model=self.model,
+        messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: extraction_prompt}],
+        max_tokens=20
+    )
+
+    dataset_name = response.choices[0].message.content.strip()
+
+    # Get relationships
+    from catalog.core.db import get_dataset_relationships
+    relationships = get_dataset_relationships(dataset_name)
+
+    if not relationships:
+        return f&quot;I couldn't find the dataset '{dataset_name}' in the catalog.&quot;
+
+    # Format relationships context
+    rel_context = f&quot;&quot;&quot;Dataset: {relationships['dataset']}
+
+Outgoing Relationships (this dataset references):
+&quot;&quot;&quot;
+
+    if relationships['outgoing_relationships']:
+        for rel in relationships['outgoing_relationships']:
+            enforced = &quot; [ENFORCED]&quot; if rel['is_enforced'] else &quot;&quot;
+            rel_context += f&quot;&quot;&quot;
+- {rel['from_field']} → {rel['to_dataset']}.{rel['to_field']}{enforced}
+  Type: {rel['relationship_type']}
+  Name: {rel.get('relationship_name', 'N/A')}
+&quot;&quot;&quot;
+    else:
+        rel_context += &quot;  (No outgoing relationships)\n&quot;
+
+    rel_context += &quot;\nIncoming Relationships (other datasets reference this one):\n&quot;
+
+    if relationships['incoming_relationships']:
+        for rel in relationships['incoming_relationships']:
+            enforced = &quot; [ENFORCED]&quot; if rel['is_enforced'] else &quot;&quot;
+            rel_context += f&quot;&quot;&quot;
+- {rel['from_dataset']}.{rel['from_field']} → {rel['to_field']}{enforced}
+  Type: {rel['relationship_type']}
+  Name: {rel.get('relationship_name', 'N/A')}
+&quot;&quot;&quot;
+    else:
+        rel_context += &quot;  (No incoming relationships)\n&quot;
+
+    # Use LLM to format response
+    response = self.client.chat.completions.create(
+        model=self.model,
+        messages=[
+            {
+                &quot;role&quot;: &quot;system&quot;,
+                &quot;content&quot;: &quot;You are a professional data librarian explaining dataset relationships.&quot;
+            },
+            {
+                &quot;role&quot;: &quot;user&quot;,
+                &quot;content&quot;: f&quot;Context:\n{rel_context}\n\nQuestion: {message}\n\nExplain this dataset's relationships.&quot;
+            }
+        ]
+    )
+
+    return response.choices[0].message.content
+
+
+def _handle_quality_query(self, message: str) -&gt; str:
+    &quot;&quot;&quot;Handle data quality queries.&quot;&quot;&quot;
+    # Implementation would extract dataset/field and return quality metrics
+    # from the extended attribute metadata
+    return &quot;Quality query handling - to be implemented&quot;
+
+
+def _handle_discovery_query(self, message: str) -&gt; str:
+    &quot;&quot;&quot;Handle dataset discovery queries.&quot;&quot;&quot;
+    # Would search across entity_type metadata, tags, etc.
+    return &quot;Discovery query handling - to be implemented&quot;
+
+
+def _handle_general_query(self, message: str) -&gt; str:
+    &quot;&quot;&quot;Handle general queries using existing RAG approach.&quot;&quot;&quot;
+    # Use the existing implementation
+    documents = self.get_documents(message)
+
+    if len(documents) &gt; 0:
+        context = &quot;\n\n&quot;.join([
+            f&quot;Title: {doc['title']}\nDescription: {doc['description']}\nKeywords: {doc['keywords']}&quot;
+            for doc in documents
+        ])
+
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {
+                    &quot;role&quot;: &quot;system&quot;,
+                    &quot;content&quot;: (
+                        &quot;You are a professional data librarian specializing in scientific data discovery and metadata curation. &quot;
+                        &quot;Provide clear, organized, evidence-based responses using the catalog context.&quot;
+                    )
+                },
+                {
+                    &quot;role&quot;: &quot;user&quot;,
+                    &quot;content&quot;: f&quot;Context: {context}\n\nQuestion: {message}&quot;
+                }
+            ]
+        )
+
+        return response.choices[0].message.content
+    else:
+        return &quot;I couldn't find any relevant information in the catalog for your query.&quot;
+</code></pre>
+<hr />
+<h3 id="5-enhanced-harvesting-process">5. Enhanced Harvesting Process</h3>
+<p>Update the metadata extraction to populate the new fields:</p>
+<pre><code class="language-python"># Extend src/catalog/core/schema_parser.py or create new harvester module
+
+def extract_dataset_metadata_from_xml(xml_file: str) -&gt; dict:
+    &quot;&quot;&quot;
+    Extract comprehensive metadata including dataset-level info.
+
+    This extends the existing EAInfoParser to also extract:
+    - Dataset name (extracted from entity label or filename)
+    - Source system info
+    - Additional metadata fields
+    &quot;&quot;&quot;
+    # Use existing parser
+    parser = EAInfoParser()
+    eainfo = parser.parse_xml_file(xml_file)
+
+    # Extract dataset name from entity label or filename
+    dataset_name = None
+    if eainfo.has_detailed_info:
+        # Try to extract short name from label (e.g., &quot;S_USA.Activity_BrushDisposal&quot; → &quot;BrushDisposal&quot;)
+        label = eainfo.detailed.entity_type.label
+        if '.' in label:
+            dataset_name = label.split('.')[-1]
+        else:
+            dataset_name = label
+
+    if not dataset_name:
+        # Fall back to filename
+        from pathlib import Path
+        dataset_name = Path(xml_file).stem
+
+    # Parse additional metadata from XML (would need to extend parser)
+    # For now, return basic metadata
+    return {
+        'eainfo': eainfo,
+        'dataset_name': dataset_name,
+        'display_name': dataset_name.replace('_', ' ').title(),
+        'dataset_type': 'feature_class',  # Could parse from XML metadata
+        'source_system': 'USFS GIS',  # Could parse from XML idinfo
+        'source_file': xml_file
+    }
+
+
+def save_entity_with_extended_metadata(metadata: dict):
+    &quot;&quot;&quot;
+    Save entity using existing save_eainfo, then update with extended metadata.
+    &quot;&quot;&quot;
+    from catalog.core.db import save_eainfo, get_db
+
+    # Save using existing function
+    eainfo_id = save_eainfo(metadata['eainfo'])
+
+    # Update entity_type with extended metadata
+    db = get_db()
+    conn = db.get_connection()
+
+    try:
+        with conn.cursor() as cur:
+            cur.execute(&quot;&quot;&quot;
+                UPDATE entity_type
+                SET dataset_name = %s,
+                    display_name = %s,
+                    dataset_type = %s,
+                    source_system = %s
+                WHERE eainfo_id = %s
+            &quot;&quot;&quot;, (
+                metadata['dataset_name'],
+                metadata['display_name'],
+                metadata['dataset_type'],
+                metadata['source_system'],
+                eainfo_id
+            ))
+            conn.commit()
+
+    finally:
+        db.return_connection(conn)
+
+    return eainfo_id
+</code></pre>
+<hr />
+<h3 id="6-new-api-endpoints">6. New API Endpoints</h3>
+<p>Add specialized endpoints in <code>src/catalog/api/api.py</code>:</p>
+<pre><code class="language-python"># Add to src/catalog/api/api.py
+
+@app.get(&quot;/api/datasets&quot;)
+async def list_datasets(
+    dataset_type: Optional[str] = None,
+    source_system: Optional[str] = None,
+    limit: int = 100
+):
+    &quot;&quot;&quot;
+    List all datasets with optional filtering.
+
+    Query Parameters:
+    - dataset_type: Filter by type (feature_class, table, etc.)
+    - source_system: Filter by source system
+    - limit: Maximum results (default 100)
+    &quot;&quot;&quot;
+    from catalog.core.db import list_all_datasets
+
+    datasets = list_all_datasets(
+        dataset_type=dataset_type,
+        source_system=source_system,
+        limit=limit
+    )
+
+    return {&quot;datasets&quot;: datasets, &quot;count&quot;: len(datasets)}
+
+
+@app.get(&quot;/api/datasets/{dataset_name}&quot;)
+async def get_dataset_schema(dataset_name: str):
+    &quot;&quot;&quot;
+    Get complete schema definition for a dataset.
+
+    Path Parameters:
+    - dataset_name: Name of the dataset
+
+    Example: GET /api/datasets/BrushDisposal
+    &quot;&quot;&quot;
+    from catalog.core.db import search_entity_by_name
+
+    entity = search_entity_by_name(dataset_name)
+
+    if not entity:
+        raise HTTPException(
+            status_code=404,
+            detail=f&quot;Dataset '{dataset_name}' not found&quot;
+        )
+
+    return entity
+
+
+@app.get(&quot;/api/datasets/{dataset_name}/fields/{field_name}/lineage&quot;)
+async def get_field_lineage_endpoint(dataset_name: str, field_name: str):
+    &quot;&quot;&quot;
+    Get data lineage for a specific field.
+
+    Path Parameters:
+    - dataset_name: Name of the dataset
+    - field_name: Name of the field
+
+    Example: GET /api/datasets/BrushDisposal/fields/OBJECTID/lineage
+    &quot;&quot;&quot;
+    from catalog.core.db import get_field_lineage
+
+    lineage = get_field_lineage(dataset_name, field_name)
+
+    if not lineage:
+        raise HTTPException(
+            status_code=404,
+            detail=f&quot;Field '{field_name}' not found in dataset '{dataset_name}'&quot;
+        )
+
+    return lineage
+
+
+@app.get(&quot;/api/datasets/{dataset_name}/relationships&quot;)
+async def get_dataset_relationships_endpoint(dataset_name: str):
+    &quot;&quot;&quot;
+    Get all relationships for a dataset.
+
+    Path Parameters:
+    - dataset_name: Name of the dataset
+
+    Example: GET /api/datasets/BrushDisposal/relationships
+    &quot;&quot;&quot;
+    from catalog.core.db import get_dataset_relationships
+
+    relationships = get_dataset_relationships(dataset_name)
+
+    if not relationships:
+        raise HTTPException(
+            status_code=404,
+            detail=f&quot;Dataset '{dataset_name}' not found&quot;
+        )
+
+    return relationships
+</code></pre>
+<hr />
+<h3 id="7-implementation-phases">7. Implementation Phases</h3>
+<h4 id="phase-1-extend-database-schema-week-1">Phase 1: Extend Database Schema (Week 1)</h4>
+<ul>
+<li>Run migration to add columns to <code>entity_type</code> and <code>attribute</code> tables</li>
+<li>Create <code>field_lineage</code>, <code>dataset_lineage</code>, and <code>dataset_relationships</code> tables</li>
+<li>Update existing data with dataset names extracted from entity labels</li>
+<li>Test schema changes</li>
+</ul>
+<h4 id="phase-2-enhance-database-functions-week-2">Phase 2: Enhance Database Functions (Week 2)</h4>
+<ul>
+<li>Implement <code>search_entity_by_name()</code> with fuzzy matching</li>
+<li>Implement <code>get_entity_attributes_extended()</code></li>
+<li>Implement <code>get_field_lineage()</code></li>
+<li>Implement <code>get_dataset_relationships()</code></li>
+<li>Implement <code>list_all_datasets()</code></li>
+<li>Write unit tests for all functions</li>
+</ul>
+<h4 id="phase-3-query-classification-week-3">Phase 3: Query Classification (Week 3)</h4>
+<ul>
+<li>Implement <code>classify_query()</code> in ChatBot</li>
+<li>Implement specialized query handlers (<code>_handle_schema_query</code>, etc.)</li>
+<li>Test classification accuracy</li>
+<li>Refine prompts based on testing</li>
+</ul>
+<h4 id="phase-4-enhanced-harvesting-week-4">Phase 4: Enhanced Harvesting (Week 4)</h4>
+<ul>
+<li>Extend metadata extraction to populate new fields</li>
+<li>Update harvesting scripts to call extended functions</li>
+<li>Re-harvest existing data with new metadata</li>
+<li>Validate data quality</li>
+</ul>
+<h4 id="phase-5-api-enhancement-week-5">Phase 5: API Enhancement (Week 5)</h4>
+<ul>
+<li>Add new REST endpoints</li>
+<li>Update existing chat endpoint to use classification</li>
+<li>Add API documentation</li>
+<li>Integration testing</li>
+</ul>
+<h4 id="phase-6-quality-optimization-week-6">Phase 6: Quality &amp; Optimization (Week 6)</h4>
+<ul>
+<li>Performance optimization</li>
+<li>Add caching for frequently accessed schemas</li>
+<li>User acceptance testing</li>
+<li>Documentation and training materials</li>
+</ul>
+<hr />
+<h3 id="8-example-query-flows">8. Example Query Flows</h3>
+<h4 id="example-1-schema-query">Example 1: Schema Query</h4>
+<p><strong>User Query</strong>: "Is there a schema definition for BrushDisposal? If so, what is that schema?"</p>
+<p><strong>System Flow</strong>:</p>
+<ol>
+<li>Query classifier identifies this as <code>SCHEMA</code> query</li>
+<li>LLM extracts dataset name: "BrushDisposal"</li>
+<li>System calls <code>search_entity_by_name("BrushDisposal")</code></li>
+<li>Retrieves entity_type + attributes from database using existing structure</li>
+<li>LLM formats natural language response with schema details</li>
+</ol>
+<p><strong>Expected Response</strong>:</p>
+<pre><code class="language-text">Yes, I found the schema definition for BrushDisposal:
+
+**Dataset**: BrushDisposal (Brush Disposal Sites)
+**Type**: Feature Class
+**Source**: USFS GIS
+**Records**: 1,247
+
+**Schema** (15 fields):
+
+- OBJECTID (Integer) [Primary Key]
+  Unique identifier for each disposal site
+
+- SITE_NAME (String, max 100)
+  Name of the disposal site
+
+- ACTIVITY_CODE (String, max 4)
+  Activity code from FACTS system
+  Domain: 12 enumerated values (1111, 1112, etc.)
+
+- LATITUDE (Float)
+  Latitude coordinate in decimal degrees
+  Range: 32.5 to 49.0
+
+[... additional fields ...]
+
+This dataset was last updated on 2024-12-15.
+</code></pre>
+<h4 id="example-2-lineage-query">Example 2: Lineage Query</h4>
+<p><strong>User Query</strong>: "What is the data lineage of the field OBJECTID in BrushDisposal?"</p>
+<p><strong>System Flow</strong>:</p>
+<ol>
+<li>Query classifier identifies this as <code>LINEAGE</code> query</li>
+<li>LLM extracts dataset="BrushDisposal" and field="OBJECTID"</li>
+<li>System calls <code>get_field_lineage("BrushDisposal", "OBJECTID")</code></li>
+<li>Retrieves lineage from <code>field_lineage</code> table</li>
+<li>LLM formats lineage information</li>
+</ol>
+<p><strong>Expected Response</strong>:</p>
+<pre><code class="language-text">The OBJECTID field in BrushDisposal has the following data lineage:
+
+**Field Type**: Source field (no upstream transformations)
+
+**Origin**:
+This is a system-generated primary key field created automatically by ArcGIS
+when the BrushDisposal feature class was created. It is not derived from any
+source data.
+
+**Downstream Usage** (2 datasets depend on this field):
+
+1. DisposalMonitoring.DISPOSAL_SITE_ID [VERIFIED]
+   - Relationship: Foreign key reference (one-to-many)
+   - Transformation: Direct copy
+   - Purpose: Links monitoring records to disposal sites
+
+2. BrushDisposalHistory.ORIGINAL_OBJECTID
+   - Relationship: Historical reference
+   - Transformation: Archived copy
+   - Purpose: Preserves original ID when records are archived
+
+**Summary**: OBJECTID serves as the primary key and is referenced by 2
+downstream datasets for data integration purposes.
+</code></pre>
+<hr />
+<h3 id="9-migration-sql-script">9. Migration SQL Script</h3>
+<pre><code class="language-sql">-- sql/migrations/002_add_librarian_enhancements.sql
+
+BEGIN;
+
+-- ============================================================================
+-- EXTEND EXISTING TABLES
+-- ============================================================================
+
+-- Add dataset-level metadata to entity_type
+ALTER TABLE entity_type
+  ADD COLUMN IF NOT EXISTS dataset_name VARCHAR(255),
+  ADD COLUMN IF NOT EXISTS display_name VARCHAR(255),
+  ADD COLUMN IF NOT EXISTS dataset_type VARCHAR(50),
+  ADD COLUMN IF NOT EXISTS source_system VARCHAR(100),
+  ADD COLUMN IF NOT EXISTS source_url TEXT,
+  ADD COLUMN IF NOT EXISTS record_count INTEGER,
+  ADD COLUMN IF NOT EXISTS last_updated_at TIMESTAMP,
+  ADD COLUMN IF NOT EXISTS spatial_extent JSONB,
+  ADD COLUMN IF NOT EXISTS metadata JSONB;
+
+-- Add technical metadata to attribute
+ALTER TABLE attribute
+  ADD COLUMN IF NOT EXISTS data_type VARCHAR(50),
+  ADD COLUMN IF NOT EXISTS is_nullable BOOLEAN DEFAULT true,
+  ADD COLUMN IF NOT EXISTS is_primary_key BOOLEAN DEFAULT false,
+  ADD COLUMN IF NOT EXISTS is_foreign_key BOOLEAN DEFAULT false,
+  ADD COLUMN IF NOT EXISTS max_length INTEGER,
+  ADD COLUMN IF NOT EXISTS field_precision INTEGER,
+  ADD COLUMN IF NOT EXISTS field_scale INTEGER,
+  ADD COLUMN IF NOT EXISTS default_value TEXT,
+  ADD COLUMN IF NOT EXISTS completeness_percent DECIMAL(5,2),
+  ADD COLUMN IF NOT EXISTS uniqueness_percent DECIMAL(5,2),
+  ADD COLUMN IF NOT EXISTS min_value TEXT,
+  ADD COLUMN IF NOT EXISTS max_value TEXT,
+  ADD COLUMN IF NOT EXISTS sample_values TEXT[],
+  ADD COLUMN IF NOT EXISTS last_profiled_at TIMESTAMP,
+  ADD COLUMN IF NOT EXISTS field_metadata JSONB;
+
+-- ============================================================================
+-- CREATE NEW TABLES
+-- ============================================================================
+
+-- Field-level lineage
+CREATE TABLE IF NOT EXISTS field_lineage (
+    id SERIAL PRIMARY KEY,
+    target_attribute_id INTEGER REFERENCES attribute(id) ON DELETE CASCADE,
+    source_attribute_id INTEGER REFERENCES attribute(id) ON DELETE CASCADE,
+    transformation_type VARCHAR(50),
+    transformation_logic TEXT,
+    confidence_score DECIMAL(3,2),
+    is_verified BOOLEAN DEFAULT false,
+    created_at TIMESTAMP DEFAULT NOW(),
+    created_by VARCHAR(100),
+    notes TEXT,
+    metadata JSONB
+);
+
+-- Dataset-level lineage
+CREATE TABLE IF NOT EXISTS dataset_lineage (
+    id SERIAL PRIMARY KEY,
+    downstream_entity_id INTEGER REFERENCES entity_type(id) ON DELETE CASCADE,
+    upstream_entity_id INTEGER REFERENCES entity_type(id) ON DELETE CASCADE,
+    dependency_type VARCHAR(50),
+    description TEXT,
+    is_verified BOOLEAN DEFAULT false,
+    created_at TIMESTAMP DEFAULT NOW(),
+    metadata JSONB,
+    UNIQUE(downstream_entity_id, upstream_entity_id)
+);
+
+-- Dataset relationships (foreign keys, etc.)
+CREATE TABLE IF NOT EXISTS dataset_relationships (
+    id SERIAL PRIMARY KEY,
+    from_entity_id INTEGER REFERENCES entity_type(id) ON DELETE CASCADE,
+    from_attribute_id INTEGER REFERENCES attribute(id) ON DELETE CASCADE,
+    to_entity_id INTEGER REFERENCES entity_type(id) ON DELETE CASCADE,
+    to_attribute_id INTEGER REFERENCES attribute(id) ON DELETE CASCADE,
+    relationship_type VARCHAR(50),
+    relationship_name VARCHAR(255),
+    is_enforced BOOLEAN DEFAULT false,
+    cardinality VARCHAR(50),
+    created_at TIMESTAMP DEFAULT NOW(),
+    notes TEXT,
+    metadata JSONB
+);
+
+-- ============================================================================
+-- CREATE INDEXES
+-- ============================================================================
+
+-- entity_type indexes
+CREATE INDEX IF NOT EXISTS idx_entity_type_dataset_name ON entity_type(dataset_name);
+CREATE INDEX IF NOT EXISTS idx_entity_type_dataset_type ON entity_type(dataset_type);
+CREATE INDEX IF NOT EXISTS idx_entity_type_source_system ON entity_type(source_system);
+
+-- attribute indexes
+CREATE INDEX IF NOT EXISTS idx_attribute_data_type ON attribute(data_type);
+CREATE INDEX IF NOT EXISTS idx_attribute_is_primary_key ON attribute(is_primary_key) WHERE is_primary_key = true;
+CREATE INDEX IF NOT EXISTS idx_attribute_is_foreign_key ON attribute(is_foreign_key) WHERE is_foreign_key = true;
+
+-- lineage indexes
+CREATE INDEX IF NOT EXISTS idx_lineage_target ON field_lineage(target_attribute_id);
+CREATE INDEX IF NOT EXISTS idx_lineage_source ON field_lineage(source_attribute_id);
+CREATE INDEX IF NOT EXISTS idx_lineage_confidence ON field_lineage(confidence_score);
+
+CREATE INDEX IF NOT EXISTS idx_dataset_lineage_downstream ON dataset_lineage(downstream_entity_id);
+CREATE INDEX IF NOT EXISTS idx_dataset_lineage_upstream ON dataset_lineage(upstream_entity_id);
+
+-- relationship indexes
+CREATE INDEX IF NOT EXISTS idx_rel_from_entity ON dataset_relationships(from_entity_id);
+CREATE INDEX IF NOT EXISTS idx_rel_to_entity ON dataset_relationships(to_entity_id);
+CREATE INDEX IF NOT EXISTS idx_rel_from_attribute ON dataset_relationships(from_attribute_id);
+CREATE INDEX IF NOT EXISTS idx_rel_to_attribute ON dataset_relationships(to_attribute_id);
+
+-- Enable fuzzy text search
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+CREATE INDEX IF NOT EXISTS idx_entity_type_dataset_name_trgm ON entity_type USING gin (dataset_name gin_trgm_ops);
+CREATE INDEX IF NOT EXISTS idx_entity_type_label_trgm ON entity_type USING gin (label gin_trgm_ops);
+
+-- ============================================================================
+-- POPULATE DATASET NAMES FROM EXISTING DATA
+-- ============================================================================
+
+-- Extract dataset names from entity labels
+-- This handles labels like &quot;S_USA.Activity_BrushDisposal&quot; → &quot;BrushDisposal&quot;
+UPDATE entity_type
+SET dataset_name =
+  CASE
+    WHEN position('.' in label) &gt; 0 THEN split_part(label, '.', array_length(string_to_array(label, '.'), 1))
+    ELSE label
+  END
+WHERE dataset_name IS NULL;
+
+-- Set display names
+UPDATE entity_type
+SET display_name = replace(dataset_name, '_', ' ')
+WHERE display_name IS NULL AND dataset_name IS NOT NULL;
+
+COMMIT;
+
+-- Verify migration
+SELECT
+  'entity_type' as table_name,
+  COUNT(*) as row_count,
+  COUNT(dataset_name) as with_dataset_name,
+  COUNT(display_name) as with_display_name
+FROM entity_type
+UNION ALL
+SELECT
+  'attribute' as table_name,
+  COUNT(*) as row_count,
+  COUNT(data_type) as with_data_type,
+  COUNT(is_primary_key) as with_pk_flag
+FROM attribute;
+</code></pre>
+<hr />
+<h3 id="10-testing-strategy">10. Testing Strategy</h3>
+<h4 id="unit-tests">Unit Tests</h4>
+<pre><code class="language-python"># tests/test_enhanced_db.py
+
+def test_search_entity_by_exact_name():
+    &quot;&quot;&quot;Test exact name matching&quot;&quot;&quot;
+    entity = search_entity_by_name(&quot;BrushDisposal&quot;)
+    assert entity is not None
+    assert entity['dataset_name'] == &quot;BrushDisposal&quot;
+    assert 'attributes' in entity
+
+
+def test_search_entity_by_fuzzy_name():
+    &quot;&quot;&quot;Test fuzzy name matching&quot;&quot;&quot;
+    entity = search_entity_by_name(&quot;BrushDisposl&quot;)  # typo
+    assert entity is not None
+    assert &quot;BrushDisposal&quot; in entity['dataset_name']
+
+
+def test_get_field_lineage_source_field():
+    &quot;&quot;&quot;Test lineage for source field (no upstream)&quot;&quot;&quot;
+    lineage = get_field_lineage(&quot;BrushDisposal&quot;, &quot;OBJECTID&quot;)
+    assert lineage is not None
+    assert lineage['is_source_field'] == True
+    assert len(lineage['upstream_sources']) == 0
+
+
+def test_get_field_lineage_derived_field():
+    &quot;&quot;&quot;Test lineage for derived field&quot;&quot;&quot;
+    # Setup: Create test lineage
+    # ... test code ...
+    lineage = get_field_lineage(&quot;DerivedTable&quot;, &quot;COMPUTED_FIELD&quot;)
+    assert len(lineage['upstream_sources']) &gt; 0
+
+
+def test_query_classification():
+    &quot;&quot;&quot;Test query intent classification&quot;&quot;&quot;
+    chatbot = ChatBot()
+
+    assert chatbot.classify_query(&quot;What is the schema for X?&quot;) == QueryType.SCHEMA
+    assert chatbot.classify_query(&quot;Where does field Y come from?&quot;) == QueryType.LINEAGE
+    assert chatbot.classify_query(&quot;Tell me about X&quot;) == QueryType.GENERAL
+</code></pre>
+<h4 id="integration-tests">Integration Tests</h4>
+<ul>
+<li>Test end-to-end schema queries through API</li>
+<li>Test lineage queries with multi-hop relationships</li>
+<li>Test relationship queries</li>
+<li>Test classification accuracy on real user queries</li>
+</ul>
+<h4 id="performance-tests">Performance Tests</h4>
+<ul>
+<li>Schema retrieval: &lt; 100ms</li>
+<li>Complex lineage query: &lt; 500ms</li>
+<li>Dataset listing: &lt; 200ms</li>
+<li>Concurrent queries: 50+ simultaneous users</li>
+</ul>
+<hr />
+<h2 id="conclusion">Conclusion</h2>
+<p>This enhancement design builds directly on top of the existing <code>schema_parser.py</code> infrastructure rather than creating parallel structures. By extending the existing <code>entity_type</code> and <code>attribute</code> tables with additional metadata columns, we maintain backward compatibility while adding powerful new capabilities.</p>
+<h3 id="key-benefits">Key Benefits</h3>
+<p>✅ <strong>Leverages Existing Infrastructure</strong>: Builds on proven schema_parser.py models</p>
+<p>✅ <strong>Backward Compatible</strong>: Existing code continues to work</p>
+<p>✅ <strong>Structured Metadata</strong>: Complete entity and attribute definitions already in place</p>
+<p>✅ <strong>Intelligent Query Routing</strong>: Classification-based routing to specialized handlers</p>
+<p>✅ <strong>Lineage Tracking</strong>: New field-level lineage with transformation logic</p>
+<p>✅ <strong>Natural Language Interface</strong>: Users ask questions in plain English</p>
+<p>✅ <strong>Scalable Architecture</strong>: Designed to handle large catalogs</p>
+<h3 id="what-were-adding">What We're Adding</h3>
+<ol>
+<li><strong>Dataset-level metadata</strong> columns to <code>entity_type</code></li>
+<li><strong>Technical field metadata</strong> columns to <code>attribute</code></li>
+<li><strong>New lineage tables</strong> for tracking data provenance</li>
+<li><strong>New relationship tables</strong> for cross-dataset references</li>
+<li><strong>Query classification</strong> logic in ChatBot</li>
+<li><strong>Specialized retrieval</strong> functions for structured queries</li>
+<li><strong>New API endpoints</strong> for direct access</li>
+</ol>
+<h3 id="next-steps">Next Steps</h3>
+<ol>
+<li>Review and approve this design</li>
+<li>Run database migration (Phase 1)</li>
+<li>Implement enhanced database functions (Phase 2)</li>
+<li>Implement query classification (Phase 3)</li>
+<li>Extend harvesting process (Phase 4)</li>
+<li>Add new API endpoints (Phase 5)</li>
+<li>Test and optimize (Phase 6)</li>
+</ol>
+<hr />
+<p><strong>Document Version</strong>: 2.0
+<strong>Created</strong>: 2025-01-05
+<strong>Updated</strong>: 2025-01-05
+<strong>Author</strong>: Claude Code (AI Assistant)
+<strong>Status</strong>: Proposal - Pending Review</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

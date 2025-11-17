@@ -1,0 +1,2016 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../query-enhancements/">
+      
+      
+        <link rel="next" href="../solidjs-chatbot-frontend-summary/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Data Librarian Quick Reference - Catalog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-librarian-quick-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Catalog" class="md-header__button md-logo" aria-label="Catalog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Catalog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Librarian Quick Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Catalog" class="md-nav__button md-logo" aria-label="Catalog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Catalog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-lineage-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Schema &amp; Lineage Support Enhancement Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../eainfo-data-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EAINFO Data Model - Refined Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../schema_parser_testing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Schema Parser Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../xml-parsing-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XML Parsing Comparison: ElementTree vs BeautifulSoup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incoming
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Incoming
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../implementation-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Librarian Implementation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../query-enhancements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Query Enhancement Design: Data Librarian Capabilities
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Librarian Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Librarian Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#natural-language-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Natural Language Queries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Natural Language Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-the-chatbot-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the ChatBot Interface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lineage-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lineage Queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relationship-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship Queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest-api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST API Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="REST API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-all-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List All Datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-dataset-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Dataset Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-field-lineage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Field Lineage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-dataset-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Dataset Relationships
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Python Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-all-datasets_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List All Datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-entity-by-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Entity by Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-field-lineage_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Field Lineage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-dataset-relationships_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Dataset Relationships
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-entity-extended-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Entity Extended Metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cli-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CLI Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parse-schema-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parse Schema Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-health-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Health Check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document Count
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clear-tables-caution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clear Tables (Caution!)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-classification-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query Classification Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips-and-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips and Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flask-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flask Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jupyter-notebook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jupyter Notebook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Support
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solidjs-chatbot-frontend-summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SolidJS Chatbot Frontend Implementation Summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Table of Contents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#natural-language-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Natural Language Queries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Natural Language Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-the-chatbot-interface" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using the ChatBot Interface
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schema-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lineage-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lineage Queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relationship-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship Queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rest-api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST API Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="REST API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#list-all-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List All Datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-dataset-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Dataset Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-field-lineage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Field Lineage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-dataset-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Dataset Relationships
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Python Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Import Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list-all-datasets_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List All Datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-entity-by-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Entity by Name
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-field-lineage_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Field Lineage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-dataset-relationships_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Get Dataset Relationships
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-entity-extended-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Entity Extended Metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cli-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI Commands
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CLI Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parse-schema-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parse Schema Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-health-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Health Check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document Count
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clear-tables-caution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clear Tables (Caution!)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-classification-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query Classification Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Handling
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tips-and-best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tips and Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flask-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flask Application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jupyter-notebook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jupyter Notebook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-line-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Command-line Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Support
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="data-librarian-quick-reference">Data Librarian Quick Reference</h1>
+<p>Quick reference guide for using the enhanced Catalog API "data librarian" features.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#natural-language-queries">Natural Language Queries</a></li>
+<li><a href="#rest-api-endpoints">REST API Endpoints</a></li>
+<li><a href="#python-functions">Python Functions</a></li>
+<li><a href="#cli-commands">CLI Commands</a></li>
+</ul>
+<h2 id="natural-language-queries">Natural Language Queries</h2>
+<h3 id="using-the-chatbot-interface">Using the ChatBot Interface</h3>
+<pre><code class="language-python">from catalog.api.llm import ChatBot
+
+bot = ChatBot()
+response = bot.chat(&quot;your question here&quot;)
+print(response)
+</code></pre>
+<h3 id="schema-queries">Schema Queries</h3>
+<p>Ask about dataset structure and field definitions:</p>
+<pre><code class="language-python"># Basic schema inquiry
+bot.chat(&quot;What is the schema for BrushDisposal?&quot;)
+
+# Field-specific questions
+bot.chat(&quot;What fields are in the Activity table?&quot;)
+
+# Dataset existence check
+bot.chat(&quot;Is there a dataset called UserDefinedFireReport?&quot;)
+
+# Data types and constraints
+bot.chat(&quot;Show me the structure of Location dataset&quot;)
+</code></pre>
+<p><strong>Example Response</strong>:</p>
+<pre><code>The BrushDisposal dataset is a feature class from USFS GIS containing
+15 fields. Key fields include:
+- OBJECTID (Integer, Primary Key): Unique identifier
+- ActivityDate (Date): When the activity occurred
+- Acres (Float): Size of the disposal area
+- Status (String): Current status with 5 domain values
+...
+</code></pre>
+<h3 id="lineage-queries">Lineage Queries</h3>
+<p>Ask about data origins and transformations:</p>
+<pre><code class="language-python"># Field lineage
+bot.chat(&quot;What is the lineage of OBJECTID in BrushDisposal?&quot;)
+
+# Data source questions
+bot.chat(&quot;Where does the STATUS field come from?&quot;)
+
+# Transformation tracking
+bot.chat(&quot;Show me what fields use the GEOMETRY column&quot;)
+
+# Full data flow
+bot.chat(&quot;Explain the lineage of the TotalAcres field&quot;)
+</code></pre>
+<p><strong>Example Response</strong>:</p>
+<pre><code>The OBJECTID field in BrushDisposal is a source field with no
+upstream dependencies. It serves as the primary key and is used by
+3 downstream datasets:
+- ActivitySummary.SourceID (direct copy)
+- FireHistory.DisposalID (foreign key reference)
+...
+</code></pre>
+<h3 id="relationship-queries">Relationship Queries</h3>
+<p>Ask about connections between datasets:</p>
+<pre><code class="language-python"># Dataset relationships
+bot.chat(&quot;What datasets reference BrushDisposal?&quot;)
+
+# Foreign key questions
+bot.chat(&quot;How is Activity related to Location?&quot;)
+
+# Connection discovery
+bot.chat(&quot;Show me all relationships for the FireReport table&quot;)
+
+# Dependency checking
+bot.chat(&quot;What datasets depend on UserActivity?&quot;)
+</code></pre>
+<p><strong>Example Response</strong>:</p>
+<pre><code>BrushDisposal has the following relationships:
+
+Outgoing relationships (references other datasets):
+- Field LOCATION_ID → Location.OBJECTID [ENFORCED]
+
+Incoming relationships (referenced by other datasets):
+- ActivitySummary.DISPOSAL_ID → OBJECTID [NOT ENFORCED]
+- HistoricalActivity.SOURCE_ID → OBJECTID [ENFORCED]
+</code></pre>
+<h2 id="rest-api-endpoints">REST API Endpoints</h2>
+<p>All endpoints require authentication with <code>x-api-key</code> header.</p>
+<h3 id="list-all-datasets">List All Datasets</h3>
+<pre><code class="language-bash"># List all datasets
+curl -H &quot;x-api-key: YOUR_API_KEY&quot; \
+  http://localhost:8000/datasets
+
+# Filter by type
+curl -H &quot;x-api-key: YOUR_API_KEY&quot; \
+  &quot;http://localhost:8000/datasets?dataset_type=feature_class&amp;limit=20&quot;
+
+# Filter by source system
+curl -H &quot;x-api-key: YOUR_API_KEY&quot; \
+  &quot;http://localhost:8000/datasets?source_system=USFS+GIS&quot;
+</code></pre>
+<p><strong>Response</strong>:</p>
+<pre><code class="language-json">{
+  &quot;total&quot;: 185,
+  &quot;datasets&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;dataset_name&quot;: &quot;BrushDisposal&quot;,
+      &quot;display_name&quot;: &quot;Brush Disposal&quot;,
+      &quot;dataset_type&quot;: &quot;feature_class&quot;,
+      &quot;source_system&quot;: &quot;USFS GIS&quot;,
+      &quot;record_count&quot;: 15234,
+      &quot;last_updated_at&quot;: &quot;2024-10-15T10:30:00&quot;
+    },
+    ...
+  ]
+}
+</code></pre>
+<h3 id="get-dataset-schema">Get Dataset Schema</h3>
+<pre><code class="language-bash">curl -H &quot;x-api-key: YOUR_API_KEY&quot; \
+  http://localhost:8000/datasets/BrushDisposal
+</code></pre>
+<p><strong>Response</strong>:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: 1,
+  &quot;dataset_name&quot;: &quot;BrushDisposal&quot;,
+  &quot;display_name&quot;: &quot;Brush Disposal&quot;,
+  &quot;dataset_type&quot;: &quot;feature_class&quot;,
+  &quot;definition&quot;: &quot;Records of brush disposal activities...&quot;,
+  &quot;attributes&quot;: [
+    {
+      &quot;id&quot;: 100,
+      &quot;label&quot;: &quot;OBJECTID&quot;,
+      &quot;definition&quot;: &quot;Unique identifier&quot;,
+      &quot;technical&quot;: {
+        &quot;data_type&quot;: &quot;Integer&quot;,
+        &quot;is_nullable&quot;: false,
+        &quot;is_primary_key&quot;: true,
+        &quot;is_foreign_key&quot;: false
+      },
+      &quot;domain_values&quot;: []
+    },
+    {
+      &quot;id&quot;: 101,
+      &quot;label&quot;: &quot;Status&quot;,
+      &quot;definition&quot;: &quot;Current activity status&quot;,
+      &quot;technical&quot;: {
+        &quot;data_type&quot;: &quot;String&quot;,
+        &quot;max_length&quot;: 50,
+        &quot;is_nullable&quot;: true
+      },
+      &quot;domain_values&quot;: [
+        {&quot;value&quot;: &quot;Active&quot;, &quot;definition&quot;: &quot;Activity in progress&quot;},
+        {&quot;value&quot;: &quot;Complete&quot;, &quot;definition&quot;: &quot;Activity finished&quot;},
+        ...
+      ]
+    },
+    ...
+  ]
+}
+</code></pre>
+<h3 id="get-field-lineage">Get Field Lineage</h3>
+<pre><code class="language-bash">curl -H &quot;x-api-key: YOUR_API_KEY&quot; \
+  http://localhost:8000/datasets/BrushDisposal/fields/OBJECTID/lineage
+</code></pre>
+<p><strong>Response</strong>:</p>
+<pre><code class="language-json">{
+  &quot;entity_label&quot;: &quot;BrushDisposal&quot;,
+  &quot;field&quot;: &quot;OBJECTID&quot;,
+  &quot;upstream_sources&quot;: [],
+  &quot;downstream_dependents&quot;: [
+    {
+      &quot;target_dataset&quot;: &quot;ActivitySummary&quot;,
+      &quot;target_field&quot;: &quot;SOURCE_ID&quot;,
+      &quot;transformation_type&quot;: &quot;direct_copy&quot;,
+      &quot;transformation_logic&quot;: &quot;1:1 mapping from source&quot;,
+      &quot;is_verified&quot;: true
+    },
+    ...
+  ]
+}
+</code></pre>
+<h3 id="get-dataset-relationships">Get Dataset Relationships</h3>
+<pre><code class="language-bash">curl -H &quot;x-api-key: YOUR_API_KEY&quot; \
+  http://localhost:8000/datasets/BrushDisposal/relationships
+</code></pre>
+<p><strong>Response</strong>:</p>
+<pre><code class="language-json">{
+  &quot;dataset&quot;: &quot;BrushDisposal&quot;,
+  &quot;outgoing_relationships&quot;: [
+    {
+      &quot;from_field&quot;: &quot;LOCATION_ID&quot;,
+      &quot;to_dataset&quot;: &quot;Location&quot;,
+      &quot;to_field&quot;: &quot;OBJECTID&quot;,
+      &quot;relationship_type&quot;: &quot;foreign_key&quot;,
+      &quot;is_enforced&quot;: true,
+      &quot;cardinality&quot;: &quot;many_to_one&quot;
+    }
+  ],
+  &quot;incoming_relationships&quot;: [
+    {
+      &quot;from_dataset&quot;: &quot;ActivitySummary&quot;,
+      &quot;from_field&quot;: &quot;DISPOSAL_ID&quot;,
+      &quot;to_field&quot;: &quot;OBJECTID&quot;,
+      &quot;relationship_type&quot;: &quot;foreign_key&quot;,
+      &quot;is_enforced&quot;: false,
+      &quot;cardinality&quot;: &quot;many_to_one&quot;
+    }
+  ]
+}
+</code></pre>
+<h2 id="python-functions">Python Functions</h2>
+<p>Direct access to database functions from Python code.</p>
+<h3 id="import-functions">Import Functions</h3>
+<pre><code class="language-python">from catalog.core.db import (
+    list_all_datasets,
+    search_entity_by_name,
+    get_field_lineage,
+    get_dataset_relationships,
+    update_entity_extended_metadata
+)
+</code></pre>
+<h3 id="list-all-datasets_1">List All Datasets</h3>
+<pre><code class="language-python"># List all datasets
+datasets = list_all_datasets(limit=100)
+
+# Filter by type
+datasets = list_all_datasets(
+    dataset_type=&quot;feature_class&quot;,
+    limit=50
+)
+
+# Filter by source system
+datasets = list_all_datasets(
+    source_system=&quot;USFS GIS&quot;,
+    limit=100
+)
+
+# Combined filters
+datasets = list_all_datasets(
+    dataset_type=&quot;table&quot;,
+    source_system=&quot;ArcGIS Online&quot;,
+    limit=25
+)
+</code></pre>
+<h3 id="search-entity-by-name">Search Entity by Name</h3>
+<pre><code class="language-python"># Exact match
+entity = search_entity_by_name(&quot;BrushDisposal&quot;)
+
+# Fuzzy match (uses pg_trgm similarity &gt; 0.3)
+entity = search_entity_by_name(&quot;BrshDsposal&quot;)  # Will find &quot;BrushDisposal&quot;
+
+# Check if dataset exists
+if entity:
+    print(f&quot;Found: {entity['dataset_name']}&quot;)
+    print(f&quot;Type: {entity['dataset_type']}&quot;)
+    print(f&quot;Fields: {len(entity['attributes'])}&quot;)
+else:
+    print(&quot;Dataset not found&quot;)
+</code></pre>
+<p><strong>Returns</strong>:</p>
+<pre><code class="language-python">{
+    'id': 1,
+    'dataset_name': 'BrushDisposal',
+    'display_name': 'Brush Disposal',
+    'label': 'S_USA.Activity_BrushDisposal',
+    'definition': 'Records of brush disposal activities...',
+    'dataset_type': 'feature_class',
+    'source_system': 'USFS GIS',
+    'source_url': 'https://data.fs.usda.gov/...',
+    'record_count': 15234,
+    'attributes': [
+        {
+            'id': 100,
+            'label': 'OBJECTID',
+            'definition': 'Unique identifier',
+            'technical': {
+                'data_type': 'Integer',
+                'is_nullable': False,
+                'is_primary_key': True,
+                'is_foreign_key': False
+            },
+            'domain_values': []
+        },
+        ...
+    ]
+}
+</code></pre>
+<h3 id="get-field-lineage_1">Get Field Lineage</h3>
+<pre><code class="language-python"># Get lineage for a field
+lineage = get_field_lineage(&quot;BrushDisposal&quot;, &quot;OBJECTID&quot;)
+
+if lineage:
+    print(f&quot;Field: {lineage['field']}&quot;)
+
+    # Check upstream sources
+    if lineage['upstream_sources']:
+        print(&quot;\nUpstream Sources:&quot;)
+        for source in lineage['upstream_sources']:
+            print(f&quot;  - {source['source_dataset']}.{source['source_field']}&quot;)
+            print(f&quot;    Type: {source['transformation_type']}&quot;)
+            if source['is_verified']:
+                print(&quot;    [VERIFIED]&quot;)
+
+    # Check downstream dependents
+    if lineage['downstream_dependents']:
+        print(&quot;\nDownstream Dependents:&quot;)
+        for dep in lineage['downstream_dependents']:
+            print(f&quot;  - {dep['target_dataset']}.{dep['target_field']}&quot;)
+else:
+    print(&quot;Lineage information not found&quot;)
+</code></pre>
+<h3 id="get-dataset-relationships_1">Get Dataset Relationships</h3>
+<pre><code class="language-python"># Get all relationships for a dataset
+relationships = get_dataset_relationships(&quot;BrushDisposal&quot;)
+
+if relationships:
+    # Outgoing relationships (this dataset references others)
+    print(&quot;Outgoing Relationships:&quot;)
+    for rel in relationships['outgoing_relationships']:
+        print(f&quot;  {rel['from_field']} → &quot;
+              f&quot;{rel['to_dataset']}.{rel['to_field']}&quot;)
+        if rel['is_enforced']:
+            print(&quot;    [ENFORCED]&quot;)
+
+    # Incoming relationships (others reference this dataset)
+    print(&quot;\nIncoming Relationships:&quot;)
+    for rel in relationships['incoming_relationships']:
+        print(f&quot;  {rel['from_dataset']}.{rel['from_field']} → &quot;
+              f&quot;{rel['to_field']}&quot;)
+</code></pre>
+<h3 id="update-entity-extended-metadata">Update Entity Extended Metadata</h3>
+<pre><code class="language-python"># Update extended metadata for a dataset
+from catalog.core.db import (
+    search_entity_by_name,
+    update_entity_extended_metadata
+)
+
+# Find the entity
+entity = search_entity_by_name(&quot;BrushDisposal&quot;)
+
+if entity:
+    entity_id = entity['id']
+
+    # Update metadata
+    metadata = {
+        'dataset_name': 'BrushDisposal',
+        'display_name': 'Brush Disposal Activities',
+        'dataset_type': 'feature_class',
+        'source_system': 'USFS GIS',
+        'source_url': 'https://data.fs.usda.gov/geodata/...',
+        'record_count': 15234,
+        'last_updated_at': '2024-10-15 10:30:00'
+    }
+
+    update_entity_extended_metadata(entity_id, metadata)
+    print(&quot;Metadata updated successfully&quot;)
+</code></pre>
+<h2 id="cli-commands">CLI Commands</h2>
+<h3 id="parse-schema-files">Parse Schema Files</h3>
+<p>Parse all XML metadata files and populate extended metadata:</p>
+<pre><code class="language-bash"># Using the run-cli.sh wrapper
+./run-cli.sh parse_all_schema
+
+# Or directly
+PYTHONPATH=src python -m catalog.cli.cli parse_all_schema
+</code></pre>
+<p><strong>Output</strong>:</p>
+<pre><code>Parsing 185 schema files...
+✓ BrushDisposal (15 attributes)
+✓ Activity (23 attributes)
+✓ Location (8 attributes)
+⚠ InvalidSchema.xml: No detailed info
+✗ CorruptFile.xml: XML parse error
+...
+Parsed 183 schemas successfully
+Failed to parse 2 schemas
+</code></pre>
+<h3 id="database-health-check">Database Health Check</h3>
+<pre><code class="language-bash">./run-cli.sh db-health
+</code></pre>
+<p><strong>Output</strong>:</p>
+<pre><code>Database connection is healthy!
+</code></pre>
+<h3 id="document-count">Document Count</h3>
+<pre><code class="language-bash">./run-cli.sh doc-count
+</code></pre>
+<p><strong>Output</strong>:</p>
+<pre><code>Document count: 15234
+</code></pre>
+<h3 id="clear-tables-caution">Clear Tables (Caution!)</h3>
+<pre><code class="language-bash"># Clear eainfo tables
+./run-cli.sh clear_eainfo
+
+# Clear documents table
+./run-cli.sh clear_docs_table
+</code></pre>
+<h2 id="query-classification-reference">Query Classification Reference</h2>
+<p>The system automatically classifies queries into these types:</p>
+<table>
+<thead>
+<tr>
+<th>Query Type</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SCHEMA</code></td>
+<td>Questions about dataset structure, fields, data types</td>
+<td>"What is the schema for X?"</td>
+</tr>
+<tr>
+<td><code>LINEAGE</code></td>
+<td>Questions about data origins and transformations</td>
+<td>"Where does field X come from?"</td>
+</tr>
+<tr>
+<td><code>RELATIONSHIPS</code></td>
+<td>Questions about connections between datasets</td>
+<td>"What datasets reference X?"</td>
+</tr>
+<tr>
+<td><code>QUALITY</code></td>
+<td>Questions about data completeness and statistics</td>
+<td>"What is the quality of X?"</td>
+</tr>
+<tr>
+<td><code>DISCOVERY</code></td>
+<td>Searching for datasets by characteristics</td>
+<td>"Find datasets with coordinates"</td>
+</tr>
+<tr>
+<td><code>GENERAL</code></td>
+<td>General questions using RAG search</td>
+<td>"Tell me about fire data"</td>
+</tr>
+</tbody>
+</table>
+<h2 id="error-handling">Error Handling</h2>
+<p>All functions include comprehensive error handling:</p>
+<pre><code class="language-python">from catalog.core.db import search_entity_by_name
+
+try:
+    entity = search_entity_by_name(&quot;DatasetName&quot;)
+    if entity:
+        # Process entity
+        print(entity['dataset_name'])
+    else:
+        print(&quot;Dataset not found&quot;)
+except Exception as e:
+    print(f&quot;Error: {e}&quot;)
+</code></pre>
+<p>API endpoints return appropriate HTTP status codes:
+- <code>200 OK</code> - Success
+- <code>404 Not Found</code> - Dataset/field not found
+- <code>401 Unauthorized</code> - Invalid API key
+- <code>500 Internal Server Error</code> - Server error</p>
+<h2 id="tips-and-best-practices">Tips and Best Practices</h2>
+<ol>
+<li>
+<p><strong>Dataset Name Format</strong>: Use the short name extracted from the label (e.g., "BrushDisposal" not "S_USA.Activity_BrushDisposal")</p>
+</li>
+<li>
+<p><strong>Fuzzy Matching</strong>: If you're not sure of the exact name, the search will find close matches (similarity &gt; 0.3)</p>
+</li>
+<li>
+<p><strong>API Key</strong>: Always include the <code>x-api-key</code> header when calling REST endpoints</p>
+</li>
+<li>
+<p><strong>Pagination</strong>: Use the <code>limit</code> parameter to control result size for large queries</p>
+</li>
+<li>
+<p><strong>Error Messages</strong>: Natural language queries will return helpful error messages if data isn't found</p>
+</li>
+<li>
+<p><strong>Verification Status</strong>: Check <code>is_verified</code> flag in lineage data to distinguish between inferred and manually verified relationships</p>
+</li>
+</ol>
+<h2 id="integration-examples">Integration Examples</h2>
+<h3 id="flask-application">Flask Application</h3>
+<pre><code class="language-python">from flask import Flask, jsonify, request
+from catalog.api.llm import ChatBot
+
+app = Flask(__name__)
+bot = ChatBot()
+
+@app.route('/api/ask', methods=['POST'])
+def ask_question():
+    data = request.get_json()
+    question = data.get('question')
+
+    if not question:
+        return jsonify({'error': 'Question required'}), 400
+
+    response = bot.chat(question)
+    return jsonify({'answer': response})
+</code></pre>
+<h3 id="jupyter-notebook">Jupyter Notebook</h3>
+<pre><code class="language-python">from catalog.api.llm import ChatBot
+from catalog.core.db import search_entity_by_name
+import pandas as pd
+
+# Interactive exploration
+bot = ChatBot()
+
+# Ask questions
+answer = bot.chat(&quot;What datasets contain fire data?&quot;)
+print(answer)
+
+# Get structured data
+entity = search_entity_by_name(&quot;BrushDisposal&quot;)
+
+# Convert to DataFrame for analysis
+if entity:
+    df = pd.DataFrame(entity['attributes'])
+    print(df[['label', 'data_type', 'is_primary_key']])
+</code></pre>
+<h3 id="command-line-script">Command-line Script</h3>
+<pre><code class="language-python">#!/usr/bin/env python3
+import sys
+from catalog.api.llm import ChatBot
+
+def main():
+    if len(sys.argv) &lt; 2:
+        print(&quot;Usage: ./ask.py 'your question'&quot;)
+        sys.exit(1)
+
+    question = ' '.join(sys.argv[1:])
+    bot = ChatBot()
+    answer = bot.chat(question)
+    print(answer)
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+<p>Usage:</p>
+<pre><code class="language-bash">./ask.py &quot;What is the schema for BrushDisposal?&quot;
+</code></pre>
+<h2 id="support">Support</h2>
+<p>For issues or questions:
+- Check the implementation summary: <code>docs/incoming/implementation-summary.md</code>
+- Review the design document: <code>docs/incoming/query-enhancements.md</code>
+- Check the project documentation: <code>CLAUDE.md</code></p>
+<hr />
+<p><strong>Quick Reference Version</strong>: 1.0
+<strong>Last Updated</strong>: 2025-11-05</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
