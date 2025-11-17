@@ -4,7 +4,7 @@ plugins:
   - search
   - tags:
       tags_file: tags.md
-  - blog
+#  - blog
 
 theme:
   name: material
