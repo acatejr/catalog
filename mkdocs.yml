@@ -1,0 +1,19 @@
+site_name: Catalog
+
+plugins:
+  - search
+  - tags:
+      tags_file: tags.md
+  - blog
+
+theme:
+  name: material
+
+# nav:
+#   - Home: index.md
+#   - Metadata Sources: metadata-sources.md
+#   - Harvesting: data-harvesting.md
+#   - Storage: data-storage.md
+#   - API: api.md
+#   - LLM: llm.md
+#   - Client: client.md
