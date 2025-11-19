@@ -2,15 +2,20 @@ site_name: Catalog
 
 plugins:
   - search
-  - tags:
-      tags_file: tags.md
+  - include-markdown
+#   - tags:
+#       tags_file: tags.md
 #  - blog
 
 theme:
   name: material
 
-# nav:
-#   - Home: index.md
+nav:
+#    - About: about.md
+    - Data Harvesting: data-harvesting.md
+    - Source Code:
+      - Database: ../src/catalog/core/db.py
+      - CLI: ../src/catalog/cli/cli.py
 #   - Metadata Sources: metadata-sources.md
 #   - Harvesting: data-harvesting.md
 #   - Storage: data-storage.md

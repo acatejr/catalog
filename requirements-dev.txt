@@ -6,3 +6,4 @@ ruff
 mkdocs-material
 mkdocs-literate-nav
 mkdocstrings
+mkdocs-include-markdown-plugin
