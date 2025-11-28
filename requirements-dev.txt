@@ -1,9 +1,0 @@
--r requirements.txt
-pytest
-pytest-cov
-pytest-sugar
-ruff
-mkdocs-material
-mkdocs-literate-nav
-mkdocstrings
-mkdocs-include-markdown-plugin
