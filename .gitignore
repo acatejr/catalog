@@ -11,6 +11,10 @@ data/catalog
 *scratch*
 .env*
 !.env.example
+.secrets
+temp/
+tmp/
+data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

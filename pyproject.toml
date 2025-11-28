@@ -1,0 +1,30 @@
+[project]
+name = "catalog"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+
+authors = [
+    { name = "acatejr@gmail.com", email = "acatejr@gmail.com" }
+]
+
+requires-python = ">=3.14"
+
+dependencies = [
+    "bs4>=0.0.2",
+    "click>=8.3.1",
+    "requests>=2.32.5",
+    "rich>=14.2.0",
+]
+
+[project.scripts]
+cod = "catalog:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.6",
+]
