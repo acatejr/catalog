@@ -1,6 +1,7 @@
 import click
 from catalog.fsgeodata import FSGeodataDownloader
-
+from catalog.rda import download_rda_metadata
+from catalog.gdd import download_gdd_metadata
 
 @click.group()
 def cli():
@@ -32,6 +33,24 @@ def download_fsgeodata() -> None:
     downloader = FSGeodataDownloader(data_dir="data/fsgeodata")
     downloader.download_all()
 
+
+@cli.command()
+def download_rda() -> None:
+    """Download RDA metadata files."""
+
+    click.echo("Downloading RDA metadata files...")
+
+    download_rda_metadata()
+    click.echo("Download completed successfully.")
+
+
+@cli.command()
+def download_gdd() -> None:
+    """Download GDD metadata files."""
+
+    click.echo("Downloading GDD metadata files...")
+    download_gdd_metadata()
+    click.echo("Download completed successfully.")
 
 def main() -> None:
     """Entry point that runs the CLI group."""
