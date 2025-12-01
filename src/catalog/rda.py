@@ -5,6 +5,7 @@ import os
 SOURCE_URL = "https://www.fs.usda.gov/rds/archive/webservice/datagov"
 DEST_OUTPUT_DIR = "data/rda"
 
+
 def download_rda_metadata():
     response = requests.get(SOURCE_URL)
 

@@ -175,6 +175,37 @@ class FSGeodataDownloader:
         rprint()
         rprint(f"Data saved to: {self.data_dir.absolute()}")
 
+    def parse_metadata(self):
+        """Parse metadata XML to extract title and abstract"""
+
+        xml_path = "data/fsgeodata/metadata"
+        xml_files = Path(xml_path)
+
+        if xml_files.is_dir():
+            xml_files = list(xml_files.glob("*.xml"))
+        else:
+            xml_files = [xml_files]
+
+        try:
+            for idx, file in enumerate(xml_files):
+                # metadata = extract_metadata_from_xml(file)
+                rprint(f"File: {file.name}, {idx + 1}/{len(xml_files)}")
+                # rprint(f"  Title: {metadata['title']}")
+                # rprint(f"  Abstract: {metadata['abstract']}\n")
+
+            # with open(xml_path, "r", encoding="utf-8") as f:
+            #     content = f.read()
+
+            # soup = BeautifulSoup(content, "xml")
+            # title = soup.find("title").text if soup.find("title") else "N/A"
+            # abstract = soup.find("abstract").text if soup.find("abstract") else "N/A"
+
+            # return {"title": title, "abstract": abstract}
+
+        except Exception as e:
+            rprint(f"  ✗ Failed to parse metadata {xml_path}: {e}")
+            return {"title": "N/A", "abstract": "N/A"}
+
 
 def main():
     """Main entry point"""
