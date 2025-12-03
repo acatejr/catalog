@@ -1,6 +1,6 @@
 import click
-from catalog.fsgeodata import FSGeodataDownloader
-from catalog.rda import download_rda_metadata
+from catalog.fsgeodata import FSGeodataLoader
+from catalog.rda import RDALoader
 from catalog.gdd import download_gdd_metadata
 
 
@@ -23,7 +23,7 @@ def download_fsgeodata() -> None:
 
     click.echo("Downloading FSGEO data files...")
 
-    downloader = FSGeodataDownloader(data_dir="data/fsgeodata")
+    downloader = FSGeodataLoader(data_dir="data/fsgeodata")
     downloader.download_all()
 
 
@@ -33,7 +33,9 @@ def download_rda() -> None:
 
     click.echo("Downloading RDA metadata files...")
 
-    download_rda_metadata()
+    # download_rda_metadata()
+    rda = RDALoader()
+    rda.download()
     click.echo("Download completed successfully.")
 
 
@@ -51,7 +53,7 @@ def parse_fsgeodata_metadata() -> None:
     """Parse FSGEO metadata XML files."""
 
     click.echo("Parsing FSGEO metadata XML files...")
-    fsgd = FSGeodataDownloader(data_dir="data/fsgeodata")
+    fsgd = FSGeodataLoader(data_dir="data/fsgeodata")
     fsgd.parse_metadata()
     click.echo("Parsing completed successfully.")
 

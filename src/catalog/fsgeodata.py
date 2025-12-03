@@ -13,7 +13,7 @@ import time
 from rich import print as rprint
 
 
-class FSGeodataDownloader:
+class FSGeodataLoader:
     """Downloads metadata and web services data from USFS Geodata Clearinghouse"""
 
     BASE_URL = "https://data.fs.usda.gov"
