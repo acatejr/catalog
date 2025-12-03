@@ -4,13 +4,13 @@ FSGeodata Downloader
 Downloads metadata and web services information from USFS Geodata Clearinghouse
 """
 
-import os
 import requests
 from pathlib import Path
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 import time
 from rich import print as rprint
+from catalog.lib import clean_str
 
 
 class FSGeodataLoader:
@@ -178,6 +178,7 @@ class FSGeodataLoader:
     def parse_metadata(self):
         """Parse metadata XML to extract title and abstract"""
 
+        documents = []
         xml_path = "data/fsgeodata/metadata"
         xml_files = Path(xml_path)
 
@@ -187,30 +188,71 @@ class FSGeodataLoader:
             xml_files = [xml_files]
 
         try:
+
             for idx, file in enumerate(xml_files):
-                # metadata = extract_metadata_from_xml(file)
-                rprint(f"File: {file.name}, {idx + 1}/{len(xml_files)}")
-                # rprint(f"  Title: {metadata['title']}")
-                # rprint(f"  Abstract: {metadata['abstract']}\n")
+                with open(file, "r") as f:
+                    soup = BeautifulSoup(f, "xml")
 
-            # with open(xml_path, "r", encoding="utf-8") as f:
-            #     content = f.read()
+                    title = clean_str(soup.find("title").get_text()) if soup.find("title") else ""
+                    if soup.find_all("dataqual"):
+                        if len(soup.find_all("dataqual")):
+                            dataqual = soup.find_all("dataqual")[0]
+                            procsteps = dataqual.find_all("procstep")
+                            for step in procsteps:
+                                if step.find("procdate"):
+                                    procdate = step.find("procdate").get_text()
+                                if step.find("procdesc"):
+                                    procdesc = step.find("procdesc").get_text()
+                                print(procdesc, procdate)
 
-            # soup = BeautifulSoup(content, "xml")
-            # title = soup.find("title").text if soup.find("title") else "N/A"
-            # abstract = soup.find("abstract").text if soup.find("abstract") else "N/A"
+                    # if descript:
+                    #     abstract = clean_str(descript.find("abstract").get_text()) if descript.find("abstract") else ""
+                    #     purpose = clean_str(descript.find("purpose").get_text()) if descript.find("purpose") else ""
 
-            # return {"title": title, "abstract": abstract}
+                    # if soup.find_all("themekey") is not None:
+                    #     themekeys = soup.find_all("themekey")
+
+                    # if themekeys:
+                    #     keywords = [w.get_text() for w in themekeys]
+
+
+                    # procdesc = ""
+                    # if soup.has_attr("metadata"):
+                    #     metadata = soup.find("metadata")
+                    # if soup.has_attr("dataqual"):
+                    #     rprint("dadtaqual")
+                    # #     # dataqual = soup.find("dataqual")
+                        # if dataqual.has_attr("lineage"):
+                        #     lineage = soup.find("lineage")
+                        #     if lineage.has_attr("procstep"):
+                        #         procstep = lineage.find("procstep")
+                        #         if procstep.has_attr("procdesc"):
+                        #             procdesc = procstep.find("procdesc").get_text()
+                    #     rprint(procdesc)
+
+                    # document = {
+                    #     "title": title,
+                    #     "abstract": abstract,
+                    #     "purpose": purpose,
+                    #     "keywords": keywords,
+                    #     "process_description": procdesc,
+                    # }
+
+                    # documents.append(document)
 
         except Exception as e:
             rprint(f"  ✗ Failed to parse metadata {xml_path}: {e}")
             return {"title": "N/A", "abstract": "N/A"}
 
+        return documents
+
 
 def main():
     """Main entry point"""
-    downloader = FSGeodataDownloader(data_dir="data")
-    downloader.download_all()
+    fsgeodata = FSGeodataLoader(data_dir="data")
+    # fsgeodata.download_all()
+    docs = fsgeodata.parse_metadata()
+    # rprint(docs)
 
 
 if __name__ == "__main__":

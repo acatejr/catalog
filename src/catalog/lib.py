@@ -21,4 +21,6 @@ def strip_html(text: str) -> str:
     """
 
     soup = BeautifulSoup(text, "html.parser")
-    return soup.get_text()
+    stripped_text = soup.get_text()
+    stripped_text = stripped_text.replace("\n", " ")
+    return stripped_text
