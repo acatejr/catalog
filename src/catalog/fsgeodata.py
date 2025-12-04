@@ -188,12 +188,32 @@ class FSGeodataLoader:
             xml_files = [xml_files]
 
         try:
-
             for idx, file in enumerate(xml_files):
                 with open(file, "r") as f:
                     soup = BeautifulSoup(f, "xml")
 
-                    title = clean_str(soup.find("title").get_text()) if soup.find("title") else ""
+                    title = (
+                        clean_str(soup.find("title").get_text())
+                        if soup.find("title")
+                        else ""
+                    )
+
+                    descript = soup.find("descript")
+                    if descript:
+                        abstract = (
+                            clean_str(descript.find("abstract").get_text())
+                            if descript.find("abstract")
+                            else ""
+                        )
+                        purpose = (
+                            clean_str(descript.find("purpose").get_text())
+                            if descript.find("purpose")
+                            else ""
+                        )
+
+                    # This is where dataqual is used to get data lineage
+                    # TODO: Turn this into its own method.  Something like "get_lineage"
+                    lineage = []
                     if soup.find_all("dataqual"):
                         if len(soup.find_all("dataqual")):
                             dataqual = soup.find_all("dataqual")[0]
@@ -203,42 +223,29 @@ class FSGeodataLoader:
                                     procdate = step.find("procdate").get_text()
                                 if step.find("procdesc"):
                                     procdesc = step.find("procdesc").get_text()
-                                print(procdesc, procdate)
 
-                    # if descript:
-                    #     abstract = clean_str(descript.find("abstract").get_text()) if descript.find("abstract") else ""
-                    #     purpose = clean_str(descript.find("purpose").get_text()) if descript.find("purpose") else ""
+                                if procdate and procdesc:
+                                    procstep = {
+                                        "description": procdesc,
+                                        "date": procdate,
+                                    }
+                                    lineage.append(procstep)
 
-                    # if soup.find_all("themekey") is not None:
-                    #     themekeys = soup.find_all("themekey")
+                    if soup.find_all("themekey") is not None:
+                        themekeys = soup.find_all("themekey")
+                        if len(themekeys) > 0:
+                            keywords = [w.get_text() for w in themekeys]
 
-                    # if themekeys:
-                    #     keywords = [w.get_text() for w in themekeys]
+                    document = {
+                        "title": title,
+                        "lineage": lineage,
+                        "abstract": abstract,
+                        "purpose": purpose,
+                        "keywords": keywords,
+                        "src": "fsgeodata",
+                    }
 
-
-                    # procdesc = ""
-                    # if soup.has_attr("metadata"):
-                    #     metadata = soup.find("metadata")
-                    # if soup.has_attr("dataqual"):
-                    #     rprint("dadtaqual")
-                    # #     # dataqual = soup.find("dataqual")
-                        # if dataqual.has_attr("lineage"):
-                        #     lineage = soup.find("lineage")
-                        #     if lineage.has_attr("procstep"):
-                        #         procstep = lineage.find("procstep")
-                        #         if procstep.has_attr("procdesc"):
-                        #             procdesc = procstep.find("procdesc").get_text()
-                    #     rprint(procdesc)
-
-                    # document = {
-                    #     "title": title,
-                    #     "abstract": abstract,
-                    #     "purpose": purpose,
-                    #     "keywords": keywords,
-                    #     "process_description": procdesc,
-                    # }
-
-                    # documents.append(document)
+                    documents.append(document)
 
         except Exception as e:
             rprint(f"  ✗ Failed to parse metadata {xml_path}: {e}")
@@ -249,9 +256,10 @@ class FSGeodataLoader:
 
 def main():
     """Main entry point"""
-    fsgeodata = FSGeodataLoader(data_dir="data")
+    pass
+    # fsgeodata = FSGeodataLoader(data_dir="data")
     # fsgeodata.download_all()
-    docs = fsgeodata.parse_metadata()
+    # docs = fsgeodata.parse_metadata()
     # rprint(docs)
 
 

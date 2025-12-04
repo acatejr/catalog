@@ -22,7 +22,7 @@ class RDALoader:
             with open(f"{DEST_OUTPUT_DIR}/{DEST_OUTPUT_FILE}", "w") as f:
                 json.dump(json_data, f, indent=4)
 
-    def parse(self):
+    def parse_metadata(self):
         documents = []
         src_file = f"{DEST_OUTPUT_DIR}/{DEST_OUTPUT_FILE}"
 
@@ -40,7 +40,7 @@ class RDALoader:
                 description = clean_str(item["description"])
                 keywords = item["keyword"]
 
-                doc = {"title": title, "description": description, "keywords": keywords}
+                doc = {"title": title, "description": description, "keywords": keywords, "src": "rda"}
 
                 documents.append(doc)
 

@@ -1,7 +1,8 @@
 import click
 from catalog.fsgeodata import FSGeodataLoader
 from catalog.rda import RDALoader
-from catalog.gdd import download_gdd_metadata
+from catalog.gdd import GeospatialDataDiscovery
+from catalog.lib import save_json
 
 
 @click.group()
@@ -43,19 +44,32 @@ def download_rda() -> None:
 def download_gdd() -> None:
     """Download GDD metadata files."""
 
+    gdd = GeospatialDataDiscovery()
     click.echo("Downloading GDD metadata files...")
-    download_gdd_metadata()
+    gdd.download_gdd_metadata()
     click.echo("Download completed successfully.")
 
 
 @cli.command()
-def parse_fsgeodata_metadata() -> None:
-    """Parse FSGEO metadata XML files."""
+def get_docs() -> None:
+    """Read all of the metadata source files and build a dict that contains all document objects."""
+    fsgeod = FSGeodataLoader()
+    rda = RDALoader()
+    gdd = GeospatialDataDiscovery()
 
-    click.echo("Parsing FSGEO metadata XML files...")
-    fsgd = FSGeodataLoader(data_dir="data/fsgeodata")
-    fsgd.parse_metadata()
-    click.echo("Parsing completed successfully.")
+    fsgeo_docs = fsgeod.parse_metadata()
+    click.secho(f"{len(fsgeo_docs)} FSGeodata documents parsed.", fg="green")
+
+    rda_docs = rda.parse_metadata()
+    click.secho(f"{len(rda_docs)} RDA documents parsed.", fg="green")
+
+    gdd_docs = gdd.parse_metadata()
+    click.secho(f"{len(gdd_docs)} GDD documents parsed.", fg="green")
+
+    documents = fsgeo_docs + rda_docs + gdd_docs
+    click.secho(f"{len(documents)} Total documents parsed.", fg="green")
+
+    save_json(documents, "data/catalog.json")
 
 
 def main() -> None:
