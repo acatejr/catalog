@@ -2,7 +2,7 @@
 Unified schema for geospatial catalog documents from FSGeodata, GDD, and RDA sources.
 """
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Optional
 from enum import Enum
 
@@ -67,17 +67,36 @@ class CatalogDocument(BaseModel):
         None, description="Original identifier from source system"
     )
 
+    # Pydantic V2 model configuration
+    model_config = ConfigDict(
+        use_enum_values=True,
+        validate_assignment=True,
+        json_schema_extra={
+            "example": {
+                "title": "National Forest System Lands",
+                "description": "Boundaries of National Forest System lands",
+                "abstract": "This dataset represents the boundaries...",
+                "keywords": ["forest", "boundaries", "USFS"],
+                "themes": ["environment", "boundaries"],
+                "purpose": "To delineate National Forest System lands",
+                "lineage": [
+                    {"description": "Initial data compilation", "date": "20230101"}
+                ],
+                "source": "fsgeodata",
+                "source_id": "S_USA.NFS_Lands",
+            }
+        },
+    )
+
     @field_validator("title")
-    @classmethod
-    def title_not_empty(cls, v: str) -> str:
+    def title_not_empty(v: str) -> str:
         """Ensure title is not empty"""
         if not v or not v.strip():
             raise ValueError("Title cannot be empty")
         return v.strip()
 
     @field_validator("keywords", "themes")
-    @classmethod
-    def remove_empty_strings(cls, v: list[str]) -> list[str]:
+    def remove_empty_strings(v: list[str]) -> list[str]:
         """Remove empty strings from keyword and theme lists"""
         return [item.strip() for item in v if item and item.strip()]
 
@@ -113,20 +132,18 @@ class CatalogDocument(BaseModel):
             for doc_data in docs_data:
                 doc = CatalogDocument.from_fsgeodata(doc_data)
         """
-        lineage_steps = [
-            LineageStep(description=step["description"], date=step["date"])
-            for step in data.get("lineage", [])
-        ]
-
-        return cls(
-            title=data["title"],
-            abstract=data.get("abstract"),
-            purpose=data.get("purpose"),
-            keywords=data.get("keywords", []),
-            lineage=lineage_steps,
-            source=DataSource.FSGEODATA,
-            source_id=source_id,
-        )
+        # Construct the dictionary for validation
+        model_data = {
+            "title": data.get("title"),
+            "abstract": data.get("abstract"),
+            "purpose": data.get("purpose"),
+            "keywords": data.get("keywords", []),
+            "lineage": data.get("lineage", []),
+            "source": DataSource.FSGEODATA,
+            "source_id": source_id,
+        }
+        # Use model_validate for Pydantic V2-style instantiation
+        return cls.model_validate(model_data)
 
     @classmethod
     def from_gdd(cls, data: dict, source_id: Optional[str] = None) -> "CatalogDocument":
@@ -147,14 +164,15 @@ class CatalogDocument(BaseModel):
             for doc_data in docs_data:
                 doc = CatalogDocument.from_gdd(doc_data)
         """
-        return cls(
-            title=data["title"],
-            description=data.get("description"),
-            keywords=data.get("keywords", []),
-            themes=data.get("themes", []),
-            source=DataSource.GDD,
-            source_id=source_id,
-        )
+        model_data = {
+            "title": data.get("title"),
+            "description": data.get("description"),
+            "keywords": data.get("keywords", []),
+            "themes": data.get("themes", []),
+            "source": DataSource.GDD,
+            "source_id": source_id,
+        }
+        return cls.model_validate(model_data)
 
     @classmethod
     def from_rda(cls, data: dict, source_id: Optional[str] = None) -> "CatalogDocument":
@@ -174,43 +192,11 @@ class CatalogDocument(BaseModel):
             for doc_data in docs_data:
                 doc = CatalogDocument.from_rda(doc_data)
         """
-        return cls(
-            title=data["title"],
-            description=data.get("description"),
-            keywords=data.get("keywords", []),
-            source=DataSource.RDA,
-            source_id=source_id,
-        )
-
-    def to_dict(self, exclude_none: bool = True) -> dict:
-        """
-        Convert to dictionary with optional exclusion of None values
-
-        Args:
-            exclude_none: If True, exclude fields with None values
-
-        Returns:
-            Dictionary representation of the document
-        """
-        return self.model_dump(exclude_none=exclude_none)
-
-    class Config:
-        """Pydantic model configuration"""
-
-        use_enum_values = True
-        validate_assignment = True
-        json_schema_extra = {
-            "example": {
-                "title": "National Forest System Lands",
-                "description": "Boundaries of National Forest System lands",
-                "abstract": "This dataset represents the boundaries...",
-                "keywords": ["forest", "boundaries", "USFS"],
-                "themes": ["environment", "boundaries"],
-                "purpose": "To delineate National Forest System lands",
-                "lineage": [
-                    {"description": "Initial data compilation", "date": "20230101"}
-                ],
-                "source": "fsgeodata",
-                "source_id": "S_USA.NFS_Lands",
-            }
+        model_data = {
+            "title": data.get("title"),
+            "description": data.get("description"),
+            "keywords": data.get("keywords", []),
+            "source": DataSource.RDA,
+            "source_id": source_id,
         }
+        return cls.model_validate(model_data)
