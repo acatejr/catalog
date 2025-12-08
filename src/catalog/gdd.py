@@ -2,7 +2,7 @@ import os
 import requests
 import json
 from rich import print as rprint
-from catalog.lib import clean_str
+from catalog.lib import clean_str, hash_string
 
 METADATA_SOURCE_URL = "https://data-usfs.hub.arcgis.com/api/feed/dcat-us/1.1.json"
 DEST_OUTPUT_DIR = "data/gdd"
@@ -64,6 +64,7 @@ class GeospatialDataDiscovery:
                         theme = item.get("theme") if "theme" in item.keys() else []
 
                         document = {
+                            "id": hash_string(title.lower().strip()),
                             "title": title,
                             "description": description,
                             "keywords": keyword,

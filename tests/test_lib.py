@@ -1,6 +1,7 @@
 import pytest
 from src.catalog.lib import clean_str
 
+
 class TestLib:
     def test_clean_str_basic(self):
         text = "  Hello World!  "
@@ -8,7 +9,6 @@ class TestLib:
         assert clean_str(text) == expected
 
     def test_clean_str_newlines(self):
-
         text = "Line 1\n\nLine 2\nLine 3"
         expected = "Line 1 Line 2 Line 3"
         assert clean_str(text) == expected

@@ -3,18 +3,18 @@ import json
 from rich import print as rprint
 from catalog.lib import load_json
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from catalog.schema import CatalogDocument, DataSource
 from sentence_transformers import SentenceTransformer
+import sqlite3
+from pathlib import Path
+import numpy as np
 
-
-class GenVectorData():
+class GenVectorData:
 
     def __init__(self):
         self.src_catalog_file = "data/catalog.json"
         self.documents = []
 
     def read_metadata(self):
-
         if not os.path.exists(self.src_catalog_file):
             rprint(f"[red]Source file {self.src_catalog_file} does not exist.[/red]")
             return
@@ -31,10 +31,13 @@ class GenVectorData():
         )
 
         raw_data = load_json(self.src_catalog_file)
-        rprint(f"Loaded {len(raw_data)} raw documents from [cyan]{self.src_catalog_file}[/cyan]")
+        rprint(
+            f"Loaded {len(raw_data)} raw documents from [cyan]{self.src_catalog_file}[/cyan]"
+        )
 
         documents = []
         for doc in raw_data:
+            id = doc.get("id")
             title = doc.get("title")
             description = doc.get("description")
             keywords = ",".join(kw for kw in doc.get("keywords")) or ""
@@ -44,9 +47,8 @@ class GenVectorData():
             chunks = recursive_text_splitter.create_documents([combined_text])
 
             for idx, chunk in enumerate(chunks):
-
                 metadata = {
-                    "doc_id": idx,  # or fsdoc.doc_id if that's the field name
+                    "doc_id": id,  # or fsdoc.doc_id if that's the field name
                     "chunk_type": "title+description+keywords+source",
                     "chunk_index": idx,
                     "chunk_text": chunk.page_content,
@@ -60,18 +62,127 @@ class GenVectorData():
 
                 documents.append(
                     {
-                    "embedding": embedding,
-                    "metadata": metadata,
-                    "title": title,
-                    "description": description,
+                        "embedding": embedding,
+                        "metadata": metadata,
+                        "title": title,
+                        "description": description,
                     }
                 )
 
-        rprint(f"Loaded {len(documents)} documents ready for embedding and saving to a database.")
+        rprint(
+            f"Loaded {len(documents)} documents ready for embedding and saving to a database."
+        )
+        self.documents = documents
+
+
+    def save_docs_to_db(self,documents: list, db_path: str = "catalog.sqlite") -> None:
+        """
+        Saves processed documents and embeddings to SQLite.
+
+        Args:
+            documents: List of dictionaries containing 'embedding' and 'metadata'.
+                    Expected structure per document:
+                    {
+                        "embedding": numpy.ndarray,
+                        "metadata": {
+                            "doc_id": str,
+                            "chunk_index": int,
+                            "chunk_text": str,
+                            "chunk_type": str,
+                            "title": str,
+                            "description": str,
+                            "keywords": str,
+                            "src": str
+                        },
+                        ...
+                    }
+            db_path: Path to the SQLite database file.
+        """
+        if not documents:
+            print("No documents to save.")
+            return
+
+        # Ensure we use the correct path relative to CWD if not absolute
+        db_file = Path(db_path)
+
+        conn = sqlite3.connect(db_file)
+        cursor = conn.cursor()
+
+        # Create table if it doesn't exist (using the updated schema)
+        # We drop the table first to ensure schema matches the new requirements.
+        # This allows the schema to update if it was missing columns previously.
+        cursor.execute("DROP TABLE IF EXISTS documents")
+
+        create_table_sql = """
+        CREATE TABLE documents (
+            id TEXT NOT NULL PRIMARY KEY,
+            doc_id TEXT,
+            chunk_index INTEGER,
+            chunk_text TEXT,
+            chunk_type TEXT,
+            title TEXT,
+            description TEXT,
+            keywords TEXT,
+            src TEXT,
+            embedding BLOB
+        );
+        """
+        cursor.execute(create_table_sql)
+
+        print(f"Saving {len(documents)} documents to {db_path}...")
+
+        count = 0
+        for doc in documents:
+            meta = doc["metadata"]
+            embedding = doc["embedding"]
+
+            # Create a unique ID for the chunk
+            unique_id = f"{meta['doc_id']}_{meta['chunk_index']}"
+
+            # Serialize embedding
+            if hasattr(embedding, 'tobytes'):
+                embedding_blob = embedding.tobytes()
+            elif isinstance(embedding, list):
+                embedding_blob = np.array(embedding, dtype=np.float32).tobytes()
+            else:
+                # Fallback or error
+                embedding_blob = np.array(embedding).tobytes()
+
+            try:
+                cursor.execute(
+                    """
+                    INSERT INTO documents (
+                        id, doc_id, chunk_index, chunk_text, chunk_type,
+                        title, description, keywords, src, embedding
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        unique_id,
+                        meta.get("doc_id"),
+                        meta.get("chunk_index"),
+                        meta.get("chunk_text"),
+                        meta.get("chunk_type"),
+                        meta.get("title"),
+                        meta.get("description"),
+                        meta.get("keywords"),
+                        meta.get("src"),
+                        embedding_blob
+                    )
+                )
+                count += 1
+            except sqlite3.IntegrityError as e:
+                print(f"Error inserting {unique_id}: {e}")
+
+        conn.commit()
+        conn.close()
+        print(f"Successfully saved {count} chunks to database.")
+
 
 if __name__ == "__main__":
     gvd = GenVectorData()
     gvd.process()
+    gvd.save_docs_to_db(gvd.documents)
+
 
 """
 

@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 from bs4 import BeautifulSoup
+import hashlib
 
 soup = BeautifulSoup()
 
@@ -93,3 +94,8 @@ def strip_html(text: str) -> str:
     stripped_text = soup.get_text()
     stripped_text = stripped_text.replace("\n", " ")
     return stripped_text
+
+
+def hash_string(s):
+    """Generate a SHA-256 hash of the input string."""
+    return hashlib.sha256(s.encode("utf-8")).hexdigest()

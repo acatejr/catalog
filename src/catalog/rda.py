@@ -2,7 +2,7 @@ import requests
 from rich import print as rprint
 import os
 import json
-from catalog.lib import clean_str
+from catalog.lib import clean_str, hash_string
 
 SOURCE_URL = "https://www.fs.usda.gov/rds/archive/webservice/datagov"
 DEST_OUTPUT_DIR = "data/rda"
@@ -40,7 +40,13 @@ class RDALoader:
                 description = clean_str(item["description"])
                 keywords = item["keyword"]
 
-                doc = {"title": title, "description": description, "keywords": keywords, "src": "rda"}
+                doc = {
+                    "id": hash_string(title.lower().strip()),
+                    "title": title,
+                    "description": description,
+                    "keywords": keywords,
+                    "src": "rda",
+                }
 
                 documents.append(doc)
 

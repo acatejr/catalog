@@ -15,6 +15,8 @@ data/catalog
 temp/
 tmp/
 data/
+catalog.sqlite3
+catalog.sqlite
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -237,3 +239,4 @@ client/.env.local
 client/.vite/
 client/*.log
 client/.DS_Store
+README.md

@@ -10,7 +10,7 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 import time
 from rich import print as rprint
-from catalog.lib import clean_str
+from catalog.lib import clean_str, hash_string
 
 
 class FSGeodataLoader:
@@ -237,6 +237,7 @@ class FSGeodataLoader:
                             keywords = [w.get_text() for w in themekeys]
 
                     document = {
+                        "id": hash_string(title.lower().strip()),
                         "title": title,
                         "lineage": lineage,
                         "abstract": abstract,
