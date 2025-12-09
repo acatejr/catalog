@@ -1,18 +1,27 @@
 import os
-import json
 from rich import print as rprint
 from catalog.lib import load_json
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from sentence_transformers import SentenceTransformer
 import sqlite3
 from pathlib import Path
-import numpy as np
+import sqlite_vec
+import logging
+from catalog.lib import clean_str
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    filename="./logs/catalog.log",
+)
+
+logger = logging.getLogger(__name__)
 
 class GenVectorData:
-
     def __init__(self):
         self.src_catalog_file = "data/catalog.json"
         self.documents = []
+        self.model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2", device="cpu")
 
     def read_metadata(self):
         if not os.path.exists(self.src_catalog_file):
@@ -74,190 +83,178 @@ class GenVectorData:
         )
         self.documents = documents
 
+    def create_docs_db(self):
+        db = Path("./catalog.sqlite3")
 
-    def save_docs_to_db(self,documents: list, db_path: str = "catalog.sqlite") -> None:
+        with sqlite3.connect(db) as conn:
+            conn.enable_load_extension(True)
+            sqlite_vec.load(conn)
+            conn.enable_load_extension(False)
+
+            cusor = conn.cursor()
+            cusor.execute("DROP TABLE IF EXISTS documents")
+
+            sql = """CREATE VIRTUAL TABLE documents USING vec0(
+                id TEXT NOT NULL PRIMARY KEY,
+                title TEXT,
+                abstract TEXT,
+                keywords TEXT,
+                purpose TEXT,
+                src TEXT,
+                embedding float[384]
+            )"""
+
+            cusor.execute(sql)
+
+    def save_docs_to_db(self, limit=None, db_path: str = "catalog.sqlite3") -> None:
         """
         Saves processed documents and embeddings to SQLite.
-
-        Args:
-            documents: List of dictionaries containing 'embedding' and 'metadata'.
-                    Expected structure per document:
-                    {
-                        "embedding": numpy.ndarray,
-                        "metadata": {
-                            "doc_id": str,
-                            "chunk_index": int,
-                            "chunk_text": str,
-                            "chunk_type": str,
-                            "title": str,
-                            "description": str,
-                            "keywords": str,
-                            "src": str
-                        },
-                        ...
-                    }
-            db_path: Path to the SQLite database file.
         """
+
+        documents = load_json(self.src_catalog_file)
+
         if not documents:
             print("No documents to save.")
             return
 
-        # Ensure we use the correct path relative to CWD if not absolute
-        db_file = Path(db_path)
+        self.create_docs_db()
 
-        conn = sqlite3.connect(db_file)
-        cursor = conn.cursor()
+        db = Path(db_path)
 
-        # Create table if it doesn't exist (using the updated schema)
-        # We drop the table first to ensure schema matches the new requirements.
-        # This allows the schema to update if it was missing columns previously.
-        cursor.execute("DROP TABLE IF EXISTS documents")
+        with sqlite3.connect(db) as conn:
+            conn.enable_load_extension(True)
+            sqlite_vec.load(conn)
+            conn.enable_load_extension(False)
 
-        create_table_sql = """
-        CREATE TABLE documents (
-            id TEXT NOT NULL PRIMARY KEY,
-            doc_id TEXT,
-            chunk_index INTEGER,
-            chunk_text TEXT,
-            chunk_type TEXT,
-            title TEXT,
-            description TEXT,
-            keywords TEXT,
-            src TEXT,
-            embedding BLOB
-        );
-        """
-        cursor.execute(create_table_sql)
+            cursor = conn.cursor()
 
-        print(f"Saving {len(documents)} documents to {db_path}...")
+            if limit is None or limit == 0:
+                limit = len(documents)
 
-        count = 0
-        for doc in documents:
-            meta = doc["metadata"]
-            embedding = doc["embedding"]
+            for doc in documents[0:limit]:
+                id = doc.get("id")
+                abstract = doc.get("abstract") or ""
+                title = doc.get("title")
+                keywords = ",".join(kw for kw in doc.get("keywords")) or ""
+                purpose = doc.get("purpose") or ""
+                src = doc.get("src") or ""
 
-            # Create a unique ID for the chunk
-            unique_id = f"{meta['doc_id']}_{meta['chunk_index']}"
+                combined_text = f"Title: {title}\nAbstract: {abstract}\nKeywords: {keywords}\nPurpose: {purpose}\nSource: {src}"
+                embeddings = self.model.encode([combined_text])[0]
+                embeddings_bytes = embeddings.tobytes()
 
-            # Serialize embedding
-            if hasattr(embedding, 'tobytes'):
-                embedding_blob = embedding.tobytes()
-            elif isinstance(embedding, list):
-                embedding_blob = np.array(embedding, dtype=np.float32).tobytes()
-            else:
-                # Fallback or error
-                embedding_blob = np.array(embedding).tobytes()
-
-            try:
-                cursor.execute(
-                    """
-                    INSERT INTO documents (
-                        id, doc_id, chunk_index, chunk_text, chunk_type,
-                        title, description, keywords, src, embedding
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                    """,
-                    (
-                        unique_id,
-                        meta.get("doc_id"),
-                        meta.get("chunk_index"),
-                        meta.get("chunk_text"),
-                        meta.get("chunk_type"),
-                        meta.get("title"),
-                        meta.get("description"),
-                        meta.get("keywords"),
-                        meta.get("src"),
-                        embedding_blob
+                sql = "INSERT INTO documents (id, title, abstract, keywords, purpose, src, embedding) VALUES (?, ?, ?, ?, ?, ?, ?)"
+                try:
+                    cursor.execute(
+                        sql,
+                        (id, title, abstract, keywords, purpose, src, embeddings_bytes),
                     )
+                except sqlite3.IntegrityError as e:
+                    logger.info(f"Error inserting {id}, Title: {title}: {e}")
+                    pass
+                finally:
+                    pass
+                conn.commit()
+
+    def query_vector_table(self, query: str = None, limit: int = 5):
+        results = None
+
+        db = Path("./catalog.sqlite3")
+
+        with sqlite3.connect(db) as conn:
+            conn.enable_load_extension(True)
+            sqlite_vec.load(conn)
+            conn.enable_load_extension(False)
+            cursor = conn.cursor()
+
+            if query is None:
+                query = """
+                SELECT id, title FROM DOCUMENTS
+                """
+                results = cursor.execute(query).fetchall()
+            else:
+                query_embedding = self.model.encode([query])[0]
+                results = cursor.execute(
+                    f"""
+                    SELECT
+                        id,
+                        title,
+                        abstract,
+                        keywords,
+                        purpose,
+                        src,
+                        distance
+                    FROM documents
+                    WHERE embedding MATCH ?
+                    ORDER BY distance
+                    LIMIT {limit}
+                    """,
+                    [query_embedding.tobytes()],
                 )
-                count += 1
-            except sqlite3.IntegrityError as e:
-                print(f"Error inserting {unique_id}: {e}")
 
-        conn.commit()
-        conn.close()
-        print(f"Successfully saved {count} chunks to database.")
+                columns = [col[0] for col in cursor.description]
+                results = [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+            return results
 
 
-if __name__ == "__main__":
-    gvd = GenVectorData()
-    gvd.process()
-    gvd.save_docs_to_db(gvd.documents)
+    def bulk_insert_documents(self, db_path: str = "catalog.sqlite3", limit=None) -> None:
 
+        documents = load_json(self.src_catalog_file)
 
-"""
-
-class GenVectorData:
-    def __init__(self):
-        self.src_catalog_file = "data/catalog.json"
-        self.documents = []
-
-    def load_and_validate_documents(self):
-
-        try:
-            raw_data = load_json(self.src_catalog_file)
-            rprint(f"Loaded {len(raw_data)} raw documents from [cyan]{self.src_catalog_file}[/cyan]")
-        except FileNotFoundError:
-            rprint(f"[red]Source file {self.src_catalog_file} does not exist.[/red]")
-            rprint("[yellow]Hint: Run the 'get-docs' command first.[/yellow]")
+        if not documents:
+            print("No documents to save.")
             return
 
-        validated_docs = []
-        for item in raw_data:
-            source = item.get("source")
-            try:
-                if source == DataSource.FSGEODATA:
-                    doc = CatalogDocument.from_fsgeodata(item)
-                elif source == DataSource.GDD:
-                    doc = CatalogDocument.from_gdd(item)
-                elif source == DataSource.RDA:
-                    doc = CatalogDocument.from_rda(item)
-                else:
-                    continue  # Or handle unknown sources
-                validated_docs.append(doc)
-            except Exception as e:
-                rprint(f"[yellow]Skipping a document due to validation error: {e}[/yellow]")
-s
-        self.documents = validated_docs
-        rprint(f"Successfully validated {len(self.documents)} documents.")
+        if limit is None or limit == 0:
+            limit = len(documents)
 
-    def process(self):
+        items = []
+        for doc in documents[0:limit]:
+            id = doc.get("id")
+            abstract = doc.get("abstract") or ""
+            title = doc.get("title")
+            keywords = ",".join(kw for kw in doc.get("keywords")) or ""
+            purpose = doc.get("purpose") or ""
+            src = doc.get("src") or ""
 
-        self.load_and_validate_documents()
-        if not self.documents:
-            rprint("[red]No documents to process.[/red]")
-            return
+            combined_text = f"Title: {title}\nAbstract: {abstract}\nKeywords: {keywords}\nPurpose: {purpose}\nSource: {src}"
+            embeddings = self.model.encode([combined_text], show_progress_bar=False)[0]
+            embeddings_bytes = embeddings.tobytes()
 
-        # --- Chunking Strategy 1: Document-Level Chunks (Recommended to start) ---
-        # Here, each "chunk" is the full text content of a single document.
-        # This is great for keeping the context of each item together.
-        document_chunks = []
-        for doc in self.documents:
-            # Using the `primary_description` property from your schema is a good choice.
-            # We can enrich it with other metadata.
-            text_content = (
-                f"Title: {doc.title}\n"
-                f"Description: {doc.primary_description}\n"
-                f"Keywords: {', '.join(doc.keywords)}\n"
-                f"Source: {doc.source.value}"
+            items.append(
+                (id, title, abstract, keywords, purpose, src, embeddings_bytes)
             )
-            document_chunks.append(text_content)
 
-        rprint(f"\nGenerated {len(document_chunks)} document-level chunks.")
-        # You can now pass `document_chunks` to an embedding model.
-        # Example: model.encode(document_chunks)
+        db = Path(db_path)
+        self.create_docs_db()
 
-        # --- Chunking Strategy 2: Recursive Character Splitting ---
-        # This is useful for very long documents.
-        # The chunk_size should be tuned based on your embedding model's context window.
-        recursive_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=512, chunk_overlap=50
-        )
-        split_chunks = recursive_splitter.split_text("\n\n".join(document_chunks))
-        rprint(f"Split into {len(split_chunks)} recursive chunks (size=512, overlap=50).")
+        sql = "INSERT INTO documents (id, title, abstract, keywords, purpose, src, embedding) VALUES (?, ?, ?, ?, ?, ?, ?)"
+        try:
+            with sqlite3.connect(db) as conn:
+                conn.enable_load_extension(True)
+                sqlite_vec.load(conn)
+                conn.enable_load_extension(False)
 
+                cursor = conn.cursor()
+                cursor.executemany(sql, items)
+                # conn.commit()
+        except sqlite3.IntegrityError as e:
+            logger.info(f"Error inserting {id}, Title: {title}: {e}")
 
 if __name__ == "__main__":
     gvd = GenVectorData()
+    # gvd.bulk_insert_documents()
 
+    # gvd.process()
+    # gvd.save_docs_to_db()
 
-"""
+    # query = "Forest Health"
+    # gvd.query_vector_table(query=query)
+
+    # query = "Is there open data in the catalog?"
+    query = "Is there erosion data in the catalog?"
+    answers = gvd.query_vector_table(query=query)
+    rprint(f"Found {len(answers)} answers for query: {query}")
+    for answer in answers:
+        rprint(f"Id: {answer["id"]}, Title: {answer["title"]}")

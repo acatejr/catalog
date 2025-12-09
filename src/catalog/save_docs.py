@@ -2,7 +2,8 @@ import sqlite3
 from pathlib import Path
 import numpy as np
 
-def save_docs_to_db(documents: list, db_path: str = "catalog.sqlite") -> None:
+
+def save_docs_to_db(documents: list, db_path: str = "catalog.sqlite3") -> None:
     """
     Saves processed documents and embeddings to SQLite.
 
@@ -39,7 +40,7 @@ def save_docs_to_db(documents: list, db_path: str = "catalog.sqlite") -> None:
     # We drop the table first to ensure schema matches the new requirements.
     # This allows the schema to update if it was missing columns previously.
     cursor.execute("DROP TABLE IF EXISTS documents")
-    
+
     create_table_sql = """
     CREATE TABLE documents (
         id TEXT NOT NULL PRIMARY KEY,
@@ -62,12 +63,12 @@ def save_docs_to_db(documents: list, db_path: str = "catalog.sqlite") -> None:
     for doc in documents:
         meta = doc["metadata"]
         embedding = doc["embedding"]
-        
+
         # Create a unique ID for the chunk
         unique_id = f"{meta['doc_id']}_{meta['chunk_index']}"
-        
+
         # Serialize embedding
-        if hasattr(embedding, 'tobytes'):
+        if hasattr(embedding, "tobytes"):
             embedding_blob = embedding.tobytes()
         elif isinstance(embedding, list):
             embedding_blob = np.array(embedding, dtype=np.float32).tobytes()
@@ -79,7 +80,7 @@ def save_docs_to_db(documents: list, db_path: str = "catalog.sqlite") -> None:
             cursor.execute(
                 """
                 INSERT INTO documents (
-                    id, doc_id, chunk_index, chunk_text, chunk_type, 
+                    id, doc_id, chunk_index, chunk_text, chunk_type,
                     title, description, keywords, src, embedding
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
@@ -93,8 +94,8 @@ def save_docs_to_db(documents: list, db_path: str = "catalog.sqlite") -> None:
                     meta.get("description"),
                     meta.get("keywords"),
                     meta.get("src"),
-                    embedding_blob
-                )
+                    embedding_blob,
+                ),
             )
             count += 1
         except sqlite3.IntegrityError as e:

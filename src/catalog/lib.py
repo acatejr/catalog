@@ -74,10 +74,14 @@ def load_json(file_path: str | Path) -> dict | list:
 
 
 def clean_str(text: str) -> str:
-    cleaned_str = text.strip().replace("\n\n", " ")
-    clean_str = strip_html(cleaned_str)
+    if text is None:
+        return ""
 
-    return clean_str
+    cleaned_str = strip_html(text)
+    cleaned_str = " ".join(cleaned_str.split())
+    # cleaned_str = cleaned_str.strip().replace("\n\n", " ").replace("\t", " ")
+
+    return cleaned_str
 
 
 def strip_html(text: str) -> str:
@@ -92,7 +96,7 @@ def strip_html(text: str) -> str:
 
     soup = BeautifulSoup(text, "html.parser")
     stripped_text = soup.get_text()
-    stripped_text = stripped_text.replace("\n", " ")
+    # stripped_text = stripped_text.replace("\n", " ")
     return stripped_text
 
 

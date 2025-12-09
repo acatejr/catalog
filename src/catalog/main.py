@@ -51,7 +51,18 @@ def download_gdd() -> None:
 
 
 @cli.command()
-def get_docs() -> None:
+def download_all() -> None:
+    gdd = GeospatialDataDiscovery()
+    gdd.download_gdd_metadata()
+
+    rda = RDALoader()
+    rda.download()
+
+    fsgeod = FSGeodataLoader(data_dir="data/fsgeodata")
+    fsgeod.download_all()
+
+@cli.command()
+def build_docs_catalog() -> None:
     """Read all of the metadata source files and build a dict that contains all document objects.  Save the dict to a JSON file."""
     fsgeod = FSGeodataLoader()
     rda = RDALoader()

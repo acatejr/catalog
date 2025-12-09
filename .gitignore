@@ -17,6 +17,8 @@ tmp/
 data/
 catalog.sqlite3
 catalog.sqlite
+logs/
+*.out
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
