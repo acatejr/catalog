@@ -19,6 +19,7 @@ catalog.sqlite3
 catalog.sqlite
 logs/
 *.out
+.claude/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

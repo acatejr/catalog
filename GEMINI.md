@@ -63,3 +63,8 @@ To run tests:
 
 *   **Code Formatting:** The presence of `.ruff_cache` suggests `ruff` is used for linting and formatting. Developers should ensure code adheres to `ruff`'s standards.
 *   **Documentation:** `mkdocs.yml` indicates that MkDocs is used for project documentation. Updates to documentation should follow MkDocs conventions.
+
+**GEMINI Instructions**
+
+- Ignore the scratch folder
+- Do not guess at questions, just say you don't know.
