@@ -11,6 +11,15 @@ data/catalog
 *scratch*
 .env*
 !.env.example
+.secrets
+temp/
+tmp/
+data/
+catalog.sqlite3
+catalog.sqlite
+logs/
+*.out
+.claude/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -233,3 +242,4 @@ client/.env.local
 client/.vite/
 client/*.log
 client/.DS_Store
+README.md

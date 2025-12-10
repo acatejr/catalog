@@ -1,125 +1,97 @@
-# Catalog - AI Assistant Context
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
-A proof-of-concept metadata catalog that harvests publicly available data, stores it in a vector database, and enables LLM-enhanced search using Retrieval-Augmented Generation (RAG).
 
-## Tech Stack
-- **Language**: Python 3.13+
-- **Package Manager**: pip
-  - `requirements.txt` - Production dependencies
-  - `requirements-dev.txt` - Development dependencies (pytest, ruff, coverage tools)
-- **Key Dependencies**: FastAPI, LangChain, OpenAI, PostgreSQL (psycopg2), Sentence Transformers
-- **Testing**: pytest with coverage
-- **Linting**: Ruff
+Catalog is a Python CLI tool for downloading and managing geospatial data from the USFS Geodata Clearinghouse. The project focuses on fetching metadata (XML) and web services information (JSON) from https://data.fs.usda.gov.
 
-## Project Structure
-- `src/catalog/` - Main application code (modularized package)
-  - `cli/` - Command-line interface
-    - `cli.py` - CLI commands (Typer)
-  - `api/` - API layer
-    - `api.py` - FastAPI endpoints
-    - `llm.py` - LLM integration logic
-  - `core/` - Core functionality
-    - `db.py` - Database operations
-    - `schema.py` - Data schemas
-- `sql/` - Database schema files
-  - `schema.sql` - PostgreSQL schema with vector extension
-- `services/` - Service configuration files
-- `data/` - Downloaded metadata storage
-- `tests/` - Test suite
+## Development Commands
 
-## Development Setup
-
+### Environment Setup
 ```bash
-# Install dependencies
-pip install -r requirements.txt
-pip install -r requirements-dev.txt  # For development tools
+# Install dependencies using uv (preferred)
+uv sync
 
-# Run CLI using helper script
-./run-cli.sh --help
-
-# Or run CLI directly (requires PYTHONPATH since code is in src/)
-PYTHONPATH=src python -m catalog.cli.cli --help
-
-# Run specific commands
-./run-cli.sh download-all
-./run-cli.sh embed-and-store
-
-# Run API using helper script
-./run-api.sh
-
-# Or run API directly
-PYTHONPATH=src python -m catalog.api.api
-
-# Run tests
-pytest
-
-# Run with coverage
-pytest --cov=src --cov-report=html
+# Or use pip in development mode
+pip install -e .
 ```
 
-## Deployment Scripts
+### Running the CLI
+```bash
+# The CLI is available via the 'cod' command after installation
+cod --help
 
-- `run-cli.sh` - Wrapper script to run CLI commands with proper PYTHONPATH
-- `run-api.sh` - Starts the FastAPI server locally
-- `run-api-usfs.sh` - Starts the API with USFS-specific configuration
-- `catalogapi.service` - systemd service file for production deployment
+# Test basic health check
+cod health
 
-## Key Conventions
-- Use Ruff for linting and formatting
-- Environment variables stored in `.env`
-- Docker Compose available for containerized setup
+# Download FSGeodata files (downloads to data/fsgeodata/)
+cod download-fsgeodata
+```
 
-## Database
+### Code Quality
+```bash
+# Format and lint with ruff (configured as dev dependency)
+ruff check .
+ruff format .
+```
 
-- PostgreSQL with vector extension support
-- Schema defined in `sql/schema.sql`
-- Vector embeddings for RAG functionality
+## Architecture
 
-## Important Notes
+### CLI Structure
+The project uses Click for CLI implementation with a command group pattern:
+- Entry point: `src/catalog/main.py` defines the CLI group via `@click.group()`
+- Individual commands are registered with `@cli.command()`
+- The `main()` function in `__init__.py` serves as the package entry point, mapped to the `cod` command in pyproject.toml
 
-- This is a proof-of-concept project
-- Web scraping components require `bs4` and `lxml`
-- OpenAI API key required for LLM features
+### Module Organization
+```
+src/catalog/
+├── __init__.py          # Package entry point (exports main())
+├── main.py              # CLI group and command definitions
+└── fsgeodata.py         # FSGeodataDownloader class for data fetching
+```
 
-## When Making Changes
+### FSGeodataDownloader Class
+Located in `src/catalog/fsgeodata.py`, this class handles all data downloading:
+- Scrapes the datasets page (https://data.fs.usda.gov/geodata/edw/datasets.php)
+- Extracts metadata XML URLs and MapServer service URLs using BeautifulSoup
+- Downloads files to structured directories:
+  - `data/fsgeodata/metadata/*.xml` - Dataset metadata
+  - `data/fsgeodata/services/*_service.json` - Web service definitions
+- Uses requests.Session for HTTP requests with rate limiting (0.5s delay between downloads)
+- Provides rich console output for progress tracking
 
-- Update tests for new functionality
-- Run `pytest` before committing
-- Follow existing patterns in `src/catalog/cli/cli.py` for new CLI commands
-- All source code is in `src/catalog/` directory with modular structure (cli/, api/, core/)
+### Key Design Patterns
+- **Session Management**: Uses requests.Session with custom User-Agent headers for all HTTP operations
+- **Path Management**: Utilizes pathlib.Path for cross-platform file operations
+- **Error Handling**: Catches RequestException and continues downloading remaining datasets
+- **Rate Limiting**: Built-in 0.5s sleep between requests to avoid overwhelming the server
 
-## Git Commit Guidelines
+## Environment Variables
 
-- Use conventional commits format: `type(scope): message`
-  - **Types**: feat, fix, docs, refactor, test, chore, style
-  - **Example**: `feat(cli): add search command` or `fix(db): resolve connection timeout`
-- Keep messages concise and descriptive (focus on "why" not "what")
-- Always run tests before committing
-- Stage only relevant files for each commit
+The project expects a `.env` file (see `.env.example` for template):
+- Database configuration (POSTGRES_*)
+- LLM/AI API settings (LLM_API_KEY, LLM_BASE_URL, LLM_MODEL)
+- API keys (X_API_KEY, GITHUB_TOKEN)
+- CATALOG_API_BASE_URL for future API integration
 
-### Using Claude for Commits
+Note: Currently the FSGeodata downloader doesn't use these environment variables, but they're reserved for future features.
 
-Simply ask Claude to commit your changes with commands like:
+## Python Version
 
-- "Commit these changes"
-- "Create a commit for the CLI updates"
-- "Commit with message 'feat: add vector search'"
+Requires Python >=3.14 (specified in pyproject.toml). The project uses a .python-version file for version pinning.
 
-Claude will automatically:
+## Data Directory Structure
 
-1. Check `git status` and `git diff` to review changes
-2. Review recent commits for style consistency
-3. Draft an appropriate commit message
-4. Stage relevant files
-5. Create the commit with attribution footer
+The `data/` directory is created automatically and organized as:
+```
+data/fsgeodata/
+├── metadata/     # XML metadata files for each dataset
+└── services/     # JSON service definitions for MapServer endpoints
+```
 
-**Safety Notes**:
+## Instructions
 
-- Claude follows Git Safety Protocol (no force pushes, no skipping hooks)
-- Claude will not push to remote unless explicitly requested
-- Pre-commit hooks will be respected
-
-## General Instructions
-
-Save all responses to the docs/incoming folder.  Save the files as markdown and include the final history, assessment, summary, or instructions created by Claude Code..
+When running, IGNORE data/catalog.json.  I do NOT want to consume tokens or use up my Anthropic token limits.
+If you don't know the answer to something, don't guess, just say you don't know.
