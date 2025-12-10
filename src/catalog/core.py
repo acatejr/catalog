@@ -1,11 +1,13 @@
 import os
 from rich import print as rprint
 from catalog.lib import load_json
+from catalog.schema import Document
 from sentence_transformers import SentenceTransformer
 import sqlite3
 from pathlib import Path
 import sqlite_vec
 import logging
+import json
 
 # Setup logging
 logging.basicConfig(
@@ -18,12 +20,20 @@ logger = logging.getLogger(__name__)
 
 
 class SqliteVectorDB:
-    def __init__(self):
+    def __init__(self, db_path: str = "catalog.sqlite3"):
         self.src_catalog_file = "data/catalog.json"
         self.documents = []
         self.model = SentenceTransformer(
             "sentence-transformers/all-MiniLM-L6-v2", device="cpu"
         )
+        self.db_path = Path(db_path)
+        self.conn = sqlite3.connect(self.db_path)
+        self.conn.enable_load_extension(True)
+        sqlite_vec.load(self.conn)
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        if self.conn:
+            self.conn.close()
 
     def read_metadata(self):
         if not os.path.exists(self.src_catalog_file):
@@ -35,15 +45,18 @@ class SqliteVectorDB:
 
         return json_data
 
+    def load_documents(self):
+        documents = []
+
+        with open(self.src_catalog_file, "r") as f:
+            data = json.load(f)
+
+            documents = [Document.model_validate(doc) for doc in data]
+
+        return documents
 
     def create_docs_db(self):
-        db = Path("./catalog.sqlite3")
-
-        with sqlite3.connect(db) as conn:
-            conn.enable_load_extension(True)
-            sqlite_vec.load(conn)
-            conn.enable_load_extension(False)
-
+        with self.conn as conn:
             cusor = conn.cursor()
             cusor.execute("DROP TABLE IF EXISTS documents")
 
@@ -54,70 +67,16 @@ class SqliteVectorDB:
                 keywords TEXT,
                 purpose TEXT,
                 src TEXT,
+                lineage TEXT,
                 embedding float[384]
             )"""
 
             cusor.execute(sql)
 
-    def save_docs_to_db(self, limit=None, db_path: str = "catalog.sqlite3") -> None:
-        """
-        Saves processed documents and embeddings to SQLite.
-        """
-
-        documents = load_json(self.src_catalog_file)
-
-        if not documents:
-            print("No documents to save.")
-            return
-
-        self.create_docs_db()
-
-        db = Path(db_path)
-
-        with sqlite3.connect(db) as conn:
-            conn.enable_load_extension(True)
-            sqlite_vec.load(conn)
-            conn.enable_load_extension(False)
-
-            cursor = conn.cursor()
-
-            if limit is None or limit == 0:
-                limit = len(documents)
-
-            for doc in documents[0:limit]:
-                id = doc.get("id")
-                abstract = doc.get("abstract") or ""
-                title = doc.get("title")
-                keywords = ",".join(kw for kw in doc.get("keywords")) or ""
-                purpose = doc.get("purpose") or ""
-                src = doc.get("src") or ""
-
-                combined_text = f"Title: {title}\nAbstract: {abstract}\nKeywords: {keywords}\nPurpose: {purpose}\nSource: {src}"
-                embeddings = self.model.encode([combined_text], show_progress_bar=False)[0]
-                embeddings_bytes = embeddings.tobytes()
-
-                sql = "INSERT INTO documents (id, title, abstract, keywords, purpose, src, embedding) VALUES (?, ?, ?, ?, ?, ?, ?)"
-                try:
-                    cursor.execute(
-                        sql,
-                        (id, title, abstract, keywords, purpose, src, embeddings_bytes),
-                    )
-                except sqlite3.IntegrityError as e:
-                    logger.info(f"Error inserting {id}, Title: {title}: {e}")
-                    pass
-                finally:
-                    pass
-                conn.commit()
-
     def query_vector_table(self, query: str = None, limit: int = 5):
         results = None
 
-        db = Path("./catalog.sqlite3")
-
-        with sqlite3.connect(db) as conn:
-            conn.enable_load_extension(True)
-            sqlite_vec.load(conn)
-            conn.enable_load_extension(False)
+        with self.conn as conn:
             cursor = conn.cursor()
 
             if query is None:
@@ -136,6 +95,7 @@ class SqliteVectorDB:
                         keywords,
                         purpose,
                         src AS source,
+                        lineage,
                         distance
                     FROM documents
                     WHERE embedding MATCH ?
@@ -150,10 +110,26 @@ class SqliteVectorDB:
 
             return results
 
+    def format_lineage(self, lineage: list[dict]) -> str:
+        formatted_lineage = []
+
+        if not lineage:
+            return ""
+
+        for item in lineage:
+            desc = item.get("description", "")
+            date = item.get("date", "")
+
+            formatted_lineage.append(f"Date: {date}, Description: {desc})")
+
+        return ", ".join(formatted_lineage)
+
+
     def bulk_insert_documents(
         self, db_path: str = "catalog.sqlite3", limit=None
     ) -> None:
-        documents = load_json(self.src_catalog_file)
+
+        documents = self.load_documents() # load_json(self.src_catalog_file)
 
         if not documents:
             print("No documents to save.")
@@ -164,37 +140,39 @@ class SqliteVectorDB:
 
         items = []
         for doc in documents[0:limit]:
-            id = doc.get("id")
-            abstract = doc.get("abstract") or ""
-            title = doc.get("title")
-            keywords = ",".join(kw for kw in doc.get("keywords")) or ""
-            purpose = doc.get("purpose") or ""
-            src = doc.get("src") or ""
+            id = doc.id
+            abstract = doc.abstract or ""
+            title = doc.title or ""
+            keywords = ",".join(kw for kw in doc.keywords) or ""
+            purpose = doc.purpose or ""
+            src = doc.src or ""
+            lineage = self.format_lineage(doc.lineage) # ",".join(doc.lineage) or ""
 
-            combined_text = f"Title: {title}\nAbstract: {abstract}\nKeywords: {keywords}\nPurpose: {purpose}\nSource: {src}"
+
+            combined_text = f"Title: {title}\nAbstract: {abstract}\nKeywords: {keywords}\nPurpose: {purpose}\nSource: {src}\nLineage: {lineage}"
             embeddings = self.model.encode([combined_text], show_progress_bar=False)[0]
             embeddings_bytes = embeddings.tobytes()
 
             items.append(
-                (id, title, abstract, keywords, purpose, src, embeddings_bytes)
+                (id, title, abstract, keywords, purpose, src, lineage, embeddings_bytes)
             )
 
-        db = Path(db_path)
         self.create_docs_db()
 
-        sql = "INSERT INTO documents (id, title, abstract, keywords, purpose, src, embedding) VALUES (?, ?, ?, ?, ?, ?, ?)"
+        sql = "INSERT INTO documents (id, title, abstract, keywords, purpose, src, lineage, embedding) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
         try:
-            with sqlite3.connect(db) as conn:
-                conn.enable_load_extension(True)
-                sqlite_vec.load(conn)
-                conn.enable_load_extension(False)
-
+            with self.conn as conn:
                 cursor = conn.cursor()
                 cursor.executemany(sql, items)
 
         except sqlite3.IntegrityError as e:
             logger.info(f"Error inserting {id}, Title: {title}: {e}")
 
-
 if __name__ == "__main__":
+    # vdb = SqliteVectorDB()
+    # docs = vdb.load_documents()
+    # rprint(f"Loaded {len(docs)} documents from {vdb.src_catalog_file}")
+    # for doc in docs:
+    #     for e in doc.lineage:
+    #         rprint(type(e))
     pass
