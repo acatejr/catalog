@@ -8,6 +8,7 @@ from pathlib import Path
 import sqlite_vec
 import logging
 import json
+import chromadb
 
 # Setup logging
 logging.basicConfig(
@@ -18,8 +19,67 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
+class ChromaVectorDB:
+
+    def __init__(self, src_catalog_file="data/catalog.json"):
+
+        self.src_catalog_file = src_catalog_file
+        self.client = chromadb.Client()
+        self.collection = self.client.create_collection("documents")
+
+    def load_document_metadata(self):
+
+        json_file = Path(self.src_catalog_file)
+
+        try:
+            with open(json_file, "r") as f:
+                data = json.load(f)
+                self.documents = [Document.model_validate(doc) for doc in data]
+        except FileNotFoundError as e:
+            rprint(f"[red]Source file {self.src_catalog_file} does not exist.[/red]")
+
+        self.documents
+
+    def load_documents(self):
+
+        if not self.documents:
+            rprint("[red]No metadata documents to load into chromadb.[/read]")
+
+        documents = []
+        ids = []
+        metadatas = []
+
+        for idx, doc in enumerate(self.documents):
+            title = doc.title
+            ids.append(f"doc_{idx}")
+            documents.append(f"Title: {title}")
+            metadatas.append(
+                {
+                    "index": idx,
+                    "type": "title"
+                }
+            )
+
+        self.collection.add(
+            documents=documents,
+            metadatas=metadatas,
+            ids=ids
+        )
+
+    def chat(self, qstn: str, nresults=2) -> None:
+
+        if self.collection and self.collection.count() > 0:
+            rprint(f"You asked: {qstn}")
+            results = self.collection.query(
+                query_texts = [qstn], # Chroma will embed this for you
+                n_results = nresults # how many results to return
+            )
+
+        return results
+
 
 class SqliteVectorDB:
+
     def __init__(self, db_path: str = "catalog.sqlite3"):
         self.src_catalog_file = "data/catalog.json"
         self.documents = []
@@ -175,4 +235,9 @@ if __name__ == "__main__":
     # for doc in docs:
     #     for e in doc.lineage:
     #         rprint(type(e))
-    pass
+
+    chroma = ChromaVectorDB()
+    chroma.load_document_metadata()
+    chroma.load_documents()
+    answer = chroma.chat(qstn="Is there hydrologic data in the catalog?", nresults=5)
+    rprint(answer)
