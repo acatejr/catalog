@@ -3,12 +3,13 @@ from catalog.fsgeodata import FSGeodataLoader
 from catalog.rda import RDALoader
 from catalog.gdd import GeospatialDataDiscovery
 from catalog.lib import save_json
-from catalog.core import SqliteVectorDB
+from catalog.core import SqliteVectorDB, ChromaVectorDB
 from catalog.bots import OpenAIBot
 from dotenv import load_dotenv
 from rich.console import Console
 from rich.syntax import Syntax
 from rich.panel import Panel
+
 
 load_dotenv()
 
@@ -102,8 +103,7 @@ def build_sqlite_vectordb() -> None:
 @cli.command()
 @click.option("--qstn", "-q", required=True)
 def sqlvdb_disc_chat(qstn):
-    """Used to run data discovery questions against the catalog.
-    """
+    """Used to run data discovery questions against the catalog."""
 
     click.secho(f"Asked: {qstn}", fg="green")
 
@@ -117,6 +117,49 @@ def sqlvdb_disc_chat(qstn):
                 for doc in documents
             ]
         )
+
+        bot = OpenAIBot()
+        resp = bot.discovery_chat(qstn, context)
+
+        console = Console()
+        # Create a syntax-highlighted panel
+        panel = Panel(
+            Syntax(
+                resp,
+                "markdown",
+                theme="monokai",
+                line_numbers=True,
+                word_wrap=True,
+            ),
+            title="OpenAI Response",
+            border_style="bold green",
+        )
+        console.print(panel)
+
+
+@cli.command()
+def load_chromadb():
+    chroma = ChromaVectorDB()
+    chroma.load_documents()
+
+
+@cli.command()
+@click.option("--qstn", "-q", required=True)
+def chroma_chat(qstn):
+    """Used to run data discovery questions against the catalog using chromadb."""
+
+    cvdb = ChromaVectorDB()
+    resp = cvdb.query(qstn=qstn, nresults=5)
+
+    if resp and len(resp) > 0:
+        documents = resp["documents"]
+        if len(documents) > 0:
+            context = "\n\n".join(
+                [
+                    f"{doc}"
+                    for doc in documents
+                ]
+            )
 
         bot = OpenAIBot()
         resp = bot.discovery_chat(qstn, context)

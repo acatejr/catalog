@@ -1,1 +1,11 @@
-site_name: My Docs
+site_name: Catalog
+
+# plugins:
+#     - material
+
+theme:
+    name: material
+
+nav:
+    - Home: index.md
+    - CLI: cli.md
