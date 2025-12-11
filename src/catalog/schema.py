@@ -37,5 +37,3 @@ class Document(BaseModel):
     lineage: list[dict] | None = Field(
         default=[], description="List of the metadata's lineage."
     )
-
-
