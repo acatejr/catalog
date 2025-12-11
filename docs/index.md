@@ -10,20 +10,26 @@ The U.S. Forest Service (USFS) has a wealth of geospatial and tabluar data. Acce
 
 ## The Process
 
-The first thing was identifying metadata sources.  Three sources were identified:
+1. Identify metadata sources.  Three sources were identified:
 
-1. [Forest Service Research Data Archive (RDA)](https://www.fs.usda.gov/rds/archive/)
-2. [Geospatial Data Discovery (GDD)](https://data-usfs.hub.arcgis.com/)
-3. [Forest Service Geospatial Data Clearing House (FSGeodata)](https://data.fs.usda.gov/geodata/)
+    1. [Forest Service Research Data Archive (RDA)](https://www.fs.usda.gov/rds/archive/)
+    2. [Geospatial Data Discovery (GDD)](https://data-usfs.hub.arcgis.com/)
+    3. [Forest Service Geospatial Data Clearing House (FSGeodata)](https://data.fs.usda.gov/geodata/)
 
-### Forest Service Research Data Archive (RDA)
+    ### Forest Service Research Data Archive (RDA)
 
-The FS Research Data Archive offers a catalog of hundreds of research datasets funded by Forest Service Research and Development (FS R&D) or by the Joint Fire Science Program (JFSP).
+    The FS Research Data Archive offers a catalog of hundreds of research datasets funded by Forest Service Research and Development (FS R&D) or by the Joint Fire Science Program (JFSP).
 
-### Geospatial Data Discovery (GDD)
+    ### Geospatial Data Discovery (GDD)
 
-The U.S. Forest Service has configured this open data site to help our partners and the public discover geospatial data published by the Agency. Use it together with your data to create maps, apps and other information products.
+    The U.S. Forest Service has configured this open data site to help our partners and the public discover geospatial data published by the Agency. Use it together with your data to create maps, apps and other information products.
 
-### Forest Service Geospatial Data Clearing House (FSGeodata)
+    ### Forest Service Geospatial Data Clearing House (FSGeodata)
 
-The USDA Forest Service Geodata Clearinghouse is an online collection of digital data related to forest resources. Through the Clearinghouse you can find datasets related to forests and grasslands, including boundaries and ownership, natural resources, roads and trails, as well as datasets related to State and private forested areas, including insect and disease threat and surface water importance. You can also find downloadable map products, raster data, and links to other sources of forest resource information.
+    The USDA Forest Service Geodata Clearinghouse is an online collection of digital data related to forest resources. Through the Clearinghouse you can find datasets related to forests and grasslands, including boundaries and ownership, natural resources, roads and trails, as well as datasets related to State and private forested areas, including insect and disease threat and surface water importance. You can also find downloadable map products, raster data, and links to other sources of forest resource information.
+    
+2. Harvesting the metadata
+
+3. Building the Vector Databases
+
+4. Vector Database Comparison
