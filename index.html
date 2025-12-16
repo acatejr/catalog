@@ -236,7 +236,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="catalog">Catalog</h1>
-<p>Catalog is a Python CLI that automates discovery and understanding of U.S. Forest Service geospatial data. It harvests XML metadata and MapServer service definitions from three portals, builds embeddings, and lets you explore datasets with a semantic, RAG-powered search so you can answer questions like “what data exists and how do I use it?” without manual spelunking.</p>
+<p>Catalog is a Python CLI that automates discovery and understanding of Government Agency geospatial and tabular data. It harvests XML metadata and MapServer service definitions from three anonymized portals—Research Archive (RA), Geospatial Discovery (GD), and Agency Geodata Portal (AGP)—builds embeddings, and lets you explore datasets with a semantic, RAG-powered search so you can answer questions like “what data exists and how do I use it?” without manual spelunking.</p>
 <h2 id="why-it-matters">Why it matters</h2>
 <ul>
 <li>Hunting across portals, downloading XML one-by-one, and reconciling service URLs slows research and product teams.</li>
@@ -245,14 +245,14 @@
 </ul>
 <h2 id="what-catalog-does">What Catalog does</h2>
 <ul>
-<li>Automated harvesting from RDA, GDD, and FSGeodata (XML + MapServer JSON).</li>
+<li>Automated harvesting from RA, GD, and AGP (XML + MapServer JSON).</li>
 <li>Embeds metadata with a vector database (table) and uses LLMs in a Retrieval-Augmented Generation (RAG) flow for semantic Q&amp;A.</li>
 <li>Python <a href="https://click.palletsprojects.com/en/stable/">Click</a>-based CLI (<code>timbercat</code>) to harvest, inspect, and query datasets.</li>
 <li>Outputs organized metadata and service URLs you can plug into dashboards or analyses.</li>
 </ul>
 <h2 id="the-process-at-a-glance">The process (at a glance)</h2>
 <div class="mermaid">flowchart TB
-  Sources[RDA / GDD / FSGeodata] --&gt; Harvester[timbercat harvest]
+  Sources[RA / GD / AGP] --&gt; Harvester[timbercat harvest]
   Harvester --&gt; Normalize["Normalize metadata (XML + JSON)"]
   Normalize --&gt; Embed[VectorDB embeddings]
   Embed --&gt; RAG[LLM + RAG pipeline]
@@ -260,10 +260,10 @@
 </div>
 <ol>
 <li>Identify metadata sources:  </li>
-<li>Forest Service Research Data Archive (RDA): research-grade datasets from FS R&amp;D and JFSP.  </li>
-<li>Geospatial Data Discovery (GDD): current operational GIS layers and services.  </li>
+<li>Research Archive (RA): research-grade datasets from the agency's research directorate and partners.  </li>
+<li>Geospatial Discovery (GD): current operational GIS layers and services.  </li>
 <li>
-<p>Forest Service Geospatial Data Clearinghouse (FSGeodata): authoritative basemaps, boundaries, roads/trails, and raster products.</p>
+<p>Agency Geodata Portal (AGP): authoritative basemaps, boundaries, operational layers, and raster products.</p>
 </li>
 <li>
 <p>Harvest metadata: <code>timbercat harvest</code> pulls XML and MapServer JSON, normalizes fields, and stores them for indexing.</p>
