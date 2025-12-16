@@ -11,7 +11,7 @@ Catalog is a Python CLI that automates discovery and understanding of U.S. Fores
 ## What Catalog does
 
 - Automated harvesting from RDA, GDD, and FSGeodata (XML + MapServer JSON).
-- Embeds metadata with ChromaDB and uses LLMs in a Retrieval-Augmented Generation (RAG) flow for semantic Q&A.
+- Embeds metadata with a vector database (table) and uses LLMs in a Retrieval-Augmented Generation (RAG) flow for semantic Q&A.
 - Python [Click](https://click.palletsprojects.com/en/stable/)-based CLI (`timbercat`) to harvest, inspect, and query datasets.
 - Outputs organized metadata and service URLs you can plug into dashboards or analyses.
 
