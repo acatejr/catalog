@@ -27,27 +27,27 @@ uv sync
 
 **Running the Application:**
 
-The project uses a Click-based CLI with the entry point `cod`.
+The project uses a Click-based CLI with the entry point `timbercat`.
 
 *   **Health Check:**
     ```bash
-    uv run cod health
+    uv run timbercat health
     ```
 *   **Download FSGeodata:**
     ```bash
-    uv run cod download_fsgeodata
+    uv run timbercat download_fsgeodata
     ```
 *   **Download RDA Metadata:**
     ```bash
-    uv run cod download_rda
+    uv run timbercat download_rda
     ```
 *   **Download GDD Metadata:**
     ```bash
-    uv run cod download_gdd
+    uv run timbercat download_gdd
     ```
 *   **Parse and Generate Catalog JSON:**
     ```bash
-    uv run cod get_docs
+    uv run timbercat get_docs
     ```
     This command reads metadata from all sources and compiles them into `data/catalog.json`.
 

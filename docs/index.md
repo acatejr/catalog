@@ -1,35 +1,45 @@
 # Catalog
 
-The U.S. Forest Service (USFS) has a wealth of geospatial and tabluar data. Accessing this data typically involves navigating the websites, browsing through hundreds of datasets, and manually downloading metadata XML files and MapServer service URLs for each dataset you need. For researchers and developers working with multiple datasets, this manual process can become a bottleneck.  Often questions like:  
+Catalog is a Python CLI that automates discovery and understanding of U.S. Forest Service geospatial data. It harvests XML metadata and MapServer service definitions from three portals, builds embeddings, and lets you explore datasets with a semantic, RAG-powered search so you can answer questions like “what data exists and how do I use it?” without manual spelunking.
 
-- Where is a specific data set stored?
-- What data sets are recommended for building a dashboard?
-- What is the data lineage of a specific dataset?
-- What are the major FS systems and how are they interconneccted?
-- How are two systems interconncted?
+## Why it matters
 
-## The Process
+- Hunting across portals, downloading XML one-by-one, and reconciling service URLs slows research and product teams.
+- Explaining lineage and “fit for purpose” to stakeholders is hard without a unified view.
+- Traditional keyword search misses nuance; semantic search with LLMs surfaces relevant datasets faster.
 
-1. Identify metadata sources.  Three sources were identified:
+## What Catalog does
 
-    1. [Forest Service Research Data Archive (RDA)](https://www.fs.usda.gov/rds/archive/)
-    2. [Geospatial Data Discovery (GDD)](https://data-usfs.hub.arcgis.com/)
-    3. [Forest Service Geospatial Data Clearing House (FSGeodata)](https://data.fs.usda.gov/geodata/)
+- Automated harvesting from RDA, GDD, and FSGeodata (XML + MapServer JSON).
+- Embeds metadata with ChromaDB and uses LLMs in a Retrieval-Augmented Generation (RAG) flow for semantic Q&A.
+- Python [Click](https://click.palletsprojects.com/en/stable/)-based CLI (`timbercat`) to harvest, inspect, and query datasets.
+- Outputs organized metadata and service URLs you can plug into dashboards or analyses.
 
-    ### Forest Service Research Data Archive (RDA)
+## The process (at a glance)
 
-    The FS Research Data Archive offers a catalog of hundreds of research datasets funded by Forest Service Research and Development (FS R&D) or by the Joint Fire Science Program (JFSP).
+```mermaid
+flowchart TB
+  Sources[RDA / GDD / FSGeodata] --> Harvester[timbercat harvest]
+  Harvester --> Normalize["Normalize metadata (XML + JSON)"]
+  Normalize --> Embed[VectorDB embeddings]
+  Embed --> RAG[LLM + RAG pipeline]
+  RAG --> Answers[Semantic search & dataset guidance]
+```
 
-    ### Geospatial Data Discovery (GDD)
+1. Identify metadata sources:  
+   - Forest Service Research Data Archive (RDA): research-grade datasets from FS R&D and JFSP.  
+   - Geospatial Data Discovery (GDD): current operational GIS layers and services.  
+   - Forest Service Geospatial Data Clearinghouse (FSGeodata): authoritative basemaps, boundaries, roads/trails, and raster products.
 
-    The U.S. Forest Service has configured this open data site to help our partners and the public discover geospatial data published by the Agency. Use it together with your data to create maps, apps and other information products.
+2. Harvest metadata: `timbercat harvest` pulls XML and MapServer JSON, normalizes fields, and stores them for indexing.
 
-    ### Forest Service Geospatial Data Clearing House (FSGeodata)
+3. Build the vector database: embeddings go into vector storage; metadata stays linked for provenance.
 
-    The USDA Forest Service Geodata Clearinghouse is an online collection of digital data related to forest resources. Through the Clearinghouse you can find datasets related to forests and grasslands, including boundaries and ownership, natural resources, roads and trails, as well as datasets related to State and private forested areas, including insect and disease threat and surface water importance. You can also find downloadable map products, raster data, and links to other sources of forest resource information.
-    
-2. Harvesting the metadata
+4. RAG-based search: the CLI uses the embeddings plus an LLM to answer dataset and lineage questions with grounded citations.
 
-3. Building the Vector Databases
+## Where to go next
 
-4. Vector Database Comparison
+- Architecture and design decisions: see `docs/architecture.md`.
+- Data sources deep dive: see `docs/data-sources.md`.
+- CLI usage and examples: see `docs/cli.md`.
+- Vector DB details and comparisons: see `docs/vector-db.md`.

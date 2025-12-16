@@ -1,11 +1,22 @@
 site_name: Catalog
 
-# plugins:
-#     - material
+plugins:
+    - search
+    - mermaid2
 
 theme:
-    name: material
+  name: material
+  palette:
+    primary: custom
+
+# theme:
+#     name: material
+#     palette:
+#         primary: custom
 
 nav:
     - Home: index.md
     - CLI: cli.md
+
+extra_css:
+  - stylesheets/extra.css

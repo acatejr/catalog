@@ -19,6 +19,7 @@ dependencies = [
     "langchain-text-splitters>=1.0.0",
     "lxml>=6.0.2",
     "mkdocs-material>=9.7.0",
+    "mkdocs-mermaid2-plugin>=1.2.3",
     "openai>=2.9.0",
     "pydantic>=2.12.5",
     "python-dotenv>=1.2.1",
@@ -30,7 +31,7 @@ dependencies = [
 ]
 
 [project.scripts]
-cod = "catalog:main"
+timbercat = "catalog:main"
 
 [build-system]
 requires = ["hatchling"]

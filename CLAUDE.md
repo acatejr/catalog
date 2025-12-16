@@ -19,14 +19,14 @@ pip install -e .
 
 ### Running the CLI
 ```bash
-# The CLI is available via the 'cod' command after installation
-cod --help
+# The CLI is available via the 'timbercat' command after installation
+timbercat --help
 
 # Test basic health check
-cod health
+timbercat health
 
 # Download FSGeodata files (downloads to data/fsgeodata/)
-cod download-fsgeodata
+timbercat download-fsgeodata
 ```
 
 ### Code Quality
@@ -42,7 +42,7 @@ ruff format .
 The project uses Click for CLI implementation with a command group pattern:
 - Entry point: `src/catalog/main.py` defines the CLI group via `@click.group()`
 - Individual commands are registered with `@cli.command()`
-- The `main()` function in `__init__.py` serves as the package entry point, mapped to the `cod` command in pyproject.toml
+- The `main()` function in `__init__.py` serves as the package entry point, mapped to the `timbercat` command in pyproject.toml
 
 ### Module Organization
 ```
