@@ -1,6 +1,6 @@
 # Catalog
 
-Catalog is a Python CLI that automates discovery and understanding of U.S. Forest Service geospatial data. It harvests XML metadata and MapServer service definitions from three portals, builds embeddings, and lets you explore datasets with a semantic, RAG-powered search so you can answer questions like “what data exists and how do I use it?” without manual spelunking.
+Catalog is a Python CLI that automates discovery and understanding of Government Agency geospatial and tabular data. It harvests XML metadata and MapServer service definitions from three anonymized portals—Research Archive (RA), Geospatial Discovery (GD), and Agency Geodata Portal (AGP)—builds embeddings, and lets you explore datasets with a semantic, RAG-powered search so you can answer questions like “what data exists and how do I use it?” without manual spelunking.
 
 ## Why it matters
 
@@ -10,7 +10,7 @@ Catalog is a Python CLI that automates discovery and understanding of U.S. Fores
 
 ## What Catalog does
 
-- Automated harvesting from RDA, GDD, and FSGeodata (XML + MapServer JSON).
+- Automated harvesting from RA, GD, and AGP (XML + MapServer JSON).
 - Embeds metadata with a vector database (table) and uses LLMs in a Retrieval-Augmented Generation (RAG) flow for semantic Q&A.
 - Python [Click](https://click.palletsprojects.com/en/stable/)-based CLI (`timbercat`) to harvest, inspect, and query datasets.
 - Outputs organized metadata and service URLs you can plug into dashboards or analyses.
@@ -19,7 +19,7 @@ Catalog is a Python CLI that automates discovery and understanding of U.S. Fores
 
 ```mermaid
 flowchart TB
-  Sources[RDA / GDD / FSGeodata] --> Harvester[timbercat harvest]
+  Sources[RA / GD / AGP] --> Harvester[timbercat harvest]
   Harvester --> Normalize["Normalize metadata (XML + JSON)"]
   Normalize --> Embed[VectorDB embeddings]
   Embed --> RAG[LLM + RAG pipeline]
@@ -27,9 +27,9 @@ flowchart TB
 ```
 
 1. Identify metadata sources:  
-   - Forest Service Research Data Archive (RDA): research-grade datasets from FS R&D and JFSP.  
-   - Geospatial Data Discovery (GDD): current operational GIS layers and services.  
-   - Forest Service Geospatial Data Clearinghouse (FSGeodata): authoritative basemaps, boundaries, roads/trails, and raster products.
+   - Research Archive (RA): research-grade datasets from the agency's research directorate and partners.  
+   - Geospatial Discovery (GD): current operational GIS layers and services.  
+   - Agency Geodata Portal (AGP): authoritative basemaps, boundaries, operational layers, and raster products.
 
 2. Harvest metadata: `timbercat harvest` pulls XML and MapServer JSON, normalizes fields, and stores them for indexing.
 
