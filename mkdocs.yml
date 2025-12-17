@@ -9,10 +9,6 @@ theme:
   palette:
     primary: custom
 
-# theme:
-#     name: material
-#     palette:
-#         primary: custom
 
 nav:
     - Home: index.md
