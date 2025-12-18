@@ -24,7 +24,7 @@ class GeospatialDataDiscovery:
                 f"Downloading {METADATA_SOURCE_URL} to {DEST_OUTPUT_DIR}/{DEST_OUTPUT_FILE}"
             )
 
-            with open(f"{DEST_OUTPUT_DIR}/{DEST_OUTPUT_FILE}", "w") as f:
+            with open(f"{DEST_OUTPUT_DIR}/{DEST_OUTPUT_FILE}", "w", encoding="utf-8") as f:
                 f.write(response.text)
 
     def parse_metadata(self) -> None:
@@ -40,7 +40,7 @@ class GeospatialDataDiscovery:
             )
             return []
 
-        with open(src_file, "r") as f:
+        with open(src_file, "r", encoding="utf-8") as f:
             json_data = json.load(f)
 
             if "dataset" in json_data.keys():
@@ -75,8 +75,3 @@ class GeospatialDataDiscovery:
                         documents.append(document)
 
         return documents
-
-        """dict_keys(['@type', 'identifier', 'landingPage', 'title', 'description', 'keyword',
-        'issued', 'modified', 'publisher', 'contactPoint', 'accessLevel', 'spatial', 'license',
-        'programCode', 'bureauCode', 'theme', 'progressCode', 'distribution'])
-        """

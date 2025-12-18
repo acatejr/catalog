@@ -32,7 +32,7 @@ class RDALoader:
             )
             return []
 
-        with open(src_file, "r") as f:
+        with open(src_file, "r", encoding="utf-8") as f:
             json_data = json.load(f)
             dataset = json_data["dataset"]
             for item in dataset:

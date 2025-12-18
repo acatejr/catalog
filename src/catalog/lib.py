@@ -79,7 +79,6 @@ def clean_str(text: str) -> str:
 
     cleaned_str = strip_html(text)
     cleaned_str = " ".join(cleaned_str.split())
-    # cleaned_str = cleaned_str.strip().replace("\n\n", " ").replace("\t", " ")
 
     return cleaned_str
 

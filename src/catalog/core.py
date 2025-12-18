@@ -34,7 +34,7 @@ class ChromaVectorDB:
         json_file = Path(self.src_catalog_file)
 
         try:
-            with open(json_file, "r") as f:
+            with open(json_file, "r", encoding="utf-8") as f:
                 data = json.load(f)
                 self.documents = [Document.model_validate(doc) for doc in data]
         except FileNotFoundError as e:
@@ -122,7 +122,7 @@ class SqliteVectorDB:
     def load_documents(self):
         documents = []
 
-        with open(self.src_catalog_file, "r") as f:
+        with open(self.src_catalog_file, "r", encoding="utf-8") as f:
             data = json.load(f)
 
             documents = [Document.model_validate(doc) for doc in data]
