@@ -19,7 +19,7 @@ class RDALoader:
             rprint(f"Downloading {SOURCE_URL} to {DEST_OUTPUT_DIR}/{DEST_OUTPUT_FILE}")
             json_data = response.json()
 
-            with open(f"{DEST_OUTPUT_DIR}/{DEST_OUTPUT_FILE}", "w") as f:
+            with open(f"{DEST_OUTPUT_DIR}/{DEST_OUTPUT_FILE}", "w", encoding="utf-8") as f:
                 json.dump(json_data, f, indent=4)
 
     def parse_metadata(self):

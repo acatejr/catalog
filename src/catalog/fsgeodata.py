@@ -104,7 +104,7 @@ class FSGeodataLoader:
             response = self.session.get(json_url, timeout=30)
             response.raise_for_status()
 
-            with open(output_path, "w") as f:
+            with open(output_path, "w", encoding="utf-8") as f:
                 f.write(response.text)
 
             rprint(f"  ✓ Saved to {output_path}")
@@ -189,7 +189,7 @@ class FSGeodataLoader:
 
         try:
             for idx, file in enumerate(xml_files):
-                with open(file, "r") as f:
+                with open(file, "r", encoding="utf-8") as f:
                     soup = BeautifulSoup(f, "xml")
 
                     title = (
