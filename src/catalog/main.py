@@ -161,8 +161,11 @@ def chroma_chat(qstn):
                 ]
             )
 
-        bot = OpenAIBot()
-        resp = bot.discovery_chat(qstn, context)
+        # bot = OpenAIBot()
+        # resp = bot.discovery_chat(qstn, context)
+
+        bot = OllamaBot() # OpenAIBot()
+        resp = bot.chat(qstn, context)
 
         console = Console()
         # Create a syntax-highlighted panel

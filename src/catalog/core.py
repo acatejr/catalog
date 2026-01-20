@@ -26,6 +26,7 @@ logger = logging.getLogger(__name__)
 
 
 class ChromaVectorDB:
+    
     def __init__(self, src_catalog_file="data/catalog.json"):
         self.src_catalog_file = src_catalog_file
         self.client = chromadb.PersistentClient(path="./chromadb")
