@@ -95,3 +95,20 @@ data/fsgeodata/
 
 When running, IGNORE data/catalog.json.  I do NOT want to consume tokens or use up my Anthropic token limits.
 If you don't know the answer to something, don't guess, just say you don't know.
+
+## Current Work (January 2025)
+
+### Open Issues
+- `uv run timbercat` not finding catalog module - needs investigation
+- `core.py:20` - logs directory not auto-created, causes FileNotFoundError (fix: add `Path("./logs").mkdir(exist_ok=True)`)
+
+### In Progress
+- `suggested_enhancements.md` created (excluded from git via `.git/info/exclude`)
+  - Contains RAG enhancement recommendations, blog/LinkedIn content ideas
+  - Ready to review for implementation priorities
+
+### Next Steps
+1. Fix the logs directory issue in `core.py`
+2. Debug the module import issue with timbercat CLI
+3. Consider implementing hybrid search (BM25 + vector) per enhancements doc
+4. Extract `fsgeodata.py:215` TODO into its own `get_lineage()` method
