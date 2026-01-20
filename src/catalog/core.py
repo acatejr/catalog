@@ -13,12 +13,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Setup logging
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    filename="./logs/catalog.log",
-)
+# Setup logging                                                                                                                            
+log_dir = Path("./logs")                                                                                                                   
+log_dir.mkdir(exist_ok=True)                                                                                                               
+logging.basicConfig(                                                                                                                       
+    level=logging.INFO,                                                                                                                    
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",                                                                         
+    filename=log_dir / "catalog.log",                                                                                                      
+)          
 
 logger = logging.getLogger(__name__)
 

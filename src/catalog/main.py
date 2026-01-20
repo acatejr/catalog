@@ -4,7 +4,7 @@ from catalog.rda import RDALoader
 from catalog.gdd import GeospatialDataDiscovery
 from catalog.lib import save_json
 from catalog.core import SqliteVectorDB, ChromaVectorDB
-from catalog.bots import OpenAIBot
+from catalog.bots import OpenAIBot, OllamaBot
 from dotenv import load_dotenv
 from rich.console import Console
 from rich.syntax import Syntax
@@ -118,8 +118,8 @@ def sqlvdb_disc_chat(qstn):
             ]
         )
 
-        bot = OpenAIBot()
-        resp = bot.discovery_chat(qstn, context)
+        bot = OllamaBot() # OpenAIBot()
+        resp = bot.chat(qstn, context)
 
         console = Console()
         # Create a syntax-highlighted panel
