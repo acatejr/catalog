@@ -211,8 +211,6 @@ class FSGeodataLoader:
                             else ""
                         )
 
-                    # This is where dataqual is used to get data lineage
-                    # TODO: Turn this into its own method.  Something like "get_lineage"
                     lineage = []
                     if soup.find_all("dataqual"):
                         if len(soup.find_all("dataqual")):
