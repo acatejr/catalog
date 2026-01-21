@@ -108,4 +108,4 @@ If you don't know the answer to something, don't guess, just say you don't know.
 
 ### Next Steps
 1. Consider implementing hybrid search (BM25 + vector) per enhancements doc
-2. Extract `fsgeodata.py:215` TODO into its own `get_lineage()` method
+

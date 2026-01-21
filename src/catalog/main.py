@@ -3,7 +3,7 @@ from catalog.fsgeodata import FSGeodataLoader
 from catalog.rda import RDALoader
 from catalog.gdd import GeospatialDataDiscovery
 from catalog.lib import save_json
-from catalog.core import SqliteVectorDB, ChromaVectorDB
+from catalog.core import SqliteVectorDB, ChromaVectorDB, HybridSearch
 from catalog.bots import OpenAIBot, OllamaBot
 from dotenv import load_dotenv
 from rich.console import Console
@@ -181,6 +181,114 @@ def chroma_chat(qstn):
             border_style="bold green",
         )
         console.print(panel)
+
+
+@cli.command()
+@click.option("--query", "-q", required=True, help="Search query")
+@click.option(
+    "--db",
+    "-d",
+    type=click.Choice(["sqlite", "chroma"], case_sensitive=False),
+    default="sqlite",
+    help="Vector database to use (default: sqlite)",
+)
+@click.option("--limit", "-k", default=5, help="Number of results to return")
+@click.option("--alpha", "-a", default=0.5, help="Weight for vector results (0-1)")
+def hybrid_search(query, db, limit, alpha):
+    """Run a hybrid search combining BM25 and vector search."""
+    console = Console()
+
+    # Load documents for BM25
+    if db == "sqlite":
+        vector_db = SqliteVectorDB()
+    else:
+        vector_db = ChromaVectorDB()
+
+    # Load document texts for BM25 tokenization
+    documents = vector_db.load_documents()
+    if not documents:
+        click.secho("No documents found. Run build-docs-catalog first.", fg="red")
+        return
+
+    # Create text representations for BM25
+    doc_texts = [
+        f"{doc.title or ''} {doc.abstract or ''} {doc.purpose or ''}"
+        for doc in documents
+    ]
+
+    click.secho(f"Searching {len(documents)} documents...", fg="cyan")
+    click.secho(f"Query: {query}", fg="green")
+    click.secho(f"Database: {db}, Alpha: {alpha}, Limit: {limit}", fg="cyan")
+
+    # Run hybrid search
+    hs = HybridSearch(vector_db, doc_texts)
+    results = hs.search(query, k=limit, alpha=alpha)
+
+    if not results:
+        click.secho("No results found.", fg="yellow")
+        return
+    
+    # Create lookup by ID and index
+    doc_by_id = {doc.id: doc for doc in documents}
+    doc_list = []
+    for i, doc_ref in enumerate(results, 1):
+        doc = None
+        # Handle both integer indices (from BM25) and string IDs (from vector DB)
+        if isinstance(doc_ref, int) and doc_ref < len(documents):
+            doc = documents[doc_ref]
+        elif isinstance(doc_ref, str) and doc_ref in doc_by_id:
+            doc = doc_by_id[doc_ref]
+
+        if doc:
+            doc_list.append(doc)
+
+    context = "\n\n".join(
+        [
+            f"{doc}"
+            for doc in doc_list
+        ]
+    )
+    
+    bot = OllamaBot() # OpenAIBot()
+    resp = bot.chat(query, context)
+
+    console = Console()
+    # Create a syntax-highlighted panel
+    panel = Panel(
+        Syntax(
+            resp,
+            "markdown",
+            theme="monokai",
+            line_numbers=True,
+            word_wrap=True,
+        ),
+        title="OpenAI Response",
+        border_style="bold green",
+    )
+    console.print(panel)
+
+    # Create lookup by ID and index
+    # doc_by_id = {doc.id: doc for doc in documents}
+
+    # # Display results
+    # click.secho(f"\nFound {len(results)} results:\n", fg="green")
+    # for i, doc_ref in enumerate(results, 1):
+    #     doc = None
+    #     # Handle both integer indices (from BM25) and string IDs (from vector DB)
+    #     if isinstance(doc_ref, int) and doc_ref < len(documents):
+    #         doc = documents[doc_ref]
+    #     elif isinstance(doc_ref, str) and doc_ref in doc_by_id:
+    #         doc = doc_by_id[doc_ref]
+
+    #     if doc:
+    #         panel = Panel(
+    #             f"[bold]Title:[/bold] {doc.title or 'N/A'}\n"
+    #             f"[bold]Source:[/bold] {doc.src or 'N/A'}\n"
+    #             f"[bold]Abstract:[/bold] {(doc.abstract or 'N/A')[:300]}...",
+    #             title=f"Result {i}",
+    #             border_style="blue",
+    #         )
+    #         console.print(panel)
 
 
 def main() -> None:

@@ -9,6 +9,7 @@ import sqlite_vec
 import logging
 import json
 import chromadb
+from rank_bm25 import BM25Okapi
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -84,14 +85,30 @@ class ChromaVectorDB:
         self.collection.add(documents=documents, metadatas=metadatas, ids=ids)
 
 
-    def query(self, qstn: str, nresults=5) -> None:
+    def query(self, qstn: str = None, nresults=5, k: int = None) -> None:
+        """Query the collection. Supports both nresults and k parameters."""
+        if k is not None:
+            nresults = k
+        if qstn is None:
+            return None
+
         results = None
         if self.collection and self.collection.count() > 0:
             rprint(f"[green]You asked: '{qstn}[/green]'")
-            results = self.collection.query(
+            raw_results = self.collection.query(
                 query_texts=[qstn],  # Chroma will embed this for you
                 n_results=nresults,  # how many results to return
             )
+            # Normalize to match SqliteVectorDB format for HybridSearch
+            if raw_results and raw_results.get("ids"):
+                results = []
+                ids = raw_results["ids"][0] if raw_results["ids"] else []
+                distances = raw_results["distances"][0] if raw_results.get("distances") else []
+                for i, doc_id in enumerate(ids):
+                    # Extract numeric index from doc_id (e.g., "doc_123" -> 123)
+                    idx = int(doc_id.split("_")[1]) if "_" in doc_id else i
+                    dist = distances[i] if i < len(distances) else 0
+                    results.append({"id": idx, "distance": dist})
 
         return results
 
@@ -187,6 +204,10 @@ class SqliteVectorDB:
 
             return results
 
+    def query(self, query: str, k: int = 5):
+        """Wrapper for query_vector_table to match HybridSearch interface."""
+        return self.query_vector_table(query=query, limit=k)
+
     def format_lineage(self, lineage: list[dict]) -> str:
         formatted_lineage = []
 
@@ -243,17 +264,56 @@ class SqliteVectorDB:
             logger.info(f"Error inserting {id}, Title: {title}: {e}")
 
 
-if __name__ == "__main__":
-    pass
-    # vdb = SqliteVectorDB()
-    # docs = vdb.load_documents()
-    # rprint(f"Loaded {len(docs)} documents from {vdb.src_catalog_file}")
-    # for doc in docs:
-    #     for e in doc.lineage:
-    #         rprint(type(e))
+class HybridSearch:
+    def __init__(self, vector_db, documents):
+        self.vector_db = vector_db
+        tokenized = [doc.split() for doc in documents]
+        self.bm25 = BM25Okapi(tokenized)
 
-    # chroma = ChromaVectorDB()
-    # chroma.load_document_metadata()
-    # chroma.load_documents()
-    # answer = chroma.chat(qstn="Is there data sets related to Farm Tenant Act?", nresults=5)
-    # rprint(answer)
+    def search(self, query, k=10, alpha=0.5):
+        # Get vector results
+        vector_results = self.vector_db.query(query, k=k*2)
+
+        # Get BM25 results
+        bm25_scores = self.bm25.get_scores(query.split())
+
+        # Reciprocal rank fusion
+        return self.fuse_results(vector_results, bm25_scores, k, alpha)
+
+    def fuse_results(self, vector_results, bm25_scores, k=10, alpha=0.5, rrf_k=60):
+        """
+        Combine vector and BM25 results using Reciprocal Rank Fusion.
+
+        Args:
+            vector_results: List of dicts with 'id' and 'distance' from vector search
+            bm25_scores: Array of BM25 scores for each document
+            k: Number of results to return
+            alpha: Weight for vector results (1-alpha for BM25)
+            rrf_k: RRF constant (default 60) to prevent high ranks from dominating
+
+        Returns:
+            List of document indices sorted by fused score (descending)
+        """
+        fused_scores = {}
+
+        # Process vector results (lower distance = better, so rank by distance ascending)
+        if vector_results:
+            sorted_vector = sorted(vector_results, key=lambda x: x.get("distance", 0))
+            for rank, result in enumerate(sorted_vector):
+                doc_id = result.get("id")
+                if doc_id is not None:
+                    rrf_score = alpha * (1 / (rrf_k + rank + 1))
+                    fused_scores[doc_id] = fused_scores.get(doc_id, 0) + rrf_score
+
+        # Process BM25 scores (higher score = better, so rank by score descending)
+        sorted_bm25_indices = sorted(
+            range(len(bm25_scores)), key=lambda i: bm25_scores[i], reverse=True
+        )
+        for rank, doc_idx in enumerate(sorted_bm25_indices):
+            if bm25_scores[doc_idx] > 0:  # Only include docs with non-zero BM25 score
+                rrf_score = (1 - alpha) * (1 / (rrf_k + rank + 1))
+                fused_scores[doc_idx] = fused_scores.get(doc_idx, 0) + rrf_score
+
+        # Sort by fused score descending and return top k
+        sorted_results = sorted(fused_scores.items(), key=lambda x: x[1], reverse=True)
+        return [doc_id for doc_id, score in sorted_results[:k]]
