@@ -17,10 +17,10 @@ def health() -> None:
 @cli.command()
 def download_fs_metadata() -> None:
     """Download USFS metadata"""
-    usfs = USFS()
-    usfs.download_metadata()
 
     click.echo("Downloading USFS metadata files...")
+    usfs = USFS()
+    usfs.download_metadata()
 
 def main() -> None:
     """Entry point that runs the CLI group."""
