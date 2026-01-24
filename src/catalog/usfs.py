@@ -15,6 +15,12 @@ class USFS:
     def __init__(self, output_dir: str = DATA_DIR) -> None:
         self.output_dir = Path(output_dir)
 
+
+    def build_catalog(self, format: str = "json"):
+
+        if format is "json":
+            pass
+
     def download_metadata(self) -> None:
         """Download USFS metadata files."""
 

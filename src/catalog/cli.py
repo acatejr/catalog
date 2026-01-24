@@ -26,6 +26,16 @@ def download_fs_metadata() -> None:
     usfs.download_metadata()
 
 
+@cli.command()
+def build_fs_catalog() -> None:
+    """
+    Generate the USFS metadata catlog
+    """
+
+    usfs = USFS()
+    usfs.build_catalog()
+
+
 def main() -> None:
     """Entry point that runs the CLI group."""
     cli()
