@@ -8,9 +8,11 @@ import os
 import json
 # from rich.print import print as rprint
 
-class USFS:
+DATA_DIR = "./data/usfs"
 
-    def __init__(self, output_dir: str = "./data/usfs") -> None:
+
+class USFS:
+    def __init__(self, output_dir: str = DATA_DIR) -> None:
         self.output_dir = Path(output_dir)
 
     def download_metadata(self) -> None:
@@ -69,7 +71,7 @@ class FSGeodataLoader:
 
     DATASETS_URL = f"{BASE_URL}/geodata/edw/datasets.php"
 
-    def __init__(self, data_dir="data/fsgeodata"):
+    def __init__(self, data_dir="data/usfs/fsgeodata"):
         """Initialize downloader with data directory"""
         self.data_dir = Path(data_dir)
         self.metadata_dir = self.data_dir / "metadata"
@@ -228,7 +230,7 @@ class FSGeodataLoader:
         """Parse metadata XML to extract title and abstract"""
 
         documents = []
-        xml_path = "data/fsgeodata/metadata"
+        xml_path = "data/usfs/fsgeodata/metadata"
         xml_files = Path(xml_path)
 
         if xml_files.is_dir():
@@ -302,27 +304,28 @@ class FSGeodataLoader:
         return documents
 
 
-METADATA_SOURCE_URL = "https://data-usfs.hub.arcgis.com/api/feed/dcat-us/1.1.json"
-DEST_OUTPUT_DIR = "data/gdd"
-DEST_OUTPUT_FILE = "gdd_metadata.json"
-
 class GeospatialDataDiscovery:
-
     def __init__(self):
-        pass
+        self.metadata_source_url = (
+            "https://data-usfs.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+        )
+        self.dest_output_dir = "./data/usfs/gdd"
+        self.dest_output_file = "gdd_metadata.json"
 
     def download_gdd_metadata(self):
-        response = requests.get(METADATA_SOURCE_URL)
+        response = requests.get(self.metadata_source_url)
 
         # Make output dir if needed.
-        os.makedirs(DEST_OUTPUT_DIR, exist_ok=True)
+        os.makedirs(self.dest_output_dir, exist_ok=True)
 
         if response.status_code == 200:
             # rprint(
             #     f"Downloading {METADATA_SOURCE_URL} to {DEST_OUTPUT_DIR}/{DEST_OUTPUT_FILE}"
             # )
 
-            with open(f"{DEST_OUTPUT_DIR}/{DEST_OUTPUT_FILE}", "w", encoding="utf-8") as f:
+            with open(
+                f"{self.dest_output_dir}/{self.dest_output_file}", "w", encoding="utf-8"
+            ) as f:
                 f.write(response.text)
 
     def parse_metadata(self) -> None:
@@ -330,7 +333,7 @@ class GeospatialDataDiscovery:
 
         documents = []
 
-        src_file = f"{DEST_OUTPUT_DIR}/{DEST_OUTPUT_FILE}"
+        src_file = f"{self.dest_output_dir}/{self.dest_output_file}"
 
         if not os.path.exists(src_file):
             # rprint(
@@ -375,26 +378,32 @@ class GeospatialDataDiscovery:
         return documents
 
 
-SOURCE_URL = "https://www.fs.usda.gov/rds/archive/webservice/datagov"
-DEST_OUTPUT_DIR = "data/rda"
-DEST_OUTPUT_FILE = "rda_metadata.json"
-
 class RDALoader:
+    # SOURCE_URL = "https://www.fs.usda.gov/rds/archive/webservice/datagov"
+    # DEST_OUTPUT_DIR = "data/rda"
+    # DEST_OUTPUT_FILE = "rda_metadata.json"
+
     def __init__(self):
-        os.makedirs(DEST_OUTPUT_DIR, exist_ok=True)
+        self.source_url = "https://www.fs.usda.gov/rds/archive/webservice/datagov"
+        self.dest_output_dir = "./data/usfs/rda"
+        self.dest_output_file = "rda_metadata.json"
+
+        os.makedirs(self.dest_output_dir, exist_ok=True)
 
     def download(self):
-        response = requests.get(SOURCE_URL)
+        response = requests.get(self.source_url)
         if response.status_code == 200:
             # rprint(f"Downloading {SOURCE_URL} to {DEST_OUTPUT_DIR}/{DEST_OUTPUT_FILE}")
             json_data = response.json()
 
-            with open(f"{DEST_OUTPUT_DIR}/{DEST_OUTPUT_FILE}", "w", encoding="utf-8") as f:
+            with open(
+                f"{self.dest_output_dir}/{self.dest_output_file}", "w", encoding="utf-8"
+            ) as f:
                 json.dump(json_data, f, indent=4)
 
     def parse_metadata(self):
         documents = []
-        src_file = f"{DEST_OUTPUT_DIR}/{DEST_OUTPUT_FILE}"
+        src_file = f"{self.dest_output_dir}/{self.dest_outut_file}"
 
         if not os.path.exists(src_file):
             # rprint(
@@ -421,5 +430,3 @@ class RDALoader:
                 documents.append(doc)
 
         return documents
-
-
