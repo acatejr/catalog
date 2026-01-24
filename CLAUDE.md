@@ -16,5 +16,5 @@ ruff format .
 
 ## Instructions
 
-When running, IGNORE data/catalog.json.  I do NOT want to consume tokens or use up my Anthropic token limits.
-If you don't know the answer to something, don't guess, just say you don't know.
+- When running, IGNORE data/catalog.json.  I do NOT want to consume tokens or use up my Anthropic token limits.
+- If you don't know the answer to something, don't guess, just say you don't know.

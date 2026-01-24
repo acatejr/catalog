@@ -8,21 +8,19 @@ dependencies = [
     "bs4>=0.0.2",
     "click>=8.3.1",
     "python-dotenv>=1.2.1",
+    "requests>=2.32.5",
 ]
+
+[project.scripts]
+catalog = "catalog.cli:main"
 
 [dependency-groups]
 dev = [
     "pytest>=9.0.2",
-    "pytest-cov>=7.0.0",
     "pytest-sugar>=1.1.1",
-    "ruff>=0.14.13",
+    "ruff>=0.14.14",
 ]
 
-[project.scripts]
-timbercat = "catalog.cli:main"
-
 [build-system]
-requires = ["hatchling", "setuptools", "wheel"]
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/catalog"]
+ requires = ["uv_build>=0.9.22,<0.10.0"]
+ build-backend = "uv_build"
