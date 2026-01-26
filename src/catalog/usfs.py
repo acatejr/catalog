@@ -3,10 +3,11 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import time
-from catalog.lib import clean_str, hash_string
+from catalog.lib import clean_str, hash_string, save_json
 import os
 import json
-# from rich.print import print as rprint
+from catalog.schema import USFSDocument
+
 
 DATA_DIR = "./data/usfs"
 
@@ -15,11 +16,30 @@ class USFS:
     def __init__(self, output_dir: str = DATA_DIR) -> None:
         self.output_dir = Path(output_dir)
 
+    def build_chromadb(self) -> None:
+        """Build ChromaDB vector store from USFS catalog"""
+
+        print("Building USFS ChromaDB vector store...")
+        from catalog.core import ChromaVectorDB
+
+        db = ChromaVectorDB()
+        db.load_documents()
 
     def build_catalog(self, format: str = "json"):
+        print("Building USFS catalog...")
+        fsgeodata = FSGeodataLoader()
+        gdd = GeospatialDataDiscovery()
+        rda = RDALoader()
 
-        if format is "json":
-            pass
+        fsgeo_docs = fsgeodata.parse_metadata()
+        gdd_docs = gdd.parse_metadata()
+        rda_docs = rda.parse_metadata()
+        documents = fsgeo_docs + rda_docs + gdd_docs
+
+        print(f"USFS Catalog Docs: {len(documents)}")
+
+        if format == "json":
+            save_json(documents, "./data/usfs/catalog.json")
 
     def download_metadata(self) -> None:
         """Download USFS metadata files."""
@@ -59,14 +79,6 @@ class USFS:
         print("Downloading GDD metadata...")
         gdd = GeospatialDataDiscovery()
         gdd.download_gdd_metadata()
-
-    def build_metadata_catalog(self) -> None:
-        pass
-
-        # # Placeholder for actual download logic
-        # metadata_file = self.output_dir / "usfs_metadata.json"
-        # with open(metadata_file, "w", encoding="utf-8") as f:
-        #     f.write('{"status": "metadata downloaded"}')
 
 
 class FSGeodataLoader:
@@ -220,18 +232,6 @@ class FSGeodataLoader:
             # Be nice to the server
             time.sleep(0.5)
 
-        # Print summary
-        # rprint("=" * 70)
-        # rprint("Download Summary")
-        # rprint("=" * 70)
-        # rprint(f"Total datasets:        {stats['total']}")
-        # rprint(f"Metadata downloaded:   {stats['metadata_success']}")
-        # rprint(f"Metadata failed:       {stats['metadata_failed']}")
-        # rprint(f"Services downloaded:   {stats['service_success']}")
-        # rprint(f"Services failed:       {stats['service_failed']}")
-        # rprint()
-        # rprint(f"Data saved to: {self.data_dir.absolute()}")
-
     def parse_metadata(self):
         """Parse metadata XML to extract title and abstract"""
 
@@ -244,68 +244,63 @@ class FSGeodataLoader:
         else:
             xml_files = [xml_files]
 
-        try:
-            for idx, file in enumerate(xml_files):
-                with open(file, "r", encoding="utf-8") as f:
-                    soup = BeautifulSoup(f, "xml")
+        for idx, xml_file in enumerate(xml_files):
+            with open(xml_file, "r", encoding="utf-8") as f:
+                soup = BeautifulSoup(f, "xml")
 
-                    title = (
-                        clean_str(soup.find("title").get_text())
-                        if soup.find("title")
+                title = (
+                    clean_str(soup.find("title").get_text())
+                    if soup.find("title")
+                    else ""
+                )
+
+                descript = soup.find("descript")
+                if descript:
+                    abstract = (
+                        clean_str(descript.find("abstract").get_text())
+                        if descript.find("abstract")
+                        else ""
+                    )
+                    purpose = (
+                        clean_str(descript.find("purpose").get_text())
+                        if descript.find("purpose")
                         else ""
                     )
 
-                    descript = soup.find("descript")
-                    if descript:
-                        abstract = (
-                            clean_str(descript.find("abstract").get_text())
-                            if descript.find("abstract")
-                            else ""
-                        )
-                        purpose = (
-                            clean_str(descript.find("purpose").get_text())
-                            if descript.find("purpose")
-                            else ""
-                        )
+                lineage = []
+                if soup.find_all("dataqual"):
+                    if len(soup.find_all("dataqual")):
+                        dataqual = soup.find_all("dataqual")[0]
+                        procsteps = dataqual.find_all("procstep")
+                        for step in procsteps:
+                            if step.find("procdate"):
+                                procdate = step.find("procdate").get_text()
+                            if step.find("procdesc"):
+                                procdesc = step.find("procdesc").get_text()
 
-                    lineage = []
-                    if soup.find_all("dataqual"):
-                        if len(soup.find_all("dataqual")):
-                            dataqual = soup.find_all("dataqual")[0]
-                            procsteps = dataqual.find_all("procstep")
-                            for step in procsteps:
-                                if step.find("procdate"):
-                                    procdate = step.find("procdate").get_text()
-                                if step.find("procdesc"):
-                                    procdesc = step.find("procdesc").get_text()
+                            if procdate and procdesc:
+                                procstep = {
+                                    "description": procdesc,
+                                    "date": procdate,
+                                }
+                                lineage.append(procstep)
 
-                                if procdate and procdesc:
-                                    procstep = {
-                                        "description": procdesc,
-                                        "date": procdate,
-                                    }
-                                    lineage.append(procstep)
+                if soup.find_all("themekey") is not None:
+                    themekeys = soup.find_all("themekey")
+                    if len(themekeys) > 0:
+                        keywords = [w.get_text() for w in themekeys]
 
-                    if soup.find_all("themekey") is not None:
-                        themekeys = soup.find_all("themekey")
-                        if len(themekeys) > 0:
-                            keywords = [w.get_text() for w in themekeys]
+                document = {
+                    "id": hash_string(title.lower().strip()),
+                    "title": title,
+                    "lineage": lineage,
+                    "abstract": abstract,
+                    "purpose": purpose,
+                    "keywords": keywords,
+                    "src": "fsgeodata",
+                }
 
-                    document = {
-                        "id": hash_string(title.lower().strip()),
-                        "title": title,
-                        "lineage": lineage,
-                        "abstract": abstract,
-                        "purpose": purpose,
-                        "keywords": keywords,
-                        "src": "fsgeodata",
-                    }
-
-                    documents.append(document)
-
-        except Exception as e:
-            # rprint(f"  ✗ Failed to parse metadata {xml_path}: {e}")
-            return {"title": "N/A", "abstract": "N/A"}
+                documents.append(document)
 
         return documents
 
@@ -409,7 +404,7 @@ class RDALoader:
 
     def parse_metadata(self):
         documents = []
-        src_file = f"{self.dest_output_dir}/{self.dest_outut_file}"
+        src_file = f"{self.dest_output_dir}/{self.dest_output_file}"
 
         if not os.path.exists(src_file):
             # rprint(
