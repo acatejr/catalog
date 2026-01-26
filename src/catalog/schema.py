@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 from typing import Optional
 
 
-class Document(BaseModel):
+class USFSDocument(BaseModel):
     """
     Represents a USFS (United States Forest Service) metadata document.
 
@@ -25,14 +25,14 @@ class Document(BaseModel):
     title: Optional[str] = Field(..., description="The document title.")
     abstract: str | None = Field(default=None, description="The document's abstract.")
     purpose: str | None = Field(
-        default=None, description="Description of the document's purpose."
+        default=None, description="Description of the data source's purpose."
     )
     keywords: list[str] | None = Field(
-        default=[], description="List of the document's keywords."
+        default=[], description="List of the data source's keywords."
     )
     src: str | None = Field(
         default=None,
-        description="Description of the document's source (e.g., fsgeodata, gdd, rda ).",
+        description="Description of the data source's source (e.g., fsgeodata, gdd, rda ).",
     )
     lineage: list[dict] | None = Field(
         default=[], description="List of the metadata's lineage."

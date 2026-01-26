@@ -1,0 +1,35 @@
+from dotenv import load_dotenv
+import click
+from catalog.usfs import USFS
+
+load_dotenv()
+
+
+@click.group()
+def cli():
+    """Catalog CLI group."""
+    pass
+
+
+@cli.command()
+def health() -> None:
+    """Print a simple health status."""
+    click.echo("status: ok")
+
+
+@cli.command()
+def download_fs_metadata() -> None:
+    """Download USFS metadata"""
+    usfs = USFS()
+    usfs.download_metadata()
+
+    click.echo("Downloading USFS metadata files...")
+
+
+def main() -> None:
+    """Entry point that runs the CLI group."""
+    cli()
+
+
+if __name__ == "__main__":
+    main()
