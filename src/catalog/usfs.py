@@ -6,7 +6,6 @@ import time
 from catalog.lib import clean_str, hash_string, save_json
 import os
 import json
-from catalog.schema import USFSDocument
 
 
 DATA_DIR = "./data/usfs"
@@ -23,7 +22,8 @@ class USFS:
         from catalog.core import ChromaVectorDB
 
         db = ChromaVectorDB()
-        db.load_documents()
+        # db.load_documents()
+        db.batch_load_documents()
 
     def build_catalog(self, format: str = "json"):
         print("Building USFS catalog...")
@@ -148,54 +148,33 @@ class FSGeodataLoader:
 
     def download_file(self, url, output_path, description="file"):
         """Download a file from URL to output_path"""
-        try:
-            # rprint(f"  Downloading {description}: {url}")
-            response = self.session.get(url, timeout=30)
-            response.raise_for_status()
 
-            with open(output_path, "wb") as f:
-                f.write(response.content)
+        response = self.session.get(url, timeout=30)
+        response.raise_for_status()
 
-            # rprint(f"  ✓ Saved to {output_path}")
-            return True
+        with open(output_path, "wb") as f:
+            f.write(response.content)
 
-        except requests.exceptions.RequestException as e:
-            # rprint(f"  ✗ Failed to download {description}: {e}")
-            return False
+        return True
 
     def download_service_info(self, url, output_path):
         """Download service info (JSON format)"""
-        try:
-            # rprint(f"  Downloading service info: {url}")
-            # Add ?f=json to get JSON response
-            json_url = f"{url}?f=json"
-            response = self.session.get(json_url, timeout=30)
-            response.raise_for_status()
 
-            with open(output_path, "w", encoding="utf-8") as f:
-                f.write(response.text)
+        json_url = f"{url}?f=json"
+        response = self.session.get(json_url, timeout=30)
+        response.raise_for_status()
 
-            # rprint(f"  ✓ Saved to {output_path}")
-            return True
+        with open(output_path, "w", encoding="utf-8") as f:
+            f.write(response.text)
 
-        except requests.exceptions.RequestException as e:
-            # rprint(f"  ✗ Failed to download service info: {e}")
-            return False
+        return True
 
     def download_all(self):
         """Main method to download all datasets"""
-        # rprint("=" * 70)
-        # rprint("FSGeodata Downloader")
-        # rprint("=" * 70)
-        # rprint()
 
         # Fetch and parse the datasets page
         html_content = self.fetch_datasets_page()
         datasets = self.parse_datasets(html_content)
-
-        # rprint(f"\nFound {len(datasets)} datasets")
-        # rprint("=" * 70)
-        # rprint()
 
         stats = {
             "total": len(datasets),
@@ -207,8 +186,6 @@ class FSGeodataLoader:
 
         # Download each dataset
         for i, dataset in enumerate(datasets, 1):
-            # rprint(f"[{i}/{len(datasets)}] Processing: {dataset['name']}")
-
             # Download metadata
             metadata_path = self.metadata_dir / f"{dataset['name']}.xml"
             if self.download_file(dataset["metadata_url"], metadata_path, "metadata"):
@@ -225,9 +202,6 @@ class FSGeodataLoader:
                     stats["service_failed"] += 1
             else:
                 pass
-                # rprint("  ! No service URL found")
-
-            # rprint()
 
             # Be nice to the server
             time.sleep(0.5)
@@ -320,10 +294,6 @@ class GeospatialDataDiscovery:
         os.makedirs(self.dest_output_dir, exist_ok=True)
 
         if response.status_code == 200:
-            # rprint(
-            #     f"Downloading {METADATA_SOURCE_URL} to {DEST_OUTPUT_DIR}/{DEST_OUTPUT_FILE}"
-            # )
-
             with open(
                 f"{self.dest_output_dir}/{self.dest_output_file}", "w", encoding="utf-8"
             ) as f:
@@ -337,9 +307,6 @@ class GeospatialDataDiscovery:
         src_file = f"{self.dest_output_dir}/{self.dest_output_file}"
 
         if not os.path.exists(src_file):
-            # rprint(
-            #     f"[red]Source file {src_file} does not exist. Please run download() first.[/red]"
-            # )
             return []
 
         with open(src_file, "r", encoding="utf-8") as f:
@@ -380,10 +347,6 @@ class GeospatialDataDiscovery:
 
 
 class RDALoader:
-    # SOURCE_URL = "https://www.fs.usda.gov/rds/archive/webservice/datagov"
-    # DEST_OUTPUT_DIR = "data/rda"
-    # DEST_OUTPUT_FILE = "rda_metadata.json"
-
     def __init__(self):
         self.source_url = "https://www.fs.usda.gov/rds/archive/webservice/datagov"
         self.dest_output_dir = "./data/usfs/rda"
@@ -394,7 +357,6 @@ class RDALoader:
     def download(self):
         response = requests.get(self.source_url)
         if response.status_code == 200:
-            # rprint(f"Downloading {SOURCE_URL} to {DEST_OUTPUT_DIR}/{DEST_OUTPUT_FILE}")
             json_data = response.json()
 
             with open(
@@ -407,9 +369,6 @@ class RDALoader:
         src_file = f"{self.dest_output_dir}/{self.dest_output_file}"
 
         if not os.path.exists(src_file):
-            # rprint(
-            #     f"[red]Source file {src_file} does not exist. Please run download() first.[/red]"
-            # )
             return []
 
         with open(src_file, "r", encoding="utf-8") as f:
