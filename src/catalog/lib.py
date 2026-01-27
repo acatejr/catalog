@@ -3,8 +3,6 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 import hashlib
 
-soup = BeautifulSoup()
-
 
 def save_json(
     data: dict | list,
@@ -102,3 +100,20 @@ def strip_html(text: str) -> str:
 def hash_string(s):
     """Generate a SHA-256 hash of the input string."""
     return hashlib.sha256(s.encode("utf-8")).hexdigest()
+
+
+def dedupe_catalog(file_path: str | Path) -> None:
+    """Remove duplicate entries from a catalog JSON file based on the 'id' field.
+
+    Reads the catalog, removes duplicates (keeping the first occurrence),
+    and writes the deduplicated data back to the same file.
+
+    Args:
+        file_path: Path to the catalog JSON file.
+    """
+    data = load_json(file_path)
+    before = len(data)
+    deduped = list({doc["id"]: doc for doc in data}.values())
+    after = len(deduped)
+    save_json(deduped, file_path)
+    print(f"Before: {before}, After: {after}, Removed: {before - after}")

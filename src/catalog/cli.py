@@ -1,10 +1,8 @@
 from dotenv import load_dotenv
 import click
 from catalog.usfs import USFS
-import json
-from catalog.schema import USFSDocument
-from pathlib import Path
 from catalog.core import ChromaVectorDB
+from catalog.bots import OllamaBot
 
 load_dotenv()
 
@@ -17,7 +15,7 @@ def cli():
 
 @cli.command()
 def health() -> None:
-    """Print a simple health status."""
+    """The applications health status."""
     click.echo("status: ok")
 
 
@@ -60,6 +58,33 @@ def query_fs_chromadb(qstn: str, nresults: int = 5) -> None:
 
     db = ChromaVectorDB()
     resp = db.query(qstn=qstn, nresults=nresults)
+    for doc, distance in resp:
+        click.echo(doc.to_markdown(distance=distance))
+        click.echo("---")
+
+
+@cli.command()
+@click.option("--qstn", "-q", required=True)
+@click.option("--nresults", "-n", default=5, help="Number of results to return.")
+def ollama_chat(qstn: str, nresults: int = 5) -> None:
+    """
+    Runs a chromadb query and uses Ollama to answer the question.
+
+    :param qstn: Description
+    :type qstn: str
+    :param nresults: Description
+    :type nresults: int
+    """
+
+    cvdb = ChromaVectorDB()
+    resp = cvdb.query(qstn=qstn, nresults=nresults)
+    if resp:
+        context = "\n\n---\n\n".join(
+            doc.to_markdown(distance=distance) for doc, distance in resp
+        )
+        client = OllamaBot()
+        bot_response = client.chat(question=qstn, context=context)
+        click.echo(bot_response)
 
 
 def main() -> None:

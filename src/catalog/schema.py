@@ -37,3 +37,23 @@ class USFSDocument(BaseModel):
     lineage: list[dict] | None = Field(
         default=[], description="List of the metadata's lineage."
     )
+
+    def to_markdown(self, distance: float | None = None) -> str:
+        """Convert the document to a markdown representation."""
+
+        md = f"# {self.title}\n\n"
+        if distance is not None:
+            md += f"**Relevance Distance:** {distance:.4f}\n\n"
+        md += f"**ID:** {self.id}\n\n"
+        md += f"**Abstract:** {self.abstract}\n\n"
+        md += f"**Purpose:** {self.purpose}\n\n"
+        md += f"**Source:** {self.src}\n\n"
+        if self.keywords:
+            md += f"**Keywords:** {', '.join(self.keywords)}\n\n"
+        if self.lineage:
+            md += "## Lineage\n"
+            for item in self.lineage:
+                desc = item.get("description", "")
+                date = item.get("date", "")
+                md += f"- {desc} ({date})\n"
+        return md
