@@ -221,6 +221,11 @@ class FSGeodataLoader:
         for idx, xml_file in enumerate(xml_files):
             with open(xml_file, "r", encoding="utf-8") as f:
                 soup = BeautifulSoup(f, "xml")
+                abstract = ""
+                purpose = ""
+                keywords = []
+                procdate = ""
+                procdesc = ""
 
                 title = (
                     clean_str(soup.find("title").get_text())

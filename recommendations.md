@@ -2,23 +2,15 @@
 
 This document outlines recommendations for improving the Catalog project based on comprehensive codebase reviews.
 
-## 1. Security (URGENT)
+## 1. Security
 
-### Rotate Exposed API Keys
+### ~~Rotate Exposed API Keys~~ (Not Required)
 
-The `.env` file contains real API keys (`OLLAMA_API_KEY`, `ANTHROPIC_API_KEY`) that should be rotated immediately. Even if `.env` is in `.gitignore`, if it was ever committed, the keys are in git history.
+~~The `.env` file contains real API keys that should be rotated immediately.~~ Verified on 2026-01-28: `.env` has **never been committed** to git history (`git log --all --full-history -- .env` returns empty). The file is properly protected by `.gitignore`. No key rotation needed unless keys were exposed through other means.
 
-### `bots.py` Ignores Configured URL
+### ~~`bots.py` Ignores Configured URL~~ (Fixed)
 
-`OllamaBot.__init__` reads `OLLAMA_API_URL` into `self.OLLAMA_BASE_URL` (line 27) but never uses it. The client hardcodes `host="https://ollama.com"` (line 31) instead. This means the `.env` configuration has no effect:
-
-```python
-# Current (bots.py:30-31)
-self.client = Client(host="https://ollama.com", ...)
-
-# Should be
-self.client = Client(host=self.OLLAMA_BASE_URL, ...)
-```
+~~`OllamaBot.__init__` reads `OLLAMA_API_URL` into `self.OLLAMA_BASE_URL` but never uses it.~~ Fixed: The client now uses `host=self.OLLAMA_BASE_URL` (line 31).
 
 ### `bots.py:32` Will Crash if `OLLAMA_API_KEY` Is Unset
 
@@ -40,23 +32,9 @@ def is_safe_url(url: str) -> bool:
 
 ## 2. Bugs & Variable Scope Issues
 
-### `usfs.py:FSGeodataLoader.parse_metadata` — Unbound Variables
+### ~~`usfs.py:FSGeodataLoader.parse_metadata` — Unbound Variables~~ (Fixed)
 
-Variables are conditionally assigned inside blocks but used unconditionally at lines 267-275:
-
-- `abstract` and `purpose` (lines 233-242) are assigned inside `if descript:` but referenced unconditionally in the document dict at line 271-272. If an XML file has no `<descript>` element, this raises `UnboundLocalError`.
-- `procdate` and `procdesc` (lines 251-253) are assigned inside `if step.find(...)` blocks but used unconditionally at line 255. A step with `procdate` but no `procdesc` (or vice versa) will reference a stale value from a previous iteration or be unbound.
-- `keywords` (line 265) is only assigned if `themekeys` exist and `len(themekeys) > 0`, but used unconditionally at line 273.
-
-**Fix:** Initialize all variables with defaults before the conditional blocks:
-
-```python
-abstract = ""
-purpose = ""
-keywords = []
-procdate = ""
-procdesc = ""
-```
+~~Variables were conditionally assigned inside blocks but used unconditionally.~~ Fixed: All variables are now initialized with defaults before conditional blocks (lines 225-228: `abstract = ""`, `purpose = ""`, `keywords = []`, `procdate = ""`, `procdesc = ""`).
 
 ### `usfs.py:FSGeodataLoader.parse_metadata` — Redundant `.find()` Calls
 
@@ -385,16 +363,16 @@ Since the current branch (`45-feature-add-llm-interaction-to-cli-chomadb-query`)
 10. **Unused global removed** — Removed `soup = BeautifulSoup()` from `lib.py`
 11. **Docstrings added** — Added docstrings to `load_document_metadata`, `load_documents`, `batch_load_documents` in `core.py`
 12. **Indentation fixed** — `batch_load_documents` now uses consistent 4-space indentation
+13. **OllamaBot uses configured URL** — Client now uses `self.OLLAMA_BASE_URL` instead of hardcoded URL
+14. **Unbound variables fixed** — `usfs.py:FSGeodataLoader.parse_metadata` now initializes all variables with defaults
 
 ### Remaining
 
-1. **Fix `OllamaBot` to use configured URL** — Currently hardcoded, ignores `.env`
-2. **Fix unbound variable bugs in `usfs.py:FSGeodataLoader.parse_metadata`**
-3. **Fix GDD/RDA parsers** — Map `description` to `abstract` so all sources populate the schema consistently
-4. **Add conversation history** — Store context for follow-up questions
-5. **Implement streaming** — Use Ollama's streaming API for better UX
-6. **Add source citations** — Include document references in LLM responses
-7. **Lineage in query results** — Stored as flat string in metadata but `USFSDocument.lineage` expects `list[dict]`; query sets it to `None`
+1. **Fix GDD/RDA parsers** — Map `description` to `abstract` so all sources populate the schema consistently
+2. **Add conversation history** — Store context for follow-up questions
+3. **Implement streaming** — Use Ollama's streaming API for better UX
+4. **Add source citations** — Include document references in LLM responses
+5. **Lineage in query results** — Stored as flat string in metadata but `USFSDocument.lineage` expects `list[dict]`; query sets it to `None`
 
 ---
 
@@ -415,10 +393,10 @@ Since the current branch (`45-feature-add-llm-interaction-to-cli-chomadb-query`)
 | ~~Medium~~   | ~~Remove unused soup global in lib.py~~                 | Done    |
 | ~~Medium~~   | ~~Fix indentation in batch_load_documents~~             | Done    |
 | ~~Medium~~   | ~~Add docstrings to core.py methods~~                   | Done    |
-| **URGENT**   | Rotate exposed API keys in `.env`                       | Pending |
-| High         | Fix OllamaBot to use configured URL, not hardcoded     | Pending |
-| High         | Fix OllamaBot crash when OLLAMA_API_KEY is unset       | Pending |
-| High         | Fix unbound variable bugs in `usfs.py` parsers          | Pending |
+| ~~URGENT~~   | ~~Rotate exposed API keys in `.env`~~                   | N/A     |
+| ~~High~~     | ~~Fix OllamaBot to use configured URL, not hardcoded~~  | Done    |
+| High         | Fix OllamaBot crash when OLLAMA_API_KEY is unset        | Pending |
+| ~~High~~     | ~~Fix unbound variable bugs in `usfs.py` parsers~~      | Done    |
 | High         | Fix GDD/RDA parsers to map `description` to `abstract`  | Pending |
 | High         | Remove obsolete `load_documents()` from `core.py`       | Pending |
 | High         | Add basic test suite                                    | Pending |
