@@ -28,8 +28,8 @@ class OllamaBot:
         self.OLLAMA_MODEL = os.getenv("OLLAMA_MODEL")
 
         self.client = Client(
-            host="https://ollama.com",
-            headers={"Authorization": "Bearer " + os.environ.get("OLLAMA_API_KEY")},
+            host=self.OLLAMA_BASE_URL,
+            headers={"Authorization": "Bearer " + self.OLLAMA_API_KEY},
         )
 
     def chat(self, question, context):
