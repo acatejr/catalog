@@ -112,9 +112,9 @@ Line 26 has a trailing comment `# [USFSDocument.model_validate(doc) for doc in d
 keywords: list[str] | None = Field(default_factory=list, ...)
 ```
 
-### Typo in `cli.py:33`
+### ~~Typo in `cli.py:33`~~ (Fixed)
 
-`"Generate the USFS metadata catlog"` — should be `"catalog"`.
+~~`"Generate the USFS metadata catlog"` — should be `"catalog"`.~~
 
 ### Add Pre-commit Hooks
 
@@ -432,7 +432,7 @@ Since the current branch (`45-feature-add-llm-interaction-to-cli-chomadb-query`)
 | Medium       | Add progress indicators                                 | Pending |
 | Medium       | Add conversation history for LLM                        | Pending |
 | Medium       | Implement Ollama streaming                              | Pending |
-| Low          | Fix typo "catlog" in cli.py:33                          | Pending |
+| ~~Low~~      | ~~Fix typo "catlog" in cli.py:33~~                      | Done    |
 | Low          | Remove old comment in core.py:26                        | Pending |
 | Low          | Use `default_factory=list` in schema.py                 | Pending |
 | Low          | Refactor to subpackages                                 | Pending |
@@ -442,4 +442,4 @@ Since the current branch (`45-feature-add-llm-interaction-to-cli-chomadb-query`)
 
 ---
 
-Generated on 2026-01-26, updated 2026-01-27
+Generated on 2026-01-26, updated 2026-01-28

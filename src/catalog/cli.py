@@ -31,7 +31,7 @@ def download_fs_metadata() -> None:
 @cli.command()
 def build_fs_catalog() -> None:
     """
-    Generate the USFS metadata catlog
+    Generate the USFS metadata catalog
     """
 
     usfs = USFS()
