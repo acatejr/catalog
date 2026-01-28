@@ -6,7 +6,13 @@ import time
 from catalog.lib import clean_str, hash_string, save_json
 import os
 import json
+import logging
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger("catalog")
 
 DATA_DIR = "./data/usfs"
 
@@ -51,30 +57,27 @@ class USFS:
 
     def download_fsgeodata(self) -> None:
         """
-        Docstring for download_fsgeodata
-
-        :param self: Description
+        Handles downloading of FSGeoData metadata
         """
+
         print("Downloading FSGeoData metadata...")
         fsgeodata = FSGeodataLoader(data_dir=self.output_dir / "fsgeodata")
         fsgeodata.download_all()
 
     def download_rda(self) -> None:
         """
-        Docstring for download_rda
-
-        :param self: Description
+        Downloads Research Data Archive (RDA) metadata
         """
+
         print("Downloading RDA metadata...")
         rda = RDALoader()
         rda.download()
 
     def download_gdd(self) -> None:
         """
-        Docstring for download_gdd
-
-        :param self: Description
+        Downloads Geospatial Data Discovery (GDD) metadata
         """
+
         print("Downloading GDD metadata...")
         gdd = GeospatialDataDiscovery()
         gdd.download_gdd_metadata()
@@ -105,7 +108,6 @@ class FSGeodataLoader:
 
     def fetch_datasets_page(self):
         """Fetch the main datasets page"""
-        # rprint(f"Fetching datasets page: {self.DATASETS_URL}")
         response = self.session.get(self.DATASETS_URL)
         response.raise_for_status()
         return response.text
@@ -145,26 +147,41 @@ class FSGeodataLoader:
 
         return datasets
 
-    def download_file(self, url, output_path, description="file"):
-        """Download a file from URL to output_path"""
+    def download_file(self, url: str, output_path: Path, description: str = "file") -> bool:
+        """Download a file from URL to output_path
 
-        response = self.session.get(url, timeout=30)
-        response.raise_for_status()
+        args:
+            url (str): URL to download
+            output_path (Path): Path to save the downloaded file
+            description (str): Description of the file being downloaded
+        returns:
+            bool: True if download succeeded, False otherwise
+        """
 
-        with open(output_path, "wb") as f:
-            f.write(response.content)
+        try:
+            response = self.session.get(url, timeout=30)
+            response.raise_for_status()
+            with open(output_path, "wb") as f:
+                f.write(response.content)
+        except Exception as e:
+            logger.error(f"Failed to download {description} from {url}: {e}")
+            return False
 
         return True
 
-    def download_service_info(self, url, output_path):
+    def download_service_info(self, url: str, output_path: Path) -> bool:
         """Download service info (JSON format)"""
 
         json_url = f"{url}?f=json"
-        response = self.session.get(json_url, timeout=30)
-        response.raise_for_status()
+        try:
+            response = self.session.get(json_url, timeout=30)
+            response.raise_for_status()
+            with open(output_path, "w", encoding="utf-8") as f:
+                f.write(response.text)
+        except Exception as e:
+            logger.error(f"Failed to download service info from {json_url}: {e}")
+            return False
 
-        with open(output_path, "w", encoding="utf-8") as f:
-            f.write(response.text)
 
         return True
 
@@ -187,23 +204,28 @@ class FSGeodataLoader:
         for i, dataset in enumerate(datasets, 1):
             # Download metadata
             metadata_path = self.metadata_dir / f"{dataset['name']}.xml"
-            if self.download_file(dataset["metadata_url"], metadata_path, "metadata"):
-                stats["metadata_success"] += 1
+
+            if not metadata_path.exists():
+                if self.download_file(dataset["metadata_url"], metadata_path, "metadata"):
+                    stats["metadata_success"] += 1
+                else:
+                    stats["metadata_failed"] += 1
             else:
-                stats["metadata_failed"] += 1
+                stats["metadata_success"] += 1
 
             # Download service info if available
             if dataset["service_url"]:
                 service_path = self.services_dir / f"{dataset['name']}_service.json"
-                if self.download_service_info(dataset["service_url"], service_path):
-                    stats["service_success"] += 1
+                if not service_path.exists():
+                    if self.download_service_info(dataset["service_url"], service_path):
+                        stats["service_success"] += 1
+                    else:
+                        stats["service_failed"] += 1
                 else:
-                    stats["service_failed"] += 1
-            else:
-                pass
+                    stats["service_success"] += 1
 
             # Be nice to the server
-            time.sleep(0.5)
+            time.sleep(0.25)
 
     def parse_metadata(self):
         """Parse metadata XML to extract title and abstract"""
@@ -232,27 +254,29 @@ class FSGeodataLoader:
                 descript = soup.find("descript")
                 if descript:
                     abstract_elem = descript.find("abstract")
-                    abstract = clean_str(abstract_elem.get_text()) if abstract_elem else ""
+                    abstract = (
+                        clean_str(abstract_elem.get_text()) if abstract_elem else ""
+                    )
                     purpose_elem = descript.find("purpose")
                     purpose = clean_str(purpose_elem.get_text()) if purpose_elem else ""
 
                 lineage = []
-                if soup.find_all("dataqual"):
-                    if len(soup.find_all("dataqual")):
-                        dataqual = soup.find_all("dataqual")[0]
-                        procsteps = dataqual.find_all("procstep")
-                        for step in procsteps:
-                            if step.find("procdate"):
-                                procdate = step.find("procdate").get_text()
-                            if step.find("procdesc"):
-                                procdesc = step.find("procdesc").get_text()
+                dataqual = soup.find_all("dataqual")
+                if dataqual:
+                    dq = dataqual[0]
+                    procsteps = dq.find_all("procstep")
+                    for step in procsteps:
+                        if step.find("procdate"):
+                            procdate = step.find("procdate").get_text()
+                        if step.find("procdesc"):
+                            procdesc = step.find("procdesc").get_text()
 
-                            if procdate and procdesc:
-                                procstep = {
-                                    "description": procdesc,
-                                    "date": procdate,
-                                }
-                                lineage.append(procstep)
+                        if procdate and procdesc:
+                            procstep = {
+                                "description": procdesc,
+                                "date": procdate,
+                            }
+                            lineage.append(procstep)
 
                 if soup.find_all("themekey") is not None:
                     themekeys = soup.find_all("themekey")
@@ -275,6 +299,11 @@ class FSGeodataLoader:
 
 
 class GeospatialDataDiscovery:
+    """
+    Harvests metadata from USFS Geospatial Data Discovery (GDD) portal
+    https://data-usfs.hub.arcgis.com/pages/geospatial-data-discovery-gdd
+    """
+
     def __init__(self):
         self.metadata_source_url = (
             "https://data-usfs.hub.arcgis.com/api/feed/dcat-us/1.1.json"
@@ -289,17 +318,25 @@ class GeospatialDataDiscovery:
         os.makedirs(self.dest_output_dir, exist_ok=True)
 
         if response.status_code == 200:
-            with open(
-                f"{self.dest_output_dir}/{self.dest_output_file}", "w", encoding="utf-8"
-            ) as f:
+            fpath = Path(self.dest_output_dir) / self.dest_output_file
+            with open(fpath, "w", encoding="utf-8") as f:
                 f.write(response.text)
+        else:
+            logger.error(
+                f"Failed to download GDD metadata: {response.status_code} {response.text}"
+            )
 
     def parse_metadata(self) -> None:
-        """_summary_"""
+        """
+        Parses GDD metadata JSON file and returns list of documents
+
+        :return: List of document dictionaries
+        :rtype: list[dict]
+        """
 
         documents = []
 
-        src_file = f"{self.dest_output_dir}/{self.dest_output_file}"
+        src_file = Path(self.dest_output_dir) / self.dest_output_file
 
         if not os.path.exists(src_file):
             return []
@@ -354,25 +391,25 @@ class RDALoader:
         if response.status_code == 200:
             json_data = response.json()
 
-            with open(
-                f"{self.dest_output_dir}/{self.dest_output_file}", "w", encoding="utf-8"
+            src_file = Path(self.dest_output_dir) / self.dest_output_file
+            with open(src_file, "w", encoding="utf-8"
             ) as f:
                 json.dump(json_data, f, indent=4)
 
     def parse_metadata(self):
         documents = []
-        src_file = f"{self.dest_output_dir}/{self.dest_output_file}"
+        src_file = Path(self.dest_output_dir) / self.dest_output_file
 
         if not os.path.exists(src_file):
             return []
 
         with open(src_file, "r", encoding="utf-8") as f:
             json_data = json.load(f)
-            dataset = json_data["dataset"]
+            dataset = json_data.get("dataset", [])
             for item in dataset:
-                title = clean_str(item["title"])
-                description = clean_str(item["description"])
-                keywords = item["keyword"]
+                title = clean_str(item.get("title"))
+                description = clean_str(item.get("description"))
+                keywords = item.get("keyword")
 
                 doc = {
                     "id": hash_string(title.lower().strip()),

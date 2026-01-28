@@ -18,6 +18,7 @@ class USFSDocument(BaseModel):
         keywords (Optional[List[str]]): List of keywords associated with the document.
         src (Optional[str]): Source or the document's metadata.
         lineage (Optional[List[str]]): List of the data set's lineage.
+        description: (Optional[str]): Text that describes the data set.
     """
 
     # Required fields (common to all sources)
@@ -27,15 +28,15 @@ class USFSDocument(BaseModel):
     purpose: str | None = Field(
         default=None, description="Description of the data source's purpose."
     )
-    keywords: list[str] | None = Field(
-        default=[], description="List of the data source's keywords."
-    )
+    keywords: list[str] | None = Field(default_factory=list, description="List of the data source's keywords.")
     src: str | None = Field(
         default=None,
         description="Description of the data source's source (e.g., fsgeodata, gdd, rda ).",
     )
-    lineage: list[dict] | None = Field(
-        default=[], description="List of the metadata's lineage."
+    lineage: list[dict] | None = Field(default_factory=list, description="List of the metadata's lineage.")
+    description: str | None = Field(
+        default=None,
+        description="Description of the data.",
     )
 
     def to_markdown(self, distance: float | None = None) -> str:
@@ -46,6 +47,7 @@ class USFSDocument(BaseModel):
             md += f"**Relevance Distance:** {distance:.4f}\n\n"
         md += f"**ID:** {self.id}\n\n"
         md += f"**Abstract:** {self.abstract}\n\n"
+        md += f"**Description:** {self.description}\n\n"
         md += f"**Purpose:** {self.purpose}\n\n"
         md += f"**Source:** {self.src}\n\n"
         if self.keywords:

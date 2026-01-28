@@ -50,7 +50,7 @@ def build_fs_chromadb() -> None:
 
 @cli.command()
 @click.option("--qstn", "-q", required=True)
-@click.option("--nresults", "-n", default=5, help="Number of results to return.")
+@click.option("--nresults", "-n", default=5, type=click.IntRange(min=1), help="Number of results to return.")
 def query_fs_chromadb(qstn: str, nresults: int = 5) -> None:
     """
     Query the USFS ChromaDB vector store
@@ -65,7 +65,7 @@ def query_fs_chromadb(qstn: str, nresults: int = 5) -> None:
 
 @cli.command()
 @click.option("--qstn", "-q", required=True)
-@click.option("--nresults", "-n", default=5, help="Number of results to return.")
+@click.option("--nresults", "-n", default=5, type=click.IntRange(min=1), help="Number of results to return.")
 def ollama_chat(qstn: str, nresults: int = 5) -> None:
     """
     Runs a chromadb query and uses Ollama to answer the question.

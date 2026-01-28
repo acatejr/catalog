@@ -72,6 +72,14 @@ def load_json(file_path: str | Path) -> dict | list:
 
 
 def clean_str(text: str) -> str:
+    """
+    Cleans the input text by removing HTML tags and extra whitespace.
+
+    :param text: Input string to clean.
+    :type text: str
+    :return: Cleaned string.
+    :rtype: str
+    """
     if text is None:
         return ""
 
@@ -82,22 +90,20 @@ def clean_str(text: str) -> str:
 
 
 def strip_html(text: str) -> str:
-    """_summary_
-
+    """Remove HTML tags from the input text.
     Args:
-        text (_type_): _description_
-
+        text: Input string containing HTML content.
     Returns:
-        _type_: _description_
+        String with HTML tags removed.
     """
 
     soup = BeautifulSoup(text, "html.parser")
     stripped_text = soup.get_text()
-    # stripped_text = stripped_text.replace("\n", " ")
+
     return stripped_text
 
 
-def hash_string(s):
+def hash_string(s: str) -> str:
     """Generate a SHA-256 hash of the input string."""
     return hashlib.sha256(s.encode("utf-8")).hexdigest()
 

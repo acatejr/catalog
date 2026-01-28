@@ -23,16 +23,33 @@ MESSAGE_CONTENT = (
 
 class OllamaBot:
     def __init__(self):
-        self.OLLAMA_API_KEY = os.getenv("OLLAMA_API_KEY")
-        self.OLLAMA_BASE_URL = os.getenv("OLLAMA_API_URL")
-        self.OLLAMA_MODEL = os.getenv("OLLAMA_MODEL")
+        """Initializes the OllamaBot with API credentials from environment variables.
+        """
+        self.OLLAMA_API_KEY = os.environ.get("OLLAMA_API_KEY", "")
+        self.OLLAMA_BASE_URL = os.environ.get("OLLAMA_API_URL", "")
+        self.OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "")
+
+        if not self.OLLAMA_API_KEY:
+            raise ValueError("OLLAMA_API_KEY environment variable is not set.")
+        if not self.OLLAMA_BASE_URL:
+            raise ValueError("OLLAMA_API_URL environment variable is not set.")
+        if not self.OLLAMA_MODEL:
+            raise ValueError("OLLAMA_MODEL environment variable is not set.")
 
         self.client = Client(
             host=self.OLLAMA_BASE_URL,
             headers={"Authorization": "Bearer " + self.OLLAMA_API_KEY},
         )
 
-    def chat(self, question, context):
+    def chat(self, question: str, context: str) -> str:
+        """
+        Sends a chat message to the Ollama model with the given question and context.
+
+        :param question: The user's question.
+        :param context: The context to provide to the model.
+        :return: The model's response.
+        """
+
         messages = [
             {
                 "role": "system",

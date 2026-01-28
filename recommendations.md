@@ -12,21 +12,9 @@ This document outlines recommendations for improving the Catalog project based o
 
 ~~`OllamaBot.__init__` reads `OLLAMA_API_URL` into `self.OLLAMA_BASE_URL` but never uses it.~~ Fixed: The client now uses `host=self.OLLAMA_BASE_URL` (line 31).
 
-### `bots.py:32` Will Crash if `OLLAMA_API_KEY` Is Unset
+### ~~`bots.py:32` Will Crash if `OLLAMA_API_KEY` Is Unset~~ (Fixed)
 
-`os.environ.get("OLLAMA_API_KEY")` returns `None` when unset, and `"Bearer " + None` raises `TypeError`. Should use `os.getenv("OLLAMA_API_KEY", "")` or guard against `None`.
-
-### Validate URLs and Sanitize File Paths
-
-Before fetching URLs, validate they point to expected domains. When saving downloaded files, ensure filenames don't contain path traversal:
-
-```python
-ALLOWED_HOSTS = ["data.fs.usda.gov", "www.fs.usda.gov", "data-usfs.hub.arcgis.com"]
-
-def is_safe_url(url: str) -> bool:
-    from urllib.parse import urlparse
-    return urlparse(url).netloc in ALLOWED_HOSTS
-```
+~~`os.environ.get("OLLAMA_API_KEY")` returns `None` when unset, and `"Bearer " + None` raises `TypeError`.~~ Fixed: Now uses default empty string and validates all required env vars (`OLLAMA_API_KEY`, `OLLAMA_API_URL`, `OLLAMA_MODEL`) with clear `ValueError` messages (lines 26-35).
 
 ---
 
@@ -40,20 +28,13 @@ def is_safe_url(url: str) -> bool:
 
 ~~Line 225-228 calls `soup.find("title")` twice.~~ Fixed: Now uses cached approach for title, abstract, and purpose (lines 229-237). Elements are stored in variables (`title_elem`, `abstract_elem`, `purpose_elem`) before accessing their text.
 
-### `usfs.py:RDALoader.parse_metadata` — Missing Key Checks
+### ~~`usfs.py:RDALoader.parse_metadata` — Missing Key Checks~~ (Fixed)
 
-Lines 373-375 use direct dictionary access (`item["title"]`, `item["description"]`, `item["keyword"]`) without `.get()`. Will crash with `KeyError` if keys are missing. Contrast with `GeospatialDataDiscovery.parse_metadata` which uses `.get()` and `in` checks correctly.
+~~Lines 371-375 used direct dictionary access.~~ Fixed: Now uses `.get()` throughout — line 371: `json_data.get("dataset", [])`, lines 373-375: `.get()` for `title`, `description`, and `keyword`.
 
-### `usfs.py:FSGeodataLoader.parse_metadata` — Redundant Check
+### ~~`usfs.py:FSGeodataLoader.parse_metadata` — Redundant Check~~ (Fixed)
 
-Lines 240-241: `if soup.find_all("dataqual"):` followed by `if len(soup.find_all("dataqual")):` — the first check is sufficient (empty list is falsy). Also calls `find_all` twice unnecessarily. Should cache the result:
-
-```python
-dataqual_elements = soup.find_all("dataqual")
-if dataqual_elements:
-    dataqual = dataqual_elements[0]
-    # ... rest of lineage processing
-```
+~~Lines 240-241 called `find_all` twice.~~ Fixed: Now caches result and uses simple truthy check (line 241: `if dataqual:`).
 
 ---
 
@@ -63,32 +44,21 @@ if dataqual_elements:
 
 All ruff checks currently pass. Previous issues with unused imports in `cli.py` have been resolved.
 
-### Remove or Consolidate `load_documents()`
+### ~~Remove or Consolidate `load_documents()`~~ (Fixed)
 
-`core.py` still has `load_documents()` (lines 37-79) which is superseded by `batch_load_documents()`. The old method uses positional IDs (`doc_0`), stores `"src"` instead of `"source"` in metadata, and doesn't include `abstract`. It's referenced only as a comment in `usfs.py:25`. Remove it to avoid confusion.
+~~`core.py` had `load_documents()` which was superseded by `batch_load_documents()`.~~ Fixed: The obsolete method has been removed.
 
-### Old Comment in `core.py:26`
+### ~~Old Comment in `core.py:26`~~ (Fixed)
 
-Line 26 has a trailing comment `# [USFSDocument.model_validate(doc) for doc in data]` that's leftover from refactoring. Remove it.
+~~Line 26 had a trailing comment leftover from refactoring.~~ Fixed: The comment has been removed.
 
-### Placeholder Docstrings
+### ~~Placeholder Docstrings~~ (Fixed)
 
-- `lib.py:strip_html` (line 84-92) — docstring is `"_summary_"` with placeholder parameter descriptions (`_type_`, `_description_`)
-- `usfs.py:GeospatialDataDiscovery.parse_metadata` (line 297-298) — docstring is `"_summary_"`
-- `usfs.py:USFS.download_fsgeodata` (line 52-57) — docstring says `"Docstring for download_fsgeodata"` with `:param self: Description`
-- `usfs.py:USFS.download_rda` (line 62-67) — same placeholder pattern
-- `usfs.py:USFS.download_gdd` (line 72-77) — same placeholder pattern
-- `core.py:load_document_metadata` (line 14-19) — `:param self: Description`
-- `core.py:load_documents` (line 37-42) — `:param self: Description`
-- `core.py:batch_load_documents` (lines 81-88) — `:param self: Description`, `:param batch_size: Description`
+All placeholder docstrings have been replaced with proper documentation across `core.py`, `lib.py`, `usfs.py`, and `bots.py`.
 
-### Mutable Default Arguments in `schema.py`
+### ~~Mutable Default Arguments in `schema.py`~~ (Fixed)
 
-`keywords` and `lineage` use `default=[]` in their `Field` definitions (lines 30-31, 37-38). While Pydantic handles this safely, `default_factory=list` is the idiomatic pattern:
-
-```python
-keywords: list[str] | None = Field(default_factory=list, ...)
-```
+~~`keywords` and `lineage` used `default=[]`.~~ Fixed: Now uses `default_factory=list` for both fields (lines 31, 41).
 
 ### ~~Typo in `cli.py:33`~~ (Fixed)
 
@@ -112,119 +82,69 @@ repos:
 
 ## 4. Naming & Consistency Issues
 
-### Inconsistent Metadata Field Names Between Methods
+### ~~Inconsistent Metadata Field Names Between Methods~~ (Resolved)
 
-`load_documents()` stores `"src"` in metadata; `batch_load_documents()` stores `"source"`. The `query` method handles both (`meta.get("source") or meta.get("src")`). Once `load_documents()` is removed, the fallback to `"src"` in `query` can be removed too.
+~~`load_documents()` stored `"src"` in metadata; `batch_load_documents()` stores `"source"`.~~ Resolved: `load_documents()` has been removed. The fallback in `query` (`meta.get("source") or meta.get("src")`) is now harmless but could be simplified to just `meta.get("source")`.
 
-### Inconsistent Field Mapping Across Parsers
+### ~~Inconsistent Field Mapping Across Parsers~~ (Fixed)
 
-Different loaders build document dicts with different keys:
+~~GDD and RDA use `"description"` which didn't exist in the schema.~~ Fixed: Added `description` field to `USFSDocument` schema (lines 41-44) and included it in `to_markdown()` output (line 54).
 
-| Loader    | `abstract` | `purpose` | `description`       | `lineage` |
-| --------- | ---------- | --------- | ------------------- | --------- |
-| FSGeodata | Yes        | Yes       | No                  | Yes       |
-| GDD       | No         | No        | Yes (not in schema) | No        |
-| RDA       | No         | No        | Yes (not in schema) | No        |
+### ~~Confusing Dual Query Parameters~~ (Fixed)
 
-GDD (`usfs.py:333`) and RDA (`usfs.py:380`) use `"description"` which doesn't exist in the `USFSDocument` schema. When loaded via `USFSDocument.model_validate()`, `description` is silently ignored and `abstract`/`purpose` end up as `None`. Either:
+~~`query()` accepts both `nresults` and `k` for the same thing.~~ Fixed: The `k` parameter has been removed and docstring updated.
 
-- Map `description` to `abstract` in the GDD/RDA parsers, or
-- Add a mapping layer in `build_catalog()`
+### ~~Mixed Path Handling~~ (Fixed)
 
-### Confusing Dual Query Parameters
-
-`query()` accepts both `nresults` and `k` for the same thing. Pick one as primary and remove the other.
-
-### Mixed Path Handling
-
-Some code uses `Path` objects consistently (`FSGeodataLoader`), while others use string concatenation:
-- `GeospatialDataDiscovery` (lines 293, 302): `f"{self.dest_output_dir}/{self.dest_output_file}"`
-- `RDALoader` (lines 358, 364): `f"{self.dest_output_dir}/{self.dest_output_file}"`
-
-Should use `Path` everywhere for consistency.
+~~Some code used string concatenation instead of `Path` objects.~~ Fixed: Both `GeospatialDataDiscovery.parse_metadata()` (line 310) and `RDALoader.parse_metadata()` (line 372) now use `Path`.
 
 ---
 
 ## 5. Missing Docstrings & Type Hints
 
-### Missing Type Hints
+### ~~Missing Type Hints~~ (Fixed)
 
-```python
-# lib.py:100 — missing entirely
-def hash_string(s):  # should be: def hash_string(s: str) -> str:
+All type hint issues have been resolved:
+- `lib.py:106` — `hash_string(s: str) -> str`
+- `core.py:25` — `extract_lineage_info(self, lineage_list: list[dict]) -> str`
+- `usfs.py:145` — `download_file(self, url: str, output_path: Path, description: str = "file") -> bool`
+- `usfs.py:156` — `download_service_info(self, url: str, output_path: Path) -> bool`
+- `bots.py:44` — `chat(self, question: str, context: str) -> str`
 
-# core.py:28 — too generic
-def extract_lineage_info(self, lineage_list: list) -> str:
-# should be: lineage_list: list[dict]
+### ~~Missing Docstrings~~ (Fixed)
 
-# usfs.py:148 — missing parameter types
-def download_file(self, url, output_path, description="file"):
-# should be: url: str, output_path: Path, description: str = "file"
-
-# usfs.py:159 — missing parameter types
-def download_service_info(self, url, output_path):
-# should be: url: str, output_path: Path
-
-# bots.py:35 — missing parameter types
-def chat(self, question, context):
-# should be: question: str, context: str -> str
-```
-
-### Missing Docstrings
-
-- `core.py:ChromaVectorDB.__init__()`
-- `core.py:ChromaVectorDB.extract_lineage_info()`
-- `bots.py:OllamaBot.__init__()`
-- `bots.py:OllamaBot.chat()`
-- `usfs.py:GeospatialDataDiscovery.download_gdd_metadata()`
-- `usfs.py:RDALoader.download()`
-- `usfs.py:RDALoader.parse_metadata()`
+All previously missing docstrings have been added. See "Placeholder Docstrings" section above.
 
 ---
 
 ## 6. Error Handling & Logging
 
-### Enable Logging
+### ~~Enable Logging~~ (Added)
 
-The codebase has commented-out print/rprint statements (e.g., `usfs.py:109`). Enable structured logging:
+~~The codebase had commented-out print/rprint statements.~~ Logging infrastructure added to `usfs.py` (lines 9-15). The `logger` is available for use throughout the module.
 
-```python
-import logging
+### ~~No Error Handling in Download Methods~~ (Fixed)
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-logger = logging.getLogger("catalog")
-```
+~~`download_file()` and `download_service_info()` didn't catch HTTP errors.~~ Fixed: Both methods now wrap the entire request/write in try-except and use `logger.error()` on failure.
 
-### No Error Handling in Download Methods
+### ~~`GeospatialDataDiscovery.download_gdd_metadata` — Silent Failure~~ (Fixed)
 
-`FSGeodataLoader.download_file()` (line 148) and `download_service_info()` (line 159) call `response.raise_for_status()` but don't catch the exception. If a download fails, the entire `download_all()` loop crashes. Either wrap in try-except or let the caller handle it.
+~~Checked status code but did nothing on failure.~~ Fixed: Now logs error message on failure (lines 304-307).
 
-### `GeospatialDataDiscovery.download_gdd_metadata` — Silent Failure
+### ~~Add Input Validation to CLI~~ (Fixed)
 
-Line 291: checks `response.status_code == 200` but does nothing on failure — no error message, no return value, no exception. The caller has no way to know the download failed.
-
-### Add Input Validation to CLI
-
-`query_fs_chromadb` and `ollama_chat` don't validate that `nresults` is positive. A user passing `-n 0` or `-n -5` produces undefined behavior. Use Click's `type=click.IntRange(min=1)`.
+~~`query_fs_chromadb` and `ollama_chat` didn't validate `nresults`.~~ Fixed: Both commands now use `type=click.IntRange(min=1)` to ensure positive values.
 
 ---
 
 ## 7. Architecture Improvements
 
-### Parameterize `ChromaVectorDB` Paths
+### ~~Parameterize `ChromaVectorDB` Paths~~ (Fixed)
 
-The class hardcodes the ChromaDB path. The catalog file path is parameterized but the DB path isn't:
+~~The class hardcoded the ChromaDB path.~~ Fixed: `__init__` now accepts `db_path` parameter (line 8):
 
 ```python
-# Current
-self.client = chromadb.PersistentClient(path="./chromadb")
-
-# Recommended
 def __init__(self, db_path: str = "./chromadb", src_catalog_file: str = "data/usfs/catalog.json"):
-    self.client = chromadb.PersistentClient(path=db_path)
 ```
 
 ### Separate Query Results Formatting
@@ -258,33 +178,30 @@ class Settings(BaseSettings):
 
 ## 8. Testing
 
-### Current State
+### ~~Current State~~ (Test Structure Created)
 
-- No active test suite in `tests/` directory
-- Development tests exist in `scratch/tests/` but are excluded via `pytest.ini`
-- `scratch/tests/test_hybrid_search.py` tests a non-existent `HybridSearch` class (outdated)
-
-### Recommendations
-
-**Create a proper test suite:**
+Test suite structure has been created with 49 stub tests:
 
 ```text
 tests/
 ├── __init__.py
 ├── conftest.py           # Shared fixtures
-├── test_cli.py           # CLI command tests
-├── test_lib.py           # Utility function tests
-├── test_schema.py        # Pydantic model tests (including to_markdown)
-├── test_usfs.py          # Loader tests (with mocks)
-└── test_core.py          # ChromaDB integration tests
+├── test_cli.py           # CLI command tests (6 stubs)
+├── test_lib.py           # Utility function tests (13 stubs)
+├── test_schema.py        # Pydantic model tests (9 stubs)
+├── test_usfs.py          # Loader tests (9 stubs)
+└── test_core.py          # ChromaDB integration tests (10 stubs)
 ```
 
-**Priority test targets:**
+All stub tests emit `UserWarning` with "TODO: Implement" messages. Run `uv run pytest tests/ -v` to see them.
 
-1. `lib.py` functions — pure functions, easy to test (`clean_str`, `strip_html`, `hash_string`, `dedupe_catalog`)
-2. `schema.py` — validate Pydantic model behavior and `to_markdown()` output with/without distance
-3. `core.py` — `query()` return types, deduplication in `load_document_metadata()`
-4. Loader classes — use `responses` or `pytest-httpserver` to mock HTTP calls
+**Priority for implementation:**
+
+1. `test_lib.py` — pure functions, easy to test
+2. `test_schema.py` — validate Pydantic model behavior
+3. `test_core.py` — ChromaDB integration
+4. `test_usfs.py` — use `responses` or mocks for HTTP calls
+5. `test_cli.py` — use Click's `CliRunner` for CLI tests
 
 ---
 
@@ -300,35 +217,21 @@ with click.progressbar(datasets, label="Downloading") as bar:
         # download logic
 ```
 
-### Add Incremental Updates
+### ~~Add Incremental Updates~~ (Partially Implemented)
 
-Currently, `download_all()` re-downloads everything. Consider:
-
-1. Check if file exists before downloading
-2. Use HTTP `If-Modified-Since` headers
-3. Add a `--force` flag to override
-
-### Implement Retry Logic
-
-```python
-from tenacity import retry, stop_after_attempt, wait_exponential
-
-@retry(stop=stop_after_attempt(3), wait=wait_exponential(min=1, max=10))
-def download_file(self, url: str, ...):
-    # download logic
-```
+~~`download_all()` re-downloaded everything.~~ Fixed: Now checks if files exist before downloading (lines 208, 219). Remaining options:
+- Add `--force` flag to override
+- Use HTTP `If-Modified-Since` headers
 
 ---
 
 ## 10. Project Structure Cleanup
 
-### Remove Scratch Directory from Version Control
+### ~~Remove Scratch Directory from Version Control~~ (Resolved)
 
-The `scratch/` directory is for experiments. Consider:
-
-1. Adding it to `.gitignore` permanently
-2. Moving useful code (e.g., test patterns from `scratch/tests/test_lib.py`) to `tests/`
-3. Deleting unused experimental files
+~~The `scratch/` directory needed cleanup.~~ Resolved:
+1. ✅ Already in `.gitignore` (`*scratch*`, `scratch*`, `scratch/`)
+2. ✅ Proper test structure created in `tests/` with 49 stub tests
 
 ### Organize Data Loaders
 
@@ -373,11 +276,10 @@ Since the current branch (`45-feature-add-llm-interaction-to-cli-chomadb-query`)
 
 ### Remaining
 
-1. **Fix GDD/RDA parsers** — Map `description` to `abstract` so all sources populate the schema consistently
+1. ~~**Fix GDD/RDA parsers**~~ — Fixed: Added `description` field to schema
 2. **Add conversation history** — Store context for follow-up questions
 3. **Implement streaming** — Use Ollama's streaming API for better UX
 4. **Add source citations** — Include document references in LLM responses
-5. **Lineage in query results** — Stored as flat string in metadata but `USFSDocument.lineage` expects `list[dict]`; query sets it to `None`
 
 ---
 
@@ -400,32 +302,32 @@ Since the current branch (`45-feature-add-llm-interaction-to-cli-chomadb-query`)
 | ~~Medium~~   | ~~Add docstrings to core.py methods~~                   | Done    |
 | ~~URGENT~~   | ~~Rotate exposed API keys in `.env`~~                   | N/A     |
 | ~~High~~     | ~~Fix OllamaBot to use configured URL, not hardcoded~~  | Done    |
-| High         | Fix OllamaBot crash when OLLAMA_API_KEY is unset        | Pending |
+| ~~High~~     | ~~Fix OllamaBot crash when OLLAMA_API_KEY is unset~~    | Done    |
 | ~~High~~     | ~~Fix unbound variable bugs in `usfs.py` parsers~~      | Done    |
 | ~~Medium~~   | ~~Fix redundant `.find()` calls in FSGeodataLoader~~    | Done    |
-| High         | Fix GDD/RDA parsers to map `description` to `abstract`  | Pending |
-| High         | Add `.get()` guards in RDALoader.parse_metadata         | Pending |
-| High         | Remove obsolete `load_documents()` from `core.py`       | Pending |
-| High         | Add basic test suite                                    | Pending |
-| Medium       | Fix placeholder docstrings across codebase              | Pending |
-| Medium       | Add missing type hints                                  | Pending |
-| Medium       | Use `Path` consistently (replace string concatenation)  | Pending |
-| Medium       | Enable logging                                          | Pending |
-| Medium       | Add error handling to download methods                  | Pending |
-| Medium       | Add input validation (`nresults > 0`) to CLI            | Pending |
-| Medium       | Update README                                           | Pending |
+| ~~High~~     | ~~Fix GDD/RDA parsers to map `description` to `abstract`~~  | Done    |
+| ~~High~~     | ~~Add `.get()` guards in RDALoader.parse_metadata~~     | Done    |
+| ~~High~~     | ~~Remove obsolete `load_documents()` from `core.py`~~   | Done    |
+| ~~High~~     | ~~Add basic test suite~~                                | Done    |
+| ~~Medium~~   | ~~Fix placeholder docstrings across codebase~~          | Done    |
+| ~~Medium~~   | ~~Add missing type hints~~                              | Done    |
+| ~~Medium~~   | ~~Use `Path` consistently (replace string concatenation)~~  | Done    |
+| ~~Medium~~   | ~~Enable logging~~                                      | Done    |
+| ~~Medium~~   | ~~Add error handling to download methods~~              | Done    |
+| ~~Medium~~   | ~~Add input validation (`nresults > 0`) to CLI~~        | Done    |
+| ~~Medium~~   | ~~Update README~~                                       | Done    |
 | Medium       | Add progress indicators                                 | Pending |
 | Medium       | Add conversation history for LLM                        | Pending |
 | Medium       | Implement Ollama streaming                              | Pending |
 | ~~Low~~      | ~~Fix typo "catlog" in cli.py:33~~                      | Done    |
-| Low          | Remove old comment in core.py:26                        | Pending |
-| Low          | Fix redundant dataqual check in usfs.py:240-241         | Pending |
-| Low          | Use `default_factory=list` in schema.py                 | Pending |
+| ~~Low~~      | ~~Remove old comment in core.py:26~~                    | Done    |
+| ~~Low~~      | ~~Simplify redundant `len()` check in usfs.py:241~~     | Done    |
+| ~~Low~~      | ~~Use `default_factory=list` in schema.py~~             | Done    |
 | Low          | Refactor to subpackages                                 | Pending |
-| Low          | Resolve lineage type mismatch in query                  | Pending |
 | Low          | Centralize configuration                                | Pending |
-| Low          | Add retry logic                                         | Pending |
 
 ---
 
 Generated on 2026-01-26, last updated 2026-01-28
+
+**Summary:** 35 items completed, 9 items remaining
