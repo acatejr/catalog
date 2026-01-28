@@ -22,7 +22,6 @@ class USFS:
         from catalog.core import ChromaVectorDB
 
         db = ChromaVectorDB()
-        # db.load_documents()
         db.batch_load_documents()
 
     def build_catalog(self, format: str = "json"):
@@ -227,24 +226,15 @@ class FSGeodataLoader:
                 procdate = ""
                 procdesc = ""
 
-                title = (
-                    clean_str(soup.find("title").get_text())
-                    if soup.find("title")
-                    else ""
-                )
+                title_elem = soup.find("title")
+                title = clean_str(title_elem.get_text()) if title_elem else ""
 
                 descript = soup.find("descript")
                 if descript:
-                    abstract = (
-                        clean_str(descript.find("abstract").get_text())
-                        if descript.find("abstract")
-                        else ""
-                    )
-                    purpose = (
-                        clean_str(descript.find("purpose").get_text())
-                        if descript.find("purpose")
-                        else ""
-                    )
+                    abstract_elem = descript.find("abstract")
+                    abstract = clean_str(abstract_elem.get_text()) if abstract_elem else ""
+                    purpose_elem = descript.find("purpose")
+                    purpose = clean_str(purpose_elem.get_text()) if purpose_elem else ""
 
                 lineage = []
                 if soup.find_all("dataqual"):

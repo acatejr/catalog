@@ -36,24 +36,24 @@ def is_safe_url(url: str) -> bool:
 
 ~~Variables were conditionally assigned inside blocks but used unconditionally.~~ Fixed: All variables are now initialized with defaults before conditional blocks (lines 225-228: `abstract = ""`, `purpose = ""`, `keywords = []`, `procdate = ""`, `procdesc = ""`).
 
-### `usfs.py:FSGeodataLoader.parse_metadata` — Redundant `.find()` Calls
+### ~~`usfs.py:FSGeodataLoader.parse_metadata` — Redundant `.find()` Calls~~ (Fixed)
 
-Line 225-228 calls `soup.find("title")` twice — once to check existence and once to get the text. Cache the result:
-
-```python
-title_el = soup.find("title")
-title = clean_str(title_el.get_text()) if title_el else ""
-```
-
-Same pattern applies to `descript.find("abstract")` and `descript.find("purpose")`.
+~~Line 225-228 calls `soup.find("title")` twice.~~ Fixed: Now uses cached approach for title, abstract, and purpose (lines 229-237). Elements are stored in variables (`title_elem`, `abstract_elem`, `purpose_elem`) before accessing their text.
 
 ### `usfs.py:RDALoader.parse_metadata` — Missing Key Checks
 
-Lines 376-380 use direct dictionary access (`item["title"]`, `item["description"]`, `item["keyword"]`) without `.get()`. Will crash with `KeyError` if keys are missing. Contrast with `GeospatialDataDiscovery.parse_metadata` which uses `.get()` and `in` checks correctly.
+Lines 373-375 use direct dictionary access (`item["title"]`, `item["description"]`, `item["keyword"]`) without `.get()`. Will crash with `KeyError` if keys are missing. Contrast with `GeospatialDataDiscovery.parse_metadata` which uses `.get()` and `in` checks correctly.
 
 ### `usfs.py:FSGeodataLoader.parse_metadata` — Redundant Check
 
-Lines 245-246: `if soup.find_all("dataqual"):` followed by `if len(soup.find_all("dataqual")):` — the first check is sufficient (empty list is falsy). Also calls `find_all` twice unnecessarily.
+Lines 240-241: `if soup.find_all("dataqual"):` followed by `if len(soup.find_all("dataqual")):` — the first check is sufficient (empty list is falsy). Also calls `find_all` twice unnecessarily. Should cache the result:
+
+```python
+dataqual_elements = soup.find_all("dataqual")
+if dataqual_elements:
+    dataqual = dataqual_elements[0]
+    # ... rest of lineage processing
+```
 
 ---
 
@@ -73,14 +73,14 @@ Line 26 has a trailing comment `# [USFSDocument.model_validate(doc) for doc in d
 
 ### Placeholder Docstrings
 
-- `lib.py:strip_html` (line 85) — docstring is `"_summary_"` with placeholder parameter descriptions
-- `usfs.py:GeospatialDataDiscovery.parse_metadata` (line 303) — docstring is `"_summary_"`
-- `usfs.py:USFS.download_fsgeodata` (line 55) — docstring says `"Docstring for download_fsgeodata"` with `:param self: Description`
-- `usfs.py:USFS.download_rda` (line 65) — same placeholder pattern
-- `usfs.py:USFS.download_gdd` (line 75) — same placeholder pattern
-- `core.py:load_document_metadata` (line 18) — `:param self: Description`
-- `core.py:load_documents` (line 41) — `:param self: Description`
-- `core.py:batch_load_documents` (lines 85-87) — `:param self: Description`, `:param batch_size: Description`
+- `lib.py:strip_html` (line 84-92) — docstring is `"_summary_"` with placeholder parameter descriptions (`_type_`, `_description_`)
+- `usfs.py:GeospatialDataDiscovery.parse_metadata` (line 297-298) — docstring is `"_summary_"`
+- `usfs.py:USFS.download_fsgeodata` (line 52-57) — docstring says `"Docstring for download_fsgeodata"` with `:param self: Description`
+- `usfs.py:USFS.download_rda` (line 62-67) — same placeholder pattern
+- `usfs.py:USFS.download_gdd` (line 72-77) — same placeholder pattern
+- `core.py:load_document_metadata` (line 14-19) — `:param self: Description`
+- `core.py:load_documents` (line 37-42) — `:param self: Description`
+- `core.py:batch_load_documents` (lines 81-88) — `:param self: Description`, `:param batch_size: Description`
 
 ### Mutable Default Arguments in `schema.py`
 
@@ -126,7 +126,7 @@ Different loaders build document dicts with different keys:
 | GDD       | No         | No        | Yes (not in schema) | No        |
 | RDA       | No         | No        | Yes (not in schema) | No        |
 
-GDD (`usfs.py:338`) and RDA (`usfs.py:385`) use `"description"` which doesn't exist in the `USFSDocument` schema. When loaded via `USFSDocument.model_validate()`, `description` is silently ignored and `abstract`/`purpose` end up as `None`. Either:
+GDD (`usfs.py:333`) and RDA (`usfs.py:380`) use `"description"` which doesn't exist in the `USFSDocument` schema. When loaded via `USFSDocument.model_validate()`, `description` is silently ignored and `abstract`/`purpose` end up as `None`. Either:
 
 - Map `description` to `abstract` in the GDD/RDA parsers, or
 - Add a mapping layer in `build_catalog()`
@@ -137,7 +137,11 @@ GDD (`usfs.py:338`) and RDA (`usfs.py:385`) use `"description"` which doesn't ex
 
 ### Mixed Path Handling
 
-Some code uses `Path` objects consistently (`FSGeodataLoader`), while others use string concatenation (`GeospatialDataDiscovery` line 307: `f"{self.dest_output_dir}/{self.dest_output_file}"`). Use `Path` everywhere.
+Some code uses `Path` objects consistently (`FSGeodataLoader`), while others use string concatenation:
+- `GeospatialDataDiscovery` (lines 293, 302): `f"{self.dest_output_dir}/{self.dest_output_file}"`
+- `RDALoader` (lines 358, 364): `f"{self.dest_output_dir}/{self.dest_output_file}"`
+
+Should use `Path` everywhere for consistency.
 
 ---
 
@@ -153,16 +157,17 @@ def hash_string(s):  # should be: def hash_string(s: str) -> str:
 def extract_lineage_info(self, lineage_list: list) -> str:
 # should be: lineage_list: list[dict]
 
-# usfs.py:149 — missing parameter types
+# usfs.py:148 — missing parameter types
 def download_file(self, url, output_path, description="file"):
 # should be: url: str, output_path: Path, description: str = "file"
 
-# usfs.py:160 — missing parameter types
+# usfs.py:159 — missing parameter types
 def download_service_info(self, url, output_path):
+# should be: url: str, output_path: Path
 
 # bots.py:35 — missing parameter types
 def chat(self, question, context):
-# should be: question: str, context: str
+# should be: question: str, context: str -> str
 ```
 
 ### Missing Docstrings
@@ -195,11 +200,11 @@ logger = logging.getLogger("catalog")
 
 ### No Error Handling in Download Methods
 
-`FSGeodataLoader.download_file()` (line 149) and `download_service_info()` (line 160) call `response.raise_for_status()` but don't catch the exception. If a download fails, the entire `download_all()` loop crashes. Either wrap in try-except or let the caller handle it.
+`FSGeodataLoader.download_file()` (line 148) and `download_service_info()` (line 159) call `response.raise_for_status()` but don't catch the exception. If a download fails, the entire `download_all()` loop crashes. Either wrap in try-except or let the caller handle it.
 
 ### `GeospatialDataDiscovery.download_gdd_metadata` — Silent Failure
 
-Line 296: checks `response.status_code == 200` but does nothing on failure — no error message, no return value, no exception. The caller has no way to know the download failed.
+Line 291: checks `response.status_code == 200` but does nothing on failure — no error message, no return value, no exception. The caller has no way to know the download failed.
 
 ### Add Input Validation to CLI
 
@@ -397,7 +402,9 @@ Since the current branch (`45-feature-add-llm-interaction-to-cli-chomadb-query`)
 | ~~High~~     | ~~Fix OllamaBot to use configured URL, not hardcoded~~  | Done    |
 | High         | Fix OllamaBot crash when OLLAMA_API_KEY is unset        | Pending |
 | ~~High~~     | ~~Fix unbound variable bugs in `usfs.py` parsers~~      | Done    |
+| ~~Medium~~   | ~~Fix redundant `.find()` calls in FSGeodataLoader~~    | Done    |
 | High         | Fix GDD/RDA parsers to map `description` to `abstract`  | Pending |
+| High         | Add `.get()` guards in RDALoader.parse_metadata         | Pending |
 | High         | Remove obsolete `load_documents()` from `core.py`       | Pending |
 | High         | Add basic test suite                                    | Pending |
 | Medium       | Fix placeholder docstrings across codebase              | Pending |
@@ -412,6 +419,7 @@ Since the current branch (`45-feature-add-llm-interaction-to-cli-chomadb-query`)
 | Medium       | Implement Ollama streaming                              | Pending |
 | ~~Low~~      | ~~Fix typo "catlog" in cli.py:33~~                      | Done    |
 | Low          | Remove old comment in core.py:26                        | Pending |
+| Low          | Fix redundant dataqual check in usfs.py:240-241         | Pending |
 | Low          | Use `default_factory=list` in schema.py                 | Pending |
 | Low          | Refactor to subpackages                                 | Pending |
 | Low          | Resolve lineage type mismatch in query                  | Pending |
@@ -420,4 +428,4 @@ Since the current branch (`45-feature-add-llm-interaction-to-cli-chomadb-query`)
 
 ---
 
-Generated on 2026-01-26, updated 2026-01-28
+Generated on 2026-01-26, last updated 2026-01-28
