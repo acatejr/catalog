@@ -1,5 +1,8 @@
 from dotenv import load_dotenv
 import click
+from rich.console import Console
+from rich.markdown import Markdown
+from rich.panel import Panel
 from catalog.usfs import USFS
 from catalog.core import ChromaVectorDB
 from catalog.bots import OllamaBot
@@ -62,7 +65,6 @@ def query_fs_chromadb(qstn: str, nresults: int = 5) -> None:
         click.echo(doc.to_markdown(distance=distance))
         click.echo("---")
 
-
 @cli.command()
 @click.option("--qstn", "-q", required=True)
 @click.option("--nresults", "-n", default=5, type=click.IntRange(min=1), help="Number of results to return.")
@@ -75,6 +77,7 @@ def ollama_chat(qstn: str, nresults: int = 5) -> None:
     :param nresults: Description
     :type nresults: int
     """
+    console = Console()
 
     cvdb = ChromaVectorDB()
     resp = cvdb.query(qstn=qstn, nresults=nresults)
@@ -84,7 +87,19 @@ def ollama_chat(qstn: str, nresults: int = 5) -> None:
         )
         client = OllamaBot()
         bot_response = client.chat(question=qstn, context=context)
-        click.echo(bot_response)
+
+        # Render the response as formatted markdown in a styled panel
+        console.print(
+            Panel(
+                Markdown(bot_response),
+                title="[bold green]Response[/bold green]",
+                border_style="green",
+                padding=(1, 2),
+            )
+        )
+    else:
+        console.print("[yellow]No results found for your query.[/yellow]")
+
 
 
 def main() -> None:
