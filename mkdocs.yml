@@ -16,7 +16,7 @@ theme:
 
 nav:
   - Home: index.md
-#     - Havesting Metadata: harvesting.md
+  - Architecture: architecture.md
 #     - CLI: cli.md
 
 extra_css:

@@ -26,13 +26,13 @@ flowchart TB
 ```
 
 1. Identify metadata sources:  
-   - Research Archive (RDA): research-grade datasets from the agency's research directorate and partners.  
+   - Research Archive (RDA): research-grade datasets from the agency's research directory.  
    - Geospatial Discovery (GDD): current operational GIS layers and services.  
    - FSGeodata Clearinghouse (FSGeodata): authoritative basemaps, boundaries, operational layers, and raster products.
 
-2. Harvest metadata: `uv run catalog download-fs-metadata` pulls XML and MapServer JSON, normalizes fields, and stores them for indexing.
+2. Harvest metadata: `uv run catalog download-fs-metadata` pulls XML and MapServer JSON, normalizes fields, and stores metadata for indexing.
 
-3. Build the vector database: embeddings go into vector storage; metadata stays linked for provenance.
+3. Build the vector database (chromadb): embeddings go into vector storage; metadata stays linked.
 
 4. RAG-based search: the CLI uses the embeddings plus an LLM to answer dataset and lineage questions with grounded citations.
 
