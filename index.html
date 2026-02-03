@@ -5,11 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="harvesting/" rel="next"/>
 <link href="assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.6.1, mkdocs-material-9.7.0" name="generator"/>
-<title>Catalog</title>
-<link href="assets/stylesheets/main.618322db.min.css" rel="stylesheet"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.7.1" name="generator"/>
+<title>Catalog Documentation</title>
+<link href="assets/stylesheets/main.484c7ddc.min.css" rel="stylesheet"/>
 <link href="assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -30,7 +29,7 @@
 </div>
 <header class="md-header md-header--shadow" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="Catalog" class="md-header__button md-logo" data-md-component="logo" href="." title="Catalog">
+<a aria-label="Catalog Documentation" class="md-header__button md-logo" data-md-component="logo" href="." title="Catalog Documentation">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
@@ -40,7 +39,7 @@
 <div class="md-header__ellipsis">
 <div class="md-header__topic">
 <span class="md-ellipsis">
-            Catalog
+            Catalog Documentation
           </span>
 </div>
 <div class="md-header__topic" data-md-component="header-topic">
@@ -92,10 +91,10 @@
 <div class="md-sidebar__inner">
 <nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
-<a aria-label="Catalog" class="md-nav__button md-logo" data-md-component="logo" href="." title="Catalog">
+<a aria-label="Catalog Documentation" class="md-nav__button md-logo" data-md-component="logo" href="." title="Catalog Documentation">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
 </a>
-    Catalog
+    Catalog Documentation
   </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--active">
@@ -166,30 +165,6 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="harvesting/">
-<span class="md-ellipsis">
-    
-  
-    Havesting Metadata
-  
-
-    
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="cli/">
-<span class="md-ellipsis">
-    
-  
-    CLI
-  
-
-    
-  </span>
-</a>
-</li>
 </ul>
 </nav>
 </div>
@@ -248,37 +223,36 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="catalog">Catalog</h1>
-<p>Catalog is a Python CLI that automates discovery and understanding of Government Agency geospatial and tabular data. It harvests XML metadata and MapServer service definitions from three anonymized portals—Research Archive (RA), Geospatial Discovery (GD), and Agency Geodata Portal (AGP)—builds embeddings, and lets you explore datasets with a semantic, RAG-powered search so you can answer questions like “what data exists and how do I use it?” without manual spelunking.</p>
+<p>Catalog is a Python command-line-interface (CLI) that automates discovery and understanding of Forest Service geospatial and tabular data. It harvests XML metadata and MapServer service definitions from three anonymized portals—Research Data Archive (RDA), Geospatial Data Discovery (GDD), and FSGeodata Clearinghouse (FSGeodata)—builds embeddings, and allows the user to explore datasets with a semantic, RAG-powered search that can answer questions like “What data exists and how do I use it?”.</p>
 <h2 id="why-it-matters">Why it matters</h2>
 <ul>
 <li>Hunting across portals, downloading XML one-by-one, and reconciling service URLs slows research and product teams.</li>
 <li>Explaining lineage and “fit for purpose” to stakeholders is hard without a unified view.</li>
-<li>Traditional keyword search misses nuance; semantic search with LLMs surfaces relevant datasets faster.</li>
+<li>Traditional keyword search misses nuance; semantic search with LLMs locates relevant datasets faster.</li>
 </ul>
 <h2 id="what-catalog-does">What Catalog does</h2>
 <ul>
-<li>Automated harvesting from RA, GD, and AGP (XML + MapServer JSON).</li>
+<li>Automated harvesting from RDA, GDD, and FSGeodata (XML + MapServer JSON).</li>
 <li>Embeds metadata with a vector database (table) and uses LLMs in a Retrieval-Augmented Generation (RAG) flow for semantic Q&amp;A.</li>
-<li>Python <a href="https://click.palletsprojects.com/en/stable/">Click</a>-based CLI (<code>timbercat</code>) to harvest, inspect, and query datasets.</li>
 <li>Outputs organized metadata and service URLs you can plug into dashboards or analyses.</li>
 </ul>
 <h2 id="the-process-at-a-glance">The process (at a glance)</h2>
 <div class="mermaid">flowchart TB
-  Sources[RA / GD / AGP] --&gt; Harvester[timbercat harvest]
-  Harvester --&gt; Normalize["Normalize metadata (XML + JSON)"]
+  Sources[RDA / GDD / FSGeodata] --&gt; Download
+  Download --&gt; Normalize["Normalize metadata (XML + JSON)"]
   Normalize --&gt; Embed[VectorDB embeddings]
   Embed --&gt; RAG[LLM + RAG pipeline]
   RAG --&gt; Answers[Semantic search &amp; dataset guidance]
 </div>
 <ol>
 <li>Identify metadata sources:  </li>
-<li>Research Archive (RA): research-grade datasets from the agency's research directorate and partners.  </li>
-<li>Geospatial Discovery (GD): current operational GIS layers and services.  </li>
+<li>Research Archive (RDA): research-grade datasets from the agency's research directorate and partners.  </li>
+<li>Geospatial Discovery (GDD): current operational GIS layers and services.  </li>
 <li>
-<p>Agency Geodata Portal (AGP): authoritative basemaps, boundaries, operational layers, and raster products.</p>
+<p>FSGeodata Clearinghouse (FSGeodata): authoritative basemaps, boundaries, operational layers, and raster products.</p>
 </li>
 <li>
-<p>Harvest metadata: <code>timbercat harvest</code> pulls XML and MapServer JSON, normalizes fields, and stores them for indexing.</p>
+<p>Harvest metadata: <code>uv run catalog download-fs-metadata</code> pulls XML and MapServer JSON, normalizes fields, and stores them for indexing.</p>
 </li>
 <li>
 <p>Build the vector database: embeddings go into vector storage; metadata stays linked for provenance.</p>
@@ -317,8 +291,8 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"annotate": null, "base": ".", "features": [], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
-<script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+<script id="__config" type="application/json">{"annotate": null, "base": ".", "features": [], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+<script src="assets/javascripts/bundle.79ae519e.min.js"></script>
 <script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
 mermaid.initialize({});</script></body>
 </html>
