@@ -1,0 +1,23 @@
+site_name: Catalog Documentation
+
+theme:
+  name: material
+
+plugins:
+    - search
+    - mermaid2
+    # - material/blog:
+    #     draft: true
+    #     draft_on_serve: true  # Show drafts in local dev server
+theme:
+  name: material
+  palette:
+    primary: custom
+
+nav:
+  - Home: index.md
+#     - Havesting Metadata: harvesting.md
+#     - CLI: cli.md
+
+extra_css:
+  - stylesheets/extra.css
