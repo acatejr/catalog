@@ -5,6 +5,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="architecture/" rel="next"/>
 <link href="assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.7.1" name="generator"/>
 <title>Catalog Documentation</title>
@@ -165,6 +166,18 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="architecture/">
+<span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+</a>
+</li>
 </ul>
 </nav>
 </div>
@@ -246,16 +259,16 @@
 </div>
 <ol>
 <li>Identify metadata sources:  </li>
-<li>Research Archive (RDA): research-grade datasets from the agency's research directorate and partners.  </li>
+<li>Research Archive (RDA): research-grade datasets from the agency's research directory.  </li>
 <li>Geospatial Discovery (GDD): current operational GIS layers and services.  </li>
 <li>
 <p>FSGeodata Clearinghouse (FSGeodata): authoritative basemaps, boundaries, operational layers, and raster products.</p>
 </li>
 <li>
-<p>Harvest metadata: <code>uv run catalog download-fs-metadata</code> pulls XML and MapServer JSON, normalizes fields, and stores them for indexing.</p>
+<p>Harvest metadata: <code>uv run catalog download-fs-metadata</code> pulls XML and MapServer JSON, normalizes fields, and stores metadata for indexing.</p>
 </li>
 <li>
-<p>Build the vector database: embeddings go into vector storage; metadata stays linked for provenance.</p>
+<p>Build the vector database (chromadb): embeddings go into vector storage; metadata stays linked.</p>
 </li>
 <li>
 <p>RAG-based search: the CLI uses the embeddings plus an LLM to answer dataset and lineage questions with grounded citations.</p>
