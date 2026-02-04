@@ -17,6 +17,7 @@ theme:
 nav:
   - Home: index.md
   - Architecture: architecture.md
+  - Methods: methods.md
 #     - CLI: cli.md
 
 extra_css:

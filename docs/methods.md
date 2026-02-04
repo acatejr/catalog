@@ -1,12 +1,6 @@
----
-draft: true
----
+# Methods
 
-# Methods Section Draft
-
-## 3. Methods
-
-### 3.1 Data Sources and Collection
+### Data Sources and Collection
 
 We developed automated harvesters for three USFS geospatial data repositories, each employing distinct metadata standards and access mechanisms.
 
@@ -16,7 +10,7 @@ We developed automated harvesters for three USFS geospatial data repositories, e
 
 **Research Data Archive (RDA).** The USFS Research Data Archive provides a JSON web service (https://www.fs.usda.gov/rds/archive/webservice/datagov) returning dataset metadata including titles, descriptions, and keyword arrays. This source emphasizes research datasets with scientific provenance.
 
-### 3.2 Schema Harmonization
+### Schema Harmonization
 
 To enable cross-repository search, we defined a unified document schema (`USFSDocument`) with the following fields:
 
@@ -39,7 +33,7 @@ The `id` field serves as a deduplication key, ensuring datasets appearing in mul
 - *GDD*: JSON mapping from DCAT fields (`title`, `description`, `keyword`, `theme`)
 - *RDA*: Direct JSON field extraction (`title`, `description`, `keyword`)
 
-### 3.3 Vector Embedding and Storage
+### Vector Embedding and Storage
 
 Harmonized documents are loaded into ChromaDB, an open-source vector database. For each document, we construct an embedding input string concatenating:
 
@@ -54,7 +48,7 @@ Lineage: {lineage}
 
 ChromaDB's default embedding model generates vector representations stored alongside document metadata. Documents are processed in batches of 100 to optimize memory usage. The collection is rebuilt from scratch on each indexing operation to ensure consistency.
 
-### 3.4 Retrieval-Augmented Generation
+### Retrieval-Augmented Generation
 
 The system supports two query modes:
 
@@ -74,7 +68,7 @@ The LLM system prompt frames the model as a "data librarian" with instructions t
 - Provide direct yes/no answers for existence queries
 - Avoid speculation beyond catalog contents
 
-### 3.5 Implementation
+### Implementation
 
 The system is implemented in Python as a CLI tool using the Click framework. Key dependencies include:
 
@@ -86,7 +80,7 @@ The system is implemented in Python as a CLI tool using the Click framework. Key
 
 The modular architecture separates concerns: data loaders (`usfs.py`), schema definitions (`schema.py`), vector operations (`core.py`), and LLM integration (`bots.py`).
 
-### 3.6 System Architecture
+### System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -120,26 +114,3 @@ The modular architecture separates concerns: data loaders (`usfs.py`), schema de
 │   (Semantic Queries)    │     │     (Natural Language Q&A)      │
 └─────────────────────────┘     └─────────────────────────────────┘
 ```
-
-### 3.7 Reproducibility
-
-The complete source code is available at [repository URL]. To reproduce the catalog:
-
-```bash
-# Install dependencies
-pip install -e .
-
-# Download metadata from all sources
-catalog download_fs_metadata
-
-# Build unified catalog
-catalog build_fs_catalog
-
-# Index into vector database
-catalog build_fs_chromadb
-
-# Query the catalog
-catalog query_fs_chromadb -q "forest fire data" -n 5
-```
-
-Environment configuration requires setting `OLLAMA_API_KEY`, `OLLAMA_API_URL`, and `OLLAMA_MODEL` for LLM-augmented queries.
