@@ -18,6 +18,7 @@ nav:
   - Home: index.md
   - Architecture: architecture.md
   - Methods: methods.md
+  - Demos: demos.md
 #     - CLI: cli.md
 
 extra_css:

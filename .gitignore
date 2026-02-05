@@ -1,3 +1,4 @@
+!./docs/statics/
 chromadb/
 .streamlit/
 adhoc_catalog.db
