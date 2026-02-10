@@ -1,6 +1,8 @@
 from ollama import Client
 import os
 from dotenv import load_dotenv
+import requests
+from langchain_litellm import ChatLiteLLM
 
 load_dotenv()
 
@@ -63,3 +65,29 @@ class OllamaBot:
 
         resp = self.client.chat(self.OLLAMA_MODEL, messages=messages, stream=False)
         return resp["message"]["content"]
+
+
+class VerdeBot:
+    def __init__(self):
+        """Initializes the VerdeBot with API credentials from environment variables.
+        """
+        self.VERDE_API_KEY = os.environ.get("VERDE_API_KEY", "")
+        self.VERDE_URL = os.environ.get("VERDE_URL", "")
+        self.VERDE_MODEL = os.environ.get("VERDE_MODEL", "")
+
+        if not self.VERDE_API_KEY:
+            raise ValueError("VERDE_API_KEY environment variable is not set.")
+        if not self.VERDE_URL:
+            raise ValueError("VERDE_URL environment variable is not set.")
+        if not self.VERDE_MODEL:
+            raise ValueError("VERDE_MODEL environment variable is not set.")
+
+    def chat(self, question: str, context: str) -> str:
+        llm = ChatLiteLLM(
+            model=f"litellm_proxy/{self.VERDE_MODEL}",
+            api_key=self.VERDE_API_KEY,
+            api_base=self.VERDE_URL
+        )
+
+        response = llm.invoke(question)
+        return response.content
