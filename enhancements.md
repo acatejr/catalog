@@ -403,4 +403,3 @@ TOOLS = [
 2. Implement result caching with TTL
 3. Add `--source` filter to limit search to specific data sources
 4. Create 10-20 test queries for evaluation baseline
-5. Switch to `BAAI/bge-base-en-v1.5` for better embeddings

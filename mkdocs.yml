@@ -18,8 +18,11 @@ nav:
   - Home: index.md
   - Architecture: architecture.md
   - Methods: methods.md
+  - Search Methods:
+      - Simple: search_methods/simple.md
+      - Hybrid Search: search_methods/hybrid_search.md
+      - Bot: search_methods/bot.md
   - Demos: demos.md
-#     - CLI: cli.md
 
 extra_css:
   - stylesheets/extra.css
