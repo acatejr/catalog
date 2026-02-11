@@ -190,6 +190,68 @@
   </span>
 </a>
 </li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Search Methods
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Search Methods
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="search_methods/simple/">
+<span class="md-ellipsis">
+    
+  
+    Simple
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="search_methods/hybrid_search/">
+<span class="md-ellipsis">
+    
+  
+    Hybrid Search
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="search_methods/bot/">
+<span class="md-ellipsis">
+    
+  
+    Bot
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="demos/">
 <span class="md-ellipsis">
@@ -282,11 +344,13 @@
   RAG --&gt; Answers[Semantic search &amp; dataset guidance]
 </div>
 <ol>
-<li>Identify metadata sources:  </li>
+<li>
+<p>Identify metadata sources:  </p>
+<ul>
 <li>Research Archive (RDA): research-grade datasets from the agency's research directory.  </li>
 <li>Geospatial Discovery (GDD): current operational GIS layers and services.  </li>
-<li>
-<p>FSGeodata Clearinghouse (FSGeodata): authoritative basemaps, boundaries, operational layers, and raster products.</p>
+<li>FSGeodata Clearinghouse (FSGeodata): authoritative basemaps, boundaries, operational layers, and raster products.</li>
+</ul>
 </li>
 <li>
 <p>Harvest metadata: <code>uv run catalog download-fs-metadata</code> pulls XML and MapServer JSON, normalizes fields, and stores metadata for indexing.</p>
