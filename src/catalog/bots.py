@@ -14,7 +14,7 @@ MESSAGE_CONTENT = (
     "- Briefly explain why each dataset matches the user's query\n"
     "- Highlight key characteristics (keywords, descriptions) that make them relevant\n"
     "- Results include a relevance distance score (lower = more relevant). "
-    "Prioritize datasets with lower distance scores in your response.\n"
+    "- Prioritize datasets with lower distance scores in your response.\n"
     "- If multiple datasets are found, organize them by relevance\n"
     "- Be direct and concise - focus on what datasets ARE available\n"
     "- If the query asks about existence (like 'is there'), give a clear yes/no answer first, then list the datasets\n"
