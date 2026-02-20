@@ -6,6 +6,7 @@ theme:
 plugins:
     - search
     - mermaid2
+    - asciinema-player
     # - material/blog:
     #     draft: true
     #     draft_on_serve: true  # Show drafts in local dev server

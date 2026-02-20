@@ -269,6 +269,7 @@ dependencies = [
     { name = "langchain-community" },
     { name = "langchain-litellm" },
     { name = "lxml" },
+    { name = "mkdocs-asciinema-player" },
     { name = "mkdocs-material" },
     { name = "mkdocs-mermaid2-plugin" },
     { name = "ollama" },
@@ -294,6 +295,7 @@ requires-dist = [
     { name = "langchain-community", specifier = ">=0.4.1" },
     { name = "langchain-litellm", specifier = ">=0.4.0" },
     { name = "lxml", specifier = ">=6.0.2" },
+    { name = "mkdocs-asciinema-player", specifier = ">=1.1.0" },
     { name = "mkdocs-material", specifier = ">=9.7.1" },
     { name = "mkdocs-mermaid2-plugin", specifier = ">=1.2.3" },
     { name = "ollama", specifier = ">=0.6.1" },
@@ -1319,6 +1321,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/bc/c6/bbd4f061bd16b378247f12953ffcb04786a618ce5e904b8c5a01a0309061/mkdocs-1.6.1.tar.gz", hash = "sha256:7b432f01d928c084353ab39c57282f29f92136665bdd6abf7c1ec8d822ef86f2", size = 3889159, upload-time = "2024-08-30T12:24:06.899Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/22/5b/dbc6a8cddc9cfa9c4971d59fb12bb8d42e161b7e7f8cc89e49137c5b279c/mkdocs-1.6.1-py3-none-any.whl", hash = "sha256:db91759624d1647f3f34aa0c3f327dd2601beae39a366d6e064c03468d35c20e", size = 3864451, upload-time = "2024-08-30T12:24:05.054Z" },
+]
+
+[[package]]
+name = "mkdocs-asciinema-player"
+version = "1.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "mkdocs" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/fe/6e/838654cf372fb188352dc51f1c36842588eda13985b840b8786c412250f6/mkdocs_asciinema_player-1.1.0.tar.gz", hash = "sha256:9461d2421d261d0daf94de01bc168498a9f0c8b7c02285cd7e856bac798c59df", size = 75489, upload-time = "2026-01-09T16:20:42.464Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/6f/ca/c5de571f97f4eacd16e42e014c39eb85f2eac30c54b4d1da6aaefa0fa6db/mkdocs_asciinema_player-1.1.0-py3-none-any.whl", hash = "sha256:83f4ba2766b45cb70173deccf23c270e20c1932489d07d5a771969b973c3c7f5", size = 79829, upload-time = "2026-01-09T16:20:41.238Z" },
 ]
 
 [[package]]

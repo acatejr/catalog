@@ -11,6 +11,7 @@ dependencies = [
     "langchain-community>=0.4.1",
     "langchain-litellm>=0.4.0",
     "lxml>=6.0.2",
+    "mkdocs-asciinema-player>=1.1.0",
     "mkdocs-material>=9.7.1",
     "mkdocs-mermaid2-plugin>=1.2.3",
     "ollama>=0.6.1",
