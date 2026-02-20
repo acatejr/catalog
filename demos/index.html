@@ -497,6 +497,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#a-query-using-vector-db-results-augmented-using-ai-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Query Using Vector DB, Results Augmented using AI LLM
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -536,6 +547,17 @@
     <span class="md-ellipsis">
       
         Semantic Query with No AI Interaction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-query-using-vector-db-results-augmented-using-ai-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Query Using Vector DB, Results Augmented using AI LLM
       
     </span>
   </a>
@@ -584,6 +606,64 @@
                 element.setAttribute('data-mkap-initialized', 'true');
 
                 AsciinemaPlayer.create("../assets/casts/semantic_query_demo.cast", element, {
+                    cols: 80,
+                    rows: 24,
+                    autoPlay: false,
+                    preload: false,
+                    loop: false,
+                    startAt: "0:00",
+                    speed: 1.0,
+                    theme: "asciinema",
+                    fit: "width",
+                    controls: "auto",
+                    pauseOnMarkers: false,
+                    terminalFontSize: "small",
+                    terminalFontFamily: "Consolas",
+                    terminalLineHeight: 1.33333333,
+                });
+            }
+        }
+
+        // 1. Handle MkDocs Material instant loading/navigation
+        if (typeof document$ !== "undefined") {
+            document$.subscribe(function() {
+                initPlayer();
+            });
+        } 
+
+        // 2. Fallback for standard page load (DOM Ready)
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initPlayer);
+        } else {
+            initPlayer();
+        }
+    })();
+</script>
+
+<h2 id="a-query-using-vector-db-results-augmented-using-ai-llm">A Query Using Vector DB, Results Augmented using AI LLM</h2>
+<div class="mkap-window-night">
+    <div class="mkap-menu-night">
+        <div class="mkap-button-group-night">
+            <div class="mkap-button-night mkap-button-close-night"></div>
+            <div class="mkap-button-night mkap-button-minimize-night"></div>
+            <div class="mkap-button-night mkap-button-zoom-night"></div>
+        </div>
+        <div class="mkap-button-title-night">Terminal</div>
+        <div class="mkap-button-group-night">&nbsp;</div>
+    </div>
+    <div class="mkap-player-night" id="asciinema-player-1"></div>
+</div>
+<script>
+    (function() {
+        var targetId = "asciinema-player-1";
+
+        function initPlayer() {
+            var element = document.getElementById(targetId);
+
+            if (element && !element.hasAttribute('data-mkap-initialized')) {
+                element.setAttribute('data-mkap-initialized', 'true');
+
+                AsciinemaPlayer.create("../assets/casts/ollama_query_demo.cast", element, {
                     cols: 80,
                     rows: 24,
                     autoPlay: false,
