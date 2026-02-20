@@ -49,6 +49,10 @@
     
       <link rel="stylesheet" href="../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="../css/terminal-player.css">
+    
+      <link rel="stylesheet" href="../css/asciinema-player.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -70,6 +74,11 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#demo-command-line-usage" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -424,6 +433,26 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demos
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -441,6 +470,36 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#semantic-query-with-no-ai-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semantic Query with No AI Interaction
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -463,6 +522,27 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#semantic-query-with-no-ai-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semantic Query with No AI Interaction
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -479,11 +559,64 @@
 
 
 
-  <h1>Demos</h1>
+<h1 id="demo-command-line-usage">Demo Command Line Usage</h1>
+<h2 id="semantic-query-with-no-ai-interaction">Semantic Query with No AI Interaction</h2>
+<div class="mkap-window-night">
+    <div class="mkap-menu-night">
+        <div class="mkap-button-group-night">
+            <div class="mkap-button-night mkap-button-close-night"></div>
+            <div class="mkap-button-night mkap-button-minimize-night"></div>
+            <div class="mkap-button-night mkap-button-zoom-night"></div>
+        </div>
+        <div class="mkap-button-title-night">Terminal</div>
+        <div class="mkap-button-group-night">&nbsp;</div>
+    </div>
+    <div class="mkap-player-night" id="asciinema-player-0"></div>
+</div>
+<script>
+    (function() {
+        var targetId = "asciinema-player-0";
 
-<p>Demonstration of querying the catalog for soils data in the vector database (chromadb).<br />
-Right click on image and select "Open in new tab" for a clearer view.
-<img alt="Semantic Query" src="../images/semantic_query_demo.gif" /></p>
+        function initPlayer() {
+            var element = document.getElementById(targetId);
+
+            if (element && !element.hasAttribute('data-mkap-initialized')) {
+                element.setAttribute('data-mkap-initialized', 'true');
+
+                AsciinemaPlayer.create("../assets/casts/semantic_query_demo.cast", element, {
+                    cols: 80,
+                    rows: 24,
+                    autoPlay: false,
+                    preload: false,
+                    loop: false,
+                    startAt: "0:00",
+                    speed: 1.0,
+                    theme: "asciinema",
+                    fit: "width",
+                    controls: "auto",
+                    pauseOnMarkers: false,
+                    terminalFontSize: "small",
+                    terminalFontFamily: "Consolas",
+                    terminalLineHeight: 1.33333333,
+                });
+            }
+        }
+
+        // 1. Handle MkDocs Material instant loading/navigation
+        if (typeof document$ !== "undefined") {
+            document$.subscribe(function() {
+                initPlayer();
+            });
+        } 
+
+        // 2. Fallback for standard page load (DOM Ready)
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", initPlayer);
+        } else {
+            initPlayer();
+        }
+    })();
+</script>
 
 
 
@@ -537,6 +670,8 @@ Right click on image and select "Open in new tab" for a clearer view.
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../js/asciinema-player.min.js"></script>
       
     
   </body>
