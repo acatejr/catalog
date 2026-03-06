@@ -1,0 +1,720 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>USDA Forest Service</origin>
+<pubdate>20260207</pubdate>
+<pubtime>193227</pubtime>
+<title>Aerial Fire Retardant Avoidance Areas - Terrestrial</title>
+<geoform>vector</geoform>
+</citeinfo>
+</citation>
+<descript>
+<abstract>This data depicts terrestrial aerial fire retardant avoidance areas delivered as part of the 2011 Nationwide Aerial Application of Fire Retardant on National Forest System Land Environmental Impact Statement, the 2023 Supplemental Environmental Impact Statement, and the 2024 Record of Decision. This data shows areas, provided by each National Forest, where the aerial application of fire retardant should be avoided in order to prevent the potential of impacts to Federally listed threatened or endangered species as identified through consultation, or Forest Service sensitive species.This data is to be used in planning and implementation phases of U.S. Forest Service fire activities to help prevent intrusions of aerial fire retardant in known areas of TEPCS (Threatened, Endangered, Proposed, Candidate, Sensitive) species throughout National Forest lands. Provided here is a National merged dataset derived from each National Forest contribution. This data has been merged, dissolved, and erased of attributes contained in each original component dataset. For this purpose, specific attributes are not necessary, as any spatial areas depicted simply show areas where aerial fire retardant use is to be avoided as stated in U.S. Forest Service guidelines.</abstract>
+<purpose>This data depicts terrestrial aerial fire retardant avoidance areas for use in digital, hardcopy, and online mapping to support the 2011 Record of Decision for the Nationwide Aerial Application of Fire Retardant on National Forest System Land EIS, the 2023 Supplemental Environmental Impact Statement, and the 2024 Record of Decision. This data should be used in conjunction with aquatic aerial fire retardant avoidance area data. An aerial fire retardant avoidance area is defined as an area in which application of aerial fire retardant is prohibited to avoid, limit, or mitigate potential impacts to specified resources. For additional information please see the Interagency Wildland Fire Chemicals Policy and Guidance: https:/www.fs.usda.gov/managing-land/fire/chemicals</purpose>
+<supplinf>This dataset is an aggregation of areas where the application of aerial fire retardant may impact one or more aquatic or terrestrial Endangered Species Act threatened, endangered, proposed, candidate, or Regional Forester sensitive plant or animal species (TEPCS), or designated critical habitat, as identified in consultation. Annually, a formal request for updates to this dataset is sent to all national forest system units. However, updates can be made at any time throughout the year. An automated process captures any updates to the data and aggregates it into this national dataset in the Enterprise Data Warehouse daily. A Unit ID attribute specifies the region and forest of the feature’s location.</supplinf>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>unknown</caldate>
+</sngdate>
+</timeinfo>
+<current>National spatial extent based on data represented on the update date.</current>
+</timeperd>
+<spdom>
+<bounding>
+<westbc>-150.007763</westbc>
+<eastbc>-72.327362</eastbc>
+<northbc>61.290847</northbc>
+<southbc>28.960230</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>environment</themekey>
+</theme>
+</keywords>
+<accconst>None</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<datacred>USDA Forest Service</datacred>
+<native>Version 6.2 (Build 9200) ; Esri ArcGIS 10.5.1.7333</native>
+</idinfo>
+<dataqual>
+<logic>Generally the source information used to record spatial locations are from 1) on-screen digitizing with a georeferenced topographic or image background; or 2) GPS field collected positions.</logic>
+<complete>Data is complete as of publication</complete>
+<posacc>
+<horizpa>
+<horizpar>Generally the source information used to record spatial locations are from: 1) on-screen digitizing with a georeferenced topographic or image background; or 2) GPS field collected positions.</horizpar>
+</horizpa>
+</posacc>
+<lineage>
+<procstep>
+<procdesc>Avoidance data adjustments related to Endangered Species Act threatened, endangered, proposed, and candidate species must be coordinated with the United States Department of the Interior Fish and Wildlife Service (Fish and Wildlife Service) and the United States Department of Commerce National Oceanic and Atmospheric Administration National Marine Fisheries Service (NOAA Fisheries). Avoidance areas for listed species are determined through Endangered Species Act Section 7 consultations that occur at a national level, using information provided by Forest Service Regional Offices and National Forest System forests and grasslands. Changes and updates rely on information provided by these National Forest System units, as well as on changes in listed species status or changes resulting from nationwide consultation updates or reinitiations. The following actions occur annually to ensure that any updates have been considered, reviewed, and implemented at all levels: Annual coordination with the Fish and Wildlife Service and NOAA Fisheries will occur to review changes in federal listing status, completed consultations, and other information and to determine any changes that may be needed to avoidance areas for listed species. Most changes to avoidance areas for listed species should occur at the time the Washington Office makes the annual request for data updates. However, updates to avoidance areas for listed species can occur at any time if needed as a result of changes in federal listing status, completed Endangered Species Act consultations, or revisions agreed on after interagency meetings. If updates are required outside of the annual update timeframe, the new avoidance area data will be automatically updated in the Enterprise Data Warehouse and other data sources, however the static pdf maps will not reflect the changes. Changes to avoidance areas for listed species must not create adverse effects that are greater than those analyzed in the relevant Biological Assessments or that would change determinations made in the relevant Biological Opinions. Changes to avoidance areas proposed by National Forest System units, other than updates based on Endangered Species Act consultation requirements or changes in listed species status or distribution, must be approved in writing by the Forest Supervisor. National Forest System units should use critical habitat layers and species ranges, population, or site data designated by the Fish and Wildlife Service and NOAA Fisheries, when available, to create avoidance area geospatial data files. Each species requiring avoidance areas should have its own avoidance area(s) even if avoidance areas for one species overlap those of another, or overlap aquatic avoidance areas or their buffers. All data is aggregated and assigned a Unit ID representing the region and forest numbers. Updates can be made at any time throughout the year by forest system units. An automated process captures any updates to the data and aggregates it into this national dataset in the Enterprise Data Warehouse daily.</procdesc>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>GT-polygon composed of chains</sdtstype>
+<ptvctcnt>0</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.AerialFireRetardantAvoidance</enttypl>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Internal feature number</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GIS_ACRES</attrlabl>
+<attrdef>The area of the feature in acres, calculated using a projected surface computation. A NAD 83, USA Contiguous Albers Equal Area Conic projection was used for Regions 1-9, and NAD 83, Alaska Albers for Region 10.</attrdef>
+<attrdefs>GIS Data</attrdefs>
+<attrdomv>
+<udom>The area of the feature in acres, calculated using a projected surface computation. A NAD 83, USA Contiguous Albers Equal Area Conic projection was used for Regions 1-9, and NAD 83, Alaska Albers for Region 10.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Shape</attrlabl>
+<attrdef>Feature geometry</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Feature geometry</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>UNITID</attrlabl>
+<attrdef>The Unit ID is the administrative unit identifier for the National Forest managing each feature. The first two characters are the Region identifier and the second two characters are the Forest identifier. This results in a unique identifier for each National Forest.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>1005</edomv>
+<edomvd>TONGASS NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>1004</edomv>
+<edomvd>CHUGACH NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0922</edomv>
+<edomvd>WHITE MOUNTAIN NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0921</edomv>
+<edomvd>MONONGAHELA NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0920</edomv>
+<edomvd>GREEN MOUNTAIN AND FINGER LAKES NATIONAL FORESTS</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0919</edomv>
+<edomvd>ALLEGHENY NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0915</edomv>
+<edomvd>MIDEWIN NATIONAL TALLGRASS PRAIRIE</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0914</edomv>
+<edomvd>WAYNE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0913</edomv>
+<edomvd>CHEQUAMEGON-NICOLET NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0912</edomv>
+<edomvd>HOOSIER NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0910</edomv>
+<edomvd>HIAWATHA NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0909</edomv>
+<edomvd>SUPERIOR NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0908</edomv>
+<edomvd>SHAWNEE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0907</edomv>
+<edomvd>OTTAWA NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0905</edomv>
+<edomvd>MARK TWAIN NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0904</edomv>
+<edomvd>HURON-MANISTEE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0903</edomv>
+<edomvd>CHIPPEWA NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0836</edomv>
+<edomvd>SAVANNAH RIVER</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0816</edomv>
+<edomvd>EL YUNQUE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0813</edomv>
+<edomvd>NATIONAL FORESTS IN TEXAS</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0812</edomv>
+<edomvd>FRANCIS MARION AND SUMTER NATIONAL FORESTS</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0811</edomv>
+<edomvd>NATIONAL FORESTS IN NORTH CAROLINA</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0810</edomv>
+<edomvd>OZARK-ST. FRANCIS NATIONAL FORESTS</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0809</edomv>
+<edomvd>OUACHITA NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0808</edomv>
+<edomvd>GEORGE WASHINGTON &amp; JEFFERSON NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0807</edomv>
+<edomvd>NATIONAL FORESTS IN MISSISSIPPI</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0806</edomv>
+<edomvd>KISATCHIE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0805</edomv>
+<edomvd>NATIONAL FORESTS IN FLORIDA</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0804</edomv>
+<edomvd>CHEROKEE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0803</edomv>
+<edomvd>CHATTAHOOCHEE-OCONEE NATIONAL FORESTS</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0802</edomv>
+<edomvd>DANIEL BOONE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0801</edomv>
+<edomvd>NATIONAL FORESTS IN ALABAMA</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0622</edomv>
+<edomvd>COLUMBIA RIVER GORGE NATIONAL SCENIC AREA</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0621</edomv>
+<edomvd>COLVILLE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0618</edomv>
+<edomvd>WILLAMETTE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0617</edomv>
+<edomvd>OKANOGAN-WENATCHEE NATIONAL FORESTS</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0616</edomv>
+<edomvd>WALLOWA-WHITMAN NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0615</edomv>
+<edomvd>UMPQUA NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0614</edomv>
+<edomvd>UMATILLA NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0612</edomv>
+<edomvd>SIUSLAW NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0610</edomv>
+<edomvd>ROGUE RIVER-SISKIYOU NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0609</edomv>
+<edomvd>OLYMPIC NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0607</edomv>
+<edomvd>OCHOCO NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0606</edomv>
+<edomvd>MT. HOOD NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0605</edomv>
+<edomvd>MT. BAKER-SNOQUALMIE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0604</edomv>
+<edomvd>MALHEUR NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0603</edomv>
+<edomvd>GIFFORD PINCHOT NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0602</edomv>
+<edomvd>FREMONT-WINEMA NATIONAL FORESTS</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0601</edomv>
+<edomvd>DESCHUTES NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0544</edomv>
+<edomvd>REINVENTION LAB</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0519</edomv>
+<edomvd>LAKE TAHOE BASIN MANAGEMENT UNIT</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0517</edomv>
+<edomvd>TAHOE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0516</edomv>
+<edomvd>STANISLAUS NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0515</edomv>
+<edomvd>SIERRA NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0514</edomv>
+<edomvd>SHASTA-TRINITY NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0513</edomv>
+<edomvd>SEQUOIA NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0512</edomv>
+<edomvd>SAN BERNARDINO NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0511</edomv>
+<edomvd>PLUMAS NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0510</edomv>
+<edomvd>SIX RIVERS NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0509</edomv>
+<edomvd>MODOC NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0508</edomv>
+<edomvd>MENDOCINO NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0507</edomv>
+<edomvd>LOS PADRES NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0506</edomv>
+<edomvd>LASSEN NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0505</edomv>
+<edomvd>KLAMATH NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0504</edomv>
+<edomvd>INYO NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0503</edomv>
+<edomvd>ELDORADO NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0502</edomv>
+<edomvd>CLEVELAND NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0501</edomv>
+<edomvd>ANGELES NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0419</edomv>
+<edomvd>UINTA-WASATCH-CACHE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0417</edomv>
+<edomvd>HUMBOLDT-TOIYABE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0415</edomv>
+<edomvd>CARIBOU-TARGHEE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0414</edomv>
+<edomvd>SAWTOOTH NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0413</edomv>
+<edomvd>SALMON AND CHALLIS NATIONAL FORESTS</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0412</edomv>
+<edomvd>PAYETTE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0410</edomv>
+<edomvd>MANTI-LASAL NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0408</edomv>
+<edomvd>FISHLAKE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0407</edomv>
+<edomvd>DIXIE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0403</edomv>
+<edomvd>BRIDGER-TETON NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0402</edomv>
+<edomvd>BOISE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0401</edomv>
+<edomvd>ASHLEY NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0312</edomv>
+<edomvd>TONTO NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0310</edomv>
+<edomvd>SANTA FE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0309</edomv>
+<edomvd>PRESCOTT NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0308</edomv>
+<edomvd>LINCOLN NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0307</edomv>
+<edomvd>KAIBAB NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0306</edomv>
+<edomvd>GILA NATIONAL FOREST-SUPERVISOR &amp; DEPUTY</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0305</edomv>
+<edomvd>CORONADO NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0304</edomv>
+<edomvd>COCONINO NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0303</edomv>
+<edomvd>CIBOLA NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0302</edomv>
+<edomvd>CARSON NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0301</edomv>
+<edomvd>APACHE-SITGREAVES NATIONAL FORESTS FOREST SUPERVISOR</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0215</edomv>
+<edomvd>WHITE RIVER NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0214</edomv>
+<edomvd>SHOSHONE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0213</edomv>
+<edomvd>SAN JUAN NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0212</edomv>
+<edomvd>PIKE AND SAN ISABEL NATIONAL FORESTS</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0210</edomv>
+<edomvd>ARAPAHO AND ROOSEVELT NATIONAL FORESTS</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0209</edomv>
+<edomvd>RIO GRANDE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0207</edomv>
+<edomvd>NEBRASKA NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0206</edomv>
+<edomvd>MEDICINE BOW-ROUTT NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0204</edomv>
+<edomvd>GRAND MESA</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0203</edomv>
+<edomvd>BLACK HILLS NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0202</edomv>
+<edomvd>BIGHORN NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0118</edomv>
+<edomvd>DAKOTA PRAIRIE GRASSLANDS</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0117</edomv>
+<edomvd>NEZ PERCE-CLEARWATER NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0116</edomv>
+<edomvd>LOLO NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0115</edomv>
+<edomvd>HELENA-LEWIS AND CLARK NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0114</edomv>
+<edomvd>KOOTENAI NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0112</edomv>
+<edomvd>HELENA NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0111</edomv>
+<edomvd>CUSTER GALLATIN NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0110</edomv>
+<edomvd>FLATHEAD NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0105</edomv>
+<edomvd>CLEARWATER NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0104</edomv>
+<edomvd>IDAHO PANHANDLE NATIONAL FORESTS</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0103</edomv>
+<edomvd>BITTERROOT NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+<edom>
+<edomv>0102</edomv>
+<edomvd>BEAVERHEAD-DEERLODGE NATIONAL FOREST</edomvd>
+<edomvds>SAUNa</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.AREA</attrlabl>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+</attr>
+</detailed>
+</eainfo>
+<metainfo>
+<metd>20250310</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

@@ -3,7 +3,6 @@ chromadb/
 .streamlit/
 adhoc_catalog.db
 tmp/
-data/catalog
 .DS_Store
 .DS_Store/
 .pytest_cache/
@@ -16,7 +15,6 @@ data/catalog
 .secrets
 temp/
 tmp/
-data/
 catalog.sqlite3
 catalog.sqlite
 logs/

@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>USDA Forest Service</origin>
+<pubdate>20260207</pubdate>
+<pubtime>013006</pubtime>
+<title>Pasture</title>
+<geoform>vector</geoform>
+</citeinfo>
+</citation>
+<descript>
+<abstract>Pasture is a feature class in the Rangeland Management data set. It represents the area boundaries of livestock grazing pastures. The area corresponds to tabular data in the RIMS (Rangeland Information Management System).</abstract>
+<purpose>The Pasture feature class designates boundaries to establish extent of livestock distribution and management within pastures. This is a published layer created by combining GIS data managed by each National Forest and attribute data stored in the Forest Service Infra database application. This dataset is designed for reporting and analysis and is not used to enter or edit data. The data will be used to create permit maps, field working maps and any other logical uses that the internal and external public may determine this information is helpful for.</purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<rngdates>
+<begdate>2008</begdate>
+<enddate>present</enddate>
+</rngdates>
+</timeinfo>
+<current>National Extent</current>
+</timeperd>
+<status>
+<progress>In work</progress>
+<update>As needed</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-123.779512</westbc>
+<eastbc>-76.734049</eastbc>
+<northbc>49.000109</northbc>
+<southbc>30.963309</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>Boundaries;Farming;Environment</themekey>
+</theme>
+<place>
+<placekt>None</placekt>
+<placekey>USA</placekey>
+</place>
+</keywords>
+<accconst>None</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<native>Version 6.2 (Build 9200) ; Esri ArcGIS 10.5.1.7333</native>
+</idinfo>
+<dataqual>
+<logic>Data stewards have been relied on to validate the data quality and accuracy of the boundaries for allotments, pastures, and key areas. Pasture and key area boundaries have been identified using various methods through the years like GPS or digitizing. Spatial data comes from the district and is consolidated at the forest level. This will be a consolidated national extent of the data entered at the lowest level of the agency. Data quality is dependent on quality data maintenance by local data stewards. By having the ETL create the allotment feature class from all active pastures the quality of that data will be directly dependent on the pasture data.</logic>
+<complete>This data is current only as of the date of publication and may change daily. The need for a daily refresh is key to incorporate any and all local changes as they are made and keep the data in EDW fresh.</complete>
+<posacc>
+<horizpa>
+<horizpar>Positional accuracy is verified by visual comparison to source datasets</horizpar>
+</horizpa>
+</posacc>
+<lineage>
+<procstep>
+<procdesc>Data is the result of a national data call where local units were asked to identify and provide spatial and tabular data to represent pastures and key areas with the intent to have the allotment feature class created based on active pastures. Local units are to follow the current GIS Data Dictionaries and load their local data into the appropriate SDE to be collected and merged into a national extent.</procdesc>
+<procdate>20260207</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>GT-polygon composed of chains</sdtstype>
+<ptvctcnt>28253</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.Range_Pasture</enttypl>
+<enttypd>Feature class: A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>ESRI GIS Dictionary</enttypds>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>OID</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ADMIN_ORG_ID</attrlabl>
+<attrdef>The numeric code, six digits, for the Admin Organizational unit (RRFFDD where R = Region code number, F = Forest code number, and D = District code number). The administrative organization is the Ranger District on which the allotment is located.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Text</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ADMIN_ORG_NAME</attrlabl>
+<attrdef>The name associated with the Admin Organization identified.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Text</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MANAGING_ORG_ID</attrlabl>
+<attrdef>The numeric code for the Managing Organizational unit (RRFFDD where R = Region code number, F = Forest code number, and D = District code number). The managing organization is the Ranger District that manages the allotment, regardless of the location of the allotment.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Text</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MANAGING_ORG_NAME</attrlabl>
+<attrdef>The name associated with the Managing Organization identified.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Text</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASTURE_CN</attrlabl>
+<attrdef>Globally unique identifier across all Forest Service databases, foreign key to most Forest Service National Application databases. Specifically for pastures.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Text</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASTURE_ID</attrlabl>
+<attrdef>A 3 character alpha numeric identifier that uniquely identifies the Pasture within the Allotment.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Text</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASTURE_NAME</attrlabl>
+<attrdef>The name of the pasture. The name need not be unique.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Text</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASTURE_SUBTYPE</attrlabl>
+<attrdef>The subtype of the unit.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>NULL</edomv>
+<edomvd>Indicates that there is no subtype beyond Pasture.</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>EXCLOSURE</edomv>
+<edomvd>Pasture is an EXCLOSURE.</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>RIPARIAN PASTURE</edomv>
+<edomvd>Pasture is a RIPARIAN PASTURE.</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASTURE_STATUS</attrlabl>
+<attrdef>The operating status of the pasture</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>ACTIVE</edomv>
+<edomvd>Pasture is ACTIVE</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>CLOSED</edomv>
+<edomvd>Pasture is CLOSED</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASTURE_NFS_ACRES</attrlabl>
+<attrdef>The number of acres within the pasture on National Forest System land, regardless of administrative unit boundaries.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>The number of acres within the pasture on National Forest System land, regardless of administrative unit boundaries.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASTURE_WAIVED_ACRES</attrlabl>
+<attrdef>The number of waived acres within the pasture on land that is not National Forest System land, regardless of administrative unit boundaries.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>The number of waived acres within the pasture on land that is not National Forest System land, regardless of administrative unit boundaries.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASTURE_OTHER_ACRES</attrlabl>
+<attrdef>The number of acres within the pasture on land that is not National Forest System land and has not been waived, regardless of administrative unit boundaries.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>The number of acres within the pasture on land that is not National Forest System land and has not been waived, regardless of administrative unit boundaries.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASTURE_TOTAL_ACRES</attrlabl>
+<attrdef>The number of acres within the pasture regardless of land ownership.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>The number of acres within the pasture regardless of land ownership.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GIS_ACRES</attrlabl>
+<attrdef>The area of the feature in acres, calculated in North American Albers Equal Area Conic projection (NAD83) meters and then converted to acres with the formula AreaMeters * 0.0002471054.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Calculated acres</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASTURE_MNGD_TO_STD</attrlabl>
+<attrdef>Indicator to identify if the pasture was administered to standard.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>YES</edomv>
+<edomvd>Pasture was administered to standard</edomvd>
+<edomvds> US Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>NO</edomv>
+<edomvd>Pasture was not administered to standard</edomvd>
+<edomvds> US Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASTURE_FY_MNGD_TO_STD</attrlabl>
+<attrdef>The fiscal year the pasture was last reported as administered to standard.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>The fiscal year the pasture was last reported as administered to standard. (YYYY)</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASTURE_EOS_COMPLIANCE</attrlabl>
+<attrdef>Indicator to identify if the standards were met at the end of the season.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>YES</edomv>
+<edomvd>Standards were NOT exceeded.</edomvd>
+<edomvds> US Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>NO</edomv>
+<edomvd>Standards were exceeded.</edomvd>
+<edomvds> US Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>UNCERTAIN</edomv>
+<edomvd>It is uncertain if standards were exceeded or not.</edomvd>
+<edomvds> US Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASTURE_EOS_COMPLIANCE_YEAR</attrlabl>
+<attrdef>The fiscal year the pasture was last reported for end of season compliance. (YYYY)</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>The fiscal year the pasture was last reported for end of season compliance. (YYYY)</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ALLOT_CN</attrlabl>
+<attrdef>Globally unique identifier across all Forest Service databases, foreign key to most Forest Service National Application databases. Specifically for allotments.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Text</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ALLOT_ID</attrlabl>
+<attrdef>A 5 character alpha numeric identifier assigned to the allotment.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Text</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ALLOT_NAME</attrlabl>
+<attrdef>The name of the allotment. The name need not be unique.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Text</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REV_DATE</attrlabl>
+<attrdef>Revision date, the date and time when the feature was created or last updated. Time is entered using a 24-hour clock (military time) based on the Pacific Standard Time (PST) zone. Tasks associated with each revision should be documented in the process steps of theme-based metadata. Entering the date only is acceptable.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Date</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>DATA_SOURCE</attrlabl>
+<attrdef>Feature data source code that describes how the data feature was derived or collected.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>00</edomv>
+<edomvd>Unknown</edomvd>
+<edomvds>HydroEcosys GIS Data Dictionary</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>01</edomv>
+<edomvd>Original CFF </edomvd>
+<edomvds>HydroEcosys GIS Data Dictionary</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>02</edomv>
+<edomvd>GPS - Uncorrected Data </edomvd>
+<edomvds>HydroEcosys GIS Data Dictionary</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>03</edomv>
+<edomvd>GPS - Differentially Corrected Data </edomvd>
+<edomvds>HydroEcosys GIS Data Dictionary</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>04</edomv>
+<edomvd>GPS Survey Grade and Sub-meter </edomvd>
+<edomvds>HydroEcosys GIS Data Dictionary</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>05</edomv>
+<edomvd>Resurvey Plat </edomvd>
+<edomvds>HydroEcosys GIS Data Dictionary</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>06</edomv>
+<edomvd>Photogrammetric Compilation </edomvd>
+<edomvds>HydroEcosys GIS Data Dictionary</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>07</edomv>
+<edomvd>Digitized From Hardcopy PBS/SEQ </edomvd>
+<edomvds>HydroEcosys GIS Data Dictionary</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>08</edomv>
+<edomvd>Digitized From Hardcopy Orthophoto quad </edomvd>
+<edomvds>HydroEcosys GIS Data Dictionary</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>09</edomv>
+<edomvd>Automated Lands Project (ALP) </edomvd>
+<edomvds>HydroEcosys GIS Data Dictionary</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>20</edomv>
+<edomvd>Digitized Other </edomvd>
+<edomvds>HydroEcosys GIS Data Dictionary</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>21</edomv>
+<edomvd>Geographic Coordinate Database (GCDB) </edomvd>
+<edomvds>HydroEcosys GIS Data Dictionary</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>22</edomv>
+<edomvd>Other Cadastral Information</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>23</edomv>
+<edomvd>Other Agency Digital</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>24</edomv>
+<edomvd>Other</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>30</edomv>
+<edomvd>Remote Sensing Data - Base Level</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>31</edomv>
+<edomvd>Remote Sensing Data - Mid Level</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>32</edomv>
+<edomvd>Remote Sensing Data - Broad Level</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>33</edomv>
+<edomvd>Remote Sensing Data - National Level</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>41</edomv>
+<edomvd>Geographic Names Information System (GNIS)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>44</edomv>
+<edomvd>Digital Base Map</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>46</edomv>
+<edomvd>Digital Broad Scale Map</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>47</edomv>
+<edomvd>Other Land Survey Data</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<edom>
+<edomv>48</edomv>
+<edomvd>Infrared Interpretation</edomvd>
+<edomvds>HydroEcosys GIS Data Dictionary</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ACCURACY</attrlabl>
+<attrdef>Distance (+/-), in dataset distance units, of the expected difference between feature and real-world object locations.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Double</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GLOBALID</attrlabl>
+<attrdef>Globally Unique Identifier assigned to the spatial record. Primary key for linking geospatial objects with other database systems.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>GlobalID</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.AREA</attrlabl>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+</attr>
+</detailed>
+</eainfo>
+<metainfo>
+<metd>20240529</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

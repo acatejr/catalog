@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<title>S_USA.BdyPlan_LMP_ManagementArea</title>
+<geoform>vector digital data</geoform>
+<onlink>http://data.fs.usda.gov/geodata/edw/datasets.php</onlink>
+<onlink>http://data.fs.usda.gov/geodata/edw/datasets.php</onlink>
+</citeinfo>
+</citation>
+<descript>
+<abstract>Contextual Definition:
+
+It is required for every National Forest to have a Land Management Plan (LMP), often referred to as a forest plan. Management Areas are land areas identified within the planning area that have the same set of applicable plan components and typically represent the management emphasis on the landscape. A management area does not have to be spatially contiguous, and it can overlap with Geographic Areas, Designated Areas, and other Management Areas. The Forest Service Handbook states that “geographic areas are based on place, while management areas are based on purpose.” This feature class shows the geospatial extent of each Management Area within the land management plan, with pertinent metadata and includes data from both the 1982 and 2012 planning rules. This schema can also be used as a template to build data regionally or for individual units.
+
+Management Area definition:
+
+A land area identified within the planning area that has the same set of applicable plan components. A management area does not have to be spatially contiguous.
+
+Characteristics:
+ - Classified based on use, theme, or land type indicated in the plan. 
+ - If it is a code, the associated name needs to be populated in the source data fields.
+ - Each management area needs to be defined in a plan and each polygon with the same management area Name/ID is associated with the same set of plan components.
+ - Does not have to be spatially contiguous (i.e., can be a single-part or multi-part polygon).
+ - Can overlap with Geographic Areas, Designated Areas, and/or different Management Area themes.
+ - Cannot extend outside the land management plan or Administrative Forest boundary.</abstract>
+<purpose>The Land Management Planning Management Areas Feature Class provides descriptive and location information about Management Areas within the U.S. Forest Service Boundaries, aggregated into one dataset. This feature class aspires to represent the geospatial boundaries for land allocations identified in land management plans.  Since many plans are out-dated and revised under previous planning rules, liberties were taken to fit current plan data into the new data standards.  One must look at the land management plan and plan components for the full management direction and to understand actual management complexities.</purpose>
+<supplinf>2012 Planning Rule: 36 CFR 219.7(d,e), 36 CFR 219.19, Forest Service Planning Handbook associated with 2012 Rule: FSH 1909.12, chapter 22.2
+
+1982 Planning Rule: 36 CFR 219.3. In the previous 1982 Rule the management areas were the locations for what were called management prescriptions.</supplinf>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>20250601</caldate>
+</sngdate>
+</timeinfo>
+<current>
+</current>
+</timeperd>
+<status>
+<progress>In work</progress>
+<update>As needed</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-124.41616517599999</westbc>
+<eastbc>-70.76090545400001</eastbc>
+<northbc>49.001086532</northbc>
+<southbc>31.332346959000002</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>boundaries;  environment;  planningCadastre</themekey>
+</theme>
+</keywords>
+<accconst>None</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>unknown</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+<country>US</country>
+</cntaddr>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<datacred>
+</datacred>
+<native>Esri ArcGIS 13.3.4.52636</native>
+</idinfo>
+<dataqual>
+<logic>This feature class shows a general theme. One must look at the land management plan and plan components for the full management direction and to understand actual management complexities. The land allocation layers reflect the spatial decisions of the plan, they do not necessarily reflect inventories or program inventories. For mapping and analysis purposes, these data should be used in conjunction with other land data such as designated areas, recreation opportunity spectrum, scenic integrity, land ownership, etc.
+
+Acreage calculations are dependent on data sources, projections, methods of calculation, and changes in technology. The sources of data have improved with technology like GPS and digital survey equipment. Data projections have changed over the years giving us better measurement of length and area. Map data is almost always measured in a planar projection that yields accurate measurement of area for small areas but returns a less accurate area calculation over large areas because the curvature of the earth is not accounted for in a planar projection. This can cause small area calculations to not always add up to the sum of a larger single area. In some situations, the difference is only fractions of an acre, other times with large areas the difference can be many acres. With this GIS acreage, calculations may vary over time depending on data, projections, and technology. The current GIS area calculations are the best we have with the available data and technology at this time and may not reflect the same exact numbers of past or future calculations.</logic>
+<complete>Data completeness of management area reflects the contents of the forest/unit land allocation mapping standard datasets at the time this feature class was created.</complete>
+<posacc>
+<horizpa>
+<horizpar>Specific size of smallest feature that will be reliably mapped. Based on mapping standards for 1:24,000 scale maps +/- 40 feet.</horizpar>
+</horizpa>
+</posacc>
+<lineage>
+<procstep>
+<procdesc>For the purposes of this feature class publicaton, the following attributes were added: region, forest/unit, and plan year.  Non Forest Service lands were removed from the dataset prior to publication.</procdesc>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>GT-polygon composed of chains</sdtstype>
+<ptvctcnt>0</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.BdyPlan_LMP_ManagementArea</enttypl>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REGION</attrlabl>
+</attr>
+<attr>
+<attrlabl>FOREST</attrlabl>
+</attr>
+<attr>
+<attrlabl>MGMT_AREA_NAME</attrlabl>
+</attr>
+<attr>
+<attrlabl>MGMT_AREA_CODE</attrlabl>
+</attr>
+<attr>
+<attrlabl>MGMT_AREA_DESCRIPTION</attrlabl>
+</attr>
+<attr>
+<attrlabl>PLAN_YEAR</attrlabl>
+</attr>
+<attr>
+<attrlabl>ADMIN_CHANGE</attrlabl>
+</attr>
+<attr>
+<attrlabl>AMENDMENT</attrlabl>
+</attr>
+<attr>
+<attrlabl>DOCUMENT_ID</attrlabl>
+</attr>
+<attr>
+<attrlabl>PLAN_EDIT_DATE</attrlabl>
+</attr>
+<attr>
+<attrlabl>GIS_ACRES</attrlabl>
+</attr>
+<attr>
+<attrlabl>REV_DATE</attrlabl>
+</attr>
+<attr>
+<attrlabl>DATA_SOURCE</attrlabl>
+</attr>
+<attr>
+<attrlabl>ACCURACY</attrlabl>
+</attr>
+<attr>
+<attrlabl>SOURCE_GLOBALID</attrlabl>
+</attr>
+<attr>
+<attrlabl>TNAME</attrlabl>
+</attr>
+<attr>
+<attrlabl>GLOBALID</attrlabl>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.AREA</attrlabl>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+</attr>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REGION</attrlabl>
+<attrdef>The administrative USFS Region the LMPU resides within.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Region Name List</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FOREST</attrlabl>
+<attrdef>The National Forest/Grassland or other Unit the area resides within. This is the administrative unit (not proclaimed) for the forest, grassland or other unit.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Forest Name List</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MGMT_AREA_NAME</attrlabl>
+<attrdef>The name or description of the type of area as classified in the land management plan.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Area name</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MGMT_AREA_CODE</attrlabl>
+<attrdef>The code associated with the area type as classified in the land management plan.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Area code</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MGMT_AREA_DESCRIPTION</attrlabl>
+<attrdef>A description of the purpose of the area as designated by the region and its localized planning policies.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Area purpose</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PLAN_YEAR</attrlabl>
+<attrdef>The year that the most recent version of the plan information and geography for this area was published.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Version year</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ADMIN_CHANGE</attrlabl>
+<attrdef>Denotes if the feature reflects an administrative change.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Y</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>N</edomv>
+<edomvd>No</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AMENDMENT</attrlabl>
+<attrdef>Denotes if the feature reflects an amendment.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Y</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>N</edomv>
+<edomvd>No</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>DOCUMENT_ID</attrlabl>
+<attrdef>Document identification number associated with either an amendment or an administrative change or the date or year associated with the administrative change or amendment. Field is intended to connect to a relationship table within FP_DECK that holds additional information about the administrative change or amendment such as the data of decision.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Document ID</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PLAN_EDIT_DATE</attrlabl>
+<attrdef>Date of latest feature update from an administrative change or amendment. When a feature is changed due to an administrative change or amendment populate the date of edit. All features will be the date of the FPR unless modified by an administrative change or amendment. The date for the administrative change or amendment can be found  within the document.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Latest update date</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GIS_ACRES</attrlabl>
+<attrdef>Calculation of the polygonal area representing the parcel, expressed as acres; the value is dependent on the specified map projection and calculated as international acres.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>GIS acres</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REV_DATE</attrlabl>
+<attrdef>Date of feature creation or latest update. Date was populated based on the date this database was created and does not indicate any changes made by plan revisions.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Feature date</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>DATA_SOURCE</attrlabl>
+<attrdef>Feature data source code.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>FS_DataSource List</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ACCURACY</attrlabl>
+<attrdef>Distance (+/-), in meters, of expected difference between feature and real world object locations.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Meters</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SOURCE_GLOBALID</attrlabl>
+<attrdef>Global ID from the source data.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Automatically generated whole number identifiers</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TNAME</attrlabl>
+<attrdef>This attribute comes from the S_USA.EDW_SDE_SOURCE_CATALOG_V table. It is a combination of the OWNER attribute and the TABLE_NAME attribute. It is required because the ETL runs separately for each TNAME, using it in the WHERE clause against the S_USA.BdyPlan_LandAllocationMapping feature class.</attrdef>
+<attrdefs>EDW</attrdefs>
+<attrdomv>
+<udom>Table name</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GLOBALID</attrlabl>
+<attrdef>Globally Unique Identifier for each feature, managed by ESRI software.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Automatically generated whole number identifiers</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.AREA</attrlabl>
+<attrdef>Esri field of boundary area in coordinate system units</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Esri field of boundary length in coordinate system units</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+<attrdef>Esri field of boundary length in coordinate system units</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Esri field of boundary length in coordinate system units </udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.BdyPlan_LMP_ManagementArea</enttypl>
+<enttypd>Feature class: A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>ESRI GIS Dictionary</enttypds>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REGION</attrlabl>
+<attrdef>The administrative USFS Region the LMPU resides within.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Region Name List</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FOREST</attrlabl>
+<attrdef>The National Forest/Grassland or other Unit the area resides within. This is the administrative unit (not proclaimed) for the forest, grassland or other unit.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Forest Name List</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MGMT_AREA_NAME</attrlabl>
+<attrdef>The name or description of the type of area as classified in the land management plan.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Area name</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MGMT_AREA_CODE</attrlabl>
+<attrdef>The code associated with the area type as classified in the land management plan.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Area code</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MGMT_AREA_DESCRIPTION</attrlabl>
+<attrdef>A description of the purpose of the area as designated by the region and its localized planning policies.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Area purpose</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PLAN_YEAR</attrlabl>
+<attrdef>The year that the most recent version of the plan information and geography for this area was published.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Version year</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ADMIN_CHANGE</attrlabl>
+<attrdef>Denotes if the feature reflects an administrative change.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Y</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>N</edomv>
+<edomvd>No</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AMENDMENT</attrlabl>
+<attrdef>Denotes if the feature reflects an amendment.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Y</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>N</edomv>
+<edomvd>No</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>DOCUMENT_ID</attrlabl>
+<attrdef>Document identification number associated with either an amendment or an administrative change or the date or year associated with the administrative change or amendment. Field is intended to connect to a relationship table within FP_DECK that holds additional information about the administrative change or amendment such as the data of decision.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Document ID</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PLAN_EDIT_DATE</attrlabl>
+<attrdef>Date of latest feature update from an administrative change or amendment. When a feature is changed due to an administrative change or amendment populate the date of edit. All features will be the date of the FPR unless modified by an administrative change or amendment. The date for the administrative change or amendment can be found  within the document.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Latest update date</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GIS_ACRES</attrlabl>
+<attrdef>Calculation of the polygonal area representing the parcel, expressed as acres; the value is dependent on the specified map projection and calculated as international acres.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>GIS acres</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REV_DATE</attrlabl>
+<attrdef>Date of feature creation or latest update. Date was populated based on the date this database was created and does not indicate any changes made by plan revisions.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Feature date</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>DATA_SOURCE</attrlabl>
+<attrdef>Feature data source code.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>FS_DataSource List</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ACCURACY</attrlabl>
+<attrdef>Distance (+/-), in meters, of expected difference between feature and real world object locations.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Meters</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SOURCE_GLOBALID</attrlabl>
+<attrdef>Global ID from the source data.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Automatically generated whole number identifiers</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TNAME</attrlabl>
+<attrdef>This attribute comes from the S_USA.EDW_SDE_SOURCE_CATALOG_V table. It is a combination of the OWNER attribute and the TABLE_NAME attribute. It is required because the ETL runs separately for each TNAME, using it in the WHERE clause against the S_USA.BdyPlan_LandAllocationMapping feature class.</attrdef>
+<attrdefs>EDW</attrdefs>
+<attrdomv>
+<udom>Table name</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GLOBALID</attrlabl>
+<attrdef>Globally Unique Identifier for each feature, managed by ESRI software.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Automatically generated whole number identifiers</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.AREA</attrlabl>
+<attrdef>Esri field of boundary area in coordinate system units</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Esri field of boundary length in coordinate system units</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+<attrdef>Esri field of boundary length in coordinate system units</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Esri field of boundary length in coordinate system units </udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<metainfo>
+<metd>20250611</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>unknown</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

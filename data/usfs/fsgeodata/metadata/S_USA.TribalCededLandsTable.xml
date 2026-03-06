@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../xsl/fgdc-details.xsl"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <pubdate>20180529</pubdate>
+        <pubtime>144352</pubtime>
+        <title>S_USA.TribalCededLandsTable</title>
+        <geoform>tabular digital data</geoform>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This is a table used for joining additional attributes to the feature class called TribalCededLands, which is the result of scanning, georeferencing and digitizing sixty-seven maps from "Indian Land Cessions in the United States," compiled by Charles C. Royce and published as the second part of the two-part Eighteenth Annual Report of the Bureau of American Ethnology to the Secretary of the Smithsonian Institution, 1896-1897. The mapped cessions and reservations included in the 67 maps correspond to entries in Royce's Schedule of Indian Land Cessions (Schedule), "indicating the number and location of each cession by or reservation for the Indian tribes from the organization of the Federal Government to and including 1894, together with descriptions of the tracts so ceded or reserved, the date of the treaty, law or executive order governing the same, the name of the tribe or tribes affected thereby, and historical data and references bearing thereon," as set forth in the subtitle of the Schedule.</abstract>
+      <purpose>For several years, the U.S. Forest Service’s Office of Tribal Relations (OTR) has explored opportunities to improve accuracy and completeness of mapping data of contemporary and historical tribal land areas through conversations with Forest Service Lands and Engineering staff. The data's utility has been demonstrated in numerous instances; for example, in support of improved decision-making surrounding both incident and resource management, meeting Forest Service treaty and trust responsibilities, defining the scope of tribal needs and interests on Forest Service lands, and identification of cooperative opportunities, such as those authorized by the Tribal Forest Protection Act. That much of the land Tribes ceded to the United States through treaties are now National Forest Service lands compels the Forest Service to try and determine the tribal interests that may still exist in those lands today, regardless of whether the Tribes are still physically on the land or were removed.</purpose>
+    </descript>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>boundaries</themekey>
+        <themekey>Schedule of Indian Land Cessions</themekey>
+        <themekey>U.S. Forest Service</themekey>
+        <themekey>Treaties</themekey>
+        <themekey>Royce</themekey>
+        <themekey>Kappler</themekey>
+      </theme>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>This data is for informational purposes only. The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+    <datacred>USDA Forest Service Office of Tribal Relations</datacred>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.5.1.7333</native>
+  </idinfo>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>Table</enttypl>
+        <enttypd>A set of data elements arranged in rows and columns.  Each row represents a single record.  Each column represents a field of the record. Rows and columns intersect to form cells, which contain a specific value for one field in a record.</enttypd>
+        <enttypds>http://support.esri.com/en/knowledgebase/GISDictionary/term/table</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CESSNUM</attrlabl>
+        <attrdef>Cession number as identified on the maps.</attrdef>
+        <attrdefs>Tetra Tech</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1</rdommin>
+            <rdommax>741</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CESSNUMSORT</attrlabl>
+        <attrdef>Cession number for sorting purposes.</attrdef>
+        <attrdefs>Tetra Tech</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1</rdommin>
+            <rdommax>741</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MAPNAME</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>STATE</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>COUNTY</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>STATECOUNTY</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>SCHDTRB</attrlabl>
+      </attr>
+      <attr>
+        <attrlabl>PRESDAYTRB</attrlabl>
+        <attrdef>Present-Day Tribe</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Name</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CITATION1</attrlabl>
+        <attrdef>Citation 1</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CITATION2</attrlabl>
+        <attrdef>Citation 2</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CESSDATE1</attrlabl>
+        <attrdef>Royce Schedule Date 1</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Date</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DATE1LINK_ROYCE_SCHEDULE</attrlabl>
+        <attrdef>URL for Royce Schedule entry 1</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DATE1LINK_KAPPLER_TREATY</attrlabl>
+        <attrdef>URL for treaty text catalogued by Kappler 1</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CESSDATE2</attrlabl>
+        <attrdef>Royce Schedule Date 2</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Date</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DATE2LINK_ROYCE_SCHEDULE</attrlabl>
+        <attrdef>URL for Royce Schedule entry 2</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DATE2LINK_KAPPLER_TREATY</attrlabl>
+        <attrdef>URL for treaty text catalogued by Kappler 2</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CESSDATE3</attrlabl>
+        <attrdef>Royce Schedule Date 3</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Date</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DATE3LINK_ROYCE_SCHEDULE</attrlabl>
+        <attrdef>URL for Royce Schedule entry 3</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DATE3LINK_KAPPLER_TREATY</attrlabl>
+        <attrdef>URL for treaty text catalogued by Kappler 3</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CESSDATE4</attrlabl>
+        <attrdef>Royce Schedule Date 4</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Date</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DATE4LINK_ROYCE_SCHEDULE</attrlabl>
+        <attrdef>URL for Royce Schedule entry 4</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DATE4LINK_KAPPLER_TREATY</attrlabl>
+        <attrdef>URL for treaty text catalogued by Kappler 4</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CESSDATE5</attrlabl>
+        <attrdef>Royce Schedule Date 5</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Date</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DATE5LINK_ROYCE_SCHEDULE</attrlabl>
+        <attrdef>URL for Royce Schedule entry 5</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DATE5LINK_KAPPLER_TREATY</attrlabl>
+        <attrdef>URL for treaty text catalogued by Kappler 5</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MAPNAME1</attrlabl>
+        <attrdef>Map Name 1</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MAPNAME2</attrlabl>
+        <attrdef>Map Name 2</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MAPNAME3</attrlabl>
+        <attrdef>Map Name 2</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MAPNAME4</attrlabl>
+        <attrdef>Map Name 4</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MAPNAME5</attrlabl>
+        <attrdef>Map Name 5</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MAPNAME6</attrlabl>
+        <attrdef>Map Name 6</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MAPURL1</attrlabl>
+        <attrdef>URL for Map 1</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MAPURL2</attrlabl>
+        <attrdef>URL for Map 2</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MAPURL3</attrlabl>
+        <attrdef>URL for Map 3</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MAPURL4</attrlabl>
+        <attrdef>URL for Map 4</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MAPURL5</attrlabl>
+        <attrdef>URL for Map 5</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MAPURL6</attrlabl>
+        <attrdef>URL for Map 6</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LINK_FEDERAL_STATUTE</attrlabl>
+        <attrdef>URL for Federal Statute</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LINK_EXECUTIVE_ORDER</attrlabl>
+        <attrdef>URL for Executive Order</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LINK_OTHER_TREATY</attrlabl>
+        <attrdef>URL for Other Treaty text not catalogued by Kappler </attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Text</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <metainfo>
+    <metd>20180529</metd>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

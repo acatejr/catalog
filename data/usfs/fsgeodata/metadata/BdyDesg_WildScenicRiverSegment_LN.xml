@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>Inter-agency Wild and Scenic River Council</origin>
+<origin>US Fish and Wildlife Service</origin>
+<origin>Automated Lands Program (ALP)</origin>
+<origin>U.S. Forest Service</origin>
+<origin>National Park Service</origin>
+<origin>Bureau of Land Management</origin>
+<pubdate>20260120</pubdate>
+<pubtime>121217</pubtime>
+<title>S_USA.BdyDesg_WildScenicRiverSegment_LN</title>
+<geoform>vector digital data</geoform>
+<onlink>http://data.fs.usda.gov/geodata/edw/datasets.php</onlink>
+</citeinfo>
+</citation>
+<descript>
+<abstract>This polyline feature class depicts the classification of each wild and scenic river segment designated by Congress and the Secretary of the Interior for the United States and Puerto Rico. This layer was created by a multi-agency effort including the US Forest Service, National Park Service, Bureau of Land Management and the Fish and Wildlife Service. The spatial data were referenced to the latest High Resolution National Hydrological Data Layer (NHD 1:24,000 Scale or better), published by United States Geological Survey (USGS). "Wild" rivers are free of dams, generally inaccessible except by trail, and represent vestiges of primitive America. "Scenic" rivers are free of dams, with shorelines or watersheds still largely primitive and shorelines largely undeveloped, but accessible in places by roads. ?Recreational? rivers are readily accessible by road or railroad, may have some development along their shorelines, and may have been dammed in the past.</abstract>
+<purpose>This geospatial data set depicts the classification of each Wild and Scenic River segment in the United States and Puerto Rico. Wild and scenic rivers are designated by Congress or the Secretary of Interior of the United States. This is a product of the Inter-agency Wild And Scenic Council and was developed in order to share information about the Wild and Scenic River System.</purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>20160302</caldate>
+</sngdate>
+</timeinfo>
+<current>publication date</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>As needed</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-163.299951</westbc>
+<eastbc>-65.748577</eastbc>
+<northbc>69.055064</northbc>
+<southbc>18.233297</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>None</themekt>
+<themekey>WSR</themekey>
+<themekey>Recreation</themekey>
+<themekey>River</themekey>
+<themekey>Scenic</themekey>
+<themekey>Wild</themekey>
+</theme>
+</keywords>
+<accconst>None</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and land users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<datacred>Managing Agencies United States Forest Service (USFS), National Park Service (NPS), Bureau of Land Management (BLM), Fish and Wildlife Services (FWS)</datacred>
+<native>Esri ArcGIS 13.3.4.52636</native>
+</idinfo>
+<dataqual>
+<logic>Quality control measures taken: this feature class is populated by an automated translation process from the source feature class that is edited and maintained by the data stewards. Only stewards with the proper role grants can edit the data. The application used for editing has built in controls to only allow valid geometry and domains to control attribute integrity.</logic>
+<complete>This theme is current to date of publication.</complete>
+<posacc>
+<horizpa>
+<horizpar>Generally the source information used to record spatial locations are from: 1) on-screen digitizing with a georeferenced topographic or image background; or 2) GPS field collected positions.</horizpar>
+</horizpa>
+</posacc>
+<lineage>
+<procstep>
+<procdesc>This data was published using Feature Manipulation Engine Software. The spatial features were extracted from the transactional database, manipulated to meet the desired output format and published to the target feature class. This data was migrated from the CDW. The spatial features were projected and imported into the target feature class.</procdesc>
+<procdate>20160302</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>String</sdtstype>
+<ptvctcnt>1052</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.BdyDesg_WildScenicRiverSegment_LN</enttypl>
+<enttypd>A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>http://support.esri.com/en/knowledgebase/GISDictionary/term/feature%20class</enttypds>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>RIVER_ID</attrlabl>
+<attrdef>A unique river number that is given at the time of designation. For Congressionally Designated Rivers, per Section 3(a) of the Wild and Scenic Rivers Act: 1. Use the river numbers designated by Congress. For Secretarially Designated Rivers per Section 2(a)(ii) of the Wild and Scenic Rivers Act (WSRA): 1. Since the Wild and Scenic rivers established under this provision of the WSRA are not assigned a number by Congress, the secretarially designated rivers are assigned a sequence, prefaced by ?SD? (Secretarially Designated). 2. For the purpose of assigning sequential numbers, the Wild and Scenic rivers are listed chronologically based on designation date. When more than one WSR was established on the same date, the rivers are listed alphabetically. </attrdef>
+<attrdefs>Interagency Wild and Scenic River Council.</attrdefs>
+<attrdomv>
+<udom>Manually generated numbers</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SEGMENT_ID</attrlabl>
+<attrdef>A unique, manually generated number that identifies the river and the agency that manages that river by river segment. The number preceding the period is the Congressionally designated river number. The number following the period identifies the managing agency and the particular river section. All Forest Service-managed rivers belong to the '2000 series'. For example, ID = 133.2001 is the Allegheny River, managed by the US Forest Service in river section 1. The numbering convention and special cases are described here: For Congressionally Designated Rivers, per Section 3(a) of the Wild and Scenic Rivers Act: 1. Use the river numbers designated by Congress. 2. Each river may be further subdivided into additional segments based on a change in classification. These segments may be prescribed by Congress in statute or they may be delineated through agency planning processes. For consistency, the segments should be numbered from upstream to downstream. a. The segment ID will use the following scheme when a segment is managed by a single agency: BLM: 1000 USFS: 2000 NPS: 3000 FWS: 4000 ACOE: 5000 b. The segment ID will use the following scheme when a single segment is managed by two agencies: Multiple: 6000 For Secretarially Designated Rivers per Section 2(a)(ii) of the Wild and Scenic Rivers Act (WSRA): 1. Since the Wild and Scenic rivers established under this provision of the WSRA are not assigned a number by Congress, the secretarially designated rivers are assigned a sequence, prefaced by ?SD? (Secretarially Designated). 2. For the purpose of assigning sequential numbers, the Wild and Scenic rivers are listed chronologically based on designation date. When more than one WSR was established on the same date, the rivers are listed alphabetically. 3. Each river can then be further subdivided into additional segments based on a change in classification. For consistency, the segments should be numbered from upstream to downstream a. The segment ID will use the following scheme when a segment is managed by a single agency: BLM: 1000 USFS: 2000 NPS: 3000 FWS: 4000 b. The segment ID will use the following scheme when a single segment is managed by two agencies: Multiple: 6000 c. The segment ID will use the following scheme when a federal land management agency has only Section 7 jurisdiction for a segment: Section 7 Jurisdiction: 7000.</attrdef>
+<attrdefs>Managing Agency</attrdefs>
+<attrdomv>
+<udom>Manually generated number.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>WSR_RIVER_NAME</attrlabl>
+<attrdef>Official Name of the designated Wild and Scenic River</attrdef>
+<attrdefs>Managing Agency</attrdefs>
+<attrdomv>
+<udom>Name as designated</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>WSR_RIVER_SHORTNAME</attrlabl>
+<attrdef>Proper name used for labeling maps and other documentation.  "Wild and Scenic River" needs to be added to the end when labeling.</attrdef>
+<attrdefs>Managing Agency</attrdefs>
+<attrdomv>
+<udom>Name</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GNIS_NAME</attrlabl>
+<attrdef>Name of the physical river or river segment that make up the wild and scenic river as recorded in the Geographic Names Information System (GNIS)</attrdef>
+<attrdefs>United States Geologic Survey (USGS)</attrdefs>
+<attrdomv>
+<udom>Manual Entry</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CLASSIFICATION</attrlabl>
+<attrdef>A classification type indicating the amount of development in the river corridor at the time of designation. Three classifications exist: Wild, Scenic, and Recreational. Regardless of classification, each river in the National System is administered with the goal of protecting and enhancing the values that caused it to be designated.</attrdef>
+<attrdefs>Managing Agency</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Wild</edomv>
+<edomvd>Wild rivers (W): Those rivers or sections of rivers that are free of impoundments and generally inaccessible except by trail, with watersheds or shorelines essentially primitive and waters unpolluted. These represent vestiges of primitive America.</edomvd>
+<edomvds>https://www.nps.gov/ncrc/programs/rtca/nri/eligb.html</edomvds>
+</edom>
+<edom>
+<edomv>Scenic</edomv>
+<edomvd>Scenic rivers (S): Those rivers or sections of rivers that are free of impoundments, with shorelines or watersheds still largely primitive and shorelines largely undeveloped, but accessible in places by roads.</edomvd>
+<edomvds>https://www.nps.gov/ncrc/programs/rtca/nri/eligb.html</edomvds>
+</edom>
+<edom>
+<edomv>Recreational</edomv>
+<edomvd>Recreational rivers (R): Those rivers or sections of rivers that are readily accessible by road or railroad, that may have some development along their shorelines, and that may have undergone some impoundment or diversion in the past. </edomvd>
+<edomvds>https://www.nps.gov/ncrc/programs/rtca/nri/eligb.html</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SEGMENT_MILES</attrlabl>
+<attrdef>Segment length in miles.</attrdef>
+<attrdefs>River Mileage Classification for Components of the National Wild and Scenic River System; January 2015</attrdefs>
+<attrdomv>
+<udom>Length in miles</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TOTAL_MILES</attrlabl>
+<attrdef>Total length of the designated river in miles.</attrdef>
+<attrdefs>River Mileage Classification for Components of the National Wild and Scenic Rivers System; January 2015</attrdefs>
+<attrdomv>
+<udom>Length in Miles</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>BEGINNING_POINT_NARRATIVE</attrlabl>
+<attrdef>Description of the river segment start point.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Narrative description</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ENDING_POINT_NARRATIVE</attrlabl>
+<attrdef>Description of the river segment end point</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Narrative description</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AGENCY</attrlabl>
+<attrdef>Federal government agency that has the primary management responsibility.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>USFS</edomv>
+<edomvd>United States Forest Service (USFS)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>NPS</edomv>
+<edomvd>National Park Service (NPS)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>BLM</edomv>
+<edomvd>Bureau of Land Management (BLM)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>FWS</edomv>
+<edomvd>Fish and Wildlife Services (FWS)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ORV_CULTURE</attrlabl>
+<attrdef>Defines whether the river segment has a Cultural (C) ORV (Outstanding Remarkable Value). The river or area within the river corridor contains archaeological sites or areas significant to traditional cultures. Examples might be American Indian burial grounds, petroglyphs, the oldest known human use site in a region, or streams that support traditional agriculture, subsistence fishing, or religious ceremonies.</attrdef>
+<attrdefs>https://www.nps.gov/ncrc/programs/rtca/nri/eligb.html</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Y</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>N</edomv>
+<edomvd>No</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ORV_FISH</attrlabl>
+<attrdef>Defines whether the river segment has a Fish (F) ORV (Outstanding Remarkable Value). Fish values may be judged on the relative merits of either fish populations, habitat, or a combination of these river-related conditions. (1) Populations: The river is nationally or regionally an important producer of resident and/or anadromous fish species. Of particular significance is the presence of wild stocks and/or federal or state listed (or candidate) threatened, endangered or sensitive species. Diversity of species is an important consideration and could, in itself, lead to a determination of "outstandingly remarkable." (2) Habitat: The river provides exceptionally high quality habitat for fish species indigenous to the region of comparison. Of particular significance is habitat for wild stocks and/or federal or state listed (or candidate) threatened, endangered or sensitive species. Diversity of habitats is an important consideration and could, in itself, lead to a
+          determination of "outstandingly remarkable." </attrdef>
+<attrdefs>https://www.nps.gov/ncrc/programs/rtca/nri/eligb.html</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Y</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>N</edomv>
+<edomvd>No</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ORV_GEOLOGIC</attrlabl>
+<attrdef>Defines whether the river segment has a Geology (G) ORV (Outstanding Remarkable Value). The river, or the area within the river corridor, contains one or more example of a geologic feature, process or phenomenon that is unique or rare within the region of comparison. The feature(s) may be in an unusually active stage of development, represent a "textbook" example, and/or represent a unique or rare combination of geologic features (erosional, volcanic, glacial, or other geologic structures).</attrdef>
+<attrdefs>https://www.nps.gov/ncrc/programs/rtca/nri/eligb.html</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Y</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>N</edomv>
+<edomvd>No</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ORV_HISTORIC</attrlabl>
+<attrdef>Defines whether the river segment has a History (H) ORV (Outstanding Remarkable Value). The river or area within the river corridor contains a site(s) or feature(s) associated with a significant event, an important person, or a cultural activity of the past that was rare or one-of-a-kind in the region. Many such sites are listed on the National Register of Historic Places. A historic site(s) and/or features(s) is 50 years old or older in most cases.</attrdef>
+<attrdefs>https://www.nps.gov/ncrc/programs/rtca/nri/eligb.html</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Y</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>N</edomv>
+<edomvd>No</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ORV_RECREATIONAL</attrlabl>
+<attrdef>Defines whether the river segment has a Recreation (R) ORV (Outstanding Remarkable Value). Recreational opportunities are, or have the potential to be, popular enough to attract visitors from throughout or beyond the region of comparison or are unique or rare within the region. Visitors are willing to travel long distances to use the river resources for recreational purposes. River-related opportunities could include, but are not limited to, sightseeing, wildlife observation, camping, photography, hiking, fishing and boating. Interpretive opportunities may be exceptional and attract, or have the potential to attract, visitors from outside the region of comparison. The river may provide, or have the potential to provide, settings for national or regional usage or competitive events. </attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Y</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>N</edomv>
+<edomvd>No</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ORV_SCENIC</attrlabl>
+<attrdef>Defines whether the river segment has a Scenery (S) ORV (Outstanding Remarkable Value). The landscape elements of landform, vegetation, water, color, and related factors result in notable or exemplary visual features and/or attractions. When analyzing scenic values, additional factors -- such as seasonal variations in vegetation, scale of cultural modifications, and the length of time negative intrusions are viewed -- may be considered. Scenery and visual attractions may be highly diverse over the majority of the river or river segment.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Y</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>N</edomv>
+<edomvd>No</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ORV_WILDLIFE</attrlabl>
+<attrdef>Defines whether the river segment has a Wildlife (W) ORV (Outstanding Remarkable Value). Wildlife values may be judged on the relative merits of either terrestrial or aquatic wildlife populations or habitat or a combination of these conditions. (1) Populations: The river, or area within the river corridor, contains nationally or regionally important populations of indigenous wildlife species. Of particular significance are species considered to be unique, and/or populations of federal or state listed (or candidate) threatened, endangered or sensitive species. Diversity of species is an important consideration and could, in itself, lead to a determination of "outstandingly remarkable." (2) Habitat: The river, or area within the river corridor, provides exceptionally high quality habitat for wildlife of national or regional significance, and/or may provide unique habitat or a critical link in habitat conditions for federal or state listed (or candidate) threatened, endangered or sensitive species. Contiguous habitat conditions are such that the biological needs of the species are met. Diversity of habitats is an important consideration and could, in itself, lead to a determination of "outstandingly remarkable." </attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Y</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>N</edomv>
+<edomvd>No</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>STATE</attrlabl>
+<attrdef>State in which an individual river segment is located.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>State proper name(s).</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ORV_OTHER</attrlabl>
+<attrdef>Defines whether the river segment has an 'Other' (O) ORV (Outstanding Remarkable Value). While no specific national evaluation guidelines have been developed for the "other similar values" category, assessments of additional river-related values consistent with the foregoing guidance may be developed -- including, but not limited to, hydrology, paleontology and botany resources. </attrdef>
+<attrdefs>Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual description of the ORV</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ORV_ID</attrlabl>
+<attrdef>Internal ORV identifier.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Numerical identifier</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ORV_LIST</attrlabl>
+<attrdef>ORVs in comma delimited format</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual list of applicable ORVs.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SEGMENT_ACRES</attrlabl>
+<attrdef>Not applicable for this line feature class.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Null</edomv>
+<edomvd>Null</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ADMINISTRATIVE_UNIT</attrlabl>
+<attrdef>Administrative forest(s) that manage one or more segments of a particular Wild and Scenic River.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Proper Name.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>COUNTY</attrlabl>
+<attrdef>The name of the county or counties.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>County proper name(s). If a segment is in more than one county, the counties are combined with a semicolon.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+<attrdef>Length of feature in internal units.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</distrib>
+<distliab>The U.S. Forest Service makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, reliability, completeness, or utility of these geospatial data or for the improper or incorrect use of those data. The data are dynamic and may change over time. The user is responsible for verifying the limitations of the geospatial data and for using the data accordingly.</distliab>
+</distinfo>
+<metainfo>
+<metd>20250523</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

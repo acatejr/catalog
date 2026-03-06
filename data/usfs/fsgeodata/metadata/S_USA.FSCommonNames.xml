@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>U.S. Forest Service</origin>
+<pubdate>20260122</pubdate>
+<pubtime>090443</pubtime>
+<title>Forest Service Common Names</title>
+<geoform>vector digital data</geoform>
+<onlink>http://data.fs.usda.gov/geodata/edw/datasets.php</onlink>
+<onlink>https://www.fs.fed.us/ivm/</onlink>
+</citeinfo>
+</citation>
+<descript>
+<abstract>Basic Description: The FSCommonNames dataset contains the common names of the national forests and grasslands and their respective FS WWW URL information that is used for both display of the national forest and national grassland boundaries on any map product and for dynamic interactivity of the map. This published dataset consists of one polygon feature class. There is also a generalized version of this dataset called FSCommonNames_Gen. Detailed Description: This dataset exhibits the following characteristics: 1. Granularity of the polygon features: The spatial extent of the national forests and the grasslands match the way the agency would like to communicate with the public. 2. Preferred /Common Name of the National Forest Units: The common names of the national forest and grassland match the preferred name column that is present in the common names decision table maintained by the Office of Communication. 3. Hyperlinks to FS WWW Home page: This column contains the national forest and their respective FS WWW URL information. This URL could be used on any interactive map applications to link users directly to a forests home page.</abstract>
+<purpose>The FS Common Names dataset satisfies a business need to be fed into ArcGIS Online and the Interactive Visitor Map (IVM) application. Specifically for display in the IVM, the forests and grasslands are displayed with their specific (common) names instead of being lumped together. For example, the National Forests in Texas display as Sam Houston National Forest, Davy Crockett National Forest, Angelina National Forest, Sabine National Forest, Caddo National Grassland and Lyndon B. Johnson National Grassland instead of all being represented as just 'National Forests in Texas'. In addition, any web map or web application created in the USFS ArcGIS Online organizational account will have the ability to pull in the FS Common Names Layer by referencing map services containing this data. Labels and queries will show the common name for each forest and grassland. The data will also be made available to USFS partners to assist with consistent outward communication. The data will used in various other Agency map products. New custom digital applications or hard copy maps may use the common names layer to display the common names recognized by the public or in the way the agency wants to depict them to the public.</purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>20180411</caldate>
+</sngdate>
+</timeinfo>
+<current>publication date</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>Weekly</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-150.007928</westbc>
+<eastbc>-65.699670</eastbc>
+<northbc>61.518990</northbc>
+<southbc>18.033731</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>None</themekt>
+<themekey>FS Common Names</themekey>
+<themekey>National Forests and Grasslands</themekey>
+</theme>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>boundaries</themekey>
+</theme>
+</keywords>
+<accconst>None</accconst>
+<useconst>This data is intended for public use and distribution. The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and land users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>data@fs.fed.us</cntemail>
+</cntinfo>
+</ptcontac>
+<datacred>USDA Forest Service</datacred>
+<native>Version 6.2 (Build 9200) ; Esri ArcGIS 10.3.1.4959</native>
+<crossref>
+<citeinfo>
+<origin>U.S. Forest Service</origin>
+<pubdate>20260122</pubdate>
+<pubtime>090443</pubtime>
+<title>Forest Service Manual 2200</title>
+<onlink>http://www.fs.fed.us/cgi-bin/Directives/get_dirs/fsm?2200</onlink>
+</citeinfo>
+</crossref>
+</idinfo>
+<dataqual>
+<logic>Data entry is accomplished by authorized Forest Service personnel through a web application behind the U.S. Forest Service firewall.</logic>
+<complete>The published dataset is maintained by the Office of Communication and updated when there is request from a units public affairs staff. There is a single common names decision table maintained by the Office of Communication which is used together with authoritative data from the Enterprise Data Warehouse (EDW). The Office of Communications works with the individual Units Public Affairs staff in order to maintain the common names decision table, which feeds into the weekly spatial dataset update process.</complete>
+<lineage>
+<procstep>
+<procdesc>This dataset is derived from the following FS ALP (Automated Lands Program) Land Status Records System (LSRS) authoritative data sources: Administrative Forest Boundaries; Proclaimed Forest Boundaries; Ranger District Boundaries; National Grassland Areas. The common names decision table maintained by the FS Office of Communication contains the common name and its respective LSRS authoritative data source to be used for building the spatial polygon. For example: 1. Dixie National Forest: The LSRS Administrative Forest Boundaries data is being used for both the common name and for the spatial polygon. 2. Angelina National Forest: The LSRS Proclaimed Forest Boundaries is being used for the common name while the LSRS Ranger District Boundaries is being used to create the spatial polygon. 3. Butte Valley National Grassland: The LSRS National Grassland data is being used for both the common name and for the spatial polygon.</procdesc>
+<procdate>20180411</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>GT-polygon composed of chains</sdtstype>
+<ptvctcnt>170</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.FSCommonNames</enttypl>
+<enttypd>A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>http://support.esri.com/en/other-resources/gis-dictionary/term/feature%20class</enttypds>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ADMINFORESTID</attrlabl>
+<attrdef>Administrative Forest ID</attrdef>
+<attrdefs>Land Status Records System Administrative Forest Boundaries</attrdefs>
+<attrdomv>
+<udom>Unique identifier generated by Oracle sequence or SYS_GUID() function. This is the Primary Key.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REGION</attrlabl>
+<attrdef>Region Number</attrdef>
+<attrdefs>Land Status Records System Administrative Forest Boundaries</attrdefs>
+<attrdomv>
+<edom>
+<edomv>01</edomv>
+<edomvd>Region 01 - Northern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>02</edomv>
+<edomvd>Region 02 - Rocky Mountain</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>03</edomv>
+<edomvd>Region 03 - Southwestern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>04</edomv>
+<edomvd>Region 04 - Intermountain</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>05</edomv>
+<edomvd>Region 05 - Pacific Southwest</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>06</edomv>
+<edomvd>Region 06 - Pacific Northwest</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>08</edomv>
+<edomvd>Region 08 - Southern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>09</edomv>
+<edomvd>Region 09 - Eastern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>10</edomv>
+<edomvd>Region 10 - Alaska</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FORESTNUMBER</attrlabl>
+<attrdef>Forest Number</attrdef>
+<attrdefs>Land Status Records System Administrative Forest Boundaries</attrdefs>
+<attrdomv>
+<udom>A number used to identify a National Forest (or other Administrative unit). The forest number is unique only within a Forest Service Region.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FORESTORGCODE</attrlabl>
+<attrdef>Forest Organization Code</attrdef>
+<attrdefs>Land Status Records System Administrative Forest Boundaries</attrdefs>
+<attrdomv>
+<udom>The full organizational code of an administrative unit.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ADMINFORESTNAME</attrlabl>
+<attrdef>Administrative Forest Name</attrdef>
+<attrdefs>Land Status Records System Administrative Forest Boundaries</attrdefs>
+<attrdomv>
+<udom>The official name of the National Forest (or other Administrative Area).</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GIS_ACRES</attrlabl>
+<attrdef>Area of a feature in acres, calculated by converting Decimal Degrees to meters with the formula AreaMeters * 0.0002471054.</attrdef>
+<attrdefs>Geometry</attrdefs>
+<attrdomv>
+<udom>The area of a feature in acres.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>COMMONNAME</attrlabl>
+<attrdef>The common names of the forest and grassland as per the Common Names Decision table maintained by the FS office of communication</attrdef>
+<attrdefs>Land Status Records System Administrative Forest Boundaries, Proclaimed Forest Boundaries, National Grassland Areas</attrdefs>
+<attrdomv>
+<udom>Name</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>URL</attrlabl>
+<attrdef>The FS WWW URL</attrdef>
+<attrdefs>Common Names Decision table maintained by the FS office of communication</attrdefs>
+<attrdomv>
+<udom>URL</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ADMINTYPE</attrlabl>
+<attrdef>The type of national forest system unit.</attrdef>
+<attrdefs>Common Names Decision table maintained by the FS office of communication</attrdefs>
+<attrdomv>
+<edom>
+<edomv>National Forest</edomv>
+<edomvd>Area is in a National Forest.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Grassland</edomv>
+<edomvd>Area is in a National Grassland.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Grassland Simplified</edomv>
+<edomvd>Area is in a National Grassland, but the boundaries are simplified for use in mapping at smaller scales.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CNID</attrlabl>
+<attrdef>The Common Name ID is a unique identifier assigned to each forest so it can be used in generating mobile map packages for the Interactive Visitor Map Mobile Offline version available for download. The forest organization code used by the administrative forest boundaries is not unique for every forest common name since some forests can have the same shared admin boundary.</attrdef>
+<attrdefs>Common Names Decision table maintained by the FS office of communication</attrdefs>
+<attrdomv>
+<udom>ID</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.AREA</attrlabl>
+<attrdef>Area of feature in internal units squared.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+<attrdef>Length of feature in internal units.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>data@fs.fed.us</cntemail>
+</cntinfo>
+</distrib>
+<distliab>The U.S. Forest Service makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, reliability, completeness, or utility of these geospatial data or for the improper or incorrect use of those data. The data are dynamic and may change over time. The user is responsible for verifying the limitations of the geospatial data and for using the data accordingly.</distliab>
+</distinfo>
+<metainfo>
+<metd>20180419</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>data@fs.fed.us</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

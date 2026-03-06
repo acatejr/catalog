@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<title>Aerial Fire Retardant Avoidance Areas: Aquatic</title>
+<geoform>vector digital data</geoform>
+</citeinfo>
+</citation>
+<descript>
+<abstract>This data depicts aquatic aerial fire retardant avoidance areas delivered as part of the 2011 Nationwide Aerial Application of Fire Retardant on National Forest System Land Environmental Impact Statement, the 2023 Supplemental Environmental Impact Statement, and the 2024 Record of Decision.This data shows areas where the aerial application of fire retardant should be avoided in order to prevent the potential of impacts to aquatic features across National Forest lands. The data is based on the high resolution National Hydrographic Dataset (NHD) produced by USGS. Each National Forest has the opportunity annually to modify the default NHD water representation (300ft buffer around all perennial and intermittent water features) to more accurately represent aquatic aerial fire retardant avoidance areas.This data is to be used in planning and implementation phases of U.S. Forest Service fire activities to help prevent intrusions of aerial fire retardant in these aquatic areas throughout National Forest lands. Provided here is a regionally merged dataset. This data has been merged, dissolved, and erased of attributes contained in each original component dataset. For this purpose, specific attributes are not necessary, as any spatial areas depicted simply show areas where aerial fire retardant use is to be avoided as stated in U.S. Forest Service guidelines.</abstract>
+<purpose>Note that this data is current as of March 1, 2025 for Region 3 and April 1, 2025 for all other Regions. It is updated annually. This data depicts aquatic aerial fire retardant avoidance areas for use in digital, hardcopy, and online mapping to support the 2011 Record of Decision for the Nationwide Aerial Application of Fire Retardant on National Forest System Land EIS, the 2023 Supplemental Environmental Impact Statement, and the 2024 Record of Decision. This data should be used in conjunction with terrestrial aerial fire retardance avoidance area data.  An aerial fire retardant avoidance area is defined as an area in which application of aerial fire retardant is prohibited to avoid, limit, or mitigate potential impacts to specified resources. For additional information please see the Interagency Wildland Fire Chemicals Policy and Guidance:  https:/www.fs.usda.gov/managing-land/fire/chemicals</purpose>
+<supplinf>This dataset is an aggregation of waterways in the region where aerial fire retardant is prohibited to avoid, limit, or mitigate potential impacts to specified resources. Unless a forest system unit designates waterways differently as part of the annual formal request for aquatic avoidance area data, perennial and intermittent waterways, as identified in the United States Geological Survey (USGS) National Hydrography Datasets (NHD), NHD Flowline, NHD Area, and NHD Waterbody, are buffered by 300 feet to create these aerial retardant avoidance areas.</supplinf>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>20250317</caldate>
+</sngdate>
+</timeinfo>
+<current>Publication Date</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>Annually</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-150.007928115</westbc>
+<eastbc>-65.70675638</eastbc>
+<northbc>18.24414852</northbc>
+<southbc>61.51899025</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>environment</themekey>
+</theme>
+</keywords>
+<accconst>None</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>unknown</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+<country>US</country>
+</cntaddr>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<datacred>
+</datacred>
+<native>
+</native>
+</idinfo>
+<dataqual>
+<logic>Regional data as of update date</logic>
+<complete>Completeness and accuracy of this dataset reflects that of the current USGS National Hydrography Dataset at the time this feature class was created.</complete>
+<posacc>
+<horizpa>
+<horizpar>The accuracy of this data reflects that of the USGS National Hydrography Dataset as the time this feature class was created..&gt;</horizpar>
+</horizpa>
+</posacc>
+<lineage>
+<procstep>
+<procdesc>Unless a forest system unit designates waterways differently as part of the annual formal request for aquatic avoidance area data, perennial and intermittent waterways, as identified in the United States Geological Survey (USGS) National Hydrography Datasets (NHD), NHD Flowline, NHD Area, and NHD Waterbody, are buffered by 300 feet to create these aerial retardant avoidance areas. The Feature Codes (FCode) are used to identify waterways that are likely to represent open water, which must be avoided when applying aerial fire retardant on National Forest System Lands. The following FCodes are used:
+-- NHD Flowline:  33600, 33601, 33603, 46000, 46003, 46006, 46800
+-- NHD Area:  31200, 33600, 33601, 33603, 36200, 45500, 46000, 46003, 46006
+-- NHD Waterbody:  37800, 39001, 39005, 39006, 39000, 39004, 39009, 39010, 39011, 39012, 43614, 43600, 43601, 43603, 43604, 43605, 43606, 43607, 43608, 43609, 43610, 43611, 43612, 43613, 43615, 43617, 43618, 43619, 43621, 43623, 43624, 43625, 43626, 46600, 46602, 44601, 49300
+These features are then aggregated into one dataset. The FCodes are then used to classify the features into two categories – either perennial or intermittent/ephemeral. (Forests may identify ephemeral waterways, 46007, for avoidance.)
+-- Intermittent/ephemeral:  39001, 39005, 39006, 43614, 46003, 46601, 46007
+-- Perennial:  All remaining FCodes
+Provided here is a regionally merged dataset. The data has been merged, dissolved, and erased of attributes contained in original component datasets. For this purpose, features have been identified only as either perennial or intermittent/ephemeral waterway features. Data has been clipped to Forest Service land using Basic Ownership data in the Enterprise Data Warehouse (EDW). Region and National Forest information has also been added using the Forest Service Administrative Forest boundary data in the EDW.</procdesc>
+<procdate>20250201</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>Complete chain</sdtstype>
+<ptvctcnt>381507</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.Fire_AerialFireRetardantAvoidanceAreas_Aquatic</enttypl>
+<enttypd>Feature class: A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>ESRI GIS Dictionary</enttypds>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>WATERWAY_TYPE</attrlabl>
+<attrdef>Type of waterway, either perennial or intermittent/ephemeral</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Type of waterway</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REGION</attrlabl>
+<attrdef>US Forest Service Region number</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Unit number</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FORESTNUMBER</attrlabl>
+<attrdef>US Forest Service Forest number</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Unit number</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FORESTNAME</attrlabl>
+<attrdef>US Forest Service Forest name</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Forest Name</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>DATE_UPDATED</attrlabl>
+<attrdef>Date of the data update.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Update date</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.AREA</attrlabl>
+<attrdef>Esri field of boundary area in coordinate system units</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Esri field of boundary length in coordinate system units</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+<attrdef>Esri field of boundary length in coordinate system units</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Esri field of boundary length in coordinate system units </udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<metainfo>
+<metd>20250317</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>unknown</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

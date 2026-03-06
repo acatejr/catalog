@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>Geospatial Technology and Applications Center (GTAC)</origin>
+<origin>USDA Forest Service</origin>
+<pubdate>20260201</pubdate>
+<pubtime>175325</pubtime>
+<title>RAVG Table with Forest, Wilderness and High Basal Area Loss Data</title>
+<geoform>vector digital data</geoform>
+<onlink>http://data.fs.usda.gov/geodata/edw/datasets.php</onlink>
+</citeinfo>
+</citation>
+<descript>
+<abstract>The USDA Forest Service Rapid Assessment of Vegetation Condition after Wildfire (RAVG) program produces geospatial and related data representing post-fire vegetation condition by means of standardized change detection methods based on Landsat or similar multispectral satellite imagery. RAVG data products characterize the impact of disturbance (fire) on vegetation within a fire perimeter, and include estimates of percent change in live basal area (BA), percent change in canopy cover (CC), and the standardized composite burn index (CBI). Standard thematic products include 7-class percent change in basal area (BA-7), 5-class percent change in canopy cover (CC-5), and 4-class CBI (CBI-4). Contingent upon the availability of suitable imagery, RAVG products are prepared for all wildland fires reported within the conterminous United States (CONUS) that include at least 1000 acres of forested National Forest System (NFS) land (500 acres for Regions 8 and 9 as of 2016). Data for individual fires are typically made available within 45 days after fire containment ("initial assessments"). Late-season fires, however, may be deferred until the following spring or summer ("extended assessments"). Annual national mosaics of each thematic product are prepared at the end of the fire season and updated, as needed, when additional fires from the given year are processed. The annual mosaics are available via the Raster Data Warehouse (RDW, see https://apps.fs.usda.gov/arcx/rest/services/RDW_Wildfire). A combined perimeter dataset, including the burn boundaries for all published Forest Service RAVG fires from 2012 to the present, is likewise updated as needed (at least annually). This current dataset is derived from the combined perimeter dataset and adds spatial information about land ownership (National Forest) and wilderness status, as well as the areal extent of forested land (pre-fire) that experience a modeled BA loss above 50 and 75 percent.</abstract>
+<purpose>RAVG data are produced to assist in post-fire vegetation management planning. They are intended to enhance decision-making capabilities and reduce planning and implementation costs associated with post-fire vegetation management. The primary benefit is the cost-effective and efficient identification of potential areas of resource concern following wildfire. RAVG complements the Burned Area Emergency Response (BAER) Imagery Support program, which provides information integral to determining fire effects on soils, by providing information about fire effects on existing vegetation. RAVG analysis produces a first approximation of areas that may require reforestation treatments after a fire in order to re-establish forest cover and restore associated ecosystem services. This initial approximation may be followed by site-specific diagnosis and development of a silvicultural prescription to more precisely identify reforestation needs. The addition of land ownership, wilderness status, and the extent of high percent basal area loss allows users to assess the location and extent of need more precisely.</purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<rngdates>
+<begdate>20120101</begdate>
+<enddate>20220101</enddate>
+</rngdates>
+</timeinfo>
+<current>Ground condition</current>
+</timeperd>
+<status>
+<progress>In work</progress>
+<update>Annually</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-124.407520</westbc>
+<eastbc>-76.973032</eastbc>
+<northbc>49.142553</northbc>
+<southbc>29.213453</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>None</themekt>
+<themekey>Burn Severity</themekey>
+<themekey>RAVG</themekey>
+<themekey>Wildland Fire</themekey>
+<themekey>Wildfire</themekey>
+<themekey>Composite Burn Index</themekey>
+<themekey>Burn Area Boundary</themekey>
+<themekey>CBI</themekey>
+<themekey>Canopy Cover</themekey>
+<themekey>Basal Area</themekey>
+<themekey>Perimeter</themekey>
+<themekey>Vegetation Condition</themekey>
+</theme>
+<theme>
+<themekt>ISO 19115 Topic Category</themekt>
+<themekey>Biota</themekey>
+</theme>
+<place>
+<placekt>None</placekt>
+<placekey>CONUS</placekey>
+<placekey>United States</placekey>
+</place>
+</keywords>
+<accconst>None</accconst>
+<useconst>There are no restrictions on use, except for reasonable and proper acknowledgement of information sources. The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and land users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>For general EDW questions: data@fs.fed.us. For technical questions about RAVG data or processes: SM.FS.PostFireRAVG@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<datacred>USDA Forest Service, Geospatial Technology and Applications Center (GTAC)</datacred>
+<secinfo>
+<secsys>None</secsys>
+<secclass>Unclassified</secclass>
+<sechandl>None</sechandl>
+</secinfo>
+<native>Esri ArcGIS Pro 2.9.5</native>
+</idinfo>
+<dataqual>
+<logic>No tests for logical consistency have been performed.</logic>
+<complete>This dataset is intended to include perimeters for all fires that meet standard RAVG criteria for the given years; namely, wildfires reported within CONUS that include at least 1000 acres of forested National Forest System land (at least 500 acres for Regions 8 and 9 as of 2016). Exceptions (omissions) may include fires for which suitable imagery was not available in a timely manner (i.e., within 45 days after fire containment for initial assessments).</complete>
+<posacc>
+<horizpa>
+<horizpar>The target scale of this dataset is 1:24,000. The horizontal accuracy of this dataset is determined by that of the moderate-resolution multi-spectral imagery from which it is derived.</horizpar>
+</horizpa>
+</posacc>
+<lineage>
+<procstep>
+<procdesc>For each feature, the number of pixels identified as a tree class in the appropriate EVT layer and identified as having 50% or greater live basal area loss was counted and converted to area. The process was repeated for live basal area loss greater than 75%.</procdesc>
+<procdate>20230101</procdate>
+</procstep>
+<procstep>
+<procdesc>Features from the combined RAVG perimeters dataset were intersected with features representing National Forests and designated wilderness areas. Each feature (polygon) in the resulting feature class includes area from no more than one RAVG perimeter, National Forest and wilderness.</procdesc>
+<procdate>20230101</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>GT-polygon composed of chains</sdtstype>
+<ptvctcnt>2355</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>RAVG_Perimeters_Metrics_by_Forest_by_Wilderness</enttypl>
+<enttypd>Feature class: A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>Esri GIS Data Dictionary</enttypds>
+</enttyp>
+<attr>
+<attrlabl>Update_YMD</attrlabl>
+<attrdef>Date of last update for this dataset (YYYYMMDD)</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<rdom>
+<rdommin>20230524</rdommin>
+<rdommax>0</rdommax>
+<attrunit>Date (YYYYMMDD)</attrunit>
+</rdom>
+</attrdomv>
+<attrdomv>
+<udom>N/A</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PostImgYMD</attrlabl>
+<attrdef>Acquisition date (YYYYMMDD) of post-fire imagery used for this assessment</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<rdom>
+<rdommin>20070101</rdommin>
+<rdommax>0</rdommax>
+<attrunit>Date (YYYYMMDD)</attrunit>
+</rdom>
+</attrdomv>
+<attrdomv>
+<udom>N/A</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Region</attrlabl>
+<attrdef>National Forest System region represented in this data record</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<udom>Two-digit code for the National Forest System region included in this data record (01, 02, 03, 04, 05, 06, 08, 09, or 10)</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Event_ID</attrlabl>
+<attrdef>Constructed fire identifier</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<udom>Identifier constructed from multiple fire attributes including two-letter state identifier, latitude (NNnnn), west longitude (NNNnnn), and fire ignition date (YYYYMMDD)</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>NF_OrgCode</attrlabl>
+<attrdef>Organization code for the National Forest represented in this data record</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<udom>Four-digit code for the National Forest included in this data record, or "NA" for non-NFS record. The first two digits identify the National Forest System region (01, 02, 03, 04, 05, 06, 08, 09, or 10). The last two digits identify the Forest (00 - 99).</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Tree_Ac_75</attrlabl>
+<attrdef>Area of pixels within this polygon identified as tree class and with basal area loss of 75 percent or greater, in acres</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<udom>Value in acres</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+<attrdef>Length of feature in internal units</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Fire_Acres</attrlabl>
+<attrdef>Total area enclosed by all polygons of a given fire, in acres</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<rdom>
+<rdommin>500</rdommin>
+<rdommax>0</rdommax>
+</rdom>
+</attrdomv>
+<attrdomv>
+<udom>Value in acres</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Fire_Name</attrlabl>
+<attrdef>Name of fire event</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<udom>Common name of fire(s) included in this data record</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PreImgYMD</attrlabl>
+<attrdef>Acquisition date (YYYYMMDD) of pre-fire imagery used for this assessment</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<rdom>
+<rdommin>20040101</rdommin>
+<rdommax>0</rdommax>
+<attrunit>Date (YYYYMMDD)</attrunit>
+</rdom>
+</attrdomv>
+<attrdomv>
+<udom>N/A</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Poly_Acres</attrlabl>
+<attrdef>Area of this polygon, in acres</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<udom>Value in acres</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Wilderness</attrlabl>
+<attrdef>Name of designated wilderness area represented in this data record</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<udom>Common name of wilderness area included in this data record, or "NA" for non-wilderness record</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Tree_Acres</attrlabl>
+<attrdef>Area of pixels within this polygon identified as a tree class, in acres</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<udom>Value in acres</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.AREA</attrlabl>
+<attrdef>Area of feature in internal units squared</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Tree_Ac_50</attrlabl>
+<attrdef>Area of pixels within this polygon identified as tree class and with basal area loss of 50 percent or greater, in acres</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<udom>Value in acres</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Asmnt_Type</attrlabl>
+<attrdef>Type of assessment</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Extended</edomv>
+<edomvd>Assessment based on post-fire imagery acquired near the peak of green following fire containment</edomvd>
+<edomvds>USDA Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Initial</edomv>
+<edomvd>Assessment based on post-fire imagery acquired within a few weeks of fire containment</edomvd>
+<edomvds>USDA Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Fire_Year</attrlabl>
+<attrdef>Year of fire ignition</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<rdom>
+<rdommin>2012</rdommin>
+<rdommax>2022</rdommax>
+</rdom>
+</attrdomv>
+<attrdomv>
+<udom>N/A</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>EVT_VER</attrlabl>
+<attrdef>Version of LANDFIRE Existing Vegetation Type (EVT) used for this data record</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>LF2001_EVT105</edomv>
+<edomvd>EVT version 1.0.5 (LF2001)</edomvd>
+<edomvds>LANDFIRE</edomvds>
+</edom>
+<edom>
+<edomv>LF2014_EVT140</edomv>
+<edomvd>EVT version 1.4.0 (LF2014)</edomvd>
+<edomvds>LANDFIRE</edomvds>
+</edom>
+<edom>
+<edomv>LF2020_EVT220</edomv>
+<edomvd>EVT version 2.2.0 (LF2020)</edomvd>
+<edomvds>LANDFIRE</edomvds>
+</edom>
+<edom>
+<edomv>LF2016_EVT200</edomv>
+<edomvd>EVT version 2.0.0 (LF2016)</edomvd>
+<edomvds>LANDFIRE</edomvds>
+</edom>
+<edom>
+<edomv>LF2012_EVT130</edomv>
+<edomvd>EVT version 1.3.0 (LF2012)</edomvd>
+<edomvds>LANDFIRE</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Forest</attrlabl>
+<attrdef>Name of National Forest represented in this data record</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<udom>Name of National Forest included in this data record, or "NA" for non-NFS record</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Metric_Type</attrlabl>
+<attrdef>Type of metric included in this data record</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>by Wilderness</edomv>
+<edomvd>This polygon is part of a National Forest and part of a designated wilderness</edomvd>
+<edomvds>USDA Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>by NonNFS</edomv>
+<edomvd>This polygon is not part of a National Forest</edomvd>
+<edomvds>USDA Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>by Forest</edomv>
+<edomvd>This polygon is part of a National Forest and not part of a designated wilderness</edomvd>
+<edomvds>USDA Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</distrib>
+<distliab>The USDA Forest Service makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, reliability, completeness, or utility of these geospatial data or for the improper or incorrect use of those data. The data are dynamic and may change over time. The user is responsible for verifying the limitations of the geospatial data and for using the data accordingly.</distliab>
+</distinfo>
+<metainfo>
+<metd>20230717</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

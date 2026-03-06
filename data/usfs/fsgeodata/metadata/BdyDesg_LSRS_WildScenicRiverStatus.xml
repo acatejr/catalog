@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>Automated Lands Program (ALP)</origin>
+<origin>U.S. Forest Service</origin>
+<pubdate>20260208</pubdate>
+<pubtime>015824</pubtime>
+<title>S_USA.BdyDesg_LSRS_WildScenicRiverStatus</title>
+<geoform>vector digital data</geoform>
+<onlink>http://data.fs.usda.gov/geodata/edw/datasets.php</onlink>
+</citeinfo>
+</citation>
+<descript>
+<abstract>This dataset is intended for read-only use. The boundaries in this data set provide detailed information suitable for advanced land status mapping and analysis. In comparison to the WildScenicRiverStatus dataset, the WildScenicRiver dataset provides a more general view of Wild and Scenic River segments that is suitable for most mapping and analysis. The purpose of these data is to provide display, identification, and analysis tools for determining current boundary information for Forest Service managers, GIS specialists, and others.</abstract>
+<purpose>This dataset represnts a detailed, land status view of Wild and Scenic River segments designated by Congress as part of the National Wild and Scenic River System. The dataset includes details about the date of designation, status of the final boundary description, authority, and land status case and document information, and more.</purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>20151227</caldate>
+</sngdate>
+</timeinfo>
+<current>publication date</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>Weekly</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-124.424177</westbc>
+<eastbc>-65.744786</eastbc>
+<northbc>49.001086</northbc>
+<southbc>18.261420</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>inlandWaters</themekey>
+<themekey>boundaries</themekey>
+</theme>
+<theme>
+<themekt>None</themekt>
+<themekey>ALP Land Dataset</themekey>
+<themekey>USDA Forest Service</themekey>
+<themekey>Wild and Scenic River Status</themekey>
+<themekey>Wild and Scenic Area Name</themekey>
+<themekey>NFS Lands</themekey>
+<themekey>Land Status</themekey>
+</theme>
+</keywords>
+<accconst>None</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and land users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<native>Esri ArcGIS 13.3.4.52636</native>
+</idinfo>
+<dataqual>
+<attracc>
+<attraccr>The Regional Land Status personnel are responsible for their local data stewardship and maintenance. The overall collection nationwide consists of 100% attribute accuracy based on currentness and completeness.</attraccr>
+</attracc>
+<logic>Quality control measures taken: this feature class is populated by an automated translation process from the source feature class that is edited and maintained by the data stewards. Only stewards with the proper role grants can edit the data. The application used for editing has built in controls to only allow valid geometry and domains to control attribute integrity.</logic>
+<complete>This theme is current to date of publication.</complete>
+<posacc>
+<horizpa>
+<horizpar>Generally the source information used to record spatial locations are from: 1) on-screen digitizing with a georeferenced topographic or image background; or 2) GPS field collected positions.</horizpar>
+</horizpa>
+</posacc>
+<lineage>
+<procstep>
+<procdesc>This data was published using Feature Manipulation Engine Software. The spatial features were extracted from the transactional database, manipulated to meet the desired output format and published to the target feature class. This data was migrated from the CDW. The spatial features were projected and imported into the target feature class.</procdesc>
+<procdate>20151227</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>GT-polygon composed of chains</sdtstype>
+<ptvctcnt>302</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.BdyDesg_LSRS_WildScenicRiverStatus</enttypl>
+<enttypd>A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>http://support.esri.com/en/knowledgebase/GISDictionary/term/feature%20class</enttypds>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>WILDSCENICRIVERSTATUSID</attrlabl>
+<attrdef>A unique control number used to identify a specific spatial feature and/or database attribute.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Unique Identifier.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CASENAME</attrlabl>
+<attrdef>The official name given to the case</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Proper Name.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LOCALCASEID</attrlabl>
+<attrdef>The local Case identification code assigned</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Identification code</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AREATYPE</attrlabl>
+<attrdef>Type Code assigned to each Wild and Scenic Area</attrdef>
+<attrdefs>U.S. Forest Service, ALP Data Dictionary: Wild Scenic River Types</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Wild</edomv>
+<edomvd>Wild rivers (W): Those rivers or sections of rivers that are free of impoundments and generally inaccessible except by trail, with watersheds or shorelines essentially primitive and waters unpolluted. These represent vestiges of primitive America.</edomvd>
+<edomvds>https://www.nps.gov/ncrc/programs/rtca/nri/eligb.html</edomvds>
+</edom>
+<edom>
+<edomv>Scenic</edomv>
+<edomvd>Scenic rivers (S): Those rivers or sections of rivers that are free of impoundments, with shorelines or watersheds still largely primitive and shorelines largely undeveloped, but accessible in places by roads.</edomvd>
+<edomvds>https://www.nps.gov/ncrc/programs/rtca/nri/eligb.html</edomvds>
+</edom>
+<edom>
+<edomv>Recreational</edomv>
+<edomvd>Recreational rivers (R): Those rivers or sections of rivers that are readily accessible by road or railroad, that may have some development along their shorelines, and that may have undergone some impoundment or diversion in the past. </edomvd>
+<edomvds>https://www.nps.gov/ncrc/programs/rtca/nri/eligb.html</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AREANAME</attrlabl>
+<attrdef>The Area Name assigned to each Wild and Scenic Area</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Proper name.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AREAID</attrlabl>
+<attrdef>Legacy code associated with nationally designated areas.</attrdef>
+<attrdefs>U.S. Forest Service, FS National Wilderness Coordinator</attrdefs>
+<attrdomv>
+<udom>3-digit internal identifier.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>BOUNDARYSTATUS</attrlabl>
+<attrdef>Legal status of the Regulated Use boundary.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Final</edomv>
+<edomvd>Boundary is finalized</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Provisional, Subject to Change</edomv>
+<edomvd>Boundary is provisional, subject to change</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ACTIONDATE</attrlabl>
+<attrdef>Date area was officially established (may differ from the Authority date)</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Date.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>OFFICIALACRES</attrlabl>
+<attrdef>The official acres defined the original authority.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>The official area of a feature in acres.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GIS_ACRES</attrlabl>
+<attrdef>The area of the feature in acres, calculated using a projected surface computation. A NAD 83, USA Contiguous Albers Equal Area Conic projection was used for Regions 1-9, and NAD 83, Alaska Albers for Region 10.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>The area of a feature in acres.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>BLM_SERIALNO_EXT</attrlabl>
+<attrdef>An unique serial number identifier assigned by the Bureau of Land Management.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Serial Number</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>COMMENTS</attrlabl>
+<attrdef>Additional related information.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual comments.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>WILDSCENICRIVER_FK</attrlabl>
+<attrdef>Foreign key to corresponding non-Status Publication feature class</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Foreign key.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REGION</attrlabl>
+<attrdef>U.S. Forest Service Region, consisting of Region 01 (Northern Region), Region 02 (Rocky Mountain Region), Region 03 (Southwestern Region), Region 04 (Intermountain Region), Region 05 (Pacific Southwest Region), Region 06 (Pacific Northwest Region), Region 08 (Southern Region), Region 09 (Eastern Region), and Region 10 (Alaska Region).  There is no Region 07.  Regions are listed onhttps: www.fs.usda.gov/organization.  Within this dataset, the region represents the Land Status Record System Production Regional schema from which data was derived.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>01</edomv>
+<edomvd>Region 01 - Northern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>02</edomv>
+<edomvd>Region 02 - Rocky Mountain</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>03</edomv>
+<edomvd>Region 03 - Southwestern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>04</edomv>
+<edomvd>Region 04 - Intermountain</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>05</edomv>
+<edomvd>Region 05 - Pacific Southwest</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>06</edomv>
+<edomvd>Region 06 - Pacific Northwest</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>08</edomv>
+<edomvd>Region 08 - Southern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>09</edomv>
+<edomvd>Region 09 - Eastern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>10</edomv>
+<edomvd>Region 10 - Alaska</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.AREA</attrlabl>
+<attrdef>Area of feature in internal units squared.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+<attrdef>Length of feature in internal units.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</distrib>
+<distliab>The U.S. Forest Service makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, reliability, completeness, or utility of these geospatial data or for the improper or incorrect use of those data. The data are dynamic and may change over time. The user is responsible for verifying the limitations of the geospatial data and for using the data accordingly.</distliab>
+</distinfo>
+<metainfo>
+<metd>20250523</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

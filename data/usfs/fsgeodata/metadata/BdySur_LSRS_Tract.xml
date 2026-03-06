@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>Automated Lands Program (ALP)</origin>
+<origin>U.S. Forest Service</origin>
+<pubdate>20260208</pubdate>
+<pubtime>020041</pubtime>
+<title>S_USA.BdySur_LSRS_Tract</title>
+<geoform>vector digital data</geoform>
+<othercit>ArcGIS REST Services Directory: https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_Tract_01/MapServer</othercit>
+<onlink>http://data.fs.usda.gov/geodata/edw/datasets.php</onlink>
+</citeinfo>
+</citation>
+<descript>
+<abstract>This dataset is intended for read-only use. The purpose of these data is to provide display, identification, and analysis tools for determining current boundary information for Forest Service managers, GIS specialists, and others.</abstract>
+<purpose>This dataset represents non-rectangular survey parcels defined by a metes and bounds. Examples include land lots, housing subdivision lots, Mineral Surveys, and Homestead Entry Surveys.</purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>20260208</caldate>
+</sngdate>
+</timeinfo>
+<current>publication date</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>Weekly</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-124.439849</westbc>
+<eastbc>-64.734329</eastbc>
+<northbc>49.001087</northbc>
+<southbc>17.738983</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>boundaries</themekey>
+</theme>
+<theme>
+<themekt>None</themekt>
+<themekey>Tract</themekey>
+<themekey>ALP Land Dataset</themekey>
+<themekey>USDA Forest Service</themekey>
+<themekey>NFS Lands</themekey>
+<themekey>Legal Description</themekey>
+<themekey>Land Status</themekey>
+</theme>
+<place>
+<placekt>None</placekt>
+<placekey>USA</placekey>
+</place>
+</keywords>
+<accconst>None</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and land users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<native>Esri ArcGIS 13.3.4.52636</native>
+</idinfo>
+<dataqual>
+<attracc>
+<attraccr>The Regional Land Status personnel are responsible for their local data stewardship and maintenance. The overall collection nationwide consists of 100% attribute accuracy based on currentness and completeness.</attraccr>
+</attracc>
+<logic>Quality control measures taken: this feature class is populated by an automated translation process from the source feature class that is edited and maintained by the data stewards. Only stewards with the proper role grants can edit the data. The application used for editing has built in controls to only allow valid geometry and domains to control attribute integrity.</logic>
+<complete>This theme is current to date of publication.</complete>
+<posacc>
+<horizpa>
+<horizpar>Generally the source information used to record spatial locations are from: 1) on-screen digitizing with a georeferenced topographic or image background; or 2) GPS field collected positions.</horizpar>
+</horizpa>
+</posacc>
+<lineage>
+<procstep>
+<procdesc>This data was published using Feature Manipulation Engine Software. The spatial features were extracted from the transactional database, manipulated to meet the desired output format and published to the target feature class. This data was migrated from the CDW. The spatial features were projected and imported into the target feature class.</procdesc>
+<procdate>20260208</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>GT-polygon composed of chains</sdtstype>
+<ptvctcnt>115358</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.BdySur_LSRS_Tract</enttypl>
+<enttypd>A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>https://support.esri.com/en-us/gis-dictionary/feature-class</enttypds>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TRACTID</attrlabl>
+<attrdef>Unique identifier generated by Oracle sequence or SYS_GUID() function.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Unique Identifier.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TRACTTYPE</attrlabl>
+<attrdef>The type of tract.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Allotment</edomv>
+<edomvd>Allotment</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Coal Survey</edomv>
+<edomvd>Coal Survey</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>DLC</edomv>
+<edomvd>Donation Land Claim</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Exchange Survey</edomv>
+<edomvd>Exchange Survey</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>FS Eastern Metes and Bounds</edomv>
+<edomvd>FS Eastern Metes and Bounds</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Farm Unit</edomv>
+<edomvd>Farm Unit</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>French Long Lot</edomv>
+<edomvd>French Long Lot</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>HES</edomv>
+<edomvd>Homestead Entry Survey</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Indian Allot</edomv>
+<edomvd>Indian Allot</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Land Grant</edomv>
+<edomvd>Land Grant</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Metes and Bounds</edomv>
+<edomvd>Metes and Bounds</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Military District</edomv>
+<edomvd>Military District</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Mineral Survey</edomv>
+<edomvd>Mineral Survey</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Parcel</edomv>
+<edomvd>Parcel</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Private Survey</edomv>
+<edomvd>Private Survey</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>ROW</edomv>
+<edomvd>Right of Way</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Townsite</edomv>
+<edomvd>Townsite</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Tract</edomv>
+<edomvd>Tract</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>US Survey</edomv>
+<edomvd>US Survey</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Unsurveyed</edomv>
+<edomvd>Unsurveyed</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Warrant</edomv>
+<edomvd>Warrant</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Water</edomv>
+<edomvd>Water</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TRACTNUMBER</attrlabl>
+<attrdef>An identifier assigned to a tract.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual identifier.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SUBTYPENAME</attrlabl>
+<attrdef>Descriptive name of the subtype.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Subtype description.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PROVISIONAL</attrlabl>
+<attrdef>A preliminary survey pending approval by the cadastral chief.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Y</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>N</edomv>
+<edomvd>No</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Null</edomv>
+<edomvd>Null</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SURVEYACRES</attrlabl>
+<attrdef>The acres from a survey document (plat, et al).</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>The official surveyed area of a feature in acres.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GIS_ACRES</attrlabl>
+<attrdef>The area of the feature in acres, calculated using a projected surface computation. A NAD 83, USA Contiguous Albers Equal Area Conic projection was used for Regions 1-9, and NAD 83, Alaska Albers for Region 10.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>The area of a feature in acres.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>COMMENTS</attrlabl>
+<attrdef>Additional related information.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual comments.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REGION</attrlabl>
+<attrdef>U.S. Forest Service Region, consisting of Region 01 (Northern Region), Region 02 (Rocky Mountain Region), Region 03 (Southwestern Region), Region 04 (Intermountain Region), Region 05 (Pacific Southwest Region), Region 06 (Pacific Northwest Region), Region 08 (Southern Region), Region 09 (Eastern Region), and Region 10 (Alaska Region).  There is no Region 07.  Regions are listed on https://www.fs.usda.gov/organization.  Within this dataset, the region represents the Land Status Record System Production Regional schema from which data was derived.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>01</edomv>
+<edomvd>Region 01 - Northern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>02</edomv>
+<edomvd>Region 02 - Rocky Mountain</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>03</edomv>
+<edomvd>Region 03 - Southwestern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>04</edomv>
+<edomvd>Region 04 - Intermountain</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>05</edomv>
+<edomvd>Region 05 - Pacific Southwest</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>06</edomv>
+<edomvd>Region 06 - Pacific Northwest</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>08</edomv>
+<edomvd>Region 08 - Southern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>09</edomv>
+<edomvd>Region 09 - Eastern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>10</edomv>
+<edomvd>Region 10 - Alaska</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.AREA</attrlabl>
+<attrdef>Area of feature in internal units squared.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+<attrdef>Length of feature in internal units.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</distrib>
+<distliab>The U.S. Forest Service makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, reliability, completeness, or utility of these geospatial data or for the improper or incorrect use of those data. The data are dynamic and may change over time. The user is responsible for verifying the limitations of the geospatial data and for using the data accordingly.</distliab>
+</distinfo>
+<metainfo>
+<metd>20250523</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

@@ -1,0 +1,47 @@
+[
+    {
+        "id": "202d196e507767f8c9caa1a05c1cfd9683c8a4522be1d5bed3174c53c3523623",
+        "title": "S_USA.Fire_FireshedReg_Fireshed",
+        "lineage": [
+        {
+            "description": "To account for the fact that wildfire risk and risk mitigation efforts occur at multiple scales, we assessed risk exposure at stand-, project-, and fireshed-level scales. We created these layers in such a way that a finer-scale is nested within a coarser-scale, in much the same way as a drainage is nested within a larger watershed. This dataset includes the project- and fireshed-scale boundaries, together with estimates of the annual number of buildings exposed from ignitions within these boundaries.",
+            "date": "20191114"
+        },
+        {
+            "description": "“Firesheds” and \"Project Areas\" within the Fireshed Registry are nested accounting units that are delineated based on a smoothed building exposure map of the conterminous U.S. These boundaries were created by dividing up the landscape into comparably-sized units that represent similar source levels of community exposure to wildfire risk. The size of firesheds was specified to contain 99% of the large fires, with fire sizes generally smaller than 250,000 acres, although the largest extreme event fires can span multiple firesheds.",
+            "date": "20191114"
+        },
+        {
+            "description": "The exposure grid was divided into roughly equal-sized spatial units at two different scales: the project area (~25,000 acres) and the fireshed (~250,000 acres). Both units were defined using image segmentation (SLIC) based on both geographic distance and magnitude of exposure. The approach is based on a modified form of K-means clustering that includes an additional parameter to account for the cluster shape. In order to ensure the units of both scales were nested, we adjusted the boundary of the fireshed to match underlying project areas boundaries using a majority rule. Thus, when a project area spanned two firesheds, the overlapping area was added to the majority fireshed (and subtracted from the minority fireshed).",
+            "date": "20191114"
+        },
+        {
+            "description": "Building exposure for the entire U.S. was first calculated using FSim ignition points and fire perimeters (using a range of historical fire weather and fuels data from LANDFIRE 2014) and intersecting perimeters with SILVIS wildland urban interface polygons (ca. 2010) (Radeloff et al. 2005, SILVIS Lab 2012) and attributing annual exposure to those ignitions. This means that values reflect the source of exposure, as opposed to where buildings are actually located. Radeloff, V. C.; Hammer, R. B.; Stewart, S. I.; Fried, J. S.; Holcomb, S. S.; McKeefry, J. F. 2005. The wildland-urban interface in the United States. Ecological Applications 15:799-805.",
+            "date": "20191114"
+        },
+        {
+            "description": "Exposure values were aggregated by projecting points onto a 270-m grid. To emphasize the general geographic patterns of risk and account for the stochasticity of extreme fire events, the exposure grid was first log10-transformed and then smoothed using focal statistics using a moving circular window with a 10-kilometer (km) radius using the focal function in the R Raster package. The entire grid was then normalized (0-1). Hijmans, Robert J.; van Etten, Jacob. 2012. raster: Geographic analysis and modeling with raster data. R package version 2.0-12. http://CRAN.R-project.org/package=raster",
+            "date": "20191114"
+        },
+        {
+            "description": "Pixel values from the original 270-m grid (i.e., prior to being log10-transformed and smoothed) were summed to estimate exposure at the project- and fireshed-levels. Note that since simulated fires from Fsim were modeled based on 2014 fuels, the exposure summaries here do not include exposure from stands that have been disturbed by wildfire or management activities since 2014. Records of prescribed fire and mechanical fuels treatment data from the USDA Forest Service Activity Tracking System (FACTS 2020), wildfire area burned data from MTBS (2020), and prescribed fire data from CalFire (2020) nor present in FACTS or MTBS were used to adjust exposure with the assumption that areas recently treated (2015-2018) or burned would not contribute to wildfire exposure to communities.",
+            "date": "20200831"
+        }
+        ],
+        "abstract": "The Fireshed Registry is a geospatial dashboard and decision tool built to organize information about wildfire transmission to communities and monitor progress towards risk reduction for communities from management investments. The concept behind the Fireshed Registry is to identify and map the source of risk rather than what is at risk across all lands in the conterminous United States. While the Fireshed Registry was organized around mapping the source of fire risk to communities, the framework does not preclude the assessment of other resource management priorities and trends such as water, fish and aquatic or wildlife habitat, or recreation. The Fireshed Registry is also a multi-scale decision tool for quantifying, prioritizing, and geospatially displaying wildfire transmission to buildings in adjacent or nearby communities. Fireshed areas in the Fireshed Registry are approximately 250,000 acre accounting units that are delineated based on a smoothed building exposure map of the conterminous United States. These boundaries were created by dividing up the landscape into regular-sized units that represent similar source levels of community exposure to wildfire risk. Project areas are approximately 25,000 acre accounting units nested within firesheds. This data publication includes a geodatabase that contains for both fireshed and project areas: boundaries, size, total annual number of buildings inside and outside of the area exposed by wildfires ignited within the area (based on 2010 housing unit data and 2014 fuels conditions), and percent of the area that has been disturbed since 2014 (2015-2018).",
+        "purpose": "The fireshed and project area boundaries are designed to delineate hotspots of fire transmission to adjacent or nearby communities to facilitate cohesive cross-boundary risk mitigation planning. Exposure metrics are designed to be used for strategic allocation. Tactical operations should incorporate additional local knowledge.",
+        "keywords": [
+        "geoscientificInformation",
+        "Fire effects on environment",
+        "Forest management",
+        "Wildland/urban interface",
+        "Natural Resource Management & Use",
+        "Fire",
+        "wildfire management",
+        "wildfire exposure",
+        "wildfire transmission",
+        "wildfire"
+        ],
+        "src": "fsgeodata"
+    }
+]

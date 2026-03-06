@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>USDA Forest Service</origin>
+<pubdate>20260204</pubdate>
+<pubtime>223454</pubtime>
+<title>S_USA.Infra_GAOA_Project_Summary</title>
+<geoform>vector digital data</geoform>
+</citeinfo>
+</citation>
+<descript>
+<abstract>This dataset displays the approximate location of US Forest Service, Great American Outdoors Act (GAOA) projects. The data is refreshed on a nightly basis from the US Forest Service database of infrastructure projects which is stewarded by the individual National Forests and Grasslands.This dataset is a spatial data layer of points representing the approximate or general location where the project takes place. The point location is intended for use in small scale maps to indicate the general location of the projects across the country. The location data is maintained by staff on the individual National Forest or Grassland using the database of record. Because a project can be made up of many assets distributed across a land area, a single project location point will not always reflect the specific location and extent of the work in the project. The project detail data can be used to display the individual assets that make up the project. For more information about Forest Service GAOA projects visit our website: https://www.fs.usda.gov/managing-land/gaoa</abstract>
+<purpose>This dataset is a spatial data layer of points representing the approximate or general location where the project takes place. The point location is intended for use in small scale maps to indicate the general location of the projects across the country. The location is data is maintained by staff on the individual National Forest or Grass land using the Infra Project Module. Because a project can be made up of many assets distributed across a land area, a single project location point will not always reflect the specific location and extent of the work in the project. The detailed project asset data can be used to meet this need.</purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<rngdates>
+<begdate>20210101</begdate>
+<enddate>20250101</enddate>
+</rngdates>
+</timeinfo>
+<current>Recorded</current>
+</timeperd>
+<status>
+<progress>In work</progress>
+<update>As needed</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-149.972819</westbc>
+<eastbc>-65.729759</eastbc>
+<northbc>61.225417</northbc>
+<southbc>5.816364</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>transportation</themekey>
+<themekey>society</themekey>
+<themekey>structure</themekey>
+</theme>
+</keywords>
+<accconst>None</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<datacred>USFS employees</datacred>
+<native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.7.1.11595</native>
+</idinfo>
+<dataqual>
+<logic>The points in this dataset represent approximate location of projects. The data is intended for use in small scale maps to indicate the general location of the projects across the country. Because a project can be made up of many assets distributed across a large land area, a single project location point will not always reflect the specific location and extent of the work in the project. The project locations are edited by Forest service project staff and the locations are chosen based on what they feel best reflects the location of the project.</logic>
+<complete>Data is complete for publication</complete>
+<posacc>
+<horizpa>
+<horizpar>Horizonal accuracy is variable.</horizpar>
+</horizpa>
+</posacc>
+<lineage>
+<procstep>
+<procdesc>The dataset is created by pulling from the Infra NAMP Project Module, FMMI and other internal USFS databases of record.</procdesc>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>Entity point</sdtstype>
+<ptvctcnt>996</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.Infra_GAOA_Project_Summary</enttypl>
+<enttypd>Feature class: A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>ESRI GIS Dictionary</enttypds>
+</enttyp>
+<attr>
+<attrlabl>PLANNED_START_DATE</attrlabl>
+<attrdef>Anticipated start date(YYYY/MM/DD)</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Date</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PROJ_STATUS</attrlabl>
+<attrdef>The status of the project</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Design</edomv>
+<edomvd>Plans are being designed</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Terminated</edomv>
+<edomvd>The project has been stopped and is no longer under consideration</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Ready</edomv>
+<edomvd>Project planning and preparation phases are complete and the project is ready for implementation</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Work In Prog</edomv>
+<edomvd>The project is being implemented</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Contr Awarded</edomv>
+<edomvd>A contract has been awarded</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Draft</edomv>
+<edomvd>The project is being formulated</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Proj Completed</edomv>
+<edomvd>The project work has been completed</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Suspended</edomv>
+<edomvd>The project has been put on hold</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PROJ_ID</attrlabl>
+<attrdef>User-defined identifier for the project. It was standardized for FY21 (with a budget code) and FY22 (no budget code, just a number). Until a projects is selected and funded, it will not have a unique budget id.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Coded value.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LONGITUDE</attrlabl>
+<attrdef>The user identified longitude for the overall project location</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Numerical value for project location longitude</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PROJ_TYPE</attrlabl>
+<attrdef>Type of project</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>FLTP</edomv>
+<edomvd>Federal Lands Transportation Program</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>CIM</edomv>
+<edomvd>Capital Improvement and Maintenance</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>GAOA</edomv>
+<edomvd>Great American Outdoors Act - Legacy Restoration Fund</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>STATE_COUNTY</attrlabl>
+<attrdef>Concatenated State - County of assets being worked on in project. The Project summary point location does not represent the specific location or extent of the specific asset work within the project and cannot be used to analyze items such as which county or congressional district the project takes place in.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual description for assets being worked on in project.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ACTUAL_START_DATE</attrlabl>
+<attrdef>Actual start date(YYYY/MM/DD)</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Date</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SECURITY_ID</attrlabl>
+<attrdef>User entered into Infra, selected from a standard list of Forest Units</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>ID value.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ADMIN_ORG</attrlabl>
+<attrdef>If the project crosses district boundaries, user inputs only the forest level. If the project crosses two forests, user inputs the primary managing (lead) forest</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual description.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PLANNED_FINISH_DATE</attrlabl>
+<attrdef>Anticipated finish date(YYYY/MM/DD)</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Date</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>DELIVERY_METHOD</attrlabl>
+<attrdef>Indicates how the project work items will be accomplished. Force Account means work is accomplished by USFS.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Grant</edomv>
+<edomvd>Grant</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Job Corps</edomv>
+<edomvd>Job Corps</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Youth Corps</edomv>
+<edomvd>Youth Corps</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Other</edomv>
+<edomvd>Other</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Contract</edomv>
+<edomvd>Contract</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Force Account</edomv>
+<edomvd>Force Account</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Agreement</edomv>
+<edomvd>Agreement</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Tribes</edomv>
+<edomvd>Tribes</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LAST_UPDATE</attrlabl>
+<attrdef>The system generated date the project was last updated</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Date</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MANAGING_ORG</attrlabl>
+<attrdef>If the project crosses district boundaries, user inputs only the forest level org number. If the project crosses two forests, user inputs the primary managing (lead) forest org number or enters the managing region org number</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Numerical value</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FOREST_NAME</attrlabl>
+<attrdef>Populated from the NRM Contacts table based on the Security ID</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual description.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ORG_NAME</attrlabl>
+<attrdef>Populated from the NRM Contacts table based on the Managing Org</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual description.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>EST_PCT_COMPLETE</attrlabl>
+<attrdef>The estimated total project completion percentage aggregated from costs and completion percentages of all project level and asset level tasks.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Percentage</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TOTAL_APPROVED_DOLLARS</attrlabl>
+<attrdef>This reflects the amount of money estimated and asked for for both transportation and non-transpiration asset tasks. Projects may be over or under their estimated and approved funding levels. If this is a GAOA Project, this value represents GAOA dollars.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Dollar value.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PROJECT_CN</attrlabl>
+<attrdef>The system generated unique identifier for the project. Use the PROJECT_CN to join to the PROJ_CN in the Infra_NAMP_Project_Detail layers as it as a unique record identifier.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Primary key for the project</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PROJ_SUMMARY</attrlabl>
+<attrdef>A brief description of the project</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual description.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CONG_DIST</attrlabl>
+<attrdef>The impacted congressional districts, derived from included assets. The project summary point location does not represent the specific location or extent of the specific asset work within the project and cannot be used to analyze items such as which county or congressional district the project takes place in.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual description.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TOTAL_DOLLARS_EXPENDED</attrlabl>
+<attrdef>Sum of all Expenditures and Disbursements recorded in the financial transaction system. If this is a GAOA Project, this value represents GAOA dollars and partner dollars, if any.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Dollar value.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LATITUDE</attrlabl>
+<attrdef>The user identified latitude for the overall project location</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Numerical value for project location latitude</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ACTUAL_FINISH_DATE</attrlabl>
+<attrdef>Actual finish date(YYYY/MM/DD)</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Date</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>EST_TOTAL_DM_RETIRED</attrlabl>
+<attrdef>The estimated amount of deferred maintenance addressed through this project upon completion. If this is a GAOA Project, this value represents DM addressed by GAOA dollars and partner dollars, if any.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Dollar value.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TRANSP_DOLLARS</attrlabl>
+<attrdef>The amount of total GAOA-LRF funds for the project released to date and approved for transportation asset tasks associated with this project. If a project is receiving funds in multiple years, the outyear funds are not included.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Dollar value.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PROJ_NAME</attrlabl>
+<attrdef>User-defined name for the project. For projects preloaded from the FY21 or FY22 GAOA list or the FY22 CIM list, the project names come from the NAMP project submissions and congressionally approved project lists. For new projects initiated in IPM the project name is defined by the user and can be edited.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual description.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AGREEMENT_DOLLARS_OBLIGATED</attrlabl>
+<attrdef>Sum of all obligated dollars for the project where the WorkPlan Code = GNA. If this is a GAOA Project, this value represents GAOA dollars and partner dollars, if any.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Dollar value.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>APPROVAL_STATUS</attrlabl>
+<attrdef>The status of approval for the project</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>RO Approved</edomv>
+<edomvd>The Regional Office has approved the project</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Submit</edomv>
+<edomvd>Project is ready for review</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>SO Approved</edomv>
+<edomvd>The Forest Supervisor's Office has approved the project</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>WO Approved</edomv>
+<edomvd>The Washington Office has approved and funded the project</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>NON_TRANSP_DOLLARS</attrlabl>
+<attrdef>The amount of total GAOA-LRF funds for the project released to date and approved for transportation asset tasks associated with this project. If a project is receiving funds in multiple years, the outyear funds are not included.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Dollar value.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REGION</attrlabl>
+<attrdef>Derived from the user entered Security ID in Infra where Region is represented by the first 2 digits</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>2 digit number</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>APPROVED_FY</attrlabl>
+<attrdef>The fiscal year the project was selected and approved for national funding, whether through CIM, FLTP, or GAOA</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Numerical value (year)</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>BUDGET_ID</attrlabl>
+<attrdef>The unique budget ID assigned to the GAOA project in the financial transaction system</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>ID value.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ASSET_TYPE</attrlabl>
+<attrdef>Comma separated list of types of assets included in this project.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual description.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REGION_NAME</attrlabl>
+<attrdef>Populated from the NRM Contacts table based on the Region</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual description.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>APPROVED_DATE</attrlabl>
+<attrdef>The approval date is the date the project was approved at the level/status populated in "Approval Status" field</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Date</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CONTRACT_DOLLARS_OBLIGATED</attrlabl>
+<attrdef>Sum of all obligated dollars for the project where the WorkPlan Code = CON. If this is a GAOA Project, this value represents GAOA dollars and partner dollars, if any.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Dollar value.</udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</distrib>
+<distliab>The U.S. Forest Service makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, reliability, completeness, or utility of these geospatial data or for the improper or incorrect use of those data. The data are dynamic and may change over time. The user is responsible for verifying the limitations of the geospatial data and for using the data accordingly.</distliab>
+</distinfo>
+<metainfo>
+<metd>20230623</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

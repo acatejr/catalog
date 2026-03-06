@@ -1,0 +1,1825 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<idinfo>
+		<citation>
+			<citeinfo>
+				<origin>U.S. Forest Service</origin>
+				<pubdate>20260208</pubdate>
+				<pubtime>033717</pubtime>
+				<title>Actv_CommonAttribute_PL</title>
+				<geoform>vector digital data</geoform>
+			</citeinfo>
+		</citation>
+		<descript>
+			<abstract>The Forest Service's Natural Resource Manager (NRM) Forest Activity Tracking System (FACTS) is the agency standard for managing information about activities related to fire/fuels, silviculture, and invasive species. This feature class contains the FACTS attributes most commonly needed to describe FACTS activities.</abstract>
+			<purpose>This area feature class represents the locations of planned, accomplished and completed activity data that are recorded in the USFS Activities application FACTS. Only records with an activity are included. This data does not go into specifics of treatments (such as chemical treatments). It contains basic information like the activity subunit ID, administrative forest, ownership, state, planned date, accomplished date, completed date, method, equipment, funding, and many other items.</purpose>
+			<supplinf>This data supplies forests and outside users the ability to query and display activity data without having to load each program area dataset. It includes all activities, even those not defined by a program area measure for year end reporting.</supplinf>
+		</descript>
+		<timeperd>
+			<timeinfo>
+				<sngdate>
+					<caldate>20260208</caldate>
+				</sngdate>
+			</timeinfo>
+			<current>20260208</current>
+		</timeperd>
+		<status>
+			<progress>Complete</progress>
+			<update>Weekly</update>
+		</status>
+		<spdom>
+			<bounding>
+				<westbc>-151.561898</westbc>
+				<eastbc>-51.814142</eastbc>
+				<northbc>64.204251</northbc>
+				<southbc>1.106107</southbc>
+			</bounding>
+		</spdom>
+		<keywords>
+			<theme>
+				<themekt>None</themekt>
+				<themekey>U.S. Forest Service</themekey>
+				<themekey>Activities</themekey>
+				<themekey>FACTS</themekey>
+				<themekey>fire/fuels</themekey>
+				<themekey>silviculture</themekey>
+				<themekey>invasive species</themekey>
+			</theme>
+			<theme>
+				<themekt>ISO 19115 Topic Categories</themekt>
+				<themekey>environment</themekey>
+			</theme>
+			<place>
+				<placekt>None</placekt>
+				<placekey>USA</placekey>
+			</place>
+		</keywords>
+		<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+		<native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.9.1.28388</native>
+	</idinfo>
+	<dataqual>
+		<logic>Data is served out by Forest/Region. Spatial data is joined with tabular data that originates from several FACTS tables in the FSDBA schema (ii_FACTS_AU_SU_ACTS_F#R_MV). Activity data may be entered at the Plan, Accomplished, or Completed state, but only Trust Fund designated activities are required when planned. All other activities are not required until the Accomplished or Completed date for upward reporting.</logic>
+		<complete>Data is complete as of publication.</complete>
+		<posacc>
+			<horizpa>
+				<horizpar>The data in FACTS reflects Fuels, silviculture/reforestation/timber stand improvement, Trust Funds, Invasive Species Treatments, and range vegetation improvement. Protocol for data collection varies depending on program area. Spatial data collection varies from using sub-meter GPS to uncorrected GPS depending on program area. Users may also on-screen digitize the location of the activity.</horizpar>
+			</horizpa>
+		</posacc>
+		<lineage>
+			<procstep>
+				<procdesc>An Extract, Transform, Load (ETL) script captures changes in the data and deletes records that are no longer needed.</procdesc>
+				<procdate>20260208</procdate>
+			</procstep>
+		</lineage>
+	</dataqual>
+	<spdoinfo>
+		<ptvctinf>
+			<sdtsterm>
+				<sdtstype>GT-polygon composed of chains</sdtstype>
+				<ptvctcnt>77065245</ptvctcnt>
+			</sdtsterm>
+		</ptvctinf>
+	</spdoinfo>
+	<spref>
+		<horizsys>
+			<geograph>
+				<latres>8.98315284119521e-09</latres>
+				<longres>8.98315284119521e-09</longres>
+				<geogunit>Decimal Degrees</geogunit>
+			</geograph>
+			<geodetic>
+				<horizdn>D North American 1983</horizdn>
+				<ellips>GRS 1980</ellips>
+				<semiaxis>6378137.0</semiaxis>
+				<denflat>298.257222101</denflat>
+			</geodetic>
+		</horizsys>
+	</spref>
+	<eainfo>
+		<detailed>
+			<enttyp>
+				<enttypl>Actv_CommonAttribute_PL</enttypl>
+				<enttypd>Feature class: A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+				<enttypds>Esri GIS Data Dictionary</enttypds>
+			</enttyp>
+			<attr>
+				<attrlabl>CONG_DIST_NAME</attrlabl>
+				<attrdef>Congressional districts are the 435 areas from which members are elected to the U.S. House of Representatives.</attrdef>
+				<attrdefs>U.S. Census Bureau (https://www.census.gov/geo/maps-data/data/aboutcd.html)</attrdefs>
+				<attrdomv>
+					<udom>Congressional District Name</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>REFORESTATION_STATUS</attrlabl>
+				<attrdef>A code that records the progression of a specific activity unit/subunit in the reforestation process and provides a historical account of the status on that activity unit/subunit.Reforestation needs are indicated when the following activities are planned. Reforestation needs are removed when the activity is completed for each of these activities</attrdef>
+				<attrdefs>NRM FACTS User Guide</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>4382</edomv>
+						<edomvd>Certification of Natural regeneration without site prep</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>4411</edomv>
+						<edomvd>Full seeding/reseeding without concurrent site preparation</edomvd>
+						<edomvds>NRM Facts</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>4412</edomv>
+						<edomvd>Fill-in seeding/reseeding without concurrent site preparation</edomvd>
+						<edomvds>NRM Facts</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>4431</edomv>
+						<edomvd>Full planting without concurrent site preparation.</edomvd>
+						<edomvds>NRM Facts</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>4432</edomv>
+						<edomvd>Fill-in planting without concurrent site preparation</edomvd>
+						<edomvds>NRM Facts</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>4491</edomv>
+						<edomvd>Burning site preperation for natural regeneration</edomvd>
+						<edomvds>NRM Facts</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>4492</edomv>
+						<edomvd>Chemical site preparation for natural regeneration</edomvd>
+						<edomvds>NRM Facts</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>4493</edomv>
+						<edomvd>Other site preparation for natural regeneration</edomvd>
+						<edomvds>NRM Facts</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>4494</edomv>
+						<edomvd>Mechanical site preparation for natural regeneration</edomvd>
+						<edomvds>NRM Facts</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>4495</edomv>
+						<edomvd>Manual Site Preparation for natural regeneration)</edomvd>
+						<edomvds>NRM Facts</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>UKCN</attrlabl>
+				<attrdef>Unique key for the record generated by the loading process.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Control number</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>COUNTY_NAME</attrlabl>
+				<attrdef>Name of county or equivalent.</attrdef>
+				<attrdefs>U.S. Census Bureau</attrdefs>
+				<attrdomv>
+					<codesetd>
+						<codesetn>List of U.S. County Identifications</codesetn>
+						<codesets>http://www.census.gov/geo/reference/codes/cou.html</codesets>
+					</codesetd>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>WATERSHED_CODE</attrlabl>
+				<attrdef>The watersheds referenced in FACTS are those used by the Natural Resource Information System (NRIS) Water module. It is a nationally consistent watershed dataset that is subdivided into 6 levels (12-digit Hydrologic Unit Codes (HUC)) and is available from the USGS (U.S. Geological Survey) and USDA (U.S. Department of Agriculture) NRCS (Natural Resources Conservation Service). The Watershed Boundary Dataset (WBD) contains the most current, the highest resolution and the most detailed delineation of the watershed boundaries.</attrdef>
+				<attrdefs>NRM NRIS</attrdefs>
+				<attrdomv>
+					<codesetd>
+						<codesetn>Hydrologic Unit Code (HUC).</codesetn>
+						<codesets>http://water.usgs.gov/GIS/huc.html</codesets>
+					</codesetd>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SALE_NUMBER</attrlabl>
+				<attrdef>A unique number used to identify a sale. The STARS Number assigned to timber sales could be used for sales not currently in the TIM (Timber Information Manager) program. The Sale Number for sales that were created in TIM will be selected from a list of values copied from TIM.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Number</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>EVENT_YEAR</attrlabl>
+				<attrdef>The year when the causal agent occurred, such as when a fire or disease outbreak happened.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Year</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ACT_MODIFIED_BY</attrlabl>
+				<attrdef>Person that last modified the activity record in the transactional system</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Text (initials or abbreviation)</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>NEPA_SIGNED_DATE</attrlabl>
+				<attrdef>Date the NEPA document was signed.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Date in DD/MM/YYYY format</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>NAME</attrlabl>
+				<attrdef>The name of the subunit</attrdef>
+				<attrdefs>USDA Forest Service</attrdefs>
+				<attrdomv>
+					<udom>Name</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>CAUSAL_AGENT</attrlabl>
+				<attrdef>If a reforestation activity code is entered (4382, 4411, 4412, 4421, 4422, 4431, 4432, 4433, 4434, 4441, 4442, 4443, 4444, 4453, 4490, 4491, 4492, 4493, 4494, 4495), then the causal agent field becomes required at the time the activity is planned. This field is used to designate what caused the need to reforest this unit. Options include: Failure, Fire, Harvest, Insect or Disease, Other, Weather Event. The Event Name and Event Year fields (shown below) are related fields when a Causal Agent is selected, but they do not require an entry.</attrdef>
+				<attrdefs>NRM FACTS User Guide</attrdefs>
+				<attrdomv>
+					<udom>Textual description</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>LU_CN</attrlabl>
+				<attrdef>Control number generated in Oracle to uniquely identify each route across all Forest Service units.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Unique Identifier</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>IMPLEMENTATION_PROJECT</attrlabl>
+				<attrdef>Implementation Projects are groupings of activities, such as those from a stewardship contract where many activities will take place. The Implementation Project field allows the user to group activities and subsequently query activities by that group.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>The name of the implementation project.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>FEATURE_TYPE</attrlabl>
+				<attrdef>The feature type geometry.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>A</edomv>
+						<edomvd>Area</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>L</edomv>
+						<edomvd>Line</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>P</edomv>
+						<edomvd>Point</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ACT_CREATED_DATE</attrlabl>
+				<attrdef>The date the activity was created.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Date (MM/DD/YYYY)</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>EXCLUDE_ACCOMPLISHMENT</attrlabl>
+				<attrdef>Exclude From Accomplishment Report(s) is populated from a check box that allows the user to exclude or include the activity and it number of units from accomplishment reporting.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>N</edomv>
+						<edomvd>Not excluded (unchecked) - it will be reported as an accomplishment</edomvd>
+						<edomvds>NRM FACTS Data Dictionary</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>Y</edomv>
+						<edomvd>Excluded (checked) - it will be not be reported as an accomplishment</edomvd>
+						<edomvds>NRM FACTS Data Dictionary</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SHAPE</attrlabl>
+				<attrdef>Feature geometry.</attrdef>
+				<attrdefs>Esri</attrdefs>
+				<attrdomv>
+					<udom>Coordinates defining the features.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>NFPORS_TREATMENT</attrlabl>
+				<attrdef>NFPORS treatment used</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Examples include Biomass Removal and Lop and Scatter</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SU_MODIFIED_DATE</attrlabl>
+				<attrdef>Date the subunit was last modified.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Date</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>FS_UNIT_ID</attrlabl>
+				<attrdef>The numerical ID of the National Forest System administrative unit in which the feature is located.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>ID</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>TSI</attrlabl>
+				<attrdef>Timber stand Improvement needs are counted against the following planned activities. These are removed when the activity is completed.</attrdef>
+				<attrdefs>NRM Facts</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>4511</edomv>
+						<edomvd>Individual tree release and weeding</edomvd>
+						<edomvds>NRM Facts</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>4521</edomv>
+						<edomvd>Precommercial thinning - individual or selected trees</edomvd>
+						<edomvds>NRM Facts</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>4530</edomv>
+						<edomvd>Pruning</edomvd>
+						<edomvds>NRM Facts</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>4550</edomv>
+						<edomvd>Fertilizing</edomvd>
+						<edomvds>NRM Facts</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SU_CREATED_DATE</attrlabl>
+				<attrdef>The date the subunit was created</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Date (MM/DD/YYYY)</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>CRC_VALUE</attrlabl>
+				<attrdef>Cyclic Redundancy Check value used for change detection by the loading process</attrdef>
+				<attrdefs>U.S. Forest Service Chief Information Office (CIO) Enterprise Data Warehouse (EDW)</attrdefs>
+				<attrdomv>
+					<udom>Unique ID</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>BIOMASS_UTILIZATION</attrlabl>
+				<attrdef>Biomass is material left after an activity that could be used for other purposes. In order to be considered as utilized, a record or receipt must be issued for the use of the biomass. This is a required field for those Fire/Fuels activities that have key point 3 or 6 and have mechanical treatments (where the NFPORS category = Mechanical).</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>N</edomv>
+						<edomvd>Biomass was not utilized in conjunction with the activity. If the activity does not have a mechanical treatment, this field is automatically set to No and cannot be updated.</edomvd>
+						<edomvds>NRM FACTS User Guide</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>Y</edomv>
+						<edomvd>Biomass was utilized in conjunction with the activity. If Yes is selected, supporting documentation is required.</edomvd>
+						<edomvds>NRM FACTS User Guide</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>FUELS_KEYPOINT_AREA</attrlabl>
+				<attrdef>A numeric designation of the Programs within NFPORS (National Fire Plan Operations and Reporting System)</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>2</edomv>
+						<edomvd>Keypoint 2 - Post Wildfire Restoration Activities</edomvd>
+						<edomvds>FACTS User Guide</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>3</edomv>
+						<edomvd>Keypoint 3 - Primary Fuels Reduction Treatments</edomvd>
+						<edomvds>FACTS User Guide</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>6</edomv>
+						<edomvd>Keypoint 6 - Secondary Fuels Reduction Treatments</edomvd>
+						<edomvds>FACTS User Guide</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ACTIVITY_REMARKS</attrlabl>
+				<attrdef>Optional remarks and comments that are appropriate for the activity subunit.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Text</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SALE_CN</attrlabl>
+				<attrdef>An automatically generated control number for the sale.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Control number</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ACTIVITY_UNIT_CN</attrlabl>
+				<attrdef>An automatically generated control number for the activity unit.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Control number</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SHAPE.AREA</attrlabl>
+				<attrdef>Area of feature in internal units squared.</attrdef>
+				<attrdefs>Esri</attrdefs>
+				<attrdomv>
+					<udom>Positive real numbers that are automatically generated.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SHAPE.LEN</attrlabl>
+				<attrdef>Length of feature in internal units.</attrdef>
+				<attrdefs>Esri</attrdefs>
+				<attrdomv>
+					<udom>Positive real numbers that are automatically generated.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ACTIVITY_SITE_REMARKS</attrlabl>
+				<attrdef>A field on many different forms where the user can include comments, remarks, or anything they want to put about the activity site.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Text</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>IMPLEMENTATION_PROJECT_CN</attrlabl>
+				<attrdef>Implementation Projects are groupings of activities, such as those from a stewardship contract where many activities will take place. The Implementation Project field allows the user to group activities and subsequently query activities by that group.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>The name of the implementation project.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>MGT_AREA_CODE</attrlabl>
+				<attrdef>The management area code represents geographic areas designated in each Forest's Land Management Plan. Each forest has developed distinct management direction in response to localized issues and resource opportunities. Values for this field are set by the Data Manager on the Establish Management Area and Management Prescription screen.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Code</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>AWARD_DATE</attrlabl>
+				<attrdef>The contract award date. This field is automatically entered from TIM when the sale is awarded.</attrdef>
+				<attrdefs>NRM FACTS User Guide</attrdefs>
+				<attrdomv>
+					<udom>Date in MM/DD/YYYY format</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>EVENT_NAME</attrlabl>
+				<attrdef>The name of the causal agent that was selected.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Name</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SLOPE</attrlabl>
+				<attrdef>The average percentage incline of the subunit.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Percentage of the general incline of the land measured in vertical feet/100 horizontal feet.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>LOCAL_QUALIFIER</attrlabl>
+				<attrdef>This field is for local use to add detail to the national activity codes. This field is populated by the Data Manager and is specific to each activity code.</attrdef>
+				<attrdefs>FACTS Data Dictionary</attrdefs>
+				<attrdomv>
+					<udom>Text</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>MGT_PRESCRIPTION_CODE</attrlabl>
+				<attrdef>Management prescription codes are determined at the Forest level and represent management themes that are applied to specific land types. Within the general framework of the Forest Standards and Guidelines, they identify the activities that are to be emphasized or permitted on that land. There may be several Management Prescriptions within a Management Area</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Code values for this field are set by the Data Manager on the Establish Management Area and Management Prescription screen.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>NEPA_DOC_NBR</attrlabl>
+				<attrdef>A numeric code that uniquely identifies the NEPA (National Environmental Policy Act) document stored in either FACTS or PALS (Planning, Appeals, and Litigation System). A value of not required (NOT REQD) may be used when the activity is not in PALS, or is a plan or survey activity.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Number</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>METHOD</attrlabl>
+				<attrdef>The text description for the pertinent Method Code as defined in FACTS.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<codesetd>
+						<codesetn>FACTS Data Dictionary</codesetn>
+						<codesets>https://www.fs.usda.gov/r5/rsl/projects/frdb/layers/FACTS_Data_Dictionary.pdf</codesets>
+					</codesetd>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ISWUI</attrlabl>
+				<attrdef>This field indicates whether an activity is within the Wildlife Urban Interface (WUI). The WUI is a line, area, or zone where structures and other human development meet or intermingle with undeveloped wildland or vegetative fuels. (Glossary of Wildland Fire Terminology, 1996)</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>N</edomv>
+						<edomvd>NO</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>Y</edomv>
+						<edomvd>YES</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>FISCAL_YEAR_AWARDED</attrlabl>
+				<attrdef>Fiscal year awarded. The Federal Fiscal Year begins on October 1 and ends on September 30 of the succeeding calendar year.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>YYYY</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>PRODUCTIVITY_CLASS</attrlabl>
+				<attrdef>Productivity class is a code that is required for silvicultural activities. It represents the ability of the land to produce timber products.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>0</edomv>
+						<edomvd>None (water or non-forested)</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>1</edomv>
+						<edomvd>225 or more cubic feet per acre per year</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>2</edomv>
+						<edomvd>165-224 cubic feet per acre per year</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>3</edomv>
+						<edomvd>120-164 cubic feet per acre per year</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>4</edomv>
+						<edomvd>85-119 cubic feet per acre per year</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>5</edomv>
+						<edomvd>50-84 cubic feet per acre per year</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>6</edomv>
+						<edomvd>20-49 cubic feet per acre per year</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>7</edomv>
+						<edomvd>Less than 20 cubic feet per acre per year</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>9</edomv>
+						<edomvd>Unknown</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>METHOD_CODE</attrlabl>
+				<attrdef>Code for the method planned or used to accomplish an activity; works with equipment.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<codesetd>
+						<codesetn>FACTS Data Dictionary</codesetn>
+						<codesets>https://www.fs.usda.gov/r5/rsl/projects/frdb/layers/FACTS_Data_Dictionary.pdf</codesets>
+					</codesetd>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SUID</attrlabl>
+				<attrdef>Subunit ID is a 19-digit identifying code that is a concatenation of the Region, Proclaimed Forest, District, FACTS ID and Subunit fields. The SUID identifies down to the subunit where an activity will occur within an Activity Unit. Activity Subunits can have multiple activities on them and overlap with other Subunits within the Activity Unit. SUID is alpha/numeric. SUID is one of the links between spatial and tabular data records.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>The activity subunit that corresponds to the land encompassing the whole of the activity unit must have a subunit ID of '000'. When activities are performed on only a portion of an activity unit, a new subunit can be created to represent that portion. These subunits may be numbered in sequential order or use letters that more easily identify the subunit. The subunit is identified in total by a concatenation of the AU (Activity Unit) Region, AU Proclaimed or Administrative Forest, AU District, FACTS ID, and Subunit fields. An example of a SUID is 0111021A51466541016. This first six numbers of this 19-digit code include the region/forest/district code (011102), followed by the ten-digit FACTS ID (1A51466541), and concluded with the three digit subunit (016).</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>DATE_COMPLETED</attrlabl>
+				<attrdef>The date that work is physically completed.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Date in DD/MM/YYYY format.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SALE_CATEGORY</attrlabl>
+				<attrdef>The sale category indicates the general type of sale (Historic, TIM Contract, Product Plan, Multi Contract).</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<codesetd>
+						<codesetn>FACTS Data Dictionary</codesetn>
+						<codesets>https://www.fs.usda.gov/r5/rsl/projects/frdb/layers/FACTS_Data_Dictionary.pdf</codesets>
+					</codesetd>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>OWNERSHIP</attrlabl>
+				<attrdef>The entity (person, Agency, Tribe, or company) that owns the land where the activity unit is located.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>ARL</edomv>
+						<edomvd>Agriculture Research Land</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>BIA</edomv>
+						<edomvd>Bureau of Indian Affairs</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>BLM</edomv>
+						<edomvd>Bureau of Land Management</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>BOR</edomv>
+						<edomvd>City/Borough Lands</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>BRC</edomv>
+						<edomvd>Bureau of Reclamation</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>COE</edomv>
+						<edomvd>Corps of Engineers</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>CTL</edomv>
+						<edomvd>Conservation Trust</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>CTY</edomv>
+						<edomvd>County</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>DOD</edomv>
+						<edomvd>Department of Defense</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>DOE</edomv>
+						<edomvd>Department of Energy</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>ESL</edomv>
+						<edomvd>Encumbered Selected Lands</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>FFP</edomv>
+						<edomvd>Foreign Forestry</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>FOA</edomv>
+						<edomvd>Foreign Other Agency</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>FPV</edomv>
+						<edomvd>Foreign Private</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>FS</edomv>
+						<edomvd>USDA Forest Service</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>FWS</edomv>
+						<edomvd>US Fish and Wildlife Service</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>IND</edomv>
+						<edomvd>Indian Lands</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>MIN</edomv>
+						<edomvd>Mining Claims</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>MUN</edomv>
+						<edomvd>Municipal Owned/Mgmt</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>NPS</edomv>
+						<edomvd>National Park Service</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>NWR</edomv>
+						<edomvd>National Wildlife Refuge</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>O and C Lands</edomv>
+						<edomvd>O and C Lands</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>OFA</edomv>
+						<edomvd>Other Federal Agencies</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>OGV</edomv>
+						<edomvd>Other Government Agencies</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>OLA</edomv>
+						<edomvd>Other Local Agencies</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>OSA</edomv>
+						<edomvd>Other State Agencies</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>PIF</edomv>
+						<edomvd>Industrial Forestry</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>PIO</edomv>
+						<edomvd>Industrial Other</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>PUB</edomv>
+						<edomvd>Public (Private Citizen)</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>PVT</edomv>
+						<edomvd>Private</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>RR</edomv>
+						<edomvd>Railroad</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>RUR</edomv>
+						<edomvd>Rural Fire Protection</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>STA</edomv>
+						<edomvd>State</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>STF</edomv>
+						<edomvd>State Forestry</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>STP</edomv>
+						<edomvd>State Park</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>STS</edomv>
+						<edomvd>State School</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>STW</edomv>
+						<edomvd>State Wildlife</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>TNL</edomv>
+						<edomvd>Tribal Nation</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ADMIN_DISTRICT</attrlabl>
+				<attrdef>A code which uniquely identifies a Ranger District within a forest.</attrdef>
+				<attrdefs>U.S. Forest Service</attrdefs>
+				<attrdomv>
+					<udom>Ranger District Code</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>AU_NAME</attrlabl>
+				<attrdef>Activity Unit Name</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Text</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SU_SECURITY_ID</attrlabl>
+				<attrdef>The 6-digit security ID for the organizational unit or administrative organization that manages the subunit.</attrdef>
+				<attrdefs>USFS GIS Data Dictionary</attrdefs>
+				<attrdomv>
+					<udom>RRFFDD (R = Region code number, F = Forest code number, and D = District code number)</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>EQUIPMENT_CODE</attrlabl>
+				<attrdef>Code for the equipment used to accomplish the activity. This is a required field.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<codesetd>
+						<codesetn>FACTS Data Dictionary, Table 10 - Equipment</codesetn>
+						<codesets>https://www.fs.usda.gov/r5/rsl/projects/frdb/layers/FACTS_Data_Dictionary.pdf</codesets>
+					</codesetd>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>AU_ORG</attrlabl>
+				<attrdef>Activity Unit Organization</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Same as SU_SECURITY_ID</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>PURPOSE_CODE</attrlabl>
+				<attrdef>The purpose code addresses the primary benefiting action for the activity.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>AIR</edomv>
+						<edomvd>Air</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>ANML</edomv>
+						<edomvd>Animal Control</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>BD</edomv>
+						<edomvd>Brush Disposal</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>BOT</edomv>
+						<edomvd>Botany</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>CLTR</edomv>
+						<edomvd>Cultural Resources</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>DIS</edomv>
+						<edomvd>Disease Control</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>ENG</edomv>
+						<edomvd>Engineering</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>FE</edomv>
+						<edomvd>Fisheries Enhancement</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>FIRE</edomv>
+						<edomvd>Wildfire</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>FTF</edomv>
+						<edomvd>Fuels Treatment - Final</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>FTI</edomv>
+						<edomvd>Fuels Treatment - Initial or Interim</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>FTM</edomv>
+						<edomvd>Fuels Treatment - Maintenance</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>FUEL</edomv>
+						<edomvd>Fuels</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>INS</edomv>
+						<edomvd>Insect Control</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>INV</edomv>
+						<edomvd>Invasive Species</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>REC</edomv>
+						<edomvd>Recreation</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>RF</edomv>
+						<edomvd>Reforestation</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>RNGE</edomv>
+						<edomvd>Range</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>SOIL</edomv>
+						<edomvd>Soils/Hydrology</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>SS</edomv>
+						<edomvd>Streambank stabilization</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>TES</edomv>
+						<edomvd>Threatened, Endangered, and Sensitive Species</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>TMBR</edomv>
+						<edomvd>Timber Management</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>TSI</edomv>
+						<edomvd>Timber Stand Improvement</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>WA</edomv>
+						<edomvd>Watershed Analysis</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>WILD</edomv>
+						<edomvd>Wildlife</edomvd>
+						<edomvds>USFS</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>FIREREGIME</attrlabl>
+				<attrdef>Fire Regime/Condition Class 1, 2, or 3</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>1</edomv>
+						<edomvd>Fire regimes are within the historical range and the risk of losing key ecosystem components is low. Vegetation attributes (species composition and structure) are intact and functioning within their historical range.</edomvd>
+						<edomvds>Fire Regime and Condition Class (https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5435658.pdf)</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>2</edomv>
+						<edomvd>Fire regimes have been moderately altered from their historical range. The risk of losing key ecosystem components is moderate. Fire frequencies have departed from historical frequencies by one or more return intervals (either increased or decreased). This may result in moderate changes to one or more of the following: fire size, intensity, severity, and landscape patterns. Vegetation attributes have been moderately altered from their historical range.</edomvd>
+						<edomvds>Fire Regime and Condition Class (https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5435658.pdf)</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>3</edomv>
+						<edomvd>Fire regimes have been significantly altered from their historical range. The risk of losing key ecosystem components is high. Fire frequencies have departed from historical frequencies by multiple return intervals. This may result in dramatic changes to one or more of the following: fire size, intensity, severity, and landscape patterns. Vegetation attributes have been significantly altered from their historical range.</edomvd>
+						<edomvds>Fire Regime and Condition Class (https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5435658.pdf)</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>NEEDS_ADJUSTMENT</attrlabl>
+				<attrdef>Some of the Needs activity codes, 4401 - 4409 and 4501-4509, that has the purpose of adjusting the needs balance in the TRACS/Silva system. TRACS stands for Trail Assessment and Condition Surveys. This field can be populated with an addition (+), a subtraction (-), or can be either (E) an addition or a subtraction.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>-</edomv>
+						<edomvd>Subtraction</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>+</edomv>
+						<edomvd>Addition</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>E</edomv>
+						<edomvd>Either addition or subtraction</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>N</edomv>
+						<edomvd>Not applicable (not reported in TRACS/Silva)</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>NBR_UNITS_ACCOMPLISHED</attrlabl>
+				<attrdef>The number of units of work accomplished by an activity.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Acres</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>PROC_FOREST</attrlabl>
+				<attrdef>The Forest within which the activity unit is physically located on the ground. This may or may not be the same Forest name and number that is administering that piece of ground or performing the activity (the Administrative Forest).</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Code</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ADMIN_REGION</attrlabl>
+				<attrdef>U.S. Forest Service Region, consisting of Region 01 (Northern Region), Region 02 (Rocky Mountain Region), Region 03 (Southwestern Region), Region 04 (Intermountain Region), Region 05 (Pacific Southwest Region), Region 06 (Pacific Northwest Region), Region 08 (Southern Region), Region 09 (Eastern Region), and Region 10 (Alaska Region). There is no Region 07. Regions are listed on https://www.fs.usda.gov/organization.</attrdef>
+				<attrdefs>U.S. Forest Service</attrdefs>
+				<attrdomv>
+					<udom>Region number</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>IMPL_PROJECT_TYPE</attrlabl>
+				<attrdef>An identifying type for an implementation project. An implementation project type may be the abbreviation of a special program or initiative. Examples include CFLRP, WBBS, ARRA, etc.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Text</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ACTIVITY_CODE</attrlabl>
+				<attrdef>The activity code is a 4-digit code that represents an activity. FACTS activity codes are numerically grouped into these categories: 1000 = Fire; 2000 = Range; 3000 = Cultural Resources and Recreation; 4000 = Timber and Silviculture; 5000 = Soil, Air and Watershed; 6000 = Wildlife; Threatened, Endangered, and Sensitive, and Fisheries; 7000 = Vegetation/Restoration; 8000 = Miscellaneous; 9000 = Engineering.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<codesetd>
+						<codesetn>FACTS User Guide, Appendix B: FACTS Activity Codes</codesetn>
+						<codesets>https://www.fs.usda.gov/r5/rsl/projects/frdb/layers/FACTS_Data_Dictionary.pdf</codesets>
+					</codesetd>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>TREATMENT_NAME</attrlabl>
+				<attrdef>Treatment Name is an optional field for describing treatments. The data entered here can be useful when running queries.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Description of treatment</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>GIS_ACRES</attrlabl>
+				<attrdef>The area of the feature in acres, calculated in North American Albers Equal Area Conic projection, North American Datum 1983 (NAD83)</attrdef>
+				<attrdefs>U.S. Forest Service</attrdefs>
+				<attrdomv>
+					<udom>Double</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ADMIN_FOREST</attrlabl>
+				<attrdef>The numerical code of the US Forest that administers the land. Forests are subdivisions of regions and can be found by drilling through regions on https://www.fs.usda.gov/organization</attrdef>
+				<attrdefs>U.S. Forest Service</attrdefs>
+				<attrdomv>
+					<udom>Forest number</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>KV_NBR_UNITS_FUNDED</attrlabl>
+				<attrdef>The number of units funded by the Knutson-Vandenberg (KV) trust fund plan.</attrdef>
+				<attrdefs>NRM FACTS User Guide</attrdefs>
+				<attrdomv>
+					<udom>Number</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>AU_FOREST</attrlabl>
+				<attrdef>Forest code used to identify the activity unit (AU). Code can be for either proclaimed or administrative forest.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Code</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SUBUNIT</attrlabl>
+				<attrdef>An activity subunit is a portion of an activity unit. The activity subunit that corresponds to the land encompassing the whole of the activity unit must have a subunit ID of '000'. When activities are performed on only a portion of an activity unit, a new subunit can be created to represent that portion. These subunits may be numbered in sequential order or use letters that more easily identify the subunit.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>3-digit subunit code</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>UNIT_ID</attrlabl>
+				<attrdef>The Unit ID is a field used to associate the activity to the specific timber sale unit. This allows for querying activities by sale name and Unit ID. The Unit ID may or may not be the same as the timber sale unit number.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Number</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>LONGITUDE</attrlabl>
+				<attrdef>Longitude of the centroid of the feature.</attrdef>
+				<attrdefs>Geographic location</attrdefs>
+				<attrdomv>
+					<udom>Decimal degrees</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>LATITUDE</attrlabl>
+				<attrdef>Latitude of the centroid of the feature.</attrdef>
+				<attrdefs>Geographic location</attrdefs>
+				<attrdomv>
+					<udom>Decimal degrees</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>IMPL_PROJECT_NBR</attrlabl>
+				<attrdef>The number of the implementation project.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Number</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>COST_PER_UNIT</attrlabl>
+				<attrdef>The cost per unit of measure to accomplish the activity.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>U.S. Dollars</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>EXAM_NBR</attrlabl>
+				<attrdef>Exam Number is used to indicate the sequential number of the exam. For example, 1 = 1st exam, 2 = 2nd exam, 3 = 3rd exam, etc.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Integer</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>FISCAL_YEAR_PLANNED</attrlabl>
+				<attrdef>The fiscal year the activity is planned. The Federal Fiscal Year is begins on October 1 and ends on September 30 of the succeeding calendar year.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Year (YYYY)</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>UOM</attrlabl>
+				<attrdef>The units that the data is recorded such as acres, miles, each, etc.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>ACRES</edomv>
+						<edomvd>Acres</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>PURCHASER_NAME</attrlabl>
+				<attrdef>The purchaser's name for Historic or Multiple Contract sales. This field is automatically be entered from TIM when creating a new sale record for Contract Sale or Product Plan. The purchaser name for a product plan is simply Product Plan, as there is no single purchaser of forest product permits. The purchaser name cannot be changed.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Name</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>EVENT_CN</attrlabl>
+				<attrdef>An automatically generated control number for the event.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Control number</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ACTIVITY</attrlabl>
+				<attrdef>Name description of the activity code.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<codesetd>
+						<codesetn>FACTS User Guide, Appendix B: FACTS Activity Codes</codesetn>
+						<codesets>https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/fseprd539041.pdf</codesets>
+					</codesetd>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>WORKFORCE_CODE</attrlabl>
+				<attrdef>A code that indicates the group, general person type or technique planned or used to accomplish a specific activity.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<codesetd>
+						<codesetn>FACTS Data Dictionary</codesetn>
+						<codesets>https://www.fs.usda.gov/r5/rsl/projects/frdb/layers/FACTS_Data_Dictionary.pdf</codesets>
+					</codesetd>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SALE_CLOSURE_DATE</attrlabl>
+				<attrdef>The contract sale closure date. Must be later than the sale award date.</attrdef>
+				<attrdefs>NRM FACTS User Guide</attrdefs>
+				<attrdomv>
+					<udom>Date in MM/DD/YYYY format</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SALE_NAME</attrlabl>
+				<attrdef>The name of the timber sale as it appears in STARS (Store Tracking and Redemption System) and TIM (Timber Information Manager).</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Proper name of Timber Sale Contracts.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>NEPA_HFRA</attrlabl>
+				<attrdef>Indicates whether the activity was accomplished under and to meet the Healthy Forest Restoration Act.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>N</edomv>
+						<edomvd>No</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>CWPP</attrlabl>
+				<attrdef>Community Wildfire Protection Plan. If WUI is set to Yes, than CWPP (Community Wildfire Protection Plan) must be entered. Community Wildfire Protection Plans may address issues such as wildfire response, hazard mitigation, community preparedness, structure protection, or all of the above. Select the choice that best describes the CWPP prepared for the activity area. This is a required field for Fire/Fuels activities with a key point of 3 or 6 that are indicated as WUI - it is not required for Non-WUI records.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Options include: Agency-Prepared Community Plan, CWPP Equivalent, CWPP or None.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>AU_DISTRICT</attrlabl>
+				<attrdef>District code used to identify the activity unit (AU).</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Code</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>DATE_AWARDED</attrlabl>
+				<attrdef>For service contracts this is the date of contract award; For Force Account (work done by Forest Service crews and equipment), it is the date date the work is completed.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>YYYY</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>FACTS_ID</attrlabl>
+				<attrdef>Identifier for an activity unit (geographical area) on which activities occur.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Must be 10 alpha numeric characters with no spaces.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ACT_CREATED_BY</attrlabl>
+				<attrdef>Indicates the source that created the activity record.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Text (initials or abbreviation)</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>NEEDS</attrlabl>
+				<attrdef>A field for increasing or decreasing the reported needs balance for activity codes 4401-4409 and 4501-4509.</attrdef>
+				<attrdefs>NRM Facts User Guide</attrdefs>
+				<attrdomv>
+					<udom>Textual description</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SITE_NBR_OF_UNITS</attrlabl>
+				<attrdef>Number of units that the activity site covers</attrdef>
+				<attrdefs>USDA Forest Service</attrdefs>
+				<attrdomv>
+					<udom>Number</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>FISCAL_YEAR_COMPLETED</attrlabl>
+				<attrdef>Fiscal Year the activity is completed. This is calculated from the Date Completed</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Year (YYYY)</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>FUND_CODES</attrlabl>
+				<attrdef>Funding Source used to pay for the Activity.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<codesetd>
+						<codesetn>FACTS Data Dictionary, Table 11 - Funds</codesetn>
+						<codesets>https://www.fs.usda.gov/r5/rsl/projects/frdb/layers/FACTS_Data_Dictionary.pdf</codesets>
+					</codesetd>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ELEVATION</attrlabl>
+				<attrdef>The elevation of the activity unit in feet above sea level. The value for this field is the mid-slope elevation of the activity unit (i.e. 4510).</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Ft above sea level</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>STATE_ABBR</attrlabl>
+				<attrdef>Two-letter abbreviation for the primary legal subdivision of the United States.</attrdef>
+				<attrdefs>U.S. Census Bureau</attrdefs>
+				<attrdomv>
+					<codesetd>
+						<codesetn>List of U.S. State Abbreviations</codesetn>
+						<codesets>http://www.census.gov/geo/reference/ansi_statetables.html</codesets>
+					</codesetd>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>OBJECTID</attrlabl>
+				<attrdef>Internal feature number.</attrdef>
+				<attrdefs>Esri</attrdefs>
+				<attrdomv>
+					<udom>Sequential unique whole numbers that are automatically generated.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>NEPA_HFI</attrlabl>
+				<attrdef>Indicates whether the activity was accomplished under and to meet the Healthy Forest Initiative.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>N</edomv>
+						<edomvd>No</edomvd>
+						<edomvds>NRM FACTS</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>NEPA_PROJECT_NAME</attrlabl>
+				<attrdef>The name of the project covered by the NEPA document, usually in the title of the document. A value of "DEFAULT FOR NOT REQUIRED" may be used when the activity is not in PALS, or is a plan or survey activity.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Text</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>BASE_YEAR</attrlabl>
+				<attrdef>Calendar year in which the costs were estimated. This is a required field. The default value is the current fiscal year.</attrdef>
+				<attrdefs>NRM FACTS User Guide</attrdefs>
+				<attrdomv>
+					<udom>Year</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>NBR_UNITS_PLANNED</attrlabl>
+				<attrdef>The number of units planned to be done by an activity.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Acres</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>AU_REGION</attrlabl>
+				<attrdef>Region code used to identify the activity unit (AU).</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Code</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>LAND_SUITABILITY_CODE</attrlabl>
+				<attrdef>The Land Suitability Class code describes the management of an activity unit. The code represents the main management emphasis for a given area and is related to the Forest Plan prescriptions. The enumerated list is incomplete.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<codesetd>
+						<codesetn>FACTS Data Dictionary, Table 3</codesetn>
+						<codesets>https://www.fs.usda.gov/r5/rsl/projects/frdb/layers/FACTS_Data_Dictionary.pdf</codesets>
+					</codesetd>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>NFPORS_CATEGORY</attrlabl>
+				<attrdef>NFPORS (National Fire Plan Operations and Reporting System) Category</attrdef>
+				<attrdefs>NRM FACTS Glossary</attrdefs>
+				<attrdomv>
+					<udom>Category (e.g. Mechanical, Fire, Reforestation, Wildlife Habitat)</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>NEPA_PROJECT_CN</attrlabl>
+				<attrdef>A control number for the NEPA (National Environmental Policy Act).</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Control number</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>LEGAL_LOCATION</attrlabl>
+				<attrdef>The legal location of the subunit.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Township, Section, Range</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>PALS_PROJECT_CN</attrlabl>
+				<attrdef>The PALS (Planning, Appeals, and Litigation System) Project Control Number is used to uniquely identify a NEPA Project in the PALS database.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Control number</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ASPECT</attrlabl>
+				<attrdef>Aspect is the cardinal direction that the landscape predominantly faces at a defined position, such as the center point of the occurrence.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Direction of slope in compass points.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>EQUIPMENT</attrlabl>
+				<attrdef>Name of the equipment used to accomplish the activity. This is a required field.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<codesetd>
+						<codesetn>FACTS Data Dictionary, Table 10 - Equipment</codesetn>
+						<codesets>https://www.fs.usda.gov/r5/rsl/projects/frdb/layers/FACTS_Data_Dictionary.pdf</codesets>
+					</codesetd>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SU_CREATED_BY</attrlabl>
+				<attrdef>Indicates the source that created the subunit.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Text (initials or abbreviation)</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SUID_CN</attrlabl>
+				<attrdef>A control number for the SUID (Subunit ID).</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Control number</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SU_MODIFIED_BY</attrlabl>
+				<attrdef>Person that last modified the subunit record in the transactional system</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Text (initials or abbreviation)</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>ACT_MODIFIED_DATE</attrlabl>
+				<attrdef>Date the activity was last modified.</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<udom>Date (MM/DD/YYYY)</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>NEPA_DOC_TYPE</attrlabl>
+				<attrdef>Project type is the type of NEPA decision signed (ROD, DN, DM, NR). NR is for a project that does not require NEPA documentation</attrdef>
+				<attrdefs>NRM FACTS</attrdefs>
+				<attrdomv>
+					<edom>
+						<edomv>DM</edomv>
+						<edomvd>Decision Memo (Categorical Exclusion)</edomvd>
+						<edomvds>FACTS Data Dictionary</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>DN</edomv>
+						<edomvd>Decision Notice (Environmental Assessment)</edomvd>
+						<edomvds>FACTS Data Dictionary</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>NR</edomv>
+						<edomvd>Not Required</edomvd>
+						<edomvds>FACTS Data Dictionary</edomvds>
+					</edom>
+				</attrdomv>
+				<attrdomv>
+					<edom>
+						<edomv>ROD</edomv>
+						<edomvd>Record of Decision (Environmental Impact Statement)</edomvd>
+						<edomvds>FACTS Data Dictionary</edomvds>
+					</edom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>CONTRACT_PLANNED_TERM</attrlabl>
+				<attrdef>Contract Planned Termination Date: The planned date that the contract will be terminated. This is automatically entered from TIM for Contract Sales and Product Plans.</attrdef>
+				<attrdefs>NRM FACTS User Guide</attrdefs>
+				<attrdomv>
+					<udom>Date in MM/DD/YYYY format</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>PERCENT_FUNDED</attrlabl>
+				<attrdef>The percent that is funded for the specified fund code. All fund codes used for the activity must total 100%.</attrdef>
+				<attrdefs>NRM FACTS User Guide</attrdefs>
+				<attrdomv>
+					<udom>Percent</udom>
+				</attrdomv>
+			</attr>
+		</detailed>
+	</eainfo>
+	<distinfo>
+		<distrib>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+				</cntorgp>
+				<cntaddr>
+					<addrtype>physical</addrtype>
+					<city>Washington</city>
+					<state>DC</state>
+					<postal>20250</postal>
+					<country>US</country>
+				</cntaddr>
+				<cntvoice>Please send an e-mail to the address below</cntvoice>
+				<cntemail>SM.FS@usda.gov</cntemail>
+			</cntinfo>
+		</distrib>
+	</distinfo>
+	<metainfo>
+		<metd>20260208</metd>
+		<metc>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+				</cntorgp>
+				<cntaddr>
+					<addrtype>physical</addrtype>
+					<city>Washington</city>
+					<state>DC</state>
+					<postal>20250</postal>
+				</cntaddr>
+				<cntvoice>Please send an e-mail to the address below.</cntvoice>
+				<cntemail>SM.FS.data@usda.gov</cntemail>
+			</cntinfo>
+		</metc>
+		<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+		<metstdv>FGDC-STD-001-1998</metstdv>
+		<mettc>local time</mettc>
+	</metainfo>
+</metadata>

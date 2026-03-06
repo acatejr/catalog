@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>U.S. Forest Service</origin>
+<pubdate>20260201</pubdate>
+<pubtime>003525</pubtime>
+<title>S_USA.Trans_RoadCore_FS</title>
+<geoform>vector digital data</geoform>
+<onlink>http://data.fs.usda.gov/geodata/edw/datasets.php</onlink>
+</citeinfo>
+</citation>
+<descript>
+<abstract>Existing Forest Service roads with attributes representing their characteristics. Each feature represents a segment of road where the attributes are the same. Attributes apply either to the entire road or to some measured distance along the road.</abstract>
+<purpose>This feature class represents existing National Forest System (NFSR) roads necessary for the protection, administration and utilization of the National Forest. Only roads under the jurisdiction of the Forest Service are included.</purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>20151231</caldate>
+</sngdate>
+</timeinfo>
+<current>publication date</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>Daily</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-149.981330</westbc>
+<eastbc>-65.729375</eastbc>
+<northbc>61.028984</northbc>
+<southbc>18.267981</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>transportation</themekey>
+</theme>
+<theme>
+<themekt>None</themekt>
+<themekey>motor vehicle</themekey>
+<themekey>transportation</themekey>
+<themekey>Road</themekey>
+<themekey>access management</themekey>
+</theme>
+</keywords>
+<accconst>None</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<native>Esri ArcGIS 13.3.4.52636</native>
+</idinfo>
+<dataqual>
+<logic>None</logic>
+<complete>None</complete>
+<posacc>
+<horizpa>
+<horizpar>Generally the source information used to record spatial locations are from: 1) on-screen digitizing with a georeferenced topographic or image background; or 2) GPS field collected positions.</horizpar>
+</horizpa>
+</posacc>
+<lineage>
+<procstep>
+<procdesc>Dynamic segmentation, using the "Make Route Event Layer" process is used to segment the measured routes in each of the Forest feature classes. The resulting segmented feature classes are appended together to form an intermediate agency-wide feature class. The geometry originated as feature classes managed by individual National Forests. The feature classes managed by each National Forest are copied into a central location for processing.</procdesc>
+<procdate>20120630</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>String</sdtstype>
+<ptvctcnt>0</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.Trans_RoadCore_FS</enttypl>
+<enttypd>A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>Esri GIS Dictionary</enttypds>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>RTE_CN</attrlabl>
+<attrdef>Unique identifier of a route. It is a unique number within the Forest Service that is composed of a sequence number concatenated with the Oracle database instance identifier. It is a foreign key to the CN column in RTE_BASICS. It is used to join the route features to the II_Road_Core_ATM table in the ETL (Extract, Transform, and Load) process.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Sequence Number &amp; Oracle Instance Number string generated by Oracle</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>BMP</attrlabl>
+<attrdef>Beginning measure point of the route segment, expressed in miles.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Positive numbers</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>EMP</attrlabl>
+<attrdef>Ending measure point of the route segment, expressed in miles.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Ending measure point of the route segment.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ID</attrlabl>
+<attrdef>The official identifier of the route.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Free form</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>NAME</attrlabl>
+<attrdef>Common name of the road</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Free form</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SYMBOL_CODE</attrlabl>
+<attrdef>Field is populated using an SQL query SYSTEM, SURFACE_TYPE, and OPER_MAINT_LEVEL to assign the using Cartographic Feature File (CFF) to the road segment</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>100</edomv>
+<edomvd>MULTI-LANE DIVIDED HIGHWAY</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>101</edomv>
+<edomvd>HIGHWAY</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>106</edomv>
+<edomvd>ROAD NOT MAINTAINED FOR PASSENGER CARS</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>515</edomv>
+<edomvd>DIRT ROAD SUITABLE FOR PASSENGER CAR</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>517</edomv>
+<edomvd>PAVED ROAD SUITABLE FOR PASSENGER CAR</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>518</edomv>
+<edomvd>Gravel Road, Suitable for Passenger Car</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SEG_LENGTH</attrlabl>
+<attrdef>Length of the segment in miles as the difference between EMP and BMP. BMP and EMP are derived from field measurements and are different than the length of the segment calculated by ArcGIS (GIS_MILES). The Seg_Length is the official length on record of the segment.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Positive numbers</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>JURISDICTION</attrlabl>
+<attrdef>The legal right to control or regulate use of a transportation facility. Jurisdiction requires authority, but not necessarily ownership. The authority to construct or maintain a road may be derived from fee title, an easement, an agreement or some other similar method.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>FS - FOREST SERVICE</edomv>
+<edomvd>USDA Forest Service</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SYSTEM</attrlabl>
+<attrdef>A network of travel ways serving a common need or purpose, managed by an entity with the authority to finance, build, operate and maintain the routes. </attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>NFSR - NATIONAL FOREST SYSTEM ROAD</edomv>
+<edomvd>A forest road other than a road which has been authorized by a legally documented right-of-way held by a State, County or other local public road authority. (36 CFR 212.1, 36 CFR 251.51, 36 CFR 261.2). Previously known as FDR - Forest Development Road.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ROUTE_STATUS</attrlabl>
+<attrdef>Current physical state of being of the route segment</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>EX - EXISTING</edomv>
+<edomvd>A route that physically exists</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>OPER_MAINT_LEVEL</attrlabl>
+<attrdef>Operational Maintenance Level defines the level to which the road is currently being maintained. The maintenance level currently assigned to the road considering current needs, road condition, budget constraints and environmental concerns.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>1 - BASIC CUSTODIAL CARE (CLOSED)</edomv>
+<edomvd>Assigned to roads that have been placed in storage (greater than one year) between intermittent uses. Basic custodial maintenance is performed.  Road is closed to vehicular traffic</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>2 - HIGH CLEARANCE VEHICLES</edomv>
+<edomvd>Assigned to roads open for use by high clearance vehicles.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>3 - SUITABLE FOR PASSENGER CARS</edomv>
+<edomvd>Assigned to roads open for and maintained for travel by a prudent driver in a standard passenger car.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>4 - MODERATE DEGREE OF USER COMFORT</edomv>
+<edomvd>Assigned to roads that provide a moderate degree of user comfort and convenience at moderate travel speeds.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>5 - HIGH DEGREE OF USER COMFORT</edomv>
+<edomvd>Assigned to roads that provide a high degree of user comfort and convenience</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>OBJECTIVE_MAINT_LEVEL</attrlabl>
+<attrdef>The maintenance level to be assigned at a future date considering future road management objectives, traffic needs, budget constraints and environmental concerns.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>1 - BASIC CUSTODIAL CARE (CLOSED)</edomv>
+<edomvd>Assigned to roads that have been placed in storage (greater than one year) between intermittent uses. Basic custodial maintenance is performed.  Road is closed to vehicular traffic</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>2 - HIGH CLEARANCE VEHICLES</edomv>
+<edomvd>Assigned to roads open for use by high clearance vehicles.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>3 - SUITABLE FOR PASSENGER CARS</edomv>
+<edomvd>Assigned to roads open for and maintained for travel by a prudent driver in a standard passenger car.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>4 - MODERATE DEGREE OF USER COMFORT</edomv>
+<edomvd>Assigned to roads that provide a moderate degree of user comfort and convenience at moderate travel speeds.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>5 - HIGH DEGREE OF USER COMFORT</edomv>
+<edomvd>Assigned to roads that provide a high degree of user comfort and convenience.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>C - CONVERT USE</edomv>
+<edomvd>Convert use of the facility to another use such as a trail.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>D - DECOMMISSION</edomv>
+<edomvd>Assigned to roads that have been or are to be decommissioned.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FUNCTIONAL_CLASS</attrlabl>
+<attrdef>The grouping of roads by the character of service they provide.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>A - ARTERIAL</edomv>
+<edomvd>An NFS road that serves smaller areas than an arterial road and that usually connects arterial roads to local roads or terminal facilities. </edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>C - COLLECTOR</edomv>
+<edomvd>An NFS road that serves smaller areas than an arterial road and that usually connects arterial roads to local roads or terminal facilities. Provides service to smaller land areas than an arterial road. It usually connects forest arterial roads to local forest roads or terminal facilities.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>L - LOCAL</edomv>
+<edomvd>An NFS road that connects a terminal facility with collector roads, arterial roads, or public highways and that usually serves a single purpose involving intermittent use.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SURFACE_TYPE</attrlabl>
+<attrdef>The wearing course; usually designed to resist skidding, traffic abrasion and the disintegrating effects of weather.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>AC - ASPHALT</edomv>
+<edomvd>Asphaltic Concrete</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>AGG - CRUSHED AGGREGATE OR GRAVEL</edomv>
+<edomvd>Crushed or screened graded material</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>BST - BITUMINOUS SURFACE TREATMENT</edomv>
+<edomvd>Built up surface of asphalt emulsion and aggregate, not a dust palliative.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>CSOIL - COMPACTED SOIL</edomv>
+<edomvd>Compacted Native Material</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>FSOIL - FROZEN SOIL</edomv>
+<edomvd>Template has been cleared and rough shape completed but cannot be used until frozen conditions exist.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>IMP - IMPROVED NATIVE MATERIAL</edomv>
+<edomvd>Imported or processed material (pit run, select borrow, or admixture added to the surface soil and compacted)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>NAT - NATIVE MATERIAL</edomv>
+<edomvd>No imported or processed materials</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>OTHER - OTHER</edomv>
+<edomvd>Other Surface Type</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>P - PAVED</edomv>
+<edomvd>Unknown manufactured hard surface</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>PCC - PORTLAND CEMENT CONCRETE</edomv>
+<edomvd>Portland Cement Concrete</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LANES</attrlabl>
+<attrdef>The number of lanes the travel way has.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>1 - SINGLE LANE</edomv>
+<edomvd>Single Lane Road</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>2 - DOUBLE LANE</edomv>
+<edomvd>Double Lane Road</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>3 - THREE LANE</edomv>
+<edomvd>3 Lane Road</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>4 - FOUR LANE</edomv>
+<edomvd>4 Lane Road</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PRIMARY_MAINTAINER</attrlabl>
+<attrdef>The agency or party having primary (largest share) financial responsibility for maintenance.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>BIA - BUREAU OF INDIAN AFFAIRS</edomv>
+<edomvd>USDI Bureau of Indian Affairs</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>BLM - BUREAU OF LAND MANAGEMENT</edomv>
+<edomvd>USDI Bureau of Land Management</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>BOR - BUREAU OF RECLAMATION</edomv>
+<edomvd>USDI Bureau of Reclamation</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>C - COUNTY, PARISH, BOROUGH</edomv>
+<edomvd>County, Parish, Borough</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>CO - COOPERATOR</edomv>
+<edomvd>Cooperator (industrial cost share)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>COE - CORPS OF ENGINEERS</edomv>
+<edomvd>US Army Corps of Engineers</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>CU - COMMERCIAL USER</edomv>
+<edomvd>Commercial user</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>DOD - DEFENSE DEPARTMENT</edomv>
+<edomvd>US Defense Department</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>DOE - DEPARTMENT OF ENERGY</edomv>
+<edomvd>US Department of Energy</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>FAA - FEDERAL AVIATION ADMINISTRATION</edomv>
+<edomvd>USDOT Federal Aviation Administration</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>FS - FOREST SERVICE</edomv>
+<edomvd>USDA Forest Service</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>FWS - FISH AND WILDLIFE SERVICE</edomv>
+<edomvd>USDI Fish and Wildlife Service</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>L - LOCAL</edomv>
+<edomvd>Town, Township, Municipal Agency (City or other local civil government)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>NPS - NATIONAL PARK SERVICE</edomv>
+<edomvd>USDI National Park Service</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>OF - OTHER FEDERAL AGENCIES</edomv>
+<edomvd>Other Federal Agencies</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>P - PRIVATE</edomv>
+<edomvd>Private (profit; not for profit)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>S - STATE</edomv>
+<edomvd>State Agency</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>SH - STATE HIGHWAY</edomv>
+<edomvd>State Highway Department</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>SLR - STATE LANDS ROAD</edomv>
+<edomvd>State lands organizations (Department of Natural Resources)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>UNK - UNKNOWN</edomv>
+<edomvd>Not known and needs to be resolved</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>COUNTY</attrlabl>
+<attrdef>State and County/Borough/Parish/Township in which the route segment physical resides.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Format: SS - COUNTY where SS is the 2 digit State Code and COUNTY is name of the County.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CONGRESSIONAL_DISTRICT</attrlabl>
+<attrdef>The Congressional District where the route segment physically resides.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Format: SS-99 where SS is 2 digit State Code and 99 is 2 digit Congressional District Number.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ADMIN_ORG</attrlabl>
+<attrdef>The Forest Service unit where the route segment physical resides or the primary Forest Service unit served by the route segment.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Format: RRFFDD where RR is the 2-digit code for the Region, FF is the 2-digit code for the Forest, and DD is the 2-digit code for the District</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SERVICE_LIFE</attrlabl>
+<attrdef>The length of time that a facility is expected to provide a specified service.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>C - LONG TERM SERVICE</edomv>
+<edomvd>Continuous or annual recurrent service</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>I - INTERMITTENT TERM SERVICE</edomv>
+<edomvd>A road which is closed to vehicle traffic between periods of use. The closed period must exceed one year</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>IS - INTERMITTENT STORED SERVICE</edomv>
+<edomvd>Intermittent service road, closed to traffic. The road is in a condition that THERE IS LITTLE RESOURCE RISK IF maintenance IS NOT PERFORMED. (self-maintaining)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>S - SHORT TERM SERVICE</edomv>
+<edomvd>Short term use (including temporary roads)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LEVEL_OF_SERVICE</attrlabl>
+<attrdef>A description of the roads significant traffic characteristics and operating conditions. The levels reflect a number of factors, such as speed, travel time, traffic interruptions, freedom to maneuver, safety, driver comfort, convenience and operating cost. Specific definition differ by facility type such as Controlled Access highways, Multilane Rural without Access Control, Two Lanes, Urban and Suburban Arterials. Level of Service is classified by flow and ADT (Average Daily Traffic) greater than or less than 400. Refer to American Association of State Highway and Transportation Officials (AASHTO) for full descriptions.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>A - FREE FLOW &gt; 400 ADT</edomv>
+<edomvd>FREE FLOW &gt; 400 ADT</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>B - REASONABLY FREE FLOW &gt; 400 ADT
+            </edomv>
+<edomvd>REASONABLY FREE FLOW &gt; 400 ADT</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>C - STABLE FLOW &gt; 400 ADT</edomv>
+<edomvd>STABLE FLOW &gt; 400 ADT</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>D - APPROACHING UNSTABLE FLOW &gt; 400 ADT</edomv>
+<edomvd>APPROACHING UNSTABLE FLOW &gt; 400 ADT</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>E - UNSTABLE FLOW &gt; 400 ADT</edomv>
+<edomvd>UNSTABLE FLOW &gt; 400 ADT</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>F - FORCED OR BREAKDOWN FLOW &gt; 400 ADT</edomv>
+<edomvd>FORCED OR BREAKDOWN FLOW &gt; 400 ADT</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>G - FREE FLOWING MIXED TRAFFIC &lt; 400 ADT</edomv>
+<edomvd>Free flowing, mixed traffic; stable, smooth surface.  Provides safe service to all traffic. </edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>H - CONGESTED WHEN HEAVY TRAFFIC &lt; 400 ADT</edomv>
+<edomvd>Congested during heavy traffic, slower speeds and periodic dust; accommodates any legal-size load or vehicle. </edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>I - FLOW INTERRUPTED-USE LIMITED &lt; 400 ADT</edomv>
+<edomvd>Interrupted traffic flow, limited passing facilities, may not accommodate some vehicles.  Low design speeds. Unstable surface under certain traffic or weather. </edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>J - SLOW FLOW OR MAY BE BLOCKED &lt; 400 ADT</edomv>
+<edomvd>Traffic flow is slow and may be blocked by management activities. Two-way traffic is difficult, backing may be required. Rough and irregular surface.  Travel with low clearance vehicles is difficult. Single purpose facility.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PFSR_CLASSIFICATION</attrlabl>
+<attrdef>Federal Lands Transportation Program (FLTP) Road meets the requirements of the Federal Highway Administration (FHWA) guidance to provide access to high-use Federal recreation sites or Federal economic generators per 23 USC 203. The FLTPO classification indicates the status of FLTP designation.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>FLTP NETWORK - PROPOSED</edomv>
+<edomvd>Identification and inclusion in a network, of those FS roads meeting the criteria of a FLTP Designation.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>FLTP NETWORK - SUBSET </edomv>
+<edomvd>A subset of miles of roads within the FLTP NETWORK-PROPOSED upon which progress will be measured and reported to the FHWA - Federal Lands Highway Division</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MANAGING_ORG</attrlabl>
+<attrdef>The Managing Organization is the Forest Service unit (region/forest/district) that has the long-term responsibility for the management of the route segment.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Format: RRFFDD where RR is the 2-digit code for the Region, FF is the 2-digit code for the Forest, and DD is the 2-digit code for the District</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LOC_ERROR</attrlabl>
+<attrdef>The Location Error is generated by the ESRI software when placing event data against a Linear Referencing System. It is used to flag errors created when matching spatial feature with corresponding Oracle database records. It indicates where there are inconsistencies between the measure point(s) of a linear event and the measure values of the spatial feature.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>EMPTY ROUTE SHAPE</edomv>
+<edomvd>The route does not have a shape or the shape is empty.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>MEASURE EXTENT OUT OF ROUTE MEASURE RANGE</edomv>
+<edomvd>Could not find the route location's shape, the from-measure and the to-measure are outside of the route measures.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>NO ERROR</edomv>
+<edomvd>Locating was successful.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>ZERO LENGTH EXTENT</edomv>
+<edomvd>The from-measure is equal to the to-measure.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>ROUTE WITHOUT MEASURE</edomv>
+<edomvd>The route does not have measures or the measures are null.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>ROUTE NOT FOUND</edomv>
+<edomvd>The route does not exist.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>PARTIAL MARTCH FOR THE TO-MEASURE</edomv>
+<edomvd>Could not find the entire route location's shape, the to-measure is outside of the route measure range.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>PARTIAL MARTCH FOR THE FROM-MEASURE</edomv>
+<edomvd>Could not find the entire route location's shape, the from-measure is outside of the route measure range.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>PARTIAL MARTCH FOR THE FROM MEASURE AND TO-MEASURE</edomv>
+<edomvd>Could not find the entire route location's shape, the from-measure and the to-measure are outside of the route measure range.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GIS_MILES</attrlabl>
+<attrdef>The length of the feature in miles, calculated in North American Albers Equal Area Conic projection (NAD83) meters and then converted to miles with the formula LengthMeters / 1609.344.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>The length of a feature in miles.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SECURITY_ID</attrlabl>
+<attrdef>The number identifies to which organization the asset (routes, features, land units, etc.) belongs and acts as a filter that controls what asset records a user can see and edit.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Format: RRFF where RR is the 2 digit code for the Region and FF is the 2 digit code for the Forest.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>OPENFORUSETO</attrlabl>
+<attrdef>OpenForUseTo identifies if a road segment is open to the public for motorized travel.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>All</edomv>
+<edomvd>Open for public motorized travel for at least some portion of the year</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Admin</edomv>
+<edomvd>Open for FS Administrative use for at least some portion of the year. This segment is not open for public motorized use.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>IVM_SYMBOL</attrlabl>
+<attrdef>The IVM Symbol is used to label road in the FS Interactive Visitor Map.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>A combination of the ID and Name field.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SYMBOL_NAME</attrlabl>
+<attrdef>Descriptive name for the category of the road segment, based on the Cartographic Feature File (CFF) Code. This field often is used in map legends.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Multi-Lane Divided Highway</edomv>
+<edomvd>100 - Multi-Lane Divided Highway</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Highway</edomv>
+<edomvd>101 - Highway</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Road, Not Maintained for Passenger Car</edomv>
+<edomvd>106 - Road, Not Maintained for Passenger Car</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Dirt Road, Suitable for Passenger Car</edomv>
+<edomvd>515 - Dirt Road, Suitable for Passenger Car</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Paved Road</edomv>
+<edomvd>517 - Paved Road</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Gravel Road, Suitable for Passenger Car</edomv>
+<edomvd>518 - Gravel Road, Suitable for Passenger Car</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GLOBALID</attrlabl>
+<attrdef>A field of type UUID (Universal Unique Identifier) in which values are automatically assigned by the geodatabase when a row is created. The GlobalID field is necessary for maintaining object uniqueness across replicas. All feature classes and tables participating in one-way or two-way replication must contain the GlobalID field. This field is not editable and is automatically populated when it is added for existing data.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Unique identifier.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+<attrdef>Length of feature in internal units.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</distrib>
+<distliab>The U.S. Forest Service makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, reliability, completeness, or utility of these geospatial data or for the improper or incorrect use of those data. The data are dynamic and may change over time. The user is responsible for verifying the limitations of the geospatial data and for using the data accordingly.</distliab>
+</distinfo>
+<metainfo>
+<metd>20250422</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

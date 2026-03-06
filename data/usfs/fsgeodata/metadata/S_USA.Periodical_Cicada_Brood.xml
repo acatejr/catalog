@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../xsl/fgdc-details.xsl"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>US Forest Service</origin>
+        <pubdate>20170407</pubdate>
+        <title>S_USA.Periodical_Cicada_Brood</title>
+        <geoform>tabular digital data</geoform>
+        <othercit>Liebhold, A. M., Bohne, M. J., and R. L. Lilja. 2013. Active Periodical Cicada Broods of the United States. USDA Forest Service Northern Research Station, Northeastern Area State and Private Forestry. Koenig, W. D., L. Ries, V. B. K. Olsen, and A. M. Liebhold, 2011. Avian predators are less abundant during periodical cicada emergences, but why? (http://dx.doi.org/10.1890/10-1583.1)</othercit>
+        <onlink>http://data.fs.usda.gov/geodata/edw/datasets.php</onlink>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>Active Periodical Cicada Broods of the United States. The periodical cicada emerges in massive groups once every 13 or 17 years and is completely unique to North America. There are 15 of these mass groups, called broods, of periodical cicadas in the United States. This county-based data, complied by USFS Northern Research Station entomologist Andrew Liebhold, depict where and when the different broods of periodical cicadas are likely to emerge in the US through 2030. The data was compiled for the publication by Koenig, et. al. (2011) using data from the following historic periodical cicada publications: Marlatt, C. L. 1907. The periodical cicada. Bulletin of the USDA Bureau of Entomology 71:1-181. Simon, C. 1988. Evolution of 13- and 17-year periodical cicadas (Homoptera: Cicadidae). Bulletin of the Entomological Society of America 34:163-176.</abstract>
+      <purpose>Mapping the geographic extent of a periodic cicada brood is useful to help the public understand the cyclic nature of the emergence and the relationships with other broods. This data can be "mashed up" or combined with other data for research purposes or to create public awareness. The Brood tabular information was designed to be joined to County boundaries and to create map services for the public.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>20130101</caldate>
+        </sngdate>
+      </timeinfo>
+      <current>publication date</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+    </status>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115 Topic Categories</themekt>
+        <themekey>biota</themekey>
+        <themekey>forest service</themekey>
+        <themekey>broods</themekey>
+        <themekey>cicada</themekey>
+      </theme>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>The Forest Service uses the most current and complete data available. GIS data and product accuracy may vary. They may be developed from sources of differing accuracy; accurate only at certain scales; based on modeling or interpretation; incomplete while being created or revised; etc. Using GIS products for purposes other than those for which they were created, may yield inaccurate or misleading results. The Forest Service reserves the right to correct, update, modify or replace GIS products without notification.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Andrew Liebhold, Research Entomologist</cntper>
+        </cntperp>
+        <cntemail>data@fs.fed.us</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <datacred>Liebhold, A. M., Bohne, M. J., and R. L. Lilja. 2013. Active Periodical Cicada Broods of the United States. USDA Forest Service Northern Research Station, Northeastern Area State and Private Forestry.</datacred>
+    <native>Microsoft Windows Server 2008 R2 Version 6.1 (Build 7601) Service Pack 1; Esri ArcGIS 10.1.1.3300</native>
+  </idinfo>
+  <dataqual>
+    <logic>Data entry is accomplished by authorized Forest Service personnel through a web application behind the U.S. Forest Service firewall and is restricted by access requirement protocols.</logic>
+    <complete>Data is complete as of publication.</complete>
+    <lineage>
+      <procstep>
+        <procdesc>The Brood tabular information was designed to be joined to corresponding county boundaries in to make map services for the public.</procdesc>
+        <procdate>20170101</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <indspref>County Names</indspref>
+  </spdoinfo>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>S_USA.Periodical_Cicada_Brood</enttypl>
+        <enttypd>A set of data elements arranged in rows and columns. Each row represents a single record. Each column represents a field of the record. Rows and columns intersect to form cells, which contain a specific value for one field in a record. </enttypd>
+        <enttypds>esri Data Dictionary (http://support.esri.com/sitecore/content/support/Home/other-resources/gis-dictionary/term/table)</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>BROOD_CNTY_OCCURRENCE</attrlabl>
+        <attrdef>Indicates whether the brood occurs in the county.</attrdef>
+        <attrdefs>Andrew M. Liebhold</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>1</edomv>
+            <edomvd>Brood occurs in the county</edomvd>
+            <edomvds>U.S. Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>YEAR_NEXT_EMERGENCE</attrlabl>
+        <attrdef>The year the brood will next emerge.</attrdef>
+        <attrdefs>Andrew M. Liebhold, Michael J. Bohne, and Rebecca L. Lilja</attrdefs>
+        <attrdomv>
+          
+          
+          
+          
+          
+          <rdom>
+            <rdommin>2014</rdommin>
+            <rdommax>2031</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CYCLE</attrlabl>
+        <attrdef>The years in a brood cycle, or the years between emergences of the brood.</attrdef>
+        <attrdefs>Andrew M. Liebhold, Michael J. Bohne, and Rebecca L. Lilja</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>13</edomv>
+            <edomvd>This brood has a 13 year emergence cycle</edomvd>
+            <edomvds>U.S. Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>17</edomv>
+            <edomvd>This brood has a 17 year emergence cycle</edomvd>
+            <edomvds>U.S. Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>BROOD_NAME</attrlabl>
+        <attrdef>The name of the Brood</attrdef>
+        <attrdefs>Andrew M. Liebhold, Michael J. Bohne, and Rebecca L. Lilja</attrdefs>
+        <attrdomv>
+          <udom>The name given to the brood. Examples include Brood I, Brood II, and Brood XXIII.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MULT_BROOD</attrlabl>
+        <attrdef>Indicates if a county has more than one brood present and if so, how many broods occur in the county.</attrdef>
+        <attrdefs>Andrew M. Liebhold, Michael J. Bohne, and Rebecca L. Lilja</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>1</edomv>
+            <edomvd>One brood is present in the county.</edomvd>
+            <edomvds>U.S. Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>2</edomv>
+            <edomvd>Two broods are present in the county.</edomvd>
+            <edomvds>U.S. Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>3</edomv>
+            <edomvd>Three broods are present in the county.</edomvd>
+            <edomvds>U.S. Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+        <attrdomv>
+          <edom>
+            <edomv>4</edomv>
+            <edomvd>Four broods are present in the county.</edomvd>
+            <edomvds>U.S. Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>ST_CNTY_CODE</attrlabl>
+        <attrdef>Unique code for the State and County. Created by the concatenation of the INCITS code for the States, District of Columbia, Puerto Rico and the Insular Areas of the United States and the INCITS code for the identification of Counties and Equivalent Entities of the United States, its possessions, and associated areas. These codes were previously called the Federal Information Processing Standards (FIPS) codes. This code can be used to relate this table to other information about counties.</attrdef>
+        <attrdefs>INCITS 31:2009 (InterNational Committee for Information Technology Standards)</attrdefs>
+        <attrdomv>
+          <udom>Described in INCITS 38:2009 (codes for States) and INCITS 31:2009 (codes for Counties)
+            https://www.fgdc.gov/standards/fgdc-endorsed-external-standards/index_html
+          </udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+        </cntorgp>
+        <cntemail>data@fs.fed.us</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>The U.S. Forest Service makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, reliability, completeness, or utility of these geospatial data or for the improper or incorrect use of those data. The data are dynamic and may change over time. The user is responsible for verifying the limitations of the geospatial data and for using the data accordingly.</distliab>
+  </distinfo>
+  <metainfo>
+    <metd>20170407</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+        </cntorgp>
+        <cntemail>data@fs.fed.us</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

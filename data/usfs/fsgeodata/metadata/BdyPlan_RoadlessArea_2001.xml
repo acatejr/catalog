@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>Sam Gaugush, National Roadless Area Coordinator, NFS-WO, Ecosystem Mgmt Coordination, NEPA</origin>
+<pubdate>20231003</pubdate>
+<pubtime>084922</pubtime>
+<title>S_USA.BdyPlan_RoadlessArea_2001</title>
+<geoform>vector digital data</geoform>
+<othercit>Publication_Place: Salt Lake City, UT
+Publisher: USDA ForestService - GSTC
+
+Range_of_Dates/Times:
+Beginning_Date:19991203 
+Ending_Date:20000915, Edited 20030107, Edited 20030627, Edited 20080320, Edited 20120504, Edited 20120507, Edited 20140910, Edited 20141014, Edited 20170504
+</othercit>
+</citeinfo>
+</citation>
+<descript>
+<abstract>This dataset is the official data for the 2001 Roadless Area Conservation Rule (36 CFR 294, Subpart B). It contains the Inventoried Roadless Areas (IRAs) designated by the 2001 Roadless Area Conservation Rule and used in the associated Final Environmental Impact Statement. The EIS analysis team used this spatial data to assess the impacts of roadless area alternatives on Forest Service policies, use of the National Forests and the surrounding environment. It was used for analysis in combination with national characterization layers, such as ambient human population, forest mortality risk to insects and diseases, current land cover types, and others. All of these datasets include the entire lower 48 states and Alaska, and are coarse resolution. The public also had a need to know where IRAs were located in their area and across the nation. The data was used to create a set of detailed maps published both on the web and in hard copy form, (Volume2, Roadless Area Conservation EIS). NOTE 1: The attribute descriptions are based on forest plan direction prior to adoption of the Roadless Rule. This information is displayed for historical reference. However, the Roadless Rule prohibits road construction in all IRAs, regardless of the attribute descriptions. NOTE 2: Idaho and Colorado have adopted state-specific roadless rules. The Idaho and Colorado Roadless Areas boundaries, represented in separate datasets, supersede the 2001 Roadless Area Boundaries.</abstract>
+<purpose>This dataset is the official data for the 2001 Roadless Area Conservation Rule (36 CFR 294, Subpart B). It contains the Inventoried Roadless Areas (IRAs) designated by the 2001 Roadless Area Conservation Rule and used in the associated Final Environmental Impact Statement. The EIS analysis team used this spatial data to assess the impacts of roadless area alternatives on Forest Service policies, use of the National Forests and the surrounding environment. It was used for analysis in combination with national characterization layers, such as ambient human population, forest mortality risk to insects and diseases, current land cover types, and others. All of these datasets include the entire lower 48 states and Alaska, and are coarse resolution. The public also had a need to know where IRAs were located in their area and across the nation. The data was used to create a set of detailed maps published both on the web and in hard copy form, (Volume2, Roadless Area Conservation EIS). NOTE 1: The attribute descriptions are based on forest plan direction prior to adoption of the Roadless Rule.  This information is displayed for historical reference. However, the Roadless Rule prohibits road construction in all IRAs, regardless of the attribute descriptions.  NOTE 2: Idaho and Colorado have adopted state-specific roadless rules. The Idaho and Colorado Roadless Areas boundaries, represented in separate datasets, supersede the 2001 Roadless Area Boundaries.</purpose>
+<supplinf>Currentness_Reference:publication date 
+ProjectionParameters:Decimal Degrees, NAD 83
+Spatial Information:Vector
+Scale of original/hardcopy map:1:24,000 to1:198,000 
+Feature Type:Polygon 
+Scale Range 
+Maximum (zoomed in)  1:5,000
+Minimum (zoomed out)  1:150,000,000
+
+
+</supplinf>
+</descript>
+<timeperd>
+<timeinfo>
+<rngdates>
+<begdate>19991203</begdate>
+<enddate>20120507</enddate>
+</rngdates>
+</timeinfo>
+<current>Extent includes entire resource</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>As needed</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-150.007671</westbc>
+<eastbc>-65.707153</eastbc>
+<northbc>61.518992</northbc>
+<southbc>18.245724</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>None</themekt>
+<themekey>National inventoried roadless areas</themekey>
+</theme>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>environment</themekey>
+</theme>
+<place>
+<placekt>None</placekt>
+<placekey>National Forests</placekey>
+</place>
+</keywords>
+<accconst>None</accconst>
+<useconst>Access_Constraints: User needs to exercise caution regarding the spatial accuracy of these data. The source scales can vary. External features cannot be expected to align. The National Forest Planning Record Documents (Appendix C), other assessments adopted by the USDA Forest Service, or RARE II documents, are ultimately the official version of inventoried roadless areas. Use_Constraints: Data may be viewed and used by any and all entities upon request. However,data should not be changed or modified by anyone other than GSTC. The USDA Forest Service does not guarantee the accuracy of this data.</useconst>
+<ptcontac>
+<cntinfo>
+<cntperp>
+<cntper>Sam Gaugush</cntper>
+</cntperp>
+<cntpos>National Roadless Area Coordinator</cntpos>
+<cntaddr>
+<addrtype>physical</addrtype>
+<address>201 14th Street Southwest</address>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>202-205-0917</cntvoice>
+<cntemail>samuel.gaugush@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<datacred>US Forest Service, Geospatial Service and Technology Center (GSTC), National Inventoried Roadless Areas Program</datacred>
+<native>Esri ArcGIS 13.3.4.52636</native>
+</idinfo>
+<dataqual>
+<logic>See Lineage</logic>
+<complete>See Lineage</complete>
+<lineage>
+<procstep>
+<procdesc>The IRA data was originally submitted to the Geospatial Service and Technology Center (GSTC) for the Draft Environmental Impact Statement. The data was submitted inARC/INFO export format (.e00), in most cases as individual national forest coverages, but in some cases together with other national forests. The original datasets submitted were derived from a variety of original source manuscripts, most IRA data had a scale of 1:24,000. Some datasets were of smaller scale, typically 1:126,720. Each national forest was originally compiled at a different time, from different source material, using various methods. Region 5 submitted one file,which included all national forests in that region (primarily the state of California). In these instances,individual coverages were extracted by national forest administrative unit, and edited separately. All data was imported, projected to Albers and audited to check for INFO item consistency. Unnecessary features were removed and label errors removed. 
+
+Each national forest dataset was spatially edgematched to a national forest boundary dataset compiled at GSTC for this purpose, and attribute information was added or corrected. It was GSTC's intent to change the original data as little as possible, altering the geometry only as necessary to fit the National Forest Boundary coverage, and editing attributes only for consistency or where apparent errors occurred. 
+
+Edgematched data to National Forest Boundary coverage by – 
+
+1) intersected the IRA and the NF boundary coverages using the UNION command with a fuzzytolerance of 1.5 map units (meters) 
+
+2) deleted polygons that extended beyond NF boundary as long as they appeared to be sliver polygons created by union 
+
+3) deleted/absorbed polygons that did not extend to NF boundary by eliminating all interior polygons less than 5 acres in size that had no IRA category value or NF ownership status using ELIMINATE command
+
+4) merged remaining polygon undershoots using the MERGE command via manual editing 
+
+5) conducted final quality assessment to check all work - this consisted of running acreage calculations for polygons before and after the edgematching process; all differences of 100 acres or greater were checked on screen and corrected if necessary; acreage calculations were run again after corrections were made to ensure there were no major changes (in some cases, changes were necessary after verifying with forest personnel that an error in the original data existed); a query was run on all coverages which resulted in a report showing frequency of polygons that had no ownership item and no IRA category - these were checked visually using hardcopy maps and phone calls to forests, if necessary, to verify what the polygons in question were; all IRA coverages were also checked visually on the screen to make sure there were no additional errors.
+
+Regional coverages were created by first appending the completed individual national forest IRA coverages into administrative regional coverages, using the APPEND command with the polygon option. This resulted in eight regional coverages for Regions: 1 (Northern), 2 (Rocky Mountain),3 (Southwestern), 4 (Intermountain), 5 (Pacific Southwest), 6 (Pacific Northwest), 8 (Southern), and 9 (Eastern). These eight regional coverages were then appended into the national coverage, again, using the APPEND command.
+
+The resulting national coverage was automatically edited, using the CLEAN command, with a fuzzy tolerance of 1.5 meters. This removed geometric errors,and rebuilt topology. The coverage was then reprojected from Albers to decimal degrees for consistency with all other coverages used for analysis work. 
+
+Between the draft and final stages of the Environmental Impact Statement, the data was updated by the forests to reflect any corrections to Inventoried Roadless Areas that were based on their existing forest plan. The data was also updated to include Special Designated Area information and to include Inventoried Roadless Areas within Special Designated Areas. After these updates were made the data was resubmitted to the GSTC on July 21, 2000 for consolidation.
+
+The final consolidation of the national IRA coverage was accomplished at the GSTC with the benefit of having one representative from each region to assist with quality control. All the completed regions were appended together into the national coverage and reprojected from Albers to decimal degrees for analysis and display in the Roadless Area Conservation Environmental Impact Statement. The IRAs only were selected from national coverage to make this dataset.</procdesc>
+<procdate>19991203</procdate>
+</procstep>
+<procstep>
+<procdesc>The Gallatin National Forest submitted a technical correction to the Inventoried Roadless Area GIS database. A portion of the original GIS data was corrected to match the 1999 IRA maps that are part of the forest administrative record. </procdesc>
+<procdate>20021015</procdate>
+</procstep>
+<procstep>
+<procdesc>A technical correction to the IRA GIS data was performed by GSTC on behalf of the Gallatin National Forest. The technical correction complies with direction described in the Roadless Area Conservation Rule 294.11 and Interim Directive 1920-2001-1 section 1925.05.</procdesc>
+<procdate>20030107</procdate>
+</procstep>
+<procstep>
+<procdesc>A technical correction to the IRA GIS data was performed by GSTC on behalf of the Santa FeNational Forest. A portion of the original GIS data was corrected to match the IRA maps that are part of the forest administrative record. The technical correction complies with direction described in the Roadless Area Conservation Rule 294.11 and Interim Directive 1920-2001-1 section 1925.05. The correction removes roadless attributes from all polygons that comprise the Jemez NRA and East Jemez NWSR so that these two special designated areas are no longer shown as inventoried roadless areas. These areas were incorrectly shown as inventoried roadless areas.
+</procdesc>
+<procdate>20030627</procdate>
+</procstep>
+<procstep>
+<procdesc>A technical correction to the Blue Mountain Roadless Area was performed by GSTC on behalf of the Manti-La Sal National Forest to more accurately reflect the 1983 Roadless Area Reevaluation as shown in the1986 Planning Record. The Blue Mountain IRA boundaries were re-digitized at higher resolution with the aid of topography and classified roads to match the boundary as intended in the “Roadless Area Briefing Guide for Forest Planning for the Manti-La Sal National Forest. The technical correction complies with direction described in the Roadless Area Conservation Rule 294.11 and Interim Directive 1920-2001-1 section 1925.05.
+</procdesc>
+<procdate>20040802</procdate>
+</procstep>
+<procstep>
+<procdesc>A technical correction along the border of the Salmon-Challis and Sawtooth National Forests was performed by GSTC. This correction fixes a data consolidation error that went undetected during the construction of the IRA GIS dataset. A 37,000 acre section of the Sawtooth National Recreation Area was mistakenly combined with the Squaw Creek IRA. The technical correction restores these two features back to their original state. The technical correction complies with direction described in the Roadless Area Conservation Rule 294.11 and Interim Directive1920-2001-1 section 1925.05.</procdesc>
+<procdate>20040802</procdate>
+</procstep>
+<procstep>
+<procdesc>A technical correction to the name of an IRA on the Manti-La Sal National Forest was performed by the GSTC. This correction changes the name of the IRA from“Big Mak IRA” to “Roc Creek IRA” as requested by the Manti-La Sal National Forest. The technical correction complies with direction described in the Roadless Area Conservation Rule 294.11 and Interim Directive 1920-2001-1 section 1925.05.</procdesc>
+<procdate>20080320</procdate>
+</procstep>
+<procstep>
+<procdesc>All of the following editing processes were performed using ArcGIS Desktop v10.0 software:
+
+61 records for the Sante Fe National Forest were updated with corrected IRA names provided by the Sante Fe NF GIS Coordinator. These changes comply with direction described in the Roadless Area Conservation Rule 294.11 and Interim Directive 1920-2001-1 section 1925.05</procdesc>
+<procdate>20120504</procdate>
+</procstep>
+<procstep>
+<procdesc>1) the current IRA 'coverage' format was converted to a file geodatabase feature class. 
+2) The GCS datum was transformed to NAD 83 from the original NAD 27 (using the NAD27 to NAD83 NADCON Geographic Transformation option) to conform with the Enterprise Data Warehouse (EDW) data standard. 
+3) The previously separate Alaska data was projected to Nad83 using the NAD27 to NAD 83 Alaska transformation option and then merged with this data to make a comprehensive US dataset that included the lower 48, PR, and AK. These changes comply with direction described in the Roadless Area Conservation Rule 294.11 and Interim Directive 1920-2001-1 section 1925.05</procdesc>
+<procdate>20120507</procdate>
+</procstep>
+<procstep>
+<procdesc>A technical correction was received from the Santa Fe National Forest which was incorporated into this dataset. At the request of the Santa Fe National Forest, the Holiday Mesa and West Mesa Roadless areas were replaced by the Virgin Canyon Roadless area.</procdesc>
+<procdate>20140910</procdate>
+</procstep>
+<procstep>
+<procdesc>Removed Area and Perimeter fields from feature class. These fields are legacy fields from earlier versions of the software and are no longer needed.</procdesc>
+<procdate>20141014</procdate>
+<proccont>
+<cntinfo>
+<cntperp>
+<cntper>USDA Forest Service - Geospatial Service and Technology Center (GSTC)</cntper>
+</cntperp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<address>2222 W. 2300 S. </address>
+<city>Salt Lake City</city>
+<state>Utah</state>
+<postal>84119</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>801-975-2400</cntvoice>
+</cntinfo>
+</proccont>
+</procstep>
+<procstep>
+<procdesc>On November 5, 2014, a technical correction to the Holiday Mesa and West Mesa Roadless Areas on the Santa Fe National Forest was performed by GSTC.  These IRAs were combined into the Virgin Canyon Roadless Area and the boundaries were restored to those displayed in RARE II.  The technical correction complies with direction described in the Roadless Area Conservation Rule 294.11.</procdesc>
+<procdate>20141105</procdate>
+</procstep>
+<procstep>
+<procdesc>A technical correction to the name of an IRA on the Helena-Lewis and Clark National Forest was performed by the GTAC. This correction changes the name of the IRA from “Elkhorn Wilderness Study Area Plus Additions” to “Elkhorn”. The technical correction complies with direction described in the Roadless Area Conservation Rule 294.11 and Interim Directive 1920-2001-1 section 1925.05.</procdesc>
+<procdate>20170504</procdate>
+</procstep>
+<procstep>
+<procdesc>A correction based on initial mapping errors within multiple IRAs on the Bridger-Teton National Forest was approved by Chief Victoria Christiansen on June 25, 2021.  The roadless decision memo “Technical Correction to the 2001 Inventoried Roadless Area Boundary” codifies the Chief’s approval and extent of the changes.  These corrections comply with direction described with the Roadless Area Conservation Rule (36 C.F.R. Part 294, Subpart B (2001)).  The authority for this decision is specified in the 2001 IRA Rule Preamble which states “In the event of a modification to correct any clerical, typographical, or other technical error is needed, the change will be made to the national headquarters maps and corrected copies of the maps made available to other administrative units”.  The individual IRAs subject to correction include Gros Ventre Mountains IRA (Fisherman Creek and Game Creek area), Salt River Range and Grayback Ridge IRA (Lower Greys River area) and the Little Sheep Mountain IRA (Moose-Gypsum Creeks area).  These corrections are supported by new mapping technology which displays how the identified areas were never intended for inclusion in IRAs.  This technical error is most likely the result of maps being drawn at a scale where that error was not visible. The provided source date for these edits was vertically integrated to the FS boundary.</procdesc>
+<procdate>20220504</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>GT-polygon composed of chains</sdtstype>
+<ptvctcnt>11391</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.BdyPlan_RoadlessArea_2001</enttypl>
+<enttypd>Esri Feature Class</enttypd>
+<enttypds>Esri</enttypds>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Shape</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REGION</attrlabl>
+<attrdef>US Forest Service Region. Region 1, 2, 3, 4, 5, 6, 8, 9, 10 (There is no region 7).</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<rdom>
+<rdommin>1</rdommin>
+<rdommax>10</rdommax>
+</rdom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FOREST</attrlabl>
+<attrdef>The name of the Forest</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Name possibilities are from Allegheny to Winema</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>STATE</attrlabl>
+<attrdef>State name two letter abbreviation</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>2 character state abbreviation, from AK to WY.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>NAME</attrlabl>
+<attrdef>Name of the roadless area unit</attrdef>
+<attrdefs>US Forest Service - Roadless Program</attrdefs>
+<attrdomv>
+<udom>Name of roadless area unit, from 0401001 to Zulu #166</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CATEGORY</attrlabl>
+<attrdef>Category of the roadless unit. The category descriptions are based on forest plan direction prior to adoption of the Roadless Rule.  This information is displayed for historical reference. However, the Roadless Rule prohibits road construction in all IRAs, regardless of the attribute descriptions.
+
+
+
+
+</attrdef>
+<attrdefs>US Forest Service - Roadless Program</attrdefs>
+<attrdomv>
+<edom>
+<edomv>1B</edomv>
+<edomvd> Inventoried Roadless Areas where road construction and reconstruction is prohibited. The category descriptions are based on forest plan direction prior to adoption of the Roadless Rule.  This information is displayed for historical reference. However, the Roadless Rule prohibits road construction in all IRAs, regardless of the attribute descriptions.</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>1B-1</edomv>
+<edomvd>Inventoried Roadless Areas that are recommended for wilderness designation in the forest plan and where road construction and reconstruction is prohibited. The category descriptions are based on forest plan direction prior to adoption of the Roadless Rule.  This information is displayed for historical reference. However, the Roadless Rule prohibits road construction in all IRAs, regardless of the attribute descriptions.</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>1C </edomv>
+<edomvd>Inventoried Roadless Areas where road construction and reconstruction is not prohibited. The category descriptions are based on forest plan direction prior to adoption of the Roadless Rule.  This information is displayed for historical reference. However, the Roadless Rule prohibits road construction in all IRAs, regardless of the attribute descriptions.</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<codesetd>
+<codesetn>Category of the roadless unit. The category descriptions are based on forest plan direction prior to adoption of the Roadless Rule.  This information is displayed for historical reference. However, the Roadless Rule prohibits road construction in all IRAs, regardless of the attribute descriptions.</codesetn>
+<codesets>GSTC</codesets>
+</codesetd>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ACRES</attrlabl>
+<attrdef>Acres of the roadless area (Decimal Degrees)</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<rdom>
+<rdommin>.010261</rdommin>
+<rdommax>1160631</rdommax>
+</rdom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.AREA</attrlabl>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+</attr>
+</detailed>
+</eainfo>
+<metainfo>
+<metd>20250415</metd>
+<metc>
+<cntinfo>
+<cntperp>
+<cntper>USDA Forest Service - Geospatial Service and Technology Center (GSTC)</cntper>
+</cntperp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<address>2222 W. 2300 S. </address>
+<city>Salt Lake City</city>
+<state>Utah</state>
+<postal>84119</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>801-975-2400</cntvoice>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+<metuc>The USDA Forest Service manages resource information and derived data as a service to USDA Forest Service users of digital geographic data. The USDA Forest Service is in no way condoning or endorsing the application of these data for any given purpose. It is the sole responsibility of the user to determine whether or not the data are suitable for the intended purpose. It is also the obligation of the user to apply those data in an appropriate and conscientious manner. The USDA Forest Service provides no warranty, nor accepts any liability occurring from any incorrect, incomplete, or misleading data, or from any incorrect, incomplete,or misleading use of these data. Much of the USDA Forest Service data are compiled, processed, and maintained with ArcGIS Desktop software developed by the Environmental Systems Research Institute (ESRI). Much of the information presented uses conventions and terms popularized by ESRI and its user community. The mention of commercial firms or products is for clarity and identification of procedures and methods only, and no endorsements are implied by the USDA Forest Service.</metuc>
+</metainfo>
+</metadata>

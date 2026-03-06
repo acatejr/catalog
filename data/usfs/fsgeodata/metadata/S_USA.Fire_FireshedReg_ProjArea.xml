@@ -1,0 +1,440 @@
+﻿<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Evers, Cody R.</origin>
+        <origin>Ager, Alan A.</origin>
+        <origin>Day, Michelle A.</origin>
+        <origin>Alcasena Urdíroz, Fermin J.</origin>
+        <origin>Ringo, Chris D.</origin>
+        <origin>Bunzel, Ken</origin>
+        <pubdate>20220506</pubdate>
+        <pubtime>114004</pubtime>
+        <title>S_USA.Fire_FireshedReg_ProjArea</title>
+        <geoform>vector digital data</geoform>
+        <pubinfo>
+          <pubplace>Fort Collins, CO</pubplace>
+          <publish>Forest Service Research Data Archive</publish>
+        </pubinfo>
+        <onlink>https://doi.org/10.2737/RDS-2020-0054</onlink>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>The Fireshed Registry is a geospatial dashboard and decision tool built to organize information about wildfire transmission to communities and monitor progress towards risk reduction for communities from management investments. The concept behind the Fireshed Registry is to identify and map the source of risk rather than what is at risk across all lands in the conterminous United States. While the Fireshed Registry was organized around mapping the source of fire risk to communities, the framework does not preclude the assessment of other resource management priorities and trends such as water, fish and aquatic or wildlife habitat, or recreation. The Fireshed Registry is also a multi-scale decision tool for quantifying, prioritizing, and geospatially displaying wildfire transmission to buildings in adjacent or nearby communities. Fireshed areas in the Fireshed Registry are approximately 250,000 acre accounting units that are delineated based on a smoothed building exposure map of the conterminous United States. These boundaries were created by dividing up the landscape into regular-sized units that represent similar source levels of community exposure to wildfire risk. Project areas are approximately 25,000 acre accounting units nested within firesheds. This data publication includes a geodatabase that contains for both fireshed and project areas: boundaries, size, total annual number of buildings inside and outside of the area exposed by wildfires ignited within the area (based on 2010 housing unit data and 2014 fuels conditions), and percent of the area that has been disturbed since 2014 (2015-2018).</abstract>
+      <purpose>The fireshed and project area boundaries are designed to delineate hotspots of fire transmission to adjacent or nearby communities to facilitate cohesive cross-boundary risk mitigation planning. Exposure metrics are designed to be used for strategic allocation. Tactical operations should incorporate additional local knowledge.</purpose>
+      <supplinf>This data publication was originally published on 10/27/2020. On 10/20/2021 minor metadata updates were made to correct an author's name. Additionally, a previous fireshed name change that accidentally wasn't carried over to the project areas layer has been corrected. On 01/18/2022, an updated version of the geodatabase was released. This update incorporated newer fireshed names and related fireshed codes. No boundaries were changed.</supplinf>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>20140101</caldate>
+        </sngdate>
+      </timeinfo>
+      <current>Ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>Irregular</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-124.741020</westbc>
+        <eastbc>-66.888650</eastbc>
+        <northbc>49.364577</northbc>
+        <southbc>24.541778</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>geoscientificInformation</themekey>
+      </theme>
+      <theme>
+        <themekt>National Research &amp; Development Taxonomy</themekt>
+        <themekey>Fire effects on environment</themekey>
+        <themekey>Forest management</themekey>
+        <themekey>Wildland/urban interface</themekey>
+        <themekey>Natural Resource Management &amp; Use</themekey>
+        <themekey>Fire</themekey>
+      </theme>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>wildfire management</themekey>
+        <themekey>wildfire exposure</themekey>
+        <themekey>wildfire transmission</themekey>
+        <themekey>wildfire</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>United States</placekey>
+      </place>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>These data were collected using funding from the U.S. Government and can be used without additional permissions or fees. If you use these data in a publication, presentation, or other research product please use the following citation: Evers, Cody R.; Ringo, Chris D.; Ager, Alan A.; Day, Michelle A.; Alcasena Urdíroz, Fermin J.; Bunzel, Ken. 2020. The Fireshed Registry: Fireshed and project area boundaries for the continental United States. Fort Collins, CO: Forest Service Research Data Archive. https://doi.org/10.2737/RDS-2020-0054 The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Rocky Mountain Research Station</cntorg>
+          <cntper>Michelle Day</cntper>
+        </cntorgp>
+        <cntpos>Biological Scientist</cntpos>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>3200 SW Jefferson Way</address>
+          <city>Corvallis</city>
+          <state>OR</state>
+          <postal>97331</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>541-758-7768</cntvoice>
+        <cntemail>michelle.day@usda.gov</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <datacred>This project was funded by the USDA Forest Service, State &amp; Private Forestry and the USDA Forest Service, Rocky Mountain Research Station. Additional acknowledgments are extended to Portland State University, Oregon State University, USDA Forest Service International Visitor Program, and Kingbird Software.</datacred>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.7.1.11595</native>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>The fuels data used in this prediction are not current, due to the data vintage of fuel conditions used in the available FSim simulations. Thus our predictions in areas that have had disturbance and management since 2014 should be used with caution, with consideration of finer scaled data. As with all risk products there is substantial uncertainty associated with these estimates. This assessment concerns exposure and not risk as we make no predictions about loss. The boundaries among adjacent firesheds are the product of the “Simple Linear Iterative Clustering” (SLIC) algorithm, which is dependent on the initial placement of points from which the image segments (i.e., clusters) are derived. This means that the boundaries between adjacent firesheds, particularly those in areas with homogenous exposure, may vary over successive runs. These data represent one such solution. Achanta, R.; Shaji, A.; Smith, K.; Lucchi, A.; Fua, P.; Süsstrunk, S. 2012. SLIC superpixels compared to state-of-the-art superpixel methods. IEEE Transactions on Pattern Analysis and Machine Intelligence 34(11): 2274-2282. https://doi.org/10.1109/tpami.2012.120</attraccr>
+      <qattracc>
+        <attracce>See Method Description</attracce>
+      </qattracc>
+    </attracc>
+    <logic>No consistency evaluation was performed.</logic>
+    <complete>Fireshed and project area boundaries reflect the resolution of the underlying building exposure raster of 270 meters. These boundaries can be considered complete, but note that boundaries representing features such as national boundaries and coastlines will be greatly generalized and, in the case of islands, they may be omitted entirely.</complete>
+    <lineage>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>CalFire (California Department of Forestry and Fire Protection)</origin>
+            <pubdate>20220506</pubdate>
+            <pubtime>114004</pubtime>
+            <title>California Wildfire Perimeters, (1950+)</title>
+            <geoform>vector digital data</geoform>
+            <pubinfo>
+              <pubplace>Sacramento, California</pubplace>
+              <publish>California Department of Forestry and Fire Protection (CalFire)</publish>
+            </pubinfo>
+            <othercit>Accessed 16 March 2020</othercit>
+            <onlink>https://hub.arcgis.com/datasets/653647b20bc74480b335e31d6d81a52f?geometry=-150.648%2C31.426%2C-88.114%2C43.578</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>onLine</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>20150101</begdate>
+              <enddate>20180101</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>Publication Date</srccurr>
+        </srctime>
+        <srccitea>CalFire</srccitea>
+        <srccontr>Vector spatial wildfire and prescribed burning data for the years 2015-2018.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Department of Agriculture Forest Service and U.S. Geological Survey</origin>
+            <pubdate>20220506</pubdate>
+            <pubtime>114004</pubtime>
+            <title>Monitoring Trends in Burn Severity (MTBS)</title>
+            <geoform>vector digital data</geoform>
+            <pubinfo>
+              <pubplace>USA</pubplace>
+              <publish>U.S. Department of Agriculture Forest Service and U.S. Department of the Interior</publish>
+            </pubinfo>
+            <othercit>Accessed 6 November 2019</othercit>
+            <onlink>https://www.mtbs.gov/index.php/direct-download</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>onLine</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>20150101</begdate>
+              <enddate>20180101</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>Publication Date</srccurr>
+        </srctime>
+        <srccitea>MTBS</srccitea>
+        <srccontr>Vector spatial wildfire perimeter data were obtained for the years 2015-2018.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>SILVIS Lab, Department of Forest &amp; Wildlife Ecology, University of Wisconsin</origin>
+            <pubdate>20220506</pubdate>
+            <pubtime>114004</pubtime>
+            <title>Census Block Level Housing Change 1990 - 2010 for the Conterminous United States</title>
+            <geoform>vector digital data</geoform>
+            <pubinfo>
+              <pubplace>Madison, Wisconsin</pubplace>
+              <publish>SILVIS Lab</publish>
+            </pubinfo>
+            <onlink>http://silvis.forest.wisc.edu/data/wui-change/</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>onLine</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>20100101</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>Publication Date</srccurr>
+        </srctime>
+        <srccitea>SILVIS</srccitea>
+        <srccontr>Mapped housing and population counts from the 2010 U.S. Census data at the block group level.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>USDA Forest Service</origin>
+            <pubdate>20220506</pubdate>
+            <pubtime>114004</pubtime>
+            <title>Forest Service Activity Tracking System (FACTS)</title>
+            <geoform>vector digital data</geoform>
+            <pubinfo>
+              <pubplace>Washington, D.C.</pubplace>
+              <publish>National Resource Manager, USDA Forest Service</publish>
+            </pubinfo>
+            <othercit>Accessed 27 August 2020</othercit>
+            <onlink>https://www.fs.usda.gov/managing-land/natural-resource-manager#facts</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>onLine</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>20150101</begdate>
+              <enddate>20180101</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>Publication Date</srccurr>
+        </srctime>
+        <srccitea>FACTS</srccitea>
+        <srccontr>Records of prescribed fire and mechanical fuels treatment data.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>LANDFIRE</origin>
+            <pubdate>20220506</pubdate>
+            <pubtime>114004</pubtime>
+            <title>LANDFIRE Public Events Geodatabase</title>
+            <geoform>vector digital data</geoform>
+            <pubinfo>
+              <pubplace>USA</pubplace>
+              <publish>U.S. Department of Agriculture Forest Service and U.S. Department of the Interior</publish>
+            </pubinfo>
+            <othercit>Accessed 13 November 2019</othercit>
+            <onlink>https://www.landfire.gov/publicevents.php</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>onLine</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>20150101</begdate>
+              <enddate>20180101</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>Publication Date</srccurr>
+        </srctime>
+        <srccitea>LANDFIRE</srccitea>
+        <srccontr>Vector spatial data for the years 2015-2018 for wildfire perimeters and for various forest management activities, including prescribed burning, canopy thinning, and mastication.</srccontr>
+      </srcinfo>
+      <procstep>
+        <procdesc>To account for the fact that wildfire risk and risk mitigation efforts occur at multiple scales, we assessed risk exposure at stand-, project-, and fireshed-level scales. We created these layers in such a way that a finer-scale is nested within a coarser-scale, in much the same way as a drainage is nested within a larger watershed. This dataset includes the project- and fireshed-scale boundaries, together with estimates of the annual number of buildings exposed from ignitions within these boundaries.</procdesc>
+        <procdate>20191114</procdate>
+      </procstep>
+      <procstep>
+        <procdesc>“Firesheds” and "Project Areas" within the Fireshed Registry are nested accounting units that are delineated based on a smoothed building exposure map of the conterminous U.S. These boundaries were created by dividing up the landscape into comparably-sized units that represent similar source levels of community exposure to wildfire risk. The size of firesheds was specified to contain 99% of the large fires, with fire sizes generally smaller than 250,000 acres, although the largest extreme event fires can span multiple firesheds.</procdesc>
+        <procdate>20191114</procdate>
+      </procstep>
+      <procstep>
+        <procdesc>The exposure grid was divided into roughly equal-sized spatial units at two different scales: the project area (~25,000 acres) and the fireshed (~250,000 acres). Both units were defined using image segmentation (SLIC) based on both geographic distance and magnitude of exposure. The approach is based on a modified form of K-means clustering that includes an additional parameter to account for the cluster shape. In order to ensure the units of both scales were nested, we adjusted the boundary of the fireshed to match underlying project areas boundaries using a majority rule. Thus, when a project area spanned two firesheds, the overlapping area was added to the majority fireshed (and subtracted from the minority fireshed).</procdesc>
+        <procdate>20191114</procdate>
+      </procstep>
+      <procstep>
+        <procdesc>Building exposure for the entire U.S. was first calculated using FSim ignition points and fire perimeters (using a range of historical fire weather and fuels data from LANDFIRE 2014) and intersecting perimeters with SILVIS wildland urban interface polygons (ca. 2010) (Radeloff et al. 2005, SILVIS Lab 2012) and attributing annual exposure to those ignitions. This means that values reflect the source of exposure, as opposed to where buildings are actually located. Radeloff, V. C.; Hammer, R. B.; Stewart, S. I.; Fried, J. S.; Holcomb, S. S.; McKeefry, J. F. 2005. The wildland-urban interface in the United States. Ecological Applications 15:799-805.</procdesc>
+        <procdate>20191114</procdate>
+      </procstep>
+      <procstep>
+        <procdesc>Exposure values were aggregated by projecting points onto a 270-m grid. To emphasize the general geographic patterns of risk and account for the stochasticity of extreme fire events, the exposure grid was first log10-transformed and then smoothed using focal statistics using a moving circular window with a 10-kilometer (km) radius using the focal function in the R Raster package. The entire grid was then normalized (0-1). Hijmans, Robert J.; van Etten, Jacob. 2012. raster: Geographic analysis and modeling with raster data. R package version 2.0-12. http://CRAN.R-project.org/package=raster</procdesc>
+        <procdate>20191114</procdate>
+      </procstep>
+      <procstep>
+        <procdesc>Pixel values from the original 270-m grid (i.e., prior to being log10-transformed and smoothed) were summed to estimate exposure at the project- and fireshed-levels. Note that since simulated fires from Fsim were modeled based on 2014 fuels, the exposure summaries here do not include exposure from stands that have been disturbed by wildfire or management activities since 2014. Records of prescribed fire and mechanical fuels treatment data from the USDA Forest Service Activity Tracking System (FACTS 2020), wildfire area burned data from MTBS (2020), and prescribed fire data from CalFire (2020) nor present in FACTS or MTBS were used to adjust exposure with the assumption that areas recently treated (2015-2018) or burned would not contribute to wildfire exposure to communities.</procdesc>
+        <procdate>20200831</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>GT-polygon composed of chains</sdtstype>
+        <ptvctcnt>77112</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <geograph>
+        <latres>8.98315284119521e-09</latres>
+        <longres>8.98315284119521e-09</longres>
+        <geogunit>Decimal Degrees</geogunit>
+      </geograph>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>S_USA.Fire_FireshedReg_ProjArea</enttypl>
+        <enttypd>Vector polygons: "Project areas" are approximately 25,000 acre accounting units nested within firesheds.</enttypd>
+        <enttypds>None</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>Fireshed_ID</attrlabl>
+        <attrdef>Fireshed_ID of the containing fireshed</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1</rdommin>
+            <rdommax>7709</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>Shape</attrlabl>
+        <attrdef>Feature geometry</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>PA_Area_Ha</attrlabl>
+        <attrdef>Area of project area, in hectares</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <udom>Floating point numbers &gt; 0</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>PA_ID</attrlabl>
+        <attrdef>Project area unique ID</attrdef>
+        <attrdefs>USFS</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1</rdommin>
+            <rdommax>78681</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SHAPE.AREA</attrlabl>
+        <attrdef>ESRI software defined shape area</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Field automatically generated by ESRI software. Generally value &gt; 0.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SHAPE.LEN</attrlabl>
+        <attrdef>ESRI software defined shape length</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Field automatically generated by ESRI software. Generally value &gt; 0.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+    <overview>
+      <eaover>Firesheds and Project Area boundaries in this data set are accounting units that facilitate tracking and prioritizing fireshed exposure risk. They do not follow identifiable geographic features. Below is a description of the files included in this data publication. DATA The ArcGIS geodatabase included in this data publication (\Data\Firesheds_CONUS.gdb) contains nested boundaries delineating wildfire transmission to communities for monitoring progress towards risk reduction from management investments. Two features classes are included: 1. Firesheds: Fireshed boundaries, size, number of project areas within the fireshed boundary, total annual number of buildings inside and outside of the fireshed exposed by wildfires ignited within this fireshed (based on 2014 fuel conditions), and percent of the fireshed area that has been disturbed since 2014. 2. ProjectAreas: Project area boundaries, size, fireshed it is contained within, total annual number of buildings inside and outside of the project area exposed by wildfires ignited within this project area (basd on 2014 fuel conditions), and percent of the project area that has been disturbed since 2014. SUPPLEMENTAL FILES \Supplements\ExposureByFireshed.png: Image file showing relative wildfire transmission to communities across firesheds in the conterminous United States. \Supplements\ExposureByProjectArea.png: Image file showing relative wildfire transmission to communities across project areas within firesheds in the conterminous United States.</eaover>
+      <eadetcit>None provided</eadetcit>
+    </overview>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>physical</addrtype>
+          <city>Washington</city>
+          <state>DC</state>
+          <postal>20250</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>Please send an e-mail to the address below.</cntvoice>
+        <cntemail>SM.FS.data@usda.gov</cntemail>
+      </cntinfo>
+    </distrib>
+    <resdesc>RDS-2020-0054</resdesc>
+    <distliab>The U.S. Forest Service makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, reliability, completeness, or utility of these geospatial data or for the improper or incorrect use of those data. The data are dynamic and may change over time. The user is responsible for verifying the limitations of the geospatial data and for using the data accordingly. Metadata documents have been reviewed for accuracy and completeness. Unless otherwise stated, all data and related materials are considered to satisfy the quality standards relative to the purpose for which these data were collected. However, neither the author, the Archive, nor any part of the federal government can assure the reliability or suitability of these data for a particular purpose. The act of distribution shall not constitute any such warranty, and no responsibility is assumed for a user's application of these data or related materials. The metadata, data, or related materials may be updated without notification. If a user believes errors are present in the metadata, data or related materials, please use the information in (1) Identification Information: Point of Contact, (2) Metadata Reference: Metadata Contact, or (3) Distribution Information: Distributor to notify the author or the Archive of the issues.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>GDB</formname>
+          <formvern>see Format Specification</formvern>
+          <formspec>ArcGIS Geodatabase file</formspec>
+          <filedec>Files zipped with 7-Zip 19.0</filedec>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://doi.org/10.2737/RDS-2020-0054</networkr>
+              </networka>
+            </computer>
+            <accinstr>RDS-2020-0054</accinstr>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>None</fees>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20220520</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USDA Forest Service, Rocky Mountain Research Station</cntorg>
+          <cntper>Michelle Day</cntper>
+        </cntorgp>
+        <cntpos>Biological Scientist</cntpos>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>3200 SW Jefferson Way</address>
+          <city>Corvallis</city>
+          <state>Oregon</state>
+          <postal>97331</postal>
+          <country>US</country>
+        </cntaddr>
+        <cntvoice>541-758-7758</cntvoice>
+        <cntemail>michelle.day@usda.gov</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

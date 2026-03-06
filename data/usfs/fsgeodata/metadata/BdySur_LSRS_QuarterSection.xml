@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>U.S. Forest Service</origin>
+<origin>Automated Lands Program (ALP)</origin>
+<pubdate>20251210</pubdate>
+<pubtime>050551</pubtime>
+<title>S_USA.BdySur_LSRS_QuarterSection</title>
+<geoform>vector digital data</geoform>
+<othercit>ArcGIS REST Services Directory: https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_QuarterSection_01/MapServer</othercit>
+<onlink>http://data.fs.usda.gov/geodata/edw/datasets.php</onlink>
+</citeinfo>
+</citation>
+<descript>
+<abstract>This dataset is intended for read-only use. The purpose of these data is to provide display, identification, and analysis tools for determining current boundary information for Forest Service managers, GIS specialists, and others.</abstract>
+<purpose>This dataset represents Quarter Sections, which are PLSS Second Divisions. Public Land Survey System (PLSS) townships are subdivided in a spatial hierarchy of first, second, and third division. These divisions are typically aliquot parts ranging in size from 640, 160 and 40 acres, and subsequently all the way down to 2.5 acres. The data in this feature class were translated from the PLSSSecondDiv dataset in the original production data model, which defined the second division for a specific parcel of land.</purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>20160501</caldate>
+</sngdate>
+</timeinfo>
+<current>publication date</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>Weekly</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-124.423057</westbc>
+<eastbc>-83.291012</eastbc>
+<northbc>48.999360</northbc>
+<southbc>30.346020</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>planningCadastre</themekey>
+<themekey>boundaries</themekey>
+</theme>
+<theme>
+<themekt>None</themekt>
+<themekey>Meridian Code</themekey>
+<themekey>Section Number</themekey>
+<themekey>Land Status</themekey>
+<themekey>Section Legal Description</themekey>
+<themekey>NFS Lands</themekey>
+<themekey>Township</themekey>
+<themekey>PLSS Section</themekey>
+<themekey>ALP Land Dataset</themekey>
+<themekey>Range</themekey>
+<themekey>USDA Forest Service</themekey>
+</theme>
+</keywords>
+<accconst>None</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and land users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<native>Esri ArcGIS 13.3.4.52636</native>
+</idinfo>
+<dataqual>
+<attracc>
+<attraccr>The Regional Land Status personnel are responsible for their local data stewardship and maintenance. The overall collection nationwide consists of 100% attribute accuracy based on currentness and completeness.</attraccr>
+</attracc>
+<logic>Quality control measures taken: this feature class is populated by an automated translation process from the source feature class that is edited and maintained by the data stewards. Only stewards with the proper role grants can edit the data. The application used for editing has built in controls to only allow valid geometry and domains to control attribute integrity.</logic>
+<complete>This theme is current to date of publication.</complete>
+<posacc>
+<horizpa>
+<horizpar>Generally the source information used to record spatial locations are from: 1) on-screen digitizing with a georeferenced topographic or image background; or 2) GPS field collected positions.</horizpar>
+</horizpa>
+</posacc>
+<lineage>
+<procstep>
+<procdesc>This data was published using Feature Manipulation Engine Software. The spatial features were extracted from the transactional database, manipulated to meet the desired output format and published to the target feature class. This data was migrated from the CDW. The spatial features were projected and imported into the target feature class.</procdesc>
+<procdate>20160101</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>GT-polygon composed of chains</sdtstype>
+<ptvctcnt>4845</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.BdySur_LSRS_QuarterSection</enttypl>
+<enttypd>A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>http://support.esri.com/en/knowledgebase/GISDictionary/term/feature%20class</enttypds>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>QUARTERSECTIONID</attrlabl>
+<attrdef>A unique control number used to identify a specific spatial feature and/or database attribute.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Unique Identifier.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SECONDDIVDESIGNATOR</attrlabl>
+<attrdef>The letter, number, or letter number combination that identifies the Second Division.</attrdef>
+<attrdefs>U.S. Forest Service, Automated Lands Program (ALP)</attrdefs>
+<attrdomv>
+<udom>Second division identifier.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SECONDDIVSUFFIX</attrlabl>
+<attrdef>The indicator for duplicate Second Divisions.</attrdef>
+<attrdefs>U.S. Forest Service, Automated Lands Program (ALP)</attrdefs>
+<attrdomv>
+<udom>Duplicate second division identifier.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SECONDDIVTYPE</attrlabl>
+<attrdef>The second subdivision category.</attrdef>
+<attrdefs>U.S. Forest Service, Automated Lands Program (ALP)</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Quarter Section</edomv>
+<edomvd>Quarter Section</edomvd>
+<edomvds>U.S. Forest Service, Automated Land Program (ALP) reference documentation.</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SECONDDIVDUPCODE</attrlabl>
+<attrdef>Indicates duplicate second division.</attrdef>
+<attrdefs>U.S. Forest Service, Automated Lands Program (ALP)</attrdefs>
+<attrdomv>
+<edom>
+<edomv>First Duplicate</edomv>
+<edomvd>First Duplicate</edomvd>
+<edomvds>U.S. Forest Service, Automated Land Program (ALP) reference documentation.</edomvds>
+</edom>
+<edom>
+<edomv>Second Duplicate</edomv>
+<edomvd>Second Duplicate</edomvd>
+<edomvds>U.S. Forest Service, Automated Land Program (ALP) reference documentation.</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SECTION_FK</attrlabl>
+<attrdef>PLSS First Division identifier.</attrdef>
+<attrdefs>U.S. Forest Service, Automated Lands Program (ALP)</attrdefs>
+<attrdomv>
+<udom>Foreign Key identifier code for the first division.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SECTIONLEGAL</attrlabl>
+</attr>
+<attr>
+<attrlabl>RECORDEDACRES</attrlabl>
+<attrdef>Parcel acres recorded in the conveyance or other document.</attrdef>
+<attrdefs>U.S. Forest Service, Automated Lands Program (ALP)</attrdefs>
+<attrdomv>
+<udom>Recorded area in acres.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AREASOURCE</attrlabl>
+<attrdef>The source of the RECORDEDACRES field.</attrdef>
+<attrdefs>U.S. Forest Service, Automated Lands Program (ALP)</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Acreage from LLD w/o adding portions of the survey</edomv>
+<edomvd>Acreage from LLD w/o adding portions of the survey</edomvd>
+<edomvds>U.S. Forest Service, Automated Land Program (ALP) reference documentation.</edomvds>
+</edom>
+<edom>
+<edomv>Acreage calculated by query that added LLD acreages by special survey type </edomv>
+<edomvd>Acreage calculated by query that added LLD acreages by special survey type </edomvd>
+<edomvds>U.S. Forest Service, Automated Land Program (ALP) reference documentation.</edomvds>
+</edom>
+<edom>
+<edomv>Acreage from official plat and agrees with LLD sum </edomv>
+<edomvd>Acreage from official plat and agrees with LLD sum </edomvd>
+<edomvds>U.S. Forest Service, Automated Land Program (ALP) reference documentation.</edomvds>
+</edom>
+<edom>
+<edomv>Acreage from official plat and disagrees with LLD sum </edomv>
+<edomvd>Acreage from official plat and disagrees with LLD sum </edomvd>
+<edomvds>U.S. Forest Service, Automated Land Program (ALP) reference documentation.</edomvds>
+</edom>
+<edom>
+<edomv>Acreage from MTP or paper map</edomv>
+<edomvd>Acreage from MTP or paper map</edomvd>
+<edomvds>U.S. Forest Service, Automated Land Program (ALP) reference documentation.</edomvds>
+</edom>
+<edom>
+<edomv>Acreage from GIS coverage or AutoCAD </edomv>
+<edomvd>Acreage from GIS coverage or AutoCAD </edomvd>
+<edomvds>U.S. Forest Service, Automated Land Program (ALP) reference documentation.</edomvds>
+</edom>
+<edom>
+<edomv>Acreage computed by a subdivision program</edomv>
+<edomvd>Acreage computed by a subdivision program</edomvd>
+<edomvds>U.S. Forest Service, Automated Land Program (ALP) reference documentation.</edomvds>
+</edom>
+<edom>
+<edomv>Acreage computed (geodetic) from SDO geometry using spatial DB SQL </edomv>
+<edomvd>Acreage computed (geodetic) from SDO geometry using spatial DB SQL </edomvd>
+<edomvds>U.S. Forest Service, Automated Land Program (ALP) reference documentation.</edomvds>
+</edom>
+<edom>
+<edomv>Acreage computed (planar) from ST geometry using spatial DB SQL </edomv>
+<edomvd>Acreage computed (planar) from ST geometry using spatial DB SQL </edomvd>
+<edomvds>U.S. Forest Service, Automated Land Program (ALP) reference documentation.</edomvds>
+</edom>
+<edom>
+<edomv>Acreage from official document </edomv>
+<edomvd>Acreage from official document </edomvd>
+<edomvds>U.S. Forest Service, Automated Land Program (ALP) reference documentation.</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PROVISIONAL</attrlabl>
+<attrdef>Indicates whether the survey provisional.</attrdef>
+<attrdefs>U.S. Forest Service, Automated Lands Program (ALP)</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Yes</edomv>
+<edomvd>The survey is provisional.</edomvd>
+<edomvds>ALP</edomvds>
+</edom>
+<edom>
+<edomv>No</edomv>
+<edomvd>The survey is not provisional.</edomvd>
+<edomvds>ALP</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GIS_ACRES</attrlabl>
+<attrdef>The area of the feature in acres, calculated using a projected surface computation. A NAD 83, USA Contiguous Albers Equal Area Conic projection was used for Regions 1-9, and NAD 83, Alaska Albers for Region 10.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>The area of a feature in acres.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REGION</attrlabl>
+<attrdef>U.S. Forest Service Region, consisting of Region 01 (Northern Region), Region 02 (Rocky Mountain Region), Region 03 (Southwestern Region), Region 04 (Intermountain Region), Region 05 (Pacific Southwest Region), Region 06 (Pacific Northwest Region), Region 08 (Southern Region), Region 09 (Eastern Region), and Region 10 (Alaska Region). There is no Region 07. Regions are listed on https://www.fs.usda.gov/organization.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>01</edomv>
+<edomvd>Region 01 - Northern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>02</edomv>
+<edomvd>Region 02 - Rocky Mountain</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>03</edomv>
+<edomvd>Region 03 - Southwestern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>04</edomv>
+<edomvd>Region 04 - Intermountain</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>05</edomv>
+<edomvd>Region 05 - Pacific Southwest</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>06</edomv>
+<edomvd>Region 06 - Pacific Northwest</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>08</edomv>
+<edomvd>Region 08 - Southern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>09</edomv>
+<edomvd>Region 09 - Eastern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>10</edomv>
+<edomvd>Region 10 - Alaska</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.AREA</attrlabl>
+<attrdef>Area of feature in internal units squared.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+<attrdef>Length of feature in internal units.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</distrib>
+<distliab>The U.S. Forest Service makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, reliability, completeness, or utility of these geospatial data or for the improper or incorrect use of those data. The data are dynamic and may change over time. The user is responsible for verifying the limitations of the geospatial data and for using the data accordingly.</distliab>
+</distinfo>
+<metainfo>
+<metd>20250929</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

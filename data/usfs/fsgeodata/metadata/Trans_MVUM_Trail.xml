@@ -1,0 +1,775 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>U.S. Forest Service</origin>
+<pubdate>20260205</pubdate>
+<pubtime>201031</pubtime>
+<title>S_USA.Trans_MVUM_Trail</title>
+<geoform>vector digital data</geoform>
+<othercit>The Federal Register Notice (73 FR 74689) for the final travel management directives was published on December 9, 2008. The directives became effective January 8, 2009. Travel Management Rule (36 CFR 212, Subpart B, Designation of Roads, Trails, and Areas for Motor Vehicle Use). See http://www.fs.fed.us/recreation/programs/ohv/index.shtml for more information.</othercit>
+<onlink>http://data.fs.usda.gov/geodata/edw/datasets.php</onlink>
+</citeinfo>
+</citation>
+<descript>
+<abstract>This feature class depicts Forest Service trails where motorized use is allowed. It contains information on the specific type of motor vehicle and their seasons of use. The feature class is consistent with the appropriate National Forest's Motor Vehicle Use Map (MVUM). Non-motorized trails are not included in this data. Trails in this feature class are legal for some motorized use for at least a portion of the year. Any reference to Open or Dates Open refers strictly to when it is legal to use that motor vehicle on the trail. It is not meant to describe when the conditions would be appropriate for that use. As an example, a trail may be designated open to motorcycles all year long but there may be periods of time when snow depth prevents the use of motorcycles on that trail. It is compiled from the GIS Data Dictionary data and tabular data that the administrative units have prepared for the creation of their MVUMs. This data is published and refreshed on a unit by unit basis as needed. Individual unit's data must be verified and proved consistent with the published MVUMs prior to publication in the Enterprise Data Warehouse (EDW).</abstract>
+<purpose>This feature class contains National Forest System trails which have been designated as open to motorized vehicles under the Travel Management Rule. This data is published and refreshed on a unit by unit basis as needed. Individual units data must be verified and proved consistent with the published Motor Vehicle Use Maps (MVUMs) prior to publication in the EDW.</purpose>
+<supplinf>A required set of core attributes must be collected during field work and electronically stored in the corporate Forest Service application to meet the minimum business needs of this protocol. Required attributes are established to meet corporate expectations of reporting, monitoring or data sharing. All required and optional fields in this protocol are supported in the USFS application. Some attributes are auto-generated and populated in the Forest Service application from the spatial feature. Detailed attribute descriptions follow later in this document under Resource&gt; Fields&gt; Entity and Attribute Information.</supplinf>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>20150819</caldate>
+</sngdate>
+</timeinfo>
+<current>Publication Date</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>As needed</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-149.373163</westbc>
+<eastbc>-73.003664</eastbc>
+<northbc>60.752211</northbc>
+<southbc>28.985233</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>None</themekt>
+<themekey>National Forest</themekey>
+<themekey>Travel Management Rule</themekey>
+<themekey>Road</themekey>
+<themekey>MVUM</themekey>
+<themekey>Forest Service</themekey>
+</theme>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>transportation</themekey>
+</theme>
+</keywords>
+<accconst>None</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<datacred>U.S. Forest Service</datacred>
+<native>Esri ArcGIS 13.2.2.49743</native>
+</idinfo>
+<dataqual>
+<logic>None</logic>
+<complete>Completeness is dependent on the data collected and maintained by individual Forest Service administrative units.</complete>
+<posacc>
+<horizpa>
+<horizpar>Generally the source information used to record spatial locations are from: 1) on-screen digitizing with a georeferenced topographic or image background; or 2) GPS field collected positions.</horizpar>
+</horizpa>
+</posacc>
+<lineage>
+<srcinfo>
+<srccite>
+<citeinfo>
+<origin>USFS</origin>
+<pubdate>unpublished material</pubdate>
+<title>Trails</title>
+</citeinfo>
+</srccite>
+<srcscale>24000</srcscale>
+<typesrc>onLine</typesrc>
+<srctime>
+<timeinfo>
+<sngdate>
+<caldate>20150101</caldate>
+</sngdate>
+</timeinfo>
+<srccurr>ground condition</srccurr>
+</srctime>
+<srccitea>TRAILS</srccitea>
+<srccontr>Spatial location of trails and attribution</srccontr>
+</srcinfo>
+<procstep>
+<procdesc>The Trail_MVUM feature class is derived from individual National Forests providing the trail data used for the creation of their Motor Vehicle Use Map. Forests that choose to have their data included in the Forest Service Interactive Travel Map have their MVUM Trail data incorporated into the national Trail_MVUM feature class.</procdesc>
+<procdate>20150101</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>String</sdtstype>
+<ptvctcnt>0</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.Trail_MVUM</enttypl>
+<enttypd>A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>Esri GIS Data Dictionary</enttypds>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>RTE_CN</attrlabl>
+<attrdef>Control number generated in Oracle to uniquely identify each route across all Forest Service units.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Control number generated in Oracle to uniquely identify each route across all Forest Service units.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ID</attrlabl>
+<attrdef>The trail number, the official identifier of the route.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>The trail number, the official identifier of the route.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>NAME</attrlabl>
+<attrdef>Common name of the route.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Common name of the route.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>BMP</attrlabl>
+<attrdef>Beginning measure point of the route segment.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Beginning measure point of the route segment.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>EMP</attrlabl>
+<attrdef>Ending measure point of the route segment.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Ending measure point of the route segment.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SEG_LENGTH</attrlabl>
+<attrdef>Length of the segment, in miles (calculated from Beginning Mile Post subtracted from Ending Mile Post [EMP - BMP]). Beginning Mile Post (BMP) and Ending Mile Post (EMP) are generally derived from field measurements. The SEG_LENGTH may be different than the GIS_MILES attribute which is calculated by the GIS for each segment.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Length of the segment, in miles (calculated from Beginning Mile Post subtracted from Ending Mile Post [EMP - BMP]). Beginning Mile Post (BMP) and Ending Mile Post (EMP) are generally derived from field measurements. The SEG_LENGTH may be different than the GIS_MILES attribute which is calculated by the GIS for each segment.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GIS_Miles</attrlabl>
+<attrdef>The GIS_MILES length based on the digitized shape of the feature. This field is calculated by reprojecting the feature to North_America_Albers_Equal_Area_Conic projection and putting the feature through a function to change it from meters to miles.</attrdef>
+<attrdefs>USFS CIO EDW</attrdefs>
+<attrdomv>
+<udom>The GIS_MILES length based on the digitized shape of the feature. This field is calculated by reprojecting the feature to North_America_Albers_Equal_Area_Conic projection and putting the feature through a function to change it from meters to miles.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SYMBOL</attrlabl>
+<attrdef>Values are used to determine the line symbol shown on the Forest Service Motor Vehicle Use Map. These correspond to the Motor Vehicle Use Map legend.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>5</edomv>
+<edomvd>5: Trails open to all vehicles, Yearlong</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>6</edomv>
+<edomvd>6: Trails open to all vehicles, Seasonal</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>7</edomv>
+<edomvd>7: Trails open to vehicles 50" or less in width, Yearlong</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>8</edomv>
+<edomvd>8: Trails open to vehicles 50" or less in width, Seasonal</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>9</edomv>
+<edomvd>9: Trails open to motorcycles, Yearlong</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>10</edomv>
+<edomvd>10: Trails open to motorcycles, Seasonal</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>11</edomv>
+<edomvd>11: Special Designation, Yearlong</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>12</edomv>
+<edomvd>12: Special Designation, Seasonal</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>16</edomv>
+<edomvd>16: Wheeled Off Highway Vehicle &lt;50", Yearlong</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>17</edomv>
+<edomvd>17: Wheeled Off Highway Vehicle &lt;50", Seasonal</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>19</edomv>
+<edomvd>eBike class 1 2 &amp; 3 Yearlong</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>20</edomv>
+<edomvd>eBike class 1 2 &amp; 3 Seasonal</edomvd>
+<edomvds>USFA</edomvds>
+</edom>
+<edom>
+<edomv>21</edomv>
+<edomvd>eBike class 1 &amp;2 Yearlong</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>22</edomv>
+<edomvd>eBike class 1 &amp; 2 Seasonal</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>23</edomv>
+<edomvd>eBike class 1 Yearlong</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>24</edomv>
+<edomvd>eBike class 1 Seasonal</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MVUM_SYMBOL_NAME</attrlabl>
+<attrdef>The description of the symbol that represents the route on the Forest Service Motor Vehicle Use Map. </attrdef>
+<attrdefs>USFS</attrdefs>
+</attr>
+<attr>
+<attrlabl>JURISDICTION</attrlabl>
+<attrdef>The legal right to control or regulate use of a transportation facility. Jurisdiction requires authority, but not necessarily ownership. The authority to construct or maintain a road may be derived from fee title, an easement, an agreement, or some other similar method.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>FS - FOREST SERVICE</edomv>
+<edomvd>FS: Forest Service</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>P - PRIVATE</edomv>
+<edomvd>P: Private</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>S - STATE</edomv>
+<edomvd>S: State</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>SL - STATE LANDS</edomv>
+<edomvd>SL: State Lands</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SEASONAL</attrlabl>
+<attrdef>Intended to be used for a simple way to determine if a trail is open for motorized use all year or if there is a prohibition during some portion of the year.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>seasonal</edomv>
+<edomvd>Seasonal: Open for only a portion of the year</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>yearlong</edomv>
+<edomvd>Yearlong: Open all year</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSENGERVEHICLE</attrlabl>
+<attrdef>Open to use to a vehicle described as: All passenger vehicles such as sedans, and other typical low clearance vehicles less than 10,000 Gross Vehicle Weight (GVW) licensed to operate on public roads.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>open</edomv>
+<edomvd>Open: Open to passenger vehicle</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSENGERVEHICLE_DATESOPEN</attrlabl>
+<attrdef>Dates route is open for Passenger Vehicle travel</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Dates route is open for Passenger Vehicle travel</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>HIGHCLEARANCEVEHICLE</attrlabl>
+<attrdef>Open to use to a vehicle described as: All sport utility vehicles (SUVs), light trucks, motorcycles, and other highway-legal vehicles designed for operation on rough terrain.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>open</edomv>
+<edomvd>Open: Open to high clearance vehicles</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>HIGHCLEARANCEVEHICLE_DATESOPEN</attrlabl>
+<attrdef>Dates route is open for High Clearance Vehicle travel</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Dates route is open for High Clearance Vehicle travel</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TRUCK</attrlabl>
+<attrdef>Open to use to a vehicle described as: All motor vehicles greater than 10,000 pounds Gross Vehicle Weight (GVW) designed, used, or maintained primarily for the transportation of property or equipment, such as lowboys, log trucks, chip trucks, end dumps and fire trucks licensed to operate on public roads.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>open</edomv>
+<edomvd>Open: Open to trucks</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TRUCK_DATESOPEN</attrlabl>
+<attrdef>Dates route is open for truck travel</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Dates route is open for truck travel</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>BUS</attrlabl>
+<attrdef>Open to use to a vehicle described as: All motor vehicles designed for carrying more than 10 passengers and greater than 10,000 pounds Gross Vehicle Weight (GVW) licensed to operate on public roads.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>open</edomv>
+<edomvd>Open: Open to bus travel</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>BUS_DATESOPEN</attrlabl>
+<attrdef>Dates route is open for bus travel</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Dates route is open for bus travel</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MOTORHOME</attrlabl>
+<attrdef>Open to use to a vehicle described as: All motor vehicles that are self-contained living quarters on wheels licensed to operate on public roads.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>open</edomv>
+<edomvd>Open: Open to motor homes</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MOTORHOME_DATESOPEN</attrlabl>
+<attrdef>Dates route is open for motor home travel</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Dates route is open for motor home travel</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FOURWD_GT50INCHES</attrlabl>
+<attrdef>Open for use to a vehicle described as: An off-highway vehicle (OHV) greater than 50 inches in width that operates on four wheels and with a drive train that allows all four wheels to receive power from the engine simultaneously.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>open</edomv>
+<edomvd>Open: Open to 4-WD greater than 50"</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FOURWD_GT50_DATESOPEN</attrlabl>
+</attr>
+<attr>
+<attrlabl>TWOWD_GT50INCHES</attrlabl>
+<attrdef>Open for use to a vehicle described as: An off-highway vehicle (OHV) greater than 50 inches in width that operates on four wheels and with a drive train that allows two wheels to receive power from the engine simultaneously.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>open</edomv>
+<edomvd>Open: Open to 2-WD greater than 50"</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TWOWD_GT50_DATESOPEN</attrlabl>
+</attr>
+<attr>
+<attrlabl>TRACKED_OHV_GT50INCHES</attrlabl>
+<attrdef>Open for use to a vehicle described as: An off-highway vehicle (OHV) greater than 50 inches in width that operates on tracks, including SUVs or utility vehicles with track conversion kits.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>open</edomv>
+<edomvd>Open: Open to tracked Off Highway Vehicle greater than 50</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TRACKED_OHV_GT50_DATESOPEN</attrlabl>
+</attr>
+<attr>
+<attrlabl>OTHER_OHV_GT50INCHES</attrlabl>
+<attrdef>Open for use to a vehicle described as: An off-highway vehicle (OHV) greater than 50"in width that is not wheeled or tracked.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>open</edomv>
+<edomvd>Open: Open to other Off Highway Vehicles greater than 50"</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>OTHER_OHV_GT50_DATESOPEN</attrlabl>
+</attr>
+<attr>
+<attrlabl>ATV</attrlabl>
+<attrdef>Open for use to a vehicle described as: An off-highway vehicle (OHV) less than or equal to 50 inches in width with three or more low-pressure tires, handle-bar steering and a seat designed to be straddled by the operator.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>open</edomv>
+<edomvd>Open: Open to ATV</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ATV_DATESOPEN</attrlabl>
+<attrdef>Dates route is open for ATV travel</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Dates route is open for ATV travel</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MOTORCYCLE</attrlabl>
+<attrdef>Open for use to a vehicle described as: Two-wheeled vehicles on which the two wheels are inline, not side-by-side.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>open</edomv>
+<edomvd>Open: Open to motorcycles</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MOTORCYCLE_DATESOPEN</attrlabl>
+<attrdef>Dates route is open for motorcycle travel</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Dates route is open for motorcycle travel</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>OTHERWHEELED_OHV</attrlabl>
+<attrdef>Open for use to a vehicle described as: Other wheeled off -highway vehicles (OHVs) less than or equal to 50" width that are not ATV's or motorcycles. Includes balancing scooters.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>open</edomv>
+<edomvd>Open: Open to other wheeled Off Highway Vehicle</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>OTHERWHEELED_OHV_DATESOPEN</attrlabl>
+<attrdef>Dates route is open for Other wheeled Off Highway Vehicles (OHVs)</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Dates route is open for Other wheeled Off Highway Vehicles (OHVs)</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TRACKED_OHV_LT50INCHES</attrlabl>
+<attrdef>Open for use to a vehicle described as: An off-highway vehicle (OHV) less than or equal to 50 inches in width operating on tracks. Includes ATVs with track conversion kits and snowmobiles when not operating over snow.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>open</edomv>
+<edomvd>Open: Open to tracked Off Highway Vehicle less than 50"</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TRACKED_OHV_LT50_DATESOPEN</attrlabl>
+</attr>
+<attr>
+<attrlabl>OTHER_OHV_LT50INCHES</attrlabl>
+<attrdef>Open for use to a vehicle described as: An off-highway vehicle (OHV) less than or equal to 50" width operating on tracks.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>open</edomv>
+<edomvd>Open: Open to other Off Highway Vehicles less than 50"</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>OTHER_OHV_LT50_DATESOPEN</attrlabl>
+</attr>
+<attr>
+<attrlabl>ADMINORG</attrlabl>
+<attrdef>The Forest Service unit code where the route segment physically resides or the primary Forest Service unit served by the route segment.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>The Forest Service unit code where the route segment physically resides or the primary Forest Service unit served by the route segment.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SECURITYID</attrlabl>
+<attrdef>A concatenation of the codes for Forest Service Region and Forest of the unit that entered the data into the database</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>A concatenation of the codes for Forest Service Region and Forest of the unit that entered the data into the database</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>DISTRICTNAME</attrlabl>
+<attrdef>The name of the Ranger District on which the trail resides</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>The name of the Ranger District on which the trail resides</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FORESTNAME</attrlabl>
+<attrdef>The name of the National Forest on which the trail resides.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>The name of the National Forest on which the trail resides.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FIELD_ID</attrlabl>
+<attrdef>Optionally used to hold the text for labeling the trail when displayed on a map. Intended to be used only when the ID field does not contain what is commonly used as the trail number.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Optionally used to hold the text for labeling the trail when displayed on a map. Intended to be used only when the ID field does not contain what is commonly used as the trail number.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TRAILSTATUS</attrlabl>
+<attrdef>Current physical state of being of the trail segment. Trail_MVUM only contains data for trails that currently are exist.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Current physical state of being of the trail segment. Trail_MVUM only contains data for trails that currently are exist.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TRAILSYSTEM</attrlabl>
+<attrdef>The travel network to which the trail segment belongs.</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<udom>The travel network to which the trail segment belongs.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TRAILCLASS</attrlabl>
+<attrdef>The prescribed scale of trail development, representing the intended design and management standards of the trail</attrdef>
+<attrdefs>USDA Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>TC1 - PRIMITIVE/UNDEVELOPED</edomv>
+<edomvd>Primitive/Undeveloped: Primitive trail, minimum to nonexistent constructed features</edomvd>
+<edomvds>USDA Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>TC2 - MODERATELY DEVELOPED</edomv>
+<edomvd>Simple/Minor Development: Simple trail, minor development, constructed features for trail</edomvd>
+<edomvds>USDA Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>TC3 - DEVELOPED</edomv>
+<edomvd>Developed/Improved: Substantial trail, structures common, designed for user</edomvd>
+<edomvds>USDA Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>TC4 - HIGHLY DEVELOPED</edomv>
+<edomvd>Highly Developed: High standard trail, significant structures, tread hardening</edomvd>
+<edomvds>USDA Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>TC5 - FULLY DEVELOPED</edomv>
+<edomvd>Fully Developed: Highest standard trail, significant structures, likely hardened</edomvd>
+<edomvds>USDA Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Feature geometry.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GLOBALID</attrlabl>
+</attr>
+<attr>
+<attrlabl>TA_SYMBOL</attrlabl>
+</attr>
+<attr>
+<attrlabl>E_BIKE_CLASS1</attrlabl>
+<attrdef>An e-bike equipped with a motor that provides assistance only when the rider is pedaling and that ceases to provide assistance when the e-bike reaches the speed of 20 miles per hour.
+</attrdef>
+<attrdefs>U.S Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Open</edomv>
+<edomvd>Open to E-Bikes</edomvd>
+<edomvds>U.S Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>E_BIKE_CLASS1_DUR</attrlabl>
+<attrdef>Open for use to a vehicle described as: An e-bike equipped with a motor that provides assistance only when the rider is pedaling and that ceases to provide assistance when the e-bike reaches the speed of 20 miles per hour.
+</attrdef>
+<attrdefs>U.S Forest Service</attrdefs>
+<attrdomv>
+<udom>Calendar date range formatted as MM/DD-MM/DD</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>E_BIKE_CLASS2</attrlabl>
+<attrdef>An e-bike equipped with a motor that may be used exclusively to propel the e-bike and that ceases to provide assistance when the e-bike reaches the speed of 20 miles per hour.
+</attrdef>
+<attrdefs>U.S Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Open</edomv>
+<edomvd>Open to E-Bikes</edomvd>
+<edomvds>U.S Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>E_BIKE_CLASS2_DUR</attrlabl>
+<attrdef>Open for use to a vehicle described as: An e-bike equipped with a motor that may be used exclusively to propel the e-bike and that ceases to provide assistance when the e-bike reaches the speed of 20 miles per hour.
+</attrdef>
+<attrdefs>U.S Forest Service</attrdefs>
+<attrdomv>
+<udom>Calendar date range formatted as MM/DD-MM/DD</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>E_BIKE_CLASS3</attrlabl>
+<attrdef>An e-bike equipped with a motor that provides assistance only when the rider is pedaling and that ceases to provide assistance when the e-bike reaches the speed of 28 miles per hour.
+</attrdef>
+<attrdefs>U.S Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Open</edomv>
+<edomvd>Open to E-Bikes</edomvd>
+<edomvds>U.S Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>E_BIKE_CLASS3_DUR</attrlabl>
+<attrdef>Open for use to a vehicle described as: An e-bike equipped with a motor that provides assistance only when the rider is pedaling and that ceases to provide assistance when the e-bike reaches the speed of 28 miles per hour
+</attrdef>
+<attrdefs>U.S Forest Service</attrdefs>
+<attrdomv>
+<udom>Calendar date range formatted as MM/DD-MM/DD</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+<attrdef>Length of feature in internal units.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Length of feature in internal units.</udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<metainfo>
+<metd>20240404</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

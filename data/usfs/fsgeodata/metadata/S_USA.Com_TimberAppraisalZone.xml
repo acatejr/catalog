@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<metadata>
+	<idinfo>
+		<citation>
+			<citeinfo>
+				<origin>USDA Forest Service</origin>
+				<pubdate>20220601</pubdate>
+				<title>S_USA.Com_TimberAppraisalZone</title>
+				<geoform>vector</geoform>
+				<onlink>http://data.fs.usda.gov/geodata/edw/datasets.php</onlink>
+			</citeinfo>
+		</citation>
+		<descript>
+			<abstract>This dataset is a spatial display of US Forest Service stumpage market appraisal zones. A zone may encompass a Region, a National Forest, a group of Ranger Districts, or combinations thereof. Each unique market appraisal zone defines a localized stumpage market. In each market area, stumpage values reflect the market value of standing trees (on the stump) prior to felling, removal, and utilization in a value-added manufacturing activity. The zone boundary is typically determined by factors including, but not limited to, manufacturing facilities, hauling distances, species yield compositions, timber quality, market area competition, and logging methods.</abstract>
+			<purpose>The purpose of this dataset is to spatially display USFS stumpage market and geographical extent of Agency appraisal zones. This information assists the USFS to quantify supply and demand for stumpage, serves as the basis for project economic analysis, defines the geographic extent of base appraisal data, and helps Agency partners and customers prepare bids for federal stumpage. The geographic extent of Agency appraisal zones serves as the foundational basis to perform market research and competitive analysis. The geographic area may encompass a Region, National Forest, a group of Ranger Districts, or combinations thereof. The zone boundary is typically determined by factors including, but not limited to, manufacturing facilities, haul distances, species yield compositions, timber quality, market area competition, and logging methods.</purpose>
+		</descript>
+		<timeperd>
+			<timeinfo>
+				<sngdate>
+					<caldate>20220601</caldate>
+				</sngdate>
+			</timeinfo>
+			<current>Publication Date</current>
+		</timeperd>
+		<status>
+			<progress>Planned</progress>
+			<update>As needed</update>
+		</status>
+		<spdom>
+			<bounding>
+				<westbc>-150.007928</westbc>
+				<eastbc>-70.760938</eastbc>
+				<northbc>61.518990</northbc>
+				<southbc>28.627003</southbc>
+			</bounding>
+		</spdom>
+		<keywords>
+			<theme>
+				<themekt>ISO 19115 Topic Categories</themekt>
+				<themekey>boundaries</themekey>
+				<themekey>Economy</themekey>
+			</theme>
+		</keywords>
+		<accconst>None</accconst>
+		<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+		<ptcontac>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+				</cntorgp>
+				<cntaddr>
+					<addrtype>physical</addrtype>
+					<city>Washington</city>
+					<state>DC</state>
+					<postal>20250</postal>
+					<country>US</country>
+				</cntaddr>
+				<cntvoice>Please send an e-mail to the address below.</cntvoice>
+				<cntemail>SM.FS.data@usda.gov</cntemail>
+			</cntinfo>
+		</ptcontac>
+		<native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.9.1.28388</native>
+	</idinfo>
+	<dataqual>
+		<logic>An annual review of the boundaries of these USFS appraisal zones is performed jointly by the Washington, DC office and the Regional Foresters. The results of this review may result in the shifting of appraisal zone boundaries.</logic>
+		<complete>Data is complete for publication</complete>
+		<posacc>
+			<horizpa>
+				<horizpar>the Data aligns with the administrative boundaries dataset, so accuracy of this dataset is equal to the accuracy of the administrative boundaries dataset</horizpar>
+			</horizpa>
+		</posacc>
+		<lineage>
+			<procstep>
+				<procdesc>Spatial information in this dataset is derived from an existing spatial dataset representing USFS Ranger Districts - (https://www.arcgis.com/home/item.html?id=fc5fee6c9a46454ba6e239a706a16b57). For appraisal zones that consist of multiple USFS Ranger Districts, those corresponding districts are dissolved using ESRI software. Attribution from the input spatial dataset is removed and replaced with attribution for this dataset. USFS appraisal zone boundaries may shift on an annual basis, so this process may be repeated on an annual basis to reflect these changes.</procdesc>
+				<procdate>20221228</procdate>
+			</procstep>
+		</lineage>
+	</dataqual>
+	<spdoinfo>
+		<direct>Vector</direct>
+		<ptvctinf>
+			<sdtsterm>
+				<sdtstype>GT-polygon composed of chains</sdtstype>
+				<ptvctcnt>88</ptvctcnt>
+			</sdtsterm>
+		</ptvctinf>
+	</spdoinfo>
+	<eainfo>
+		<detailed>
+			<enttyp>
+				<enttypl>S_USA.Com_TimberAppraisalZone</enttypl>
+				<enttypd>Feature class: A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+				<enttypds>ESRI GIS Dictionary</enttypds>
+			</enttyp>
+			<attr>
+				<attrlabl>RANGERDISTRICTLIST</attrlabl>
+				<attrdef>The list of National Forest Ranger District administrative units in the unique appraisal zone</attrdef>
+				<attrdefs>U.S. Forest Service</attrdefs>
+				<attrdomv>
+					<udom>Text</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>OBJECTID</attrlabl>
+				<attrdef>Internal feature number</attrdef>
+				<attrdefs>ESRI</attrdefs>
+				<attrdomv>
+					<udom>Sequential unique whole numbers that are automatically generated.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>RANGERDISTRICTCOUNT</attrlabl>
+				<attrdef>The count of National Forest Ranger District administrative units in the unique appraisal zone</attrdef>
+				<attrdefs>U.S. Forest Service</attrdefs>
+				<attrdomv>
+					<udom>Short</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SHAPE</attrlabl>
+				<attrdef>Spatial geometry definition</attrdef>
+				<attrdefs>U.S. Forest Service</attrdefs>
+				<attrdomv>
+					<udom>Geometry</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>FORESTCOUNT</attrlabl>
+				<attrdef>The count of National Forest administrative units in the unique appraisal zone</attrdef>
+				<attrdefs>U.S. Forest Service</attrdefs>
+				<attrdomv>
+					<udom>Short</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>GIS_ACRES</attrlabl>
+				<attrdef>The polygon area in acres</attrdef>
+				<attrdefs>U.S. Forest Service</attrdefs>
+				<attrdomv>
+					<udom>Double</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>FORESTLIST</attrlabl>
+				<attrdef>The list of National Forest administrative units in the unique appraisal zone</attrdef>
+				<attrdefs>U.S. Forest Service</attrdefs>
+				<attrdomv>
+					<udom>Text</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>APPRAISALZONE</attrlabl>
+				<attrdef>The 5 digit appraisal zone identifier is comprised of the Region (2 digits), Forest (2 digits) and Zone (1 digit). Zones of aggreated forests are attributed 00</attrdef>
+				<attrdefs>U.S. Forest Service</attrdefs>
+				<attrdomv>
+					<udom>Text</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SHAPE.AREA</attrlabl>
+				<attrdef>Esri field of boundary area in coordinate system units </attrdef>
+				<attrdefs>Esri</attrdefs>
+				<attrdomv>
+					<udom>Esri field of boundary length in coordinate system units </udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>SHAPE.LEN</attrlabl>
+				<attrdef>Esri field of boundary length in coordinate system units </attrdef>
+				<attrdefs>Esri</attrdefs>
+				<attrdomv>
+					<udom>Esri field of boundary length in coordinate system units </udom>
+				</attrdomv>
+			</attr>
+		</detailed>
+	</eainfo>
+	<distinfo>
+		<distrib>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+				</cntorgp>
+				<cntaddr>
+					<addrtype>physical</addrtype>
+					<city>Washington</city>
+					<state>DC</state>
+					<postal>20250</postal>
+					<country>US</country>
+				</cntaddr>
+				<cntvoice>Please send an e-mail to the address below</cntvoice>
+				<cntemail>SM.FS@usda.gov</cntemail>
+			</cntinfo>
+		</distrib>
+		<distliab>The U.S. Forest Service makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, reliability, completeness, or utility of these geospatial data or for the improper or incorrect use of those data. The data are dynamic and may change over time. The user is responsible for verifying the limitations of the geospatial data and for using the data accordingly.</distliab>
+	</distinfo>
+	<metainfo>
+		<metd>20230303</metd>
+		<metc>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+				</cntorgp>
+				<cntaddr>
+					<addrtype>physical</addrtype>
+					<city>Washington</city>
+					<state>DC</state>
+					<postal>20250</postal>
+					<country>US</country>
+				</cntaddr>
+				<cntvoice>Please send an e-mail to the address below</cntvoice>
+				<cntemail>SM.FS@usda.gov</cntemail>
+			</cntinfo>
+		</metc>
+		<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+		<metstdv>FGDC-STD-001-1998</metstdv>
+		<mettc>local time</mettc>
+	</metainfo>
+</metadata>

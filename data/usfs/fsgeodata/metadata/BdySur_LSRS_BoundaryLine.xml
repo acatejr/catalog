@@ -1,0 +1,1026 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>U.S. Forest Service</origin>
+<origin>Automated Lands Program (ALP)</origin>
+<pubdate>20260208</pubdate>
+<pubtime>023133</pubtime>
+<title>S_USA.BdySur_LSRS_BoundaryLine</title>
+<geoform>vector digital data</geoform>
+<othercit>ArcGIS REST Services Directory: https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_SMABoundary_01/MapServer</othercit>
+<onlink>http://data.fs.usda.gov/geodata/edw/datasets.php</onlink>
+</citeinfo>
+</citation>
+<descript>
+<abstract>This dataset is intended for read-only use. This dataset indicates the location and condition of marked and posted boundaries on the ground. These data can be used by Forest Service boundary managers to query and report the status of these boundaries for planning boundary management and maintenance work, as well as supporting field work by other users. The purpose of these data is to provide display, identification, and analysis tools for determining current boundary information for Forest Service managers, GIS specialists, and others.</abstract>
+<purpose>This dataset represents the status of boundaries for which the Forest Service is responsible for surveying and marking and posting (i.e. physically identifying on the ground with signage and other marks). These include the boundaries between National Forest System (NFS) Lands and non-NFS Lands and the boundaries of congressionally designated areas such as National Wilderness.</purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>20160404</caldate>
+</sngdate>
+</timeinfo>
+<current>publication date</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>Weekly</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-150.007671</westbc>
+<eastbc>-70.625725</eastbc>
+<northbc>61.518990</northbc>
+<southbc>28.916693</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>boundaries</themekey>
+</theme>
+<theme>
+<themekt>None</themekt>
+<themekey>Special Management Area Boundary</themekey>
+<themekey>Land Status</themekey>
+<themekey>USDA Forest Service</themekey>
+<themekey>ALP Land Dataset</themekey>
+<themekey>NFS Lands</themekey>
+<themekey>SMA Boundary</themekey>
+</theme>
+</keywords>
+<accconst>None</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and land users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<native>Version 6.2 (Build 9200) ; Esri ArcGIS 10.7.1.11595</native>
+</idinfo>
+<dataqual>
+<logic>Quality control measures taken: this feature class is populated by an automated translation process from the source feature class that is edited and maintained by the data stewards. Only stewards with the proper role grants can edit the data. The application used for editing has built in controls to only allow valid geometry and domains to control attribute integrity.</logic>
+<complete>This theme is current to date of publication.</complete>
+<posacc>
+<horizpa>
+<horizpar>Generally the source information used to record spatial locations are from: 1) on-screen digitizing with a georeferenced topographic or image background; or 2) GPS field collected positions.</horizpar>
+<qhorizpa>
+<horizpae>Direct Internal test</horizpae>
+</qhorizpa>
+</horizpa>
+</posacc>
+<lineage>
+<procstep>
+<procdesc>This data was published using Feature Manipulation Engine Software. The spatial features were extracted from the transactional database, manipulated to meet the desired output format and published to the target feature class. This data was migrated from the CDW. The spatial features were projected and imported into the target feature class.</procdesc>
+<procdate>20160101</procdate>
+</procstep>
+<procstep>
+<procdesc>The feature class structure has changed in IWEBDB (NRM Production) ALP_Rnn.RECORDBOUNDARY feature class. Columns have been added and deleted. This request is to update the published SMABoundary feature class to align to those changes. We have already prepared a feature class to use for the update in EDW: S_STAGE_LAND.EDW_SMABOUNDARY_STAGING. The weekly refresh/publication process already points to the S_STAGE_LAND.EDW_SMABOUNDARY_STAGING to update the records weekly. Now the S_USA.SMABoundary feature class structure needs to be updated to match it. The metadata and FS GIS Data Dictionary needs to be updated. Information for metadata and dictionary changes can be obtained from the Production feature class IWEBDB ALP_Rnn.RECORDBOUNDARY metadata: https://usfs.box.com/v/LSRSDDProdRecordBoundary. These changes will also affect layerfiles that EDW staff maintain: BoundarySurvey_SMA_SurfaceManagementArea_Boundary_EDW.lyr 
+				and  
+				</procdesc>
+<procdate>20220131</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>String</sdtstype>
+<ptvctcnt>1452671</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA_SMABoundary</enttypl>
+<enttypd>A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>ESRI GIS Dictionary</enttypds>
+</enttyp>
+<attr>
+<attrlabl>LATESTMAINTENANCEDATE</attrlabl>
+<attrdef>The most recent date when the boundary marks were maintained.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Date</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>IS_REGION_BDY</attrlabl>
+<attrdef>The boundary of an administrative region.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Yes</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>No</edomv>
+<edomvd>No</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LATESTMARKPOSTFISCALYEAR</attrlabl>
+<attrdef>System generated fiscal year of most recent boundary mark and post activity</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Four digit numerical year.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>IS_ADMIN_BDY</attrlabl>
+<attrdef>The boundary of an administrative forest.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>No</edomv>
+<edomvd>No</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Yes</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LATESTMARKTOSTDFY</attrlabl>
+<attrdef>Latest mark and post or maintenance FY.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Four digit numerical year.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>COMMENTS</attrlabl>
+<attrdef>Any additional comments.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual comments.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MARKEDTOSTANDARD</attrlabl>
+<attrdef>The standard to which the boundary was marked.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual description of marking standard.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LATESTMAINTENANCEFISCALYEAR</attrlabl>
+<attrdef>System generated fiscal year of most recent boundary maintenance activity.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Four digit numerical year.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MANAGINGAGENCY</attrlabl>
+<attrdef>The agency responsible for managing the boundary activity.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>USDA FOREST SERVICE</edomv>
+<edomvd>USDA FOREST SERVICE</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+<attrdomv>
+<udom>Textual representation of agency responsible for maintaining the boundary.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MARKED_AND_POSTED</attrlabl>
+<attrdef>The marked and posted status.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Not Marked</edomv>
+<edomvd>Not Marked</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Marked &amp; Needs Maintenance</edomv>
+<edomvd>Marked &amp; Needs Maintenance</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Marked</edomv>
+<edomvd>Marked</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LATESTMARKPOSTAGENT</attrlabl>
+<attrdef>The person or organization performing the most recent boundary mark and post activity.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual representation of party responsible for marking the boundary.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>IS_ADJOINER_GOVT_AGENCY</attrlabl>
+<attrdef>Indicates the adjoining governmental agency managing this boundary. (Not intended to indicate private land adjaceny.)</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>No</edomv>
+<edomvd>No</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Yes</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>BOUNDARYFEET</attrlabl>
+<attrdef>Calculated length of boundary in feet.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Calculated length of boundary in feet.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LINEACTIVITYNEEDED</attrlabl>
+<attrdef>Indicator as to whether or not a record boundary needs maintenance.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Yes</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>No</edomv>
+<edomvd>No</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ADJOINER_TYPE</attrlabl>
+<attrdef>The adjacent governmental agency. (Not intended to indicate private land adjacency.)</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>USDI Fish and Wildlife Service</edomv>
+<edomvd>USDI Fish and Wildlife Service</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>US Army Corps of Engineers</edomv>
+<edomvd>US Army Corps of Engineers</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>US Department of Energy</edomv>
+<edomvd>US Department of Energy</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>USDA Agricultural Research Service</edomv>
+<edomvd>USDA Agricultural Research Service</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>US Tennessee Valley Authority</edomv>
+<edomvd>US Tennessee Valley Authority</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>USDI Bureau of Land Management</edomv>
+<edomvd>USDI Bureau of Land Management</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>USDA Natural Resources Conservation Service</edomv>
+<edomvd>USDA Natural Resources Conservation Service</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>USDI National Park Service</edomv>
+<edomvd>USDI National Park Service</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>US American Indian Lands</edomv>
+<edomvd>US American Indian Lands</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>USDI Bureau of Reclamation</edomv>
+<edomvd>USDI Bureau of Reclamation</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ENCROACHMENTRISK</attrlabl>
+<attrdef>Statement of risk of adjoiner encroaching on SMA lands.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>High</edomv>
+<edomvd>Encroachment risk is high.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Medium</edomv>
+<edomvd>Encroachment risk is medium.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Low</edomv>
+<edomvd>Encroachment risk is low.</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>HISTORICAL</attrlabl>
+<attrdef>Identifies the historical status of a boundary. Intended for use by GPP&amp;E lands only.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Yes</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>No</edomv>
+<edomvd>No</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>BOUNDARYMILES</attrlabl>
+<attrdef>System generated length of features (U.S. Miles)</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Length of boundary in miles.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SMABOUNDARYID</attrlabl>
+<attrdef>A unique control number used to identify a specific spatial feature and/or database attribute.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Unique Identifier.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LATESTMAINTENANCEAGENT</attrlabl>
+<attrdef>The person or organization performing the most recent boundary maintenance activity.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Textual representation of party last maintaining the boundary.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REGION</attrlabl>
+<attrdef>U.S. Forest Service Region, consisting of Region 01 (Northern Region), Region 02 (Rocky Mountain Region), Region 03 (Southwestern Region), Region 04 (Intermountain Region), Region 05 (Pacific Southwest Region), Region 06 (Pacific Northwest Region), Region 08 (Southern Region), Region 09 (Eastern Region), and Region 10 (Alaska Region). There is no Region 07. Regions are listed on  https://www.fs.usda.gov/organization. Within this dataset, the region represents the Land Status Record System Production Regional schema from which data was derived.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>10</edomv>
+<edomvd>Region 10 - Alaska</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>03</edomv>
+<edomvd>Region 03 - Southwestern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>05</edomv>
+<edomvd>Region 05 - Pacific Southwest</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>01</edomv>
+<edomvd>Region 01 - Northern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>08</edomv>
+<edomvd>Region 08 - Southern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>06</edomv>
+<edomvd>Region 06 - Pacific Northwest</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>09</edomv>
+<edomvd>Region 09 - Eastern</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>02</edomv>
+<edomvd>Region 02 - Rocky Mountain</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>04</edomv>
+<edomvd>Region 04 - Intermountain</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>IS_SDA_BOUNDARY</attrlabl>
+<attrdef>Boundary of a special designated area.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Yes</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>No</edomv>
+<edomvd>No</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LIFEEXPECTANCY</attrlabl>
+<attrdef>Longevity of boundary mark, in years.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>10</edomv>
+<edomvd>10</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Undefined</edomv>
+<edomvd>Undefined</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>20</edomv>
+<edomvd>20</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>15</edomv>
+<edomvd>15</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>5</edomv>
+<edomvd>5</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LATESTMARKPOSTDATE</attrlabl>
+<attrdef>The most recent date when the boundary was marked and/or posted.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Date.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>IS_ACQ_BDY</attrlabl>
+<attrdef>The record boundary has become FS/FS boundary type because of a land acquisition resulting in FS ownership on both sides of the record boundary.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>No</edomv>
+<edomvd>No</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Yes</edomv>
+<edomvd>Yes</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SDA_TYPE</attrlabl>
+<attrdef>Type of special designated area.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Archaeological Area</edomv>
+<edomvd>Archaeological Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Primitive Area (Administrative)</edomv>
+<edomvd>Primitive Area (Administrative)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Anadromous Spawning Area</edomv>
+<edomvd>Anadromous Spawning Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Military Reserve</edomv>
+<edomvd>Military Reserve</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Roadless Area</edomv>
+<edomvd>Roadless Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Scenic Area</edomv>
+<edomvd>Scenic Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Scenic and Research Area</edomv>
+<edomvd>National Scenic and Research Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Scenic Highway</edomv>
+<edomvd>National Scenic Highway</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Botanical Area</edomv>
+<edomvd>National Botanical Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Intended Wilderness</edomv>
+<edomvd>Intended Wilderness</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Volcanic Monument</edomv>
+<edomvd>National Volcanic Monument</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Botanical Area</edomv>
+<edomvd>Botanical Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Geothermal Area</edomv>
+<edomvd>Geothermal Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Potential Wilderness Area</edomv>
+<edomvd>Potential Wilderness Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Scenic and Wildlife Area</edomv>
+<edomvd>National Scenic and Wildlife Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Multiple Use Management Area</edomv>
+<edomvd>Multiple Use Management Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Scenic Byway</edomv>
+<edomvd>National Scenic Byway</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Wilderness Study Area</edomv>
+<edomvd>Wilderness Study Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Indian Reserve Classification Area</edomv>
+<edomvd>Indian Reserve Classification Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Recreation River</edomv>
+<edomvd>National Recreation River</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Planning Area</edomv>
+<edomvd>Planning Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Wilderness</edomv>
+<edomvd>National Wilderness</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Wild and Scenic River Other Area</edomv>
+<edomvd>Wild and Scenic River Other Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Memorial Area (National)</edomv>
+<edomvd>Memorial Area (National)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Recreation Area</edomv>
+<edomvd>National Recreation Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Heritage Area</edomv>
+<edomvd>National Heritage Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Research Natural Area</edomv>
+<edomvd>Research Natural Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Experimental Forest</edomv>
+<edomvd>Experimental Forest</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Alaska State Selection</edomv>
+<edomvd>Alaska State Selection</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Primitive Area (National)</edomv>
+<edomvd>Primitive Area (National)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Experimental Research Area</edomv>
+<edomvd>Experimental Research Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Experimental Range</edomv>
+<edomvd>Experimental Range</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Geological Area</edomv>
+<edomvd>Geological Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Memorial Area (Administrative)</edomv>
+<edomvd>Memorial Area (Administrative)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Game Refuge</edomv>
+<edomvd>National Game Refuge</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Lighthouse Reserve</edomv>
+<edomvd>Lighthouse Reserve</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Study Area (National)</edomv>
+<edomvd>Study Area (National)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Waterfront Zone</edomv>
+<edomvd>Waterfront Zone</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Mineral Reserve Area</edomv>
+<edomvd>Mineral Reserve Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Special Designated Area</edomv>
+<edomvd>Special Designated Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Experimental or Demo Area</edomv>
+<edomvd>Experimental or Demo Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Conservation Management Area</edomv>
+<edomvd>Conservation Management Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Paleontological Area</edomv>
+<edomvd>Paleontological Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Protection Area (Administrative)</edomv>
+<edomvd>Protection Area (Administrative)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Special Acquisition Area</edomv>
+<edomvd>Special Acquisition Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Alaska Native Allotment, Application</edomv>
+<edomvd>Alaska Native Allotment, Application</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Historic Area</edomv>
+<edomvd>National Historic Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Preserve</edomv>
+<edomvd>National Preserve</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Recreation Management Area</edomv>
+<edomvd>Recreation Management Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Natural Landmark</edomv>
+<edomvd>National Natural Landmark</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Land Class-Pending Legislation</edomv>
+<edomvd>Land Class-Pending Legislation</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Wildlife Refuge</edomv>
+<edomvd>National Wildlife Refuge</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Original Legislated CDA Boundary</edomv>
+<edomvd>Original Legislated CDA Boundary</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Park</edomv>
+<edomvd>National Park</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Alaska Native Selection</edomv>
+<edomvd>Alaska Native Selection</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Special Management Area</edomv>
+<edomvd>Special Management Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Scenic River</edomv>
+<edomvd>National Scenic River</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Scenic Area</edomv>
+<edomvd>National Scenic Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Scenic Trail</edomv>
+<edomvd>National Scenic Trail</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>CERCLA Site</edomv>
+<edomvd>CERCLA Site</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Natural Area</edomv>
+<edomvd>Natural Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Protection Area (National)</edomv>
+<edomvd>Protection Area (National)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Protection of Public Interest</edomv>
+<edomvd>Protection of Public Interest</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Neoteric Area</edomv>
+<edomvd>Neoteric Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Wildlife Management Area</edomv>
+<edomvd>Wildlife Management Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Eagle Wildlife Management Area</edomv>
+<edomvd>Eagle Wildlife Management Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>LUD II Management Area</edomv>
+<edomvd>LUD II Management Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Cone Harvesting Area</edomv>
+<edomvd>Cone Harvesting Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Recreation Trail</edomv>
+<edomvd>National Recreation Trail</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Recreation Area</edomv>
+<edomvd>Recreation Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Prohibited Area</edomv>
+<edomvd>Prohibited Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Scenic Recreation Area</edomv>
+<edomvd>National Scenic Recreation Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Wild and Scenic River Study Area</edomv>
+<edomvd>Wild and Scenic River Study Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Zoological Area</edomv>
+<edomvd>Zoological Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Research, Study or Training Area</edomv>
+<edomvd>Research, Study or Training Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Hazardous Area - Restricted Use</edomv>
+<edomvd>Hazardous Area - Restricted Use</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Monument</edomv>
+<edomvd>National Monument</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Historical Area</edomv>
+<edomvd>Historical Area</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>National Wild River</edomv>
+<edomvd>National Wild River</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CRC_VALUE</attrlabl>
+<attrdef>A CRC (Cyclic Redundancy Check) Value is a  string representing an integer of double the bit-length of the chosen algorithm.  Used for Change Detection in ETL process</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>A CRC (Cyclic Redundancy Check) Value is a  string representing an integer of double the bit-length of the chosen algorithm.  Used for Change Detection in ETL process</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>BOUNDARYTYPE</attrlabl>
+<attrdef>Statement of general boundary type.</attrdef>
+<attrdefs>U.S. Forest Service, Automated Lands Program (ALP) Data Dictionary</attrdefs>
+<attrdomv>
+<edom>
+<edomv>FS/FS</edomv>
+<edomvd>FS/FS</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>NonFS/NonFS</edomv>
+<edomvd>NonFS/NonFS</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>FS/NonFS</edomv>
+<edomvd>FS/NonFS</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+<attrdef>Esri maintained field of lines lengh in decimal degress</attrdef>
+<attrdefs>EDW</attrdefs>
+<attrdomv>
+<udom>Esri maintained field of lines lengh in decimal degress</udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</distrib>
+<distliab>The U.S. Forest Service makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, reliability, completeness, or utility of these geospatial data or for the improper or incorrect use of those data. The data are dynamic and may change over time. The user is responsible for verifying the limitations of the geospatial data and for using the data accordingly.</distliab>
+</distinfo>
+<metainfo>
+<metd>20250523</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>USDA Forest Service</origin>
+<pubdate>20260208</pubdate>
+<pubtime>030454.1573065</pubtime>
+<title>S_USA.Bio_AquaticOrgPassage_Survey</title>
+<geoform>vector digital data</geoform>
+</citeinfo>
+</citation>
+<descript>
+<abstract>This dataset provides USFS Aquatic Organism Passage (AOP) survey data. It shows stream passage locations, passage measurements, and passability assessment categories from AOP field surveys. Structure included: culverts, dams, diversion dams, and natural features such as waterfalls.</abstract>
+<purpose>USFS Aquatic Organism Passage (AOP) survey data from the USFS Natural Resource Manager Aquatic Surveys database.</purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>19980101</caldate>
+</sngdate>
+</timeinfo>
+<current>Data are current as of publication date.</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>Daily</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-147.115950</westbc>
+<eastbc>-70.802029</eastbc>
+<northbc>60.749006</northbc>
+<southbc>30.056922</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>Biota</themekey>
+<themekey>Environment</themekey>
+<themekey>InlandWaters</themekey>
+</theme>
+</keywords>
+<accconst>Internal</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+<cntper>National Applications Liaison Office | US Forest Service (usda.gov)</cntper>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.nrm@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<datacred>United States Forest Service</datacred>
+<native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.9.1.28388</native>
+</idinfo>
+<dataqual>
+<logic>This data is based on field gathered observations. No specific quality check or measures are available.</logic>
+<complete>Data is complete as of publication.</complete>
+<lineage>
+<procstep>
+<procdesc>The source of this dataset is the Natural Resource Manager (NRM) database of the US Forest Service. The aquatic organism passage data are pulled from the oracle view, FS_NRIS_WATER.NRW_AOP_MEASURES_ASSESS_VW. This data is published using Feature Manipulation Engine Software. The spatial features were extracted from the transactional feature class fs_nris_wit.nris_wit_site_pt and published to the target feature class at EDW..</procdesc>
+<procdate>20221101</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>Entity point</sdtstype>
+<ptvctcnt>30826</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.Bio_AquaticOrgPassage_Survey</enttypl>
+<enttypd>Feature class: A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>ESRI GIS Dictionary</enttypds>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REGION</attrlabl>
+<attrdef>USFS Region</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Forest Service Region individual numbers or combination</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FS_UNIT_ID</attrlabl>
+<attrdef>National Forest ID</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Forest Service forest individual multi-digit number</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FS_UNIT_NAME</attrlabl>
+<attrdef>National Forest Name</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Forest Service forest individual names</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSABILITY_ASSESS_LOCAL_NAME</attrlabl>
+<attrdef>Name of a passage assessment survey, characterized for aquatic organism passage.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>User entered name</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSABILITY_ASSESS_SURVEY_NAME</attrlabl>
+<attrdef>Name of a passage assessment survey, characterized for aquatic organism passage.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Name, no particular format</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSABILITY_ASSESS_PROTOCOL</attrlabl>
+<attrdef>Protocol used to conduct a passage characterization survey</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>User entered name.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LAST_PASSABILITY_ASSESS_DATE</attrlabl>
+<attrdef>Last date a passage characterization survey was done on a particular location.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Date format: Month/Day/Year (MM/DD/YYYY)</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSABILITY_ASSESS_YEAR</attrlabl>
+<attrdef>Year the last passage characterization survey was conducted</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Year format: Year (YYYY)</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LATIN_NAME</attrlabl>
+<attrdef>Latin name of species for which the passage was characterized.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Latin names of species, no particular format</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>COMMON_NAME</attrlabl>
+<attrdef>Common name of species for which the passage was characterized.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Common names of speicies, no particular format</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LIFE_STAGE</attrlabl>
+<attrdef>Life stage of the species for which the passage was characterized.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>ADULT</edomv>
+<edomvd>Sexually reproductive</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>AMMOCOET</edomv>
+<edomvd>The larval form, ammocoete</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>JACKS</edomv>
+<edomvd>Males returning to spawn at early age and small size, also called grilse</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>JUVENILE</edomv>
+<edomvd>Not mature, not sexually reproductive</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>LARVAE</edomv>
+<edomvd>Developing immature</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>METMORPH</edomv>
+<edomvd>Undergone metamorphosis, resembles an adult, sexual maturity is not clear.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>ND</edomv>
+<edomvd>Not Designated</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>PARR</edomv>
+<edomvd>Have a series of marks on their sides, parr marks</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>PSTLARVA</edomv>
+<edomvd>Postlarva, a period from yolk sac absorption to the juvenile stage, a subclass of larva</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>TADPOLE</edomv>
+<edomvd>Prometamorphic, period of growth, especially limbs, minor metamorphic changes</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Null</edomv>
+<edomvd>no data entered</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSABILITY_ASSESS</attrlabl>
+<attrdef>Assessment category of the culvert for aquatic organism passage.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Adequate</edomv>
+<edomvd> Passage adequate for the analysis species based on local or regional screen that specifically addresses the needs of the analysis species.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Inadequate</edomv>
+<edomvd>Passage is inadequate for the analysis species based on local or regional screen that specifically addresses the needs of the analysis species.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Indeterminate</edomv>
+<edomvd>Passage is indeterminate for the analysis species, based on local or regional criteria.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>No Upstream Habitat</edomv>
+<edomvd> There is no suitable habitat upstream from passage.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Non-native Mgt Barrier</edomv>
+<edomvd>Barrier constructed to prevent upstream migration of nonnative species</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Resembles natural </edomv>
+<edomvd>Passage resembles natural channel.  Streambed substrate is continuous; particle size and arrangement are similar to natural channel. Bankfull channel width is not constricted.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSABILITY_DIRECTION_ASSESSED</attrlabl>
+<attrdef>Direction in which species passage was assessed.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Downstream</edomv>
+<edomvd>Barrier prevents passage downstream..</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Up and downstream-</edomv>
+<edomvd> Barrier prevents both upstream and downstream passage.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Upstream</edomv>
+<edomvd>Barrier prevents passage upstream.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Null</edomv>
+<edomvd>No value entered</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSAGE_LOCATION_NAME</attrlabl>
+<attrdef> Name of the location of a passage measure survey</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>User entered name.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSAGE_SURVEY_YEAR</attrlabl>
+<attrdef>Year the passage measure survey was conducted</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Year format: Year (YYYY)</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSAGE_SURVEY_START_DATE</attrlabl>
+<attrdef>Start date in month day year of the passage measure survey</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Date format: Month/Day/Year (MM/DD/YYYY)</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSAGE_SAMPLE_DATE</attrlabl>
+<attrdef>Date of the sample in a passage measure survey</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Date format: Month/Day/Year (MM/DD/YYYY)</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSAGE_SURVEY_NAME</attrlabl>
+<attrdef>Name of a passage measure survey</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>User assigned passage survey name, no specific format</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSAGE_PROTOCOL_NAME</attrlabl>
+<attrdef>Protocol used to conduct a passage measure survey</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>User assigned passage protocol name, no specific format</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSAGE_SAMPLE_NAME</attrlabl>
+<attrdef>Name of the sample in a passage measure survey</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>User assigned passage sample name, no specific format</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSAGE_TYPE</attrlabl>
+<attrdef>Type of Passage (culvert, chute, waterfall, etc.)</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Bridge</edomv>
+<edomvd>A structure spanning a waterway.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Cascade</edomv>
+<edomvd>A short, steep drop in stream bed elevation often marked by boulders and agitated white water..</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Chemical</edomv>
+<edomvd>Chemical concentrations (natural or human caused) in the stream..</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Chute</edomv>
+<edomvd>As applied to stream flow, the term CHUTE refers to a new route taken by a stream when its main flow is diverted to the inside of a bend, along a trough between low ridges formed by deposition on the inside of the bend where water velocities were reduced.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Culvert</edomv>
+<edomvd>A transverse drain or waterway under a road, railroad, canal, or other obstruction.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Dam</edomv>
+<edomvd> A structure of earth, rock, or concrete designed to form a basin and hold water back to make a pond, lake, or reservoir. A barrier built, usually across a watercourse, for impounding or diverting the flow of water.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Dam Beaver</edomv>
+<edomvd>A dam created by a beaver.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Dam debris</edomv>
+<edomvd>Debris Dam of wood, rocks, soils.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Dam diversion</edomv>
+<edomvd>A barrier built to divert part or all of the water from a stream into a different course. The diversion dam is commonly constructed on a natural river channel and is designed to check or elevate the water level for diversion into a main canal system. Also referred to as Diversion Cofferdam..</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Dam flow regulation</edomv>
+<edomvd>A reservoir or dam used in streams, canals and irrigation systems to reduce the mismatch between downstream demands and upstream water supplies in order to maintain a balanced operation.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Dam hydropower</edomv>
+<edomvd>Hydropower Dam.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Dam Splash</edomv>
+<edomvd>Splash Dam</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Dike</edomv>
+<edomvd>A constructed fill or wall which regulates water levels</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Ford</edomv>
+<edomvd>An at-grade stream crossing where one can cross by walking, riding on an animal or in a vehicle using the bottom of the channel in lieu of a bridged or culverted crossing.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Ford unvented</edomv>
+<edomvd>Traffic drives through the stream until increasing flows cause the water to become too deep to drive through.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Ford vented</edomv>
+<edomvd>Includes a low-flow conveyance structure such as a culvert, so that traffic does not travel through the water at low flows.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Glacier</edomv>
+<edomvd>A huge mass of ice, formed on land by the compaction and recrystallization of snow, that moves very slowly downslope or outward due to its own weight.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Turbulent water</edomv>
+<edomvd>Turbulent fast water</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Water temperature</edomv>
+<edomvd>Water Temperature.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Waterfall</edomv>
+<edomvd>A waterfall or other precipitous descent of water.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Weir</edomv>
+<edomvd>A barrier placed in a channel to divert fish and other biota or water.  A fence of stakes, brushwood, or the like, SET in a stream, tideway, or inlet of the sea, for taking fish.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSAGE_MATERIAL</attrlabl>
+<attrdef>Material of which a culvert is made</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Description of material used, no specific format</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSAGE_FUNCTIONALITY</attrlabl>
+<attrdef>Passage is functional, impaired, or not functioning as designed</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Functional</edomv>
+<edomvd>Human-Made structure is functioning as designed.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Impaired</edomv>
+<edomvd>Human-Made structure is impaired, partially functional, but not as designed and may be in need of maintenance.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Not functional </edomv>
+<edomvd>Human-Made structure is not functioning as designed.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>JUMP_DISTANCE_MEASURED_M</attrlabl>
+<attrdef>Jumping distance as measured in the field in meters</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value in meters, range 0-?</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SPILL_POOL_DEPTH_MEASURED_M</attrlabl>
+<attrdef>Spill pool depth as measured in the field in meters</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value in meters, range 0-?</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>STRUCTURE_HEIGHT_MEASURED_M</attrlabl>
+<attrdef>Structure height in meters</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value in meters, range 0-?</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AVG_BF_WIDTH_MEASURED_M</attrlabl>
+<attrdef>Average bankfull width as measured in the field in meters</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value in meters, range 0-?</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AVG_BF_WIDTH_CALC_M</attrlabl>
+<attrdef>Average bankfull width calculated by cross section in meters</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value in meters, range 0-?</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LONG_PROFILE_SURVEY_DIRECTION</attrlabl>
+<attrdef>Contains "UPSTREAM" or "DOWNSTREAM" or "UNKNOWN" indicating the direction in which observations were collected in a longitudinal profile.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>DOWNSTREAM</edomv>
+<edomvd>observations were collected in downstream direction for longitudinal profile.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>UNKNOWN</edomv>
+<edomvd>observation direction unknown.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>UPSTREAM </edomv>
+<edomvd>observations were collected in upstream direction for longitudinal profile..</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Null</edomv>
+<edomvd>No data entered.</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>STREAM_GRADIENT_ABOVE_CALC_PCT</attrlabl>
+<attrdef>The slope in percent from P0-Upstrm_Pt to P1-Inlet_Grad_Ctrl_Pt</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value expressed as a percentage, range 0-100</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>INLET_GRADIENT_CALC_PCT</attrlabl>
+<attrdef>Approach gradient from P1-Inlet_Grad_Ctrl_Pt to P2-Clvrt_Inlet_Invert</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value expressed as a percentage, range 0-100</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CULVERT_LENGTH_CALC_M</attrlabl>
+<attrdef>The horizontal distance from P2-Clvrt_Inlet_Invert to P4-Clvrt_Outlet_Invert.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value in meters, range 0-?</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CULVERT_SLOPE_CALC_PCT</attrlabl>
+<attrdef>The slope in percent from P2-Clvrt_Inlet_Invert to P4-Clvrt_Outlet_Invert</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value expressed as a percentage, range 0-100</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CULVERT_SLOPE_CALC_DECDEG</attrlabl>
+<attrdef>The slope in decimal degrees from P2-Clvrt_Inlet_Invert to P4-Clvrt_Outlet_Invert</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value expressed in degrees, range 0-90</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>EXHAUSTION_COEFF</attrlabl>
+<attrdef>The calculated value barrier_gradient_pct * barrier_length_m</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value, range 0-?</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>INLET_RESID_DEPTH_M</attrlabl>
+<attrdef>The difference in elevation between the P2-Clvrt_Inlet_Invert and the P6-Outlet_Pl_Tlwtr_Ctrl.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value in meters, range 0-?</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>JUMP_DISTANCE_CALC_M</attrlabl>
+<attrdef>The length between P4-Clvrt_Outlet_Invert and P5-Pool_Bottom.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value in meters, range 0-?</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>JUMP_HEIGHT_CALC_M</attrlabl>
+<attrdef>The difference in elevation between the P4-Clvrt_Outlet_Invert and the water surface at P5-Pool_Bottom.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value in meters, range 0-?</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>OUTLET_DROP_CALC_M</attrlabl>
+<attrdef>The difference in elevation between the P4-Clvrt_Outlet_Invert and P6-Outlet_Pl_Tlwtr_Ctrl.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value in meters, range 0-?</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SPILL_POOL_DEPTH_CALC_M</attrlabl>
+<attrdef>The difference in elevation between the water surface at P5-Pool_Bottom and the bed at P5-Pool_Bottom.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value in meters, range 0-?</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SPILL_POOL_RESID_DEPTH_CALC_M</attrlabl>
+<attrdef>The difference in elevation between P5-Pool_Bottom and P6-Outlet_Pl_Tlwtr_Ctrl.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value in meters, range 0-?</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>STREAM_GRADIENT_BELOW_CALC_PCT</attrlabl>
+<attrdef>The slope in percent from P6-Outlet_Pl_Tlwtr_Ctrl to P7-Dwnstrm_End.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>numeric value expressed as a percentage, range 0-100</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSABILITY_ASSESS_SPATIAL_ID</attrlabl>
+<attrdef>Unique ID for Assess Spatial ID</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Unique ids</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSABILITY_ASSESS_SURVEY_CN</attrlabl>
+<attrdef>Unique, computer created Survey ID for the characterization survey</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Pseudo random value used as foreign key in a relational database system</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSAGE_SURVEY_CN</attrlabl>
+<attrdef>Unique, computer created Survey ID for a passage survey.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Pseudo random value used as foreign key in a relational database system</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSAGE_SAMPLE_CN</attrlabl>
+<attrdef>Unique, computer created Survey ID for a passage sample.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Pseudo random value used as foreign key in a relational database system</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSAGE_SURVEY_SPATIAL_ID</attrlabl>
+<attrdef>Unique, computer created Spatial ID for the survey location</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Pseudo random value used as foreign key in a relational database system</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PASSAGE_SMPL_SPATIAL_ID</attrlabl>
+<attrdef>Unique, computer created Spatial ID for the sample location</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Pseudo random value used as foreign key in a relational database system</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<metainfo>
+<metd>20220928</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+<cntper>National Applications Liaison Office | US Forest Service (usda.gov)</cntper>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.nrm@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

@@ -5,6 +5,8 @@ title: Query Expansion — Helping Users Say What They Mean
 
 # Query Expansion — Helping Users Say What They Mean
 
+<!-- more -->
+
 One of the quiet challenges in building a dataset discovery tool is that the
 people searching for data and the people who wrote the dataset descriptions
 rarely use the same words.

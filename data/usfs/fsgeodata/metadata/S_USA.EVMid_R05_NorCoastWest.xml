@@ -1,0 +1,1467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../xsl/fgdc-details.xsl"?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>U.S. Forest Service</origin>
+        <pubdate>20180118</pubdate>
+        <title>EVeg Mid Region 5 North Coast West</title>
+        <geoform>vector digital data</geoform>
+        <onlink>http://data.fs.usda.gov/geodata/edw/datasets.php</onlink>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This Existing Vegetation (Eveg) polygon feature class is a CALVEG (Classification and Assessment with LANDSAT of Visible Ecological Groupings) map product from a scale of 1:24,000 to 1:100,000. The geographic extent entails the western portion of CALVEG Zone 1 (North Coast), Ecoregion Section 263A. Source imagery for this layer ranges from the year 1998 to 2015. The CALVEG classification system was used for vegetation typing and crosswalked to other classification systems in this database including the California Wildlife Habitat Relationship System (CWHR).</abstract>
+      <purpose>Existing vegetation is a foundational layer applicable to many business needs of the Forest Service. Mid-level products are intended to support regional and multi-unit information needs. Products at this level are typically developed programmatically from remotely sensed data but should integrate standard base level maps where they exist.</purpose>
+      <supplinf>This layer is comprised of multipart features, meaning a feature has more than one physical part but only references one set of attributes in the database. A group of islands could be represented as a multipart polygon feature. This allows for reduction in size of the database and portability across a network. For analysis purposes however, it is wise to select a smaller area of interest and break apart features using the "Multipart To Singlepart" tool in ArcGIS. In its entirety, a single part format of this feature class can be in the range of 500,000 to over 1 million polygons. For an index of CALVEG zones, go to https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5347192</supplinf>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>20171116</caldate>
+        </sngdate>
+      </timeinfo>
+      <current>20140601</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>As needed</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>-124.415149</westbc>
+        <eastbc>-122.121772</eastbc>
+        <northbc>42.006072</northbc>
+        <southbc>37.815384</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>vegetation</themekey>
+        <themekey>Cover</themekey>
+        <themekey>tree</themekey>
+        <themekey>shrub</themekey>
+        <themekey>USNVC</themekey>
+        <themekey>existing vegetation</themekey>
+        <themekey>NVCS</themekey>
+      </theme>
+      <theme>
+        <themekt>ISO 19115 Topic Categories</themekt>
+        <themekey>biota</themekey>
+        <themekey>environment</themekey>
+      </theme>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>The Forest Service uses the most current and complete data available. GIS data and product accuracy may vary. They may be developed from sources of differing accuracy; accurate only at certain scales; based on modeling or interpretation; incomplete while being created or revised; etc. Using GIS products for purposes other than those for which they were created, may yield inaccurate or misleading results. The Forest Service reserves the right to correct, update, modify or replace GIS products without notification.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+        </cntorgp>
+        <cntemail>data@fs.fed.us</cntemail>
+      </cntinfo>
+    </ptcontac>
+    <native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.5.1.7333</native>
+    <crossref>
+      <citeinfo>
+        <origin>Nelson, Brewer, and Solem</origin>
+        <pubdate>20180118</pubdate>
+        <title>Existing Vegetation Classification, Mapping, and Inventory Technical Guide</title>
+        <onlink>http://www.fs.fed.us/emc/rig/protocols/vegclassmapinv.shtml</onlink>
+      </citeinfo>
+    </crossref>
+  </idinfo>
+  <dataqual>
+    <logic>Data entry is accomplished by authorized Forest Service personnel through a web application behind the U.S. Forest Service firewall and is restricted by access requirement protocols.</logic>
+    <complete>Data is complete as of publication.</complete>
+    <posacc>
+      <horizpa>
+        <horizpar>The horizontal geospatial positioning accuracy for EVMid: +- 166 ft. For more information see Geospatial Positioning Accuracy Standards Part 3: National Standard for Spatial Data Accuracy (FGDC-STD-007.3-1998 (FGDC 1998)): https://www.fgdc.gov/standards/projects/FGDC-standards-projects/accuracy/part3/chapter3. Minimum standards for source scale geo-registration is 1:100,000.</horizpar>
+      </horizpa>
+    </posacc>
+    <lineage>
+      <procstep>
+        <procdesc>Updates to the Shasta-Trinity, Klamath, Six Rivers and Mendocino National Forests have been incorporated into the Northwest Calveg Zone EVEG feature classes. The source dates of imagery used in capture of attributes for these features ranges from the 2013 (Six Rivers), to 2014 (Shasta-Trinity, Mendocino) to 2015 (Klamath). See [SOURCE_DATE] for actual day, month, year of the imagery, [MAP_UPDATE_CAUSE] for the cause of the update to a polygon and [REV_DATE] for if and when the polygon feature itself changed.</procdesc>
+        <procdate>20170901</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <indspref>Forest appropriate. Metadata record must include complete projection definition. Projection information must be attached to dataset. Datum must be NAD83.</indspref>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>GT-polygon composed of chains</sdtstype>
+        <ptvctcnt>44643</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <geograph>
+        <latres>8.98315284119521e-009</latres>
+        <longres>8.98315284119521e-009</longres>
+        <geogunit>Decimal Degrees</geogunit>
+      </geograph>
+      <geodetic>
+        <horizdn>D North American 1983</horizdn>
+        <ellips>GRS 1980</ellips>
+        <semiaxis>6378137.0</semiaxis>
+        <denflat>298.257222101</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>S_USA.EVMid_R05_NorCoastWest</enttypl>
+        <enttypd>A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+        <enttypds>http://support.esri.com/en/other-resources/gis-dictionary/term/feature%20class</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>FS_UNIT_NAME</attrlabl>
+        <attrdef>FS_UNIT_NAME identifies the name of the National Forest System administrative unit in which this feature is located. The authoritative source is the Automated Lands Program Administrative Forest list of values. Only an example is provided here. CODE: Tongass National Forest, DESCRIPTION: Tongass National Forest. See also FS_UNIT_ID.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>A map unit attribute to identify the name of a National Forest System administrative unit. Regions will provide geodatabase domains for their forests.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>FS_UNIT_ID</attrlabl>
+        <attrdef>FS_UNIT_ID identifies the National Forest System administrative unit in which this feature is located. A geodatabase domain is used to support the choice of valid values. The domain's code and value are the same to allow display of the FS_UNIT_ID value. This value is in the format of RRFF where RR is the Region code and FF is the Administrative Forest Code. The authoritative source is the Automated Lands Program Administrative Forest list of values. For example for the Tongass National Forest, the value entered and displayed will both be 1005. See also FS_UNIT_NAME.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>A map unit attribute to identify the National Forest System administrative unit code. Regions will provide geodatabase domains for their forests.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>PHYSIOGNOMIC_UNIT</attrlabl>
+        <attrdef>The overall appearance of vegetation defined primarily on the basis of growth form, structure, and cover. Nelson, M.L.; Brewer, C.K.; Solem, S., eds. 2015.</attrdef>
+        <attrdefs>Nelson, M.L.; Brewer, C.K.; Solem, S., eds. 2015.</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>Physiognomic Unit</codesetn>
+            <codesets>http://www.fs.fed.us/emc/rig/documents/protocols/vegClassMapInv/EVTG_v2-0_June2015.pdf</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>USGS_ANDERSON_1</attrlabl>
+        <attrdef>Level 1 of a land use and land cover classification system used by the United States Geological Survey (USGS) based on the Anderson system (Anderson et al. 1976). A further subdivision is available in Level 2, USGS_ANDERSON_2, which is a finer distinction than those represented in the USDA Forest Service physiognomic units classifications as described in the EV Technical Guide, Section 1.</attrdef>
+        <attrdefs>Anderson, J.R.; Hardy, E.E.; Roach, J.T.; Witmer, R.E. 1976. A land use and land cover classification system for use with remote sensor data. U.S. Geological Survey Professional Paper 964</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>USGS Anderson 1 Land Cover Classification</codesetn>
+            <codesets>http://landcover.usgs.gov/pdf/anderson.pdf</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>USGS_ANDERSON_2</attrlabl>
+        <attrdef>USGS Land Use Land Cover - Anderson Level 2. The Anderson classifications (Anderson et al. 1976) are hierarchical, with Level 2 providing more description of what types of land cover are included in Level 1 (USGS_ANDERSON_1).</attrdef>
+        <attrdefs>Anderson, J.R.; Hardy, E.E.; Roach, J.T.; Witmer, R.E. 1976. A land use and land cover classification system for use with remote sensor data. U.S. Geological Survey Professional Paper 964</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>USGS Anderson 2 Land Cover Classification</codesetn>
+            <codesets>http://landcover.usgs.gov/pdf/anderson.pdf</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LOCAL_ANDERSON_2_SUP</attrlabl>
+        <attrdef>This field has been added to supplement the USGS Land Use Land Cover - Anderson Level 2 to meet local needs, while maintaining the unaltered integrity of the Anderson Level 2. The domain for this field is to be managed by the Region or unit. It is recommended that an alpha character be added to the appropriate Anderson_2 code as in the example below. The domain could include all Anderson Level 2 values plus the supplemental values or just the supplemental values. Only an example is provided here. CODE: 41b, DESCRIPTION: Hardwood (deciduous) type forest land.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>The domain could include all Anderson Level 2 values plus the supplemental values or just the supplemental values. It is to be managed by the region or unit.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SAF_COVER_TYPE</attrlabl>
+        <attrdef>The classification of Society of American Foresters (SAF) Forest Cover Types is based on existing occupancy of an area by tree species (Eyre 1980).</attrdef>
+        <attrdefs>Editor, Society of American Foresters, Washington, D.C., 1980.</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>Society of American Foresters Cover Type</codesetn>
+            <codesets>http://www.fia.fs.fed.us/documents/pdfs/Guide%201-SAF%20ForestCoverTypes.pdf</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SRM_COVER_TYPE</attrlabl>
+        <attrdef>The classification of Society for Range Management (SRM) rangeland cover types is based on existing vegetation and ecological influences that contribute to their present structure (Shiflet 1994).</attrdef>
+        <attrdefs>Rangeland Cover Types of the United States, Thomas N. Shiflet, Editor, Society for Range Management, Denver, Colorado, 1994.</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>Society for Range Management Cover Type</codesetn>
+            <codesets>http://www.nrcs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb1044255.pdf</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>NVCS_CLASS</attrlabl>
+        <attrdef>A vegetation classification unit of high rank (1st level) defined by broad combinations of dominant general growth forms adapted to basic moisture, temperature, and/or substrate or aquatic conditions.</attrdef>
+        <attrdefs>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>NVCS (National Vegetation Classification Standard) Class</codesetn>
+            <codesets>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>NVCS_SUBCLASS</attrlabl>
+        <attrdef>A vegetation classification unit of high rank (2nd level) defined by combinations of general dominant and diagnostic growth forms that reflect global macroclimatic factors driven primarily by latitude and continental position, or that reflect overriding substrate or aquatic conditions. (Whittaker 1975).</attrdef>
+        <attrdefs>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>NVCS Sub Class</codesetn>
+            <codesets>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>NVCS_FORMATION</attrlabl>
+        <attrdef>A vegetation classification unit of high rank (3rd level) defined by combinations of dominant and diagnostic growth forms that reflect global macroclimatic conditions as modified by altitude, seasonality of precipitation, substrates, and hydrologic conditions (Whittaker 1975, Lincoln et al. 1998).</attrdef>
+        <attrdefs>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>NVCS Formation</codesetn>
+            <codesets>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>NVCS_DIVISION</attrlabl>
+        <attrdef>A vegetation classification unit of intermediate rank (4th level) defined by combinations of dominant and diagnostic growth forms and a broad set of diagnostic plant taxa that reflect biogeographic differences in composition and continental differences in mesoclimate, geology, substrates, hydrology, and disturbance regimes. (Westhoff and van der Maarel 1973, pg. 664-665, Whittaker 1975). Only an example is provided here. CODE: D051, DESCRIPTION: Eastern North American Temperate Cliff, Scree and Rock Vegetation Division.</attrdef>
+        <attrdefs>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</attrdefs>
+        <attrdomv>
+          <udom>A vegetation classification unit of intermediate rank (4th level).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>NVCS_MACROGROUP</attrlabl>
+        <attrdef>A vegetation classification unit of intermediate rank (5th level) defined by combinations of moderate sets of diagnostic plant species and diagnostic growth forms that reflect biogeographic differences in composition and sub-continental to regional differences in mesoclimate, geology, substrates, hydrology, and disturbance regimes (cf. Pignatti et al. 1995). Only an example is provided here. CODE: M111, DESCRIPTION: Eastern North American Cliff and Rock Vegetation Macrogroup.</attrdef>
+        <attrdefs>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</attrdefs>
+        <attrdomv>
+          <udom>A vegetation classification unit of intermediate rank (5th level).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>NVCS_GROUP</attrlabl>
+        <attrdef>A vegetation classification unit of intermediate rank (6th level) defined by combinations of relatively narrow sets of diagnostic plant species (including dominants and co-dominants), broadly similar composition, and diagnostic growth forms that reflect biogeographic differences in mesoclimate, geology, substrates, hydrology, and disturbance regimes (cf. Pignatti et al. 1995, Specht and Specht 2001). Only an example is provided here. CODE: G340, DESCRIPTION: Polypody species - Rocktripe Lichen species - Poverty Oatgrass Sparse Vegetation Group.</attrdef>
+        <attrdefs>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</attrdefs>
+        <attrdomv>
+          <udom>A vegetation classification unit of intermediate rank (6th level).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>NVCS_ALLIANCE</attrlabl>
+        <attrdef>A vegetation classification unit of low rank (7th level) containing one or more associations, and defined by a characteristic range of species composition, habitat conditions, physiognomy, and diagnostic species, typically at least one of which is found in the uppermost or dominant stratum of the vegetation (Jennings et al. 2006). Alliances reflect regional to subregional climate, substrates, hydrology, moisture/nutrient factors, and disturbance regimes. Only an example is provided here. CODE: A3993, DESCRIPTION: Acidic / Circumneutral Talus Alliance.</attrdef>
+        <attrdefs>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</attrdefs>
+        <attrdomv>
+          <udom>A vegetation classification unit of intermediate rank (7th level).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>NVCS_ASSOCIATION</attrlabl>
+        <attrdef>A vegetation classification unit of low rank (8th level) defined on the basis of a characteristic range of species composition, diagnostic species occurrence, habitat conditions and physiognomy (Jennings et al. 2006). Associations reflect topo-edaphic climate, substrates, hydrology, and disturbance regimes. Only an example is provided here. CODE: CEGL004385, DESCRIPTION: Toadskin Lichen - Pennsylvania Toadskin Lichen Nonvascular Vegetation.</attrdef>
+        <attrdefs>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</attrdefs>
+        <attrdomv>
+          <udom>A vegetation classification unit of intermediate rank (8th level).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CULTURAL_CLASS</attrlabl>
+        <attrdef>A cultural vegetation classification unit of high rank (1st level) defined by a characteristic combination of dominant growth forms adapted to relatively intensive human manipulations, as reflected in relatively rapid changes in structure and/or composition.</attrdef>
+        <attrdefs>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>Cultural Class</codesetn>
+            <codesets>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CULTURAL_SUBCLASS</attrlabl>
+        <attrdef>A cultural vegetation classification unit of high rank (2nd level) defined by combinations and degree of herbaceous versus woody growth forms.</attrdef>
+        <attrdefs>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>Cultural Sub Class</codesetn>
+            <codesets>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CULTURAL_FORMATION</attrlabl>
+        <attrdef>A cultural vegetation classification unit of high rank (3rd level) defined by whether or not canopy structure of dominant growth forms is annually converted or heavily manipulated / harvested.</attrdef>
+        <attrdefs>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>Cultural Formation</codesetn>
+            <codesets>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CULTURAL_SUBFORMATION</attrlabl>
+        <attrdef>A vegetation classification unit of intermediate rank (4th level) defined by the spatial structure of the vegetation, including whether in swards, rows, and degree of manipulation to the canopy. Only an example is provided here. CODE: CSF01, DESCRIPTION: Tree Orchard Cultural Subformation.</attrdef>
+        <attrdefs>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</attrdefs>
+        <attrdomv>
+          <udom>A vegetation classification unit of intermediate rank (4th level).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CULTURAL_GROUP</attrlabl>
+        <attrdef>A cultural vegetation classification unit of intermediate rank (5th level) defined by a common set of growth forms and many diagnostic plant taxa sharing a broadly similar region and climate, and disturbance factors. Only an example is provided here. CODE: CGR001, DESCRIPTION: Fruit Orchard Cultural Group.</attrdef>
+        <attrdefs>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</attrdefs>
+        <attrdomv>
+          <udom>A vegetation classification unit of intermediate rank (5th level).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CULTURAL_SUBGROUP</attrlabl>
+        <attrdef>A cultural vegetation classification unit of intermediate rank (6th level) defined by a common set of growth forms and diagnostic species (taxa) preferentially sharing a similar set of regional edaphic, topographic, and disturbance factors. Only an example is provided here. CODE: CSG001, DESCRIPTION: Tropical and Temperate Fruit Orchard Cultural Subgroup.</attrdef>
+        <attrdefs>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</attrdefs>
+        <attrdomv>
+          <udom>A vegetation classification unit of intermediate rank (6th level).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CULTURAL_TYPE</attrlabl>
+        <attrdef>A vegetation classification unit, of moderately low rank (7th level) defined by one or more dominant or co-dominant species, as well as habitat conditions, and physiognomy. Only an example is provided here. CODE: CTY001, DESCRIPTION: Native Caribbean Conifer Plantation Cultural Type.</attrdef>
+        <attrdefs>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</attrdefs>
+        <attrdomv>
+          <udom>A vegetation classification unit of intermediate rank (7th level).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CULTURAL_SUBTYPE</attrlabl>
+        <attrdef>A vegetation classification unit, of low rank (8th level) defined on the basis one or more dominant or co-dominant species, in conjunction with a characteristic set of associated species, habitat conditions and physiognomy. Only an example is provided here. CODE: CST008393, DESCRIPTION: Pinus caribaea var. hondurensis Planted Forest.</attrdef>
+        <attrdefs>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/NVCS_V2_FINAL_2008-02.pdf</attrdefs>
+        <attrdomv>
+          <udom>A vegetation classification unit of intermediate rank (8th level).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>NVCS_LEGACY_NAME</attrlabl>
+        <attrdef>NVCS_LEGACY_NAME is based on the 1997 NVCS standard and is used for data collected under that standard. The legacy domain is currently stored in Natural Resource Manager (NRM) classification tables in the [fs_nris_ssi] schema supporting the Inventory and Mapping application and the Rangeland Inventory and Monitoring application. The data stored in this system can be imported into the feature class. This domain differs from the current USNVC (United States National Vegetation Classification) domain published at http://usnvc.org/explore-classification/. The other USNVC fields provided in this data dictionary from NVCS_CLASS class to NVCS_ASSOCIATION should be used for any new data collection or for crosswalking other classifications to the current USNVC. Within NRM, the type of classification ECOCLS_TYPE, is assumed to be "EVEGCLS" for Existing Vegetation Classification and CLASS_SET_NAME. The name of the classification set, is assumed to be "NVCS" for National Vegetation Classification Standard for all records using this legacy standard. An example is provided below. Example: CODE: 1., DESCRIPTION: Closed Tree Canopy, DEFINITION: Class level.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>NVCS Legacy Class Name</codesetn>
+            <codesets>http://www.fgdc.gov/standards/projects/FGDC-standards-projects/vegetation/standards/projects/vegetation/vegclass.pdf</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>AGGREGATION_TYPE</attrlabl>
+        <attrdef>Aggregation type is a map unit attribute to describe the arrangement of vegetation condition found within a map feature or polygon. An aggregation type consists of homogeneous, compositional group, or vegetation complex arrangements of vegetation types. In Region 5, this field is intended to help select the appropriate Regional Dominance level. For example, if vegetation is a group or complex following a recent stand replacing event, Regional_Dominance_3 may be used.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>H</edomv>
+            <edomvd>Homogeneous type</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>C</edomv>
+            <edomvd>Vegetation complex type</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>G</edomv>
+            <edomvd>Compositional group type</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>REGIONAL_DOMINANCE_TYPE</attrlabl>
+        <attrdef>A dominance type is "a recurring plant community defined by the dominance of one or more species, which are usually the most important ones in the uppermost or dominant layer of the community, but sometimes of a lower layer of higher coverage" (Gabriel and Talbot 1984 as cited in Jennings et al. 2003). Regional refers to Forest Service administrative regions where dominance type classifications have been developed. These dominance type classifications serve as the basis for most mapping projects and the primary crosswalk to NVCS. Domain tables should be maintained by each Region. In Region 5, REGIONAL_DOMINANCE_TYPE represents dominance type 1 (or DOM 1) which is the species or mixture of taxa representing the highest canopy level as seen from above as determined by its life form of tree (conifer or hardwood), shrub, herbaceous and graminoid, water or barren (including urban or transportation pavements). Therefore, DOM 1 can have any type. Life form is determined by a 10% rule of absolute canopy cover within a group of pixels (raster), an area (field verified) or polygon (vector) determinations.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>Dominance type classification for Forest Service administrative regions.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>REG_DOMINANCE_TYPE_REFERENCE</attrlabl>
+        <attrdef>Reference source for Regional Dominance Type. This is to be managed by the region or unit as a domain with a code and description.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>Reference source for Regional Dominance Type.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>TOTAL_VEGETATION_CFA_CLASS</attrlabl>
+        <attrdef>Total vegetation CFA (Cover From Above) is the sum of visible cover from above of all vegetation life forms, non-overlapping. CFA_MID is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>01</edomv>
+            <edomvd>Less than 10 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>20</edomv>
+            <edomvd>10 - 29.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>40</edomv>
+            <edomvd>30 - 59.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>80</edomv>
+            <edomvd>60 - 100 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>TREE_CFA_CLASS</attrlabl>
+        <attrdef>Tree CFA (Cover From Above) is the visible vegetation cover of tree life form. CFA_MID is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>01</edomv>
+            <edomvd>Less than 10 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>20</edomv>
+            <edomvd>10 - 29.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>40</edomv>
+            <edomvd>30 - 59.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>80</edomv>
+            <edomvd>60 - 100 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>TREE_CFA_VALUE</attrlabl>
+        <attrdef>Tree cover from above when mapped as a pseudo-continuous variable applicable to Regional Dominance Type.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>Cover from above when mapped as a pseudo-continuous variable (values 0-100%).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SHRUB_CFA_CLASS</attrlabl>
+        <attrdef>This is the visible vegetation cover from above of the shrub life form complied into four classes from 10 to 100 percent values. CFA_MID is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>01</edomv>
+            <edomvd>Less than 10 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>20</edomv>
+            <edomvd>10 - 29.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>40</edomv>
+            <edomvd>30 - 59.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>80</edomv>
+            <edomvd>60 - 100 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SHRUB_CFA_VALUE</attrlabl>
+        <attrdef>Shrub cover from above when mapped as a pseudo-continuous variable, values 0-100 applicable to Regional Dominance Type.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>Cover from above when mapped as a pseudo-continuous variable (values 0-100%).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CONIFER_CFA_CLASS</attrlabl>
+        <attrdef>This is the visible vegetation cover from above of the conifer tree life form complied into four classes from 10 to 100 percent values. CFA_MID is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>01</edomv>
+            <edomvd>Less than 10 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>20</edomv>
+            <edomvd>10 - 29.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>40</edomv>
+            <edomvd>30 - 59.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>80</edomv>
+            <edomvd>60 - 100 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>HARDWOOD_CFA_CLASS</attrlabl>
+        <attrdef>Hardwood CFA is the visible vegetation cover of hardwood life form. CFA_MID is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>01</edomv>
+            <edomvd>Less than 10 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>80</edomv>
+            <edomvd>60 - 100 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>20</edomv>
+            <edomvd>10 - 29.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>40</edomv>
+            <edomvd>30 - 59.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>HERBACEOUS_CFA_CLASS</attrlabl>
+        <attrdef>The visible vegetation cover from above of the herbaceous and graminoid combined life forms complied into four classes from 10 to 100 percent values. CFA_MID is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>01</edomv>
+            <edomvd>Less than 10 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>20</edomv>
+            <edomvd>10 - 29.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>40</edomv>
+            <edomvd>30 - 59.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>80</edomv>
+            <edomvd>60 - 100 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OS_TREE_DIAMETER_CLASS</attrlabl>
+        <attrdef>The overstory tree diameter class is defined as the mean diameter at breast height (4.5 ft. or 1.37 m. above the ground) for the trees forming the upper or uppermost canopy layer (Helms 1998) and comprises seven classes ranging from 0" to 30+". It is determined by estimating the quadratic mean diameter for the average basal area of trees in this category. Domains are defined appropriate to mapping level. OS_TREE_DIAMETER_MID is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>00</edomv>
+            <edomvd>0 to 4.9 inches</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>07</edomv>
+            <edomvd>5 to 9.9 inches</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>25</edomv>
+            <edomvd>20 to 29.9 inches</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>40</edomv>
+            <edomvd>30 to 50+ inches</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>15</edomv>
+            <edomvd>10 to 19.9 inches</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OS_TREE_DIAMETER_VALUE</attrlabl>
+        <attrdef>Overstory Tree diameter when mapped as a pseudo-continuous variable (values 0-n inches). This allows regions to place a numeric value in lieu or in addition to OS tree diameter class. See OS_TREE_DIAMETER_CLASS.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>Overstory tree diameter when mapped as a pseudo-continuous variable (values 0-n inches).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OS_TREE_DIAMETER_METHOD</attrlabl>
+        <attrdef>Method used to calculate tree diameter applicable to Regional Dominance Type. OS_TREE_DIAMETER_METHOD is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>QMD</edomv>
+            <edomvd>Quadratic Mean Diameter</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>OCE</edomv>
+            <edomvd>Ocular Estimate</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>BAWMD</edomv>
+            <edomvd>Basal Area Weighted Mean Diameter</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>REGIONAL_DOMINANCE_TYPE_2</attrlabl>
+        <attrdef>In Region 5 this field represents Dominance Type 2. Required only if the Aggregation Type is a group or complex. Regional Dominance Type 2 (DOM_2) is reserved for the hardwood component in a mixture of conifer and hardwood trees, as the overstory is considered to be the conifer specified in DOM_1 except under special conditions for DOM_3. CFA and Size class fields with _2 designation apply to these dominance types.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>Represents dominance type 2 in Region 5.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>HARDWOOD_CFA_CLASS_2</attrlabl>
+        <attrdef>This is the visible vegetation cover from above of the hardwood tree life form complied into four classes from 10 to 100 percent values. CFA_MID is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>01</edomv>
+            <edomvd>Less than 10 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>20</edomv>
+            <edomvd>10 - 29.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>40</edomv>
+            <edomvd>30 - 59.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>80</edomv>
+            <edomvd>60 - 100 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>TREE_CFA_CLASS_2</attrlabl>
+        <attrdef>Tree cover from above class applicable to Regional Dominance 2 in Region 5. CFA_MID is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>40</edomv>
+            <edomvd>30 - 59.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>80</edomv>
+            <edomvd>60 - 100 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>20</edomv>
+            <edomvd>10 - 29.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>01</edomv>
+            <edomvd>Less than 10 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OS_TREE_DIAMETER_CLASS_2</attrlabl>
+        <attrdef>OS_TREE_DIAMETER_CLASS_2 refers to diameter classes associated with REGIONAL_DOMINANCE_TYPE_2 in Region 5. This attribute is confined to hardwoods within a conifer and hardwood mixed stand that can be seen from above as overstory trees. The class is defined as the mean diameter at breast height (4.5 ft. or  1.37 m. above the ground) for the those trees and comprises seven classes ranging from 0" to &gt;=30+". It is determined by estimating the quadratic mean diameter for the average basal area of trees in this category. OS_TREE_DIAMETER_MID is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>00</edomv>
+            <edomvd>0 to 4.9 inches</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>07</edomv>
+            <edomvd>5 to 9.9 inches</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>15</edomv>
+            <edomvd>10 to 19.9 inches</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>25</edomv>
+            <edomvd>20 to 29.9 inches</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>40</edomv>
+            <edomvd>30 to 50+ inches</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OS_TREE_DIAMETER_VALUE_2</attrlabl>
+        <attrdef>Overstory tree diameter value applicable to Regional Dominance Type 2 in Region 5.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>Overstory tree diameter when mapped as a pseudo-continuous variable (values 0-n inches).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OS_TREE_DIAMETER_METHOD_2</attrlabl>
+        <attrdef>Method used to calculate tree diameter applicable to Regional Dominance Type 2 in Region 5. OS_TREE_DIAMETER_METHOD is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>QMD</edomv>
+            <edomvd>Quadratic Mean Diameter</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>OCE</edomv>
+            <edomvd>Ocular Estimate</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>BAWMD</edomv>
+            <edomvd>Basal Area Weighted Mean Diameter</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>REGIONAL_DOMINANCE_TYPE_3</attrlabl>
+        <attrdef>In Region 5 this is to be used optionally if the Aggregation Type is a group or complex. This is reserved for forest stand-replacing events that occurred relatively recently (within the last 10 years or so,20 years for plantations) and represents the existing vegetation type that could be identified at the time of the remotely sensed image. This lifeform is limited to barren, herbaceous or shrub, depending on the severity of the fire, landslide, beetle-kills, drought, regeneration timber harvest, young plantation or other disturbances. CFA class fields with _3 designation apply to these dominance types.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>Represents dominance type 3 in Region 5.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>HERBACEOUS_CFA_CLASS_3</attrlabl>
+        <attrdef>Herbaceous CFA is the visible vegetation cover of herbaceous life form applicable to Regional Dominance Type 3 in Region 5. CFA_MID is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>40</edomv>
+            <edomvd>30 - 59.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>20</edomv>
+            <edomvd>10 - 29.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>80</edomv>
+            <edomvd>60 - 100 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>01</edomv>
+            <edomvd>Less than 10 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SHRUB_CFA_CLASS_3</attrlabl>
+        <attrdef>Shrub cover from above class applicable to Regional Dominance 3 in Region 5. CFA_MID is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>80</edomv>
+            <edomvd>60 - 100 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>01</edomv>
+            <edomvd>Less than 10 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>40</edomv>
+            <edomvd>30 - 59.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>20</edomv>
+            <edomvd>10 - 29.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LOCAL_CLASS</attrlabl>
+        <attrdef>This field allows a unit to enter a local vegetation classification for use in cross walking to Regional Dominance. The field is intended to hold a code described in the domain and to be managed by the region or unit responsible for the classification. Units and regions needing multiple classification fields, for example to accommodate vertical stratification, may also choose to use: Local Class_2 and/or Local Class_3.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>This field allows a unit to enter a local vegetation classification for use in cross walking to Regional Dominance.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LOCAL_CLASS_2</attrlabl>
+        <attrdef>This field allows a unit to enter a local vegetation classification for use in cross walking to Regional Dominance. The field is intended to hold a code described in the domain and to be managed by the region or unit responsible for the classification. Units and regions needing multiple classification fields, for example to accommodate vertical stratification, may also choose to use: Local Class_2 and/or Local Class_3.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>This field allows a unit to enter a local vegetation classification for use in cross walking to Regional Dominance.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LOCAL_CLASS_3</attrlabl>
+        <attrdef>This field allows a unit to enter a local vegetation classification for use in cross walking to Regional Dominance. The field is intended to hold a code described in the domain and to be managed by the region or unit responsible for the classification. Units and regions needing multiple classification fields, for example to accommodate vertical stratification, may also choose to use: Local Class_2 and/or Local Class_3.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>This field allows a unit to enter a local vegetation classification for use in cross walking to Regional Dominance.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LOCAL_CLASS_REFERENCE</attrlabl>
+        <attrdef>Reference source for Local classifications. This is to be managed by the region or unit as a domain with a code and description.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>Reference source for Local classifications.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LOCAL_CLASS_CFA_CLASS</attrlabl>
+        <attrdef>Cover from above class applicable to Local Class, Local Class 2, or Local Class 3. CFA_MID is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>20</edomv>
+            <edomvd>10 - 29.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>01</edomv>
+            <edomvd>Less than 10 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>40</edomv>
+            <edomvd>30 - 59.9 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>80</edomv>
+            <edomvd>60 - 100 percent</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LOCAL_CLASS_CFA_VALUE</attrlabl>
+        <attrdef>Cover from above when mapped as a pseudo-continuous variable applicable to Local Class, Local Class 2, or Local Class 3.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>Cover from above when mapped as a pseudo-continuous variable (values 0-100%).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LOCAL_OS_TREE_DIAMETER_CLASS</attrlabl>
+        <attrdef>Tree diameter class applicable to Local Class, Local Class 2, or Local Class 3. OS_TREE_DIAMETER_MID is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>25</edomv>
+            <edomvd>20 to 29.9 inches</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>40</edomv>
+            <edomvd>30 to 50+ inches</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>07</edomv>
+            <edomvd>5 to 9.9 inches</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>15</edomv>
+            <edomvd>10 to 19.9 inches</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>00</edomv>
+            <edomvd>0 to 4.9 inches</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LOCAL_OS_TREE_DIAMETER_VALUE</attrlabl>
+        <attrdef>Tree diameter value applicable to Local Class, Local Class 2, or Local Class 3.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>Overstory tree diameter when mapped as a pseudo-continuous variable (values 0-n inches).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>LOCAL_OS_TREE_DIAMETER_METHOD</attrlabl>
+        <attrdef>Method used to calculate tree diameter applicable to Local Class, Local Class 2, or Local Class 3. OS_TREE_DIAMETER_METHOD is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>BAWMD</edomv>
+            <edomvd>Basal Area Weighted Mean Diameter</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>OCE</edomv>
+            <edomvd>Ocular Estimate</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>QMD</edomv>
+            <edomvd>Quadratic Mean Diameter</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>MAP_UPDATE_CAUSE</attrlabl>
+        <attrdef>Existing vegetation changes over time due to natural events and man's activity on the land. This is a feature level metadata field for documenting the cause of change to existing vegetation between the time of initial map establishment, and subsequent updates for change. UPDATE_COMMENT can be used to clarify cause or identify causes not in this domain. Note: if "Other" is selected, an update comment is recommended to specify the cause.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>TH</edomv>
+            <edomvd>Tree harvest related update</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>OT</edomv>
+            <edomvd>Other</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>AC</edomv>
+            <edomvd>Accuracy assessment related update</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>UB</edomv>
+            <edomvd>Land conversion to urban, built-up or development</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>WC</edomv>
+            <edomvd>Water Changes (ground-level active or passive process)</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>IV</edomv>
+            <edomvd>Increasing vegetation cover due to re-growth</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>SO</edomv>
+            <edomvd>Source original for baseline map, not an update</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>SC</edomv>
+            <edomvd>Successional Change (ground-level passive process)</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>SP</edomv>
+            <edomvd>Seeded and planted</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>MO</edomv>
+            <edomvd>Mortality from insect or pathogens related update</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>GL</edomv>
+            <edomvd>Receding or advancing glaciers</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>DE</edomv>
+            <edomvd>Defoliation related update from insects or pathogens</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>FT</edomv>
+            <edomvd>Fuel Treatments (ground-level active process)</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>BD</edomv>
+            <edomvd>Downed forests due to high winds, blow down</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>FI</edomv>
+            <edomvd>Fire related update</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>AG</edomv>
+            <edomvd>Land conversion to agriculture crops or orchards</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>CU</edomv>
+            <edomvd>Update change where cause is unknown</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>SI</edomv>
+            <edomvd>Timber Stand Improvements (ground-level active process)</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>RC</edomv>
+            <edomvd>Rangeland conversion</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>LS</edomv>
+            <edomvd>Changes in vegetation cover due to landslides</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>PL</edomv>
+            <edomvd>Plantation related update, reforestation activity</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+          <edom>
+            <edomv>IN</edomv>
+            <edomvd>Change in vegetation type due to invasive species</edomvd>
+            <edomvds>USDA Forest Service</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>UPDATE_COMMENT</attrlabl>
+        <attrdef>UPDATE_COMMENT should be used when MAP_UPDATE_CAUSE is "Other." It also can be used to add greater specificity about update cause. For example, if the MAP_UPDATE_CAUSE is "Fire related update," UPDATE_COMMENT could specify the name and year of the fire such as "Seeley Fire July 2012". Narrative explanations about the mapping process should be included in the Process step/Process Description in the dataset metadata record tied to the REV_DATE.</attrdef>
+        <attrdefs>GIS Data Dictionary for Existing Vegetation, 2015</attrdefs>
+        <attrdomv>
+          <udom>Used to add greater specificity about update cause. Should be used only when MAP_UPDATE_CAUSE is "Other".</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SOURCE_DATE_YEAR</attrlabl>
+        <attrdef>Remote sensing source date year is the year when the imagery was captured. This is feature-level metadata for documenting the date for the source of the remote sensing imagery used when establishing or updating features. When field sample data is the source, record the date of sample. The format is YYYY.</attrdef>
+        <attrdefs>US Forest Service</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>0</rdommin>
+            <rdommax>9999</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SOURCE_DATE_MONTH</attrlabl>
+        <attrdef>Remote sensing source date month is the month when the imagery was captured. This is feature-level metadata for documenting the date for the source of the remote sensing imagery used when establishing or updating features. When field sample data is the source, record the date of sample. The format is MM.</attrdef>
+        <attrdefs>US Forest Service</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1</rdommin>
+            <rdommax>12</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SOURCE_DATE_DAY</attrlabl>
+        <attrdef>Remote sensing source date day is the day when the imagery was captured. This is feature-level metadata for documenting the date for the source of the remote sensing imagery used when establishing or updating features. When field sample data is the source, record the date of sample. The format is DD.</attrdef>
+        <attrdefs>US Forest Service</attrdefs>
+        <attrdomv>
+          <rdom>
+            <rdommin>1</rdommin>
+            <rdommax>31</rdommax>
+          </rdom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>REV_DATE</attrlabl>
+        <attrdef>REV_DATE is the date of the imagery that the polygon regions are created from using image processing software. This date can equal the SOURCE_DATE value in some cases, but often the two dates will defer as different imagery sources are used to interpret change.</attrdef>
+        <attrdefs>US Forest Service</attrdefs>
+        <attrdomv>
+          <udom>Date of feature creation or latest update (MM/DD/YYYY).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>DATA_SOURCE</attrlabl>
+        <attrdef>The USFS GIS Data Dictionary Data Source Codes provide information on how GIS point, line, and polygon features, in Forest Service geospatial datasets, have been derived. Each Data Source code description contains information on the data used to derive features. Code descriptions are based upon the data source and positional accuracy associated with those features.</attrdef>
+        <attrdefs>The Data Dictionary Data Source codes incorporate the codes described in Chapter 7, "Guidelines for Digital Map Base Updates" of Cartographic Specifications and Symbols (EM-7140-24) (Source Codes 01-24).</attrdefs>
+        <attrdomv>
+          <edom>
+            <edomv>Remote Sensing Data - Base Level</edomv>
+            <edomvd>Data compiled from digital imagery, ortho-rectified to a level meeting NMAS at 1:25,000 (continental U.S. ) and 1:63,360 ( Alaska ) or larger scale. Ortho-rectification should remove distortions due to sensor view geometry and terrain displacement. Suitable imagery includes satellite and aerial (camera, thermal, LIDAR, etc) imagery appropriate for use in this category. Examples include DigitalGlobe and Space Imaging's Standard data products, DOQs, NAIP, and aerial data products less than 10 meters in spatial resolution ortho-rectified with OrthoBase or Leica Photogrammetric Suite (LPS). Features should be delineated using on-screen digitizing or image processing/feature extraction software. Features to be heads-up digitized should be clearly visible and identifiable at that scale. Image positional accuracy information can be calculated using NSSDA protocols or obtained from the vendor or provider processing the data. The image sensor name, spatial resolution, acquisition date, positional accuracy, and any other pertinent information should be included in the FGDC compliant metadata documentation for GIS layers containing these data.</edomvd>
+            <edomvds>USFS GIS Data Dictionary</edomvds>
+          </edom>
+          <edom>
+            <edomv>Remote Sensing Data - Mid Level</edomv>
+            <edomvd>Data compiled from digital imagery, ortho-rectified to a level meeting NMAS at 1:100,000 or larger scale. Ortho-rectification should remove distortions due to sensor view geometry and terrain displacement. Suitable imagery includes satellite and aerial imagery in addition to the data described in Source Code 30, generalized or resampled appropriately for use in this category. Example imagery includes SPOTView data products, ASTER (15 meter), Hyperion, terrain corrected Landsat TM and ETM, ASTER (30 meter), ortho-rectified NAPP and NHAPP photography, and ortho-rectified aerial data products less than 30 meters in spatial resolution. At this scale of imagery, features should be delineated using image processing or feature extraction software. Image positional accuracy information can be calculated using NSSDA protocols or obtained from the vendor or provider processing the data. The image sensor name, spatial resolution, acquisition date, and positional accuracy should be included in the FGDC compliant metadata documents associated with the GIS layers the collected data belongs to.</edomvd>
+            <edomvds>USFS GIS Data Dictionary</edomvds>
+          </edom>
+          <edom>
+            <edomv>Other Agency Digital</edomv>
+            <edomvd>Digital data from an agency other than the Forest Service. Examples include U.S. Geological Survey (USGS) Digital Line Graph (DLG) data, BLM data (other than GCDB), and U.S. Census Bureau TIGER data, and State or county data. Data must be referenced to the appropriate coordinate system, projection, and datum. The original source, scale, date, and any other pertinent information that would help in the analysis of the reliability and accuracy of the data should be included in the FGDC compliant metadata documentation for GIS layers containing these data.</edomvd>
+            <edomvds>USFS GIS Data Dictionary</edomvds>
+          </edom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>ACCURACY</attrlabl>
+        <attrdef>Distance (+/-) in meters, of expected difference between feature and real world object locations. The accuracy field is populated with the root mean square error (RMS) value representing the overall geolocational accuracy of features in the dataset. RMS is determined from one of several methods: a) National Standard for Spatial Data Accuracy (NSSDA), b) National Map Accuracy Standard (NMAS), or c) provided by the dataset vendor or provider processing the data.</attrdef>
+        <attrdefs>US Forest Service</attrdefs>
+        <attrdomv>
+          <udom>Meters</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>ECOREGION_DOMAIN</attrlabl>
+        <attrdef>Ecosystem of related climates, differentiated based on precipitation and temperature.</attrdef>
+        <attrdefs>USDA Forest Service, Goudey and Smith (1994), Ecological Units of California-Subsections</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>ECOREGION_DIVISION</attrlabl>
+        <attrdef>Subdivisions of climates within Domains, differentiated based on precipitation levels and patterns as well as temperature.</attrdef>
+        <attrdefs>USDA Forest Service, Goudey and Smith (1994), Ecological Units of California-Subsections</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>ECOREGION_PROVINCE</attrlabl>
+        <attrdef>Divisions are subdivided into Provinces, which are differentiated based on vegetation or other natural land covers.</attrdef>
+        <attrdefs>USDA Forest Service, Goudey and Smith (1994), Ecological Units of California-Subsections</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>ECOREGION_SECTION</attrlabl>
+        <attrdef>Subdivisions of Provinces based on terrain features.</attrdef>
+        <attrdefs>USDA Forest Service, Goudey and Smith (1994), Ecological Units of California-Subsections</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>ECOREGION_SUBSECTION</attrlabl>
+        <attrdef>More refined divisions of Sections based on terrain features. From the Ecological Units of the Forest Service National Hierarchical Framework, smaller areas within Sections with similar surficial geology, lithology, geomorphic process, soil groups, subregional climate, and potential natural communities. FS_EcoregionSubsection is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>USDA Forest Service, Goudey and Smith (1994), Ecological Units of California-Subsections</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CALVEGZONE</attrlabl>
+        <attrdef>General mapping areas for the CALVEG ("Classification and Assessment with Landsat of Visible Ecological Groupings") system, divided into 9 ecological zones.</attrdef>
+        <attrdefs>USDA Forest Service, Goudey and Smith (1994), Ecological Units of California-Subsections</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>TILE</attrlabl>
+        <attrdef>Tile numbers created to serve out logical portions of vegetation data for use in land management issues such as forest-wide planning efforts, wildlife habitat mapping and fire risk assessment.</attrdef>
+        <attrdefs>USDA Forest Service, Goudey and Smith (1994), Ecological Units of California-Subsections</attrdefs>
+        <attrdomv>
+          <udom>Tile number</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>COVERTYPE</attrlabl>
+        <attrdef>Vegetation Lifeform. R05_CoverType is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>USDA Forest Service, Pacific Southwest Region</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>R05_DATA_SOURCE</attrlabl>
+        <attrdef>Region 5 feature level metadata documenting the source of the remote sensing imagery. R05_DataSource is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>USDA Forest Service, Pacific Southwest Region</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CAUSE_DATE</attrlabl>
+        <attrdef>CAUSE_DATE is associated with the MAP_UPDATE_CAUSE field. It can relate the precise date that the change catalyst occurred on, such as the containment date for a fire (MAP_UPDATE_CAUSE = 'FI'), when a wind event knocked down thousands of trees (MAP_UPDATE_CAUSE = 'BD') or a planting date taken from FACTS data (MAP_UPDATE_CAUSE = 'PL'). Most often, the exact date of change is not known but the year the event occurred in is. These change catalysts are denoted with a "9/30/xxxx" date. For example, insect mortality that killed a stand of trees in 2015 would have a CAUSE_DATE of "9/30/2015". When a CAUSE_DATE year is unknown, it is left NULL, and SOURCE_DATE will denote when the change event was delineated in the EVEG data.</attrdef>
+        <attrdefs>USDA Forest Service, Pacific Southwest Region</attrdefs>
+        <attrdomv>
+          <udom>Date attributed to change (MM/DD/YYYY).</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>PROD</attrlabl>
+        <attrdef>Timberland Productivity R05_Productivity is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>USDA Forest Service, Pacific Southwest Region</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CANOPYSTRUCTURE</attrlabl>
+        <attrdef>Forest canopy structure R05_CanopyStructure is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>USDA Forest Service, Pacific Southwest Region</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>REFORESTATION_STATUS</attrlabl>
+        <attrdef>Used to track forest management at a stand level across all ownerships, whether the catalyst is timber production or a natural change vector (fire, tree mortality, earth/snow movement). The catalyst for the REFORESTATION_STATUS label will be found in the MAP_UPDATE_CAUSE field. R05_ReforestationStatus is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>USDA Forest Service, Pacific Southwest Region</attrdefs>
+        <attrdomv>
+          <udom>Description of status</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>ORIGIN_YEAR</attrlabl>
+        <attrdef>Year associated with timber planting. See "PL" code in REFORESTATION_STATUS field. </attrdef>
+        <attrdefs>USDA Forest Service, Pacific Southwest Region</attrdefs>
+        <attrdomv>
+          <udom>Year</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CWHR_LIFEFORM</attrlabl>
+        <attrdef>Vegetation Lifeform from the California Wildlife Habitat Relationships system. R05_WHRlifeform is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>California Wildlife Habitat Relationships System</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CWHR_TYPE</attrlabl>
+        <attrdef>Vegetation Type from the California Wildlife Habitat Relationships system. R05_WHRType is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>California Wildlife Habitat Relationships System</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CWHR_SIZE</attrlabl>
+        <attrdef>Tree Size from the California Wildlife Habitat Relationships system. R05_WHRSize is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>California Wildlife Habitat Relationships System</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CWHR_DENSITY</attrlabl>
+        <attrdef>Tree Canopy Closure from the California Wildlife Habitat Relationships system. R05_WHRDensity is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>California Wildlife Habitat Relationships</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SOURCE_DATE</attrlabl>
+        <attrdef>SOURCE_DATE is associated with the R05_DATA_SOURCE (Table 118) field; it is the date that the photography/imagery was taken. It could also be the date that field data was collected. This reflects the vintage of the source material that first captures and change in the eVeg database, not the precise date of the change event (see CAUSE_DATE).</attrdef>
+        <attrdefs>U.S. Forest Service Region 5</attrdefs>
+        <attrdomv>
+          <udom>Date imagery was captured (MM/DD/YYYY)</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>CON_CFA</attrlabl>
+        <attrdef>This is the detailed 10% CFA (Cover From Above) classes for conifer lifeforms. R05_LifeformCFA is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>USDA Forest Service, Pacific Southwest Region</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>HDW_CFA</attrlabl>
+        <attrdef>This is the detailed 10% CFA (Cover From Above) classes for hardwood lifeforms. R05_LifeformCFA is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>USDA Forest Service, Pacific Southwest Region</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SHB_CFA</attrlabl>
+        <attrdef>This is the detailed 10% CFA (Cover From Above) classes for shrub lifeforms. R05_LifeformCFA is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>USDA Forest Service, Pacific Southwest Region</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>TOTAL_TREE_CFA</attrlabl>
+        <attrdef>This is the detailed 10% CFA (Cover From Above) classes for the total of all tree lifeforms. R05_LifeformCFA is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>USDA Forest Service, Pacific Southwest Region</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OS_TREE_DIAMETER_CLASS_1_R5</attrlabl>
+        <attrdef>Region 5 tree diameter classes associated with REGIONAL_DOMINANCE_TYPE. Unlike OS_TREE_DIAMETER_CLASS_1, this field includes the "02 - Saplings - 1 to 4.9 inches QMD" class for use in post-disturbance analysis. EV_R05_OSTreeDiameterClass is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>USDA Forest Service, Pacific Southwest Region</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>OS_TREE_DIAMETER_CLASS_2_R5</attrlabl>
+        <attrdef>Region 5 tree diameter classes associated with REGIONAL_DOMINANCE_TYPE_2. Unlike OS_TREE_DIAMETER_CLASS_2, this field includes the "02 - Saplings - 1 to 4.9 inches QMD" class for use in post-disturbance analysis. EV_R05_OSTreeDiameterClass is the Geodatabase domain associated with this attribute.</attrdef>
+        <attrdefs>USDA Forest Service, Pacific Southwest Region</attrdefs>
+        <attrdomv>
+          <codesetd>
+            <codesetn>https://www.fs.usda.gov/detail/r5/landmanagement/resourcemanagement/?cid=stelprdb5365219</codesetn>
+            <codesets>U.S. Forest Service Region 5</codesets>
+          </codesetd>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SHAPE</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SHAPE.AREA</attrlabl>
+        <attrdef>Area of feature in internal units squared.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Positive real numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SHAPE.LEN</attrlabl>
+        <attrdef>Length of feature in internal units.</attrdef>
+        <attrdefs>Esri</attrdefs>
+        <attrdomv>
+          <udom>Positive real numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+        </cntorgp>
+        <cntemail>data@fs.fed.us</cntemail>
+      </cntinfo>
+    </distrib>
+    <distliab>The U.S. Forest Service makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, reliability, completeness, or utility of these geospatial data or for the improper or incorrect use of those data. The data are dynamic and may change over time. The user is responsible for verifying the limitations of the geospatial data and for using the data accordingly.</distliab>
+  </distinfo>
+  <metainfo>
+    <metd>20180118</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+        </cntorgp>
+        <cntemail>data@fs.fed.us</cntemail>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>

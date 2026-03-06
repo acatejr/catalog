@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<pubdate>20251007</pubdate>
+<pubtime>100329</pubtime>
+<title>S_USA.ResearchStationFacilities</title>
+<geoform>vector digital data</geoform>
+</citeinfo>
+</citation>
+<descript>
+<abstract>These data are a point feature class that provides the location of Research and Development's offices across the United States.</abstract>
+<purpose>Forest Service employees need to use this information. The public and various other stakeholders also have an interest in being able to discover and display where Forest Service Research does its work. Therefore, this geodatabase provides locations and descriptions of these facilities. Facilities include both headquarters and laboratory/research locations.</purpose>
+</descript>
+<spdom>
+<bounding>
+<westbc>-155.095427</westbc>
+<eastbc>-65.729943</eastbc>
+<northbc>64.857569</northbc>
+<southbc>18.325188</southbc>
+</bounding>
+</spdom>
+<keywords>
+<place>
+<placekt>None</placekt>
+<placekey>USA</placekey>
+</place>
+</keywords>
+<accconst>None</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<datacred>U.S. Forest Service, Research &amp; Development</datacred>
+<native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.9.1.28388</native>
+</idinfo>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>Entity point</sdtstype>
+<ptvctcnt>91</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.ResearchStationFacilities</enttypl>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Sequential unique whole numbers that are automatically generated</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LOCATION_NAME</attrlabl>
+<attrdef>Name of the research office or lab</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Name</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ORG_ID</attrlabl>
+<attrdef>Organization abbreviation</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>FPL</edomv>
+<edomvd>Forest Products Laboratory</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>IITF</edomv>
+<edomvd>International Institute for Tropical Forestry</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NRS</edomv>
+<edomvd>Northern Research Station</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>PNW</edomv>
+<edomvd>Pacific Northwest Research Station</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>PSW</edomv>
+<edomvd>Pacific Southwest Research Station</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>RMRS</edomv>
+<edomvd>Rocky Mountain Research Station</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>SRS</edomv>
+<edomvd>Southern Research Station</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>WO</edomv>
+<edomvd>Washington Office</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LOCATION_TYPE</attrlabl>
+<attrdef>Description of the type of facility</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Headquarters</edomv>
+<edomvd>The location type is Headquarters</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>Laboratory</edomv>
+<edomvd>The location type is Laboratory</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ADDRESS_LINE1</attrlabl>
+<attrdef>Address of the research facility (1st line)</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Text</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ADDRESS_LINE2</attrlabl>
+<attrdef>Address of the research facility (2nd line)</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Text</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CITY</attrlabl>
+<attrdef>City in which the research facility is located</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Name of city</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>STATE_CODE</attrlabl>
+<attrdef>standard 2-digit mailing abbreviation for the U.S. state in which the facility is located</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>State code</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ZIP</attrlabl>
+<attrdef>9-digit ZIP code for the location</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>zip code</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>COUNTRY_ID</attrlabl>
+<attrdef>ID for the country in which the facility is located.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>236</edomv>
+<edomvd>United States</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>179</edomv>
+<edomvd>Puerto Rico</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>COUNTRY_NAME</attrlabl>
+<attrdef>Name of country in which the research facility is located</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Name</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LONGITUDE</attrlabl>
+<attrdef>Longitude in decimal degrees</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>decimal degrees</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LATITUDE</attrlabl>
+<attrdef>Latitude in decimal degrees</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>decimal degrees</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Shape</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Point</edomv>
+<edomvd>Point</edomvd>
+<edomvds>Esri</edomvds>
+</edom>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>UTMZONE</attrlabl>
+<attrdef>Universal Transverse Mercator (UTM) Zone</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>UTM zone information</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>URL</attrlabl>
+<attrdef>Uniform Resource Locator (URL) of the Research Station or its facility</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Text</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MSCALE</attrlabl>
+<attrdef>Map scale</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>50000</edomv>
+<edomvd>1:50000</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<metainfo>
+<metd>20241009</metd>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

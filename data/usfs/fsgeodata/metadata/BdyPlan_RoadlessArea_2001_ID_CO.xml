@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>U.S. Forest Service</origin>
+<pubdate>20231003</pubdate>
+<pubtime>084922</pubtime>
+<title>S_USA.BdyPlan_RoadlessArea_2001_ID_CO</title>
+<geoform>vector digital data</geoform>
+<onlink>http://data.fs.usda.gov/geodata/edw/datasets.php</onlink>
+</citeinfo>
+</citation>
+<descript>
+<abstract>The RoadlessArea_2001_ID_CO feature class describes the boundaries of all Roadless Areas managed by the U.S. Forest Service. These roadless areas were designated by administrative rule making to provide management direction for their conservation and management. The RoadlessArea Conservation Rule of 2001 designated roadless areas nationwide. Subsequent rules, the Idaho Roadless Rule of 2008, and the Colorado Roadless Rule of 2012 replaced that direction and designation in the states of Idaho and Colorado. The Roadless Area_2001_ID_CO includes the current roadless area boundaries from all three rules and excludes roadless areas which have been superseded by a subsequent rule.</abstract>
+<purpose>The RoadlessArea_2001_ID_CO feature class describes the boundaries of all Roadless Areas managed by the U.S. Forest Service so that agency personnel and the United States public can understand where management direction for the conservation and management of all areas with-in Forest Service lands that are designated for roadless area management applies.</purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>20141201</caldate>
+</sngdate>
+</timeinfo>
+<current>publication date</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>As needed</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-150.007671</westbc>
+<eastbc>-65.707153</eastbc>
+<northbc>61.518992</northbc>
+<southbc>18.245724</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>environment</themekey>
+</theme>
+<theme>
+<themekt>None</themekt>
+<themekey>Roadless Rule</themekey>
+<themekey>Inventoried Roadless Area</themekey>
+<themekey>Idaho</themekey>
+<themekey>Colorado Roadless Rule</themekey>
+<themekey>Roadless Area Conservation Rule</themekey>
+<themekey>Roadless Area</themekey>
+<themekey>Roadless</themekey>
+</theme>
+</keywords>
+<accconst>None</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and land users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>U.S. Forest Service Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<datacred>U.S. Forest Service</datacred>
+<native>Esri ArcGIS 13.3.4.52636</native>
+</idinfo>
+<dataqual>
+<logic>None</logic>
+<complete>None</complete>
+<posacc>
+<horizpa>
+<horizpar>Generally the source information used to record spatial locations are from: 1) on-screen digitizing with a georeferenced topographic or image background; or 2) GPS field collected positions.</horizpar>
+</horizpa>
+</posacc>
+<lineage>
+<procstep>
+<procdesc>Areas qualifying as “roadless” are delineated and attributed by forests and regions. 2001 Roadless areas are combined with the Idaho and Colorado area by selecting all records except Idaho and Colorado and then combining the selection with state-level datasets. Attribution and geometry are updated. The three datasets exist in order to incorporate more acreage and special cases within both Colorado and Idaho. Changes to the Colorado and Idaho Roadless Rule are subject to public review and comment, subject to 36 CFR 294 Subpart D for Colorado and 36 CFR 294 Subpart C for Idaho. More information can be found at http://www.fs.usda.gov/roadmain/roadless/coloradoroadlessrules and http://www.fs.usda.gov/roadmain/roadless/idahoroadlessrule</procdesc>
+<procdate>20141201</procdate>
+</procstep>
+<procstep>
+<procdesc>A technical correction to the name of an IRA on the Helena-Lewis and Clark National Forest was performed by the GTAC. This correction changes the name of the IRA from “Elkhorn Wilderness Study Area Plus Additions” to “Elkhorn”. The technical correction complies with direction described in the Roadless Area Conservation Rule 294.11 and Interim Directive 1920-2001-1 section 1925.05.</procdesc>
+<procdate>20170517</procdate>
+</procstep>
+<procstep>
+<procdesc>A correction based on initial mapping errors within multiple IRAs on the Bridger-Teton National Forest was approved by Chief Victoria Christiansen on June 25, 2021.  The roadless decision memo “Technical Correction to the 2001 Inventoried Roadless Area Boundary” codifies the Chief’s approval and extent of the changes.  These corrections comply with direction described with the Roadless Area Conservation Rule (36 C.F.R. Part 294, Subpart B (2001)).  The authority for this decision is specified in the 2001 IRA Rule Preamble which states “In the event of a modification to correct any clerical, typographical, or other technical error is needed, the change will be made to the national headquarters maps and corrected copies of the maps made available to other administrative units”.  The individual IRAs subject to correction include Gros Ventre Mountains IRA (Fisherman Creek and Game Creek area), Salt River Range and Grayback Ridge IRA (Lower Greys River area) and the Little Sheep Mountain IRA (Moose-Gypsum Creeks area).  These corrections are supported by new mapping technology which displays how the identified areas were never intended for inclusion in IRAs.  This technical error is most likely the result of maps being drawn at a scale where that error was not visible. The provided source date for these edits was vertically integrated to the FS boundary.</procdesc>
+<procdate>20220504</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>GT-polygon composed of chains</sdtstype>
+<ptvctcnt>2940</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.BdyPlan_RoadlessArea_2001_ID_CO</enttypl>
+<enttypd>A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>http://support.esri.com/en/knowledgebase/GISDictionary/term/feature%20class</enttypds>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ROADLESSAREANAME</attrlabl>
+<attrdef>The official name of this roadless area</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Roadless area names are unique to each area.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>RULE</attrlabl>
+<attrdef>The rule under which this roadless area is managed</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>Roadless Area Conservation Rule (2001)</edomv>
+<edomvd>2001 Roadless Area Conservation Rule (36 CFR 294, Subpart B)</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Idaho Roadless Rule (2008)</edomv>
+<edomvd>Idaho Roadless Rule of 2008</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>Colorado Roadless Rule (2012) </edomv>
+<edomvd>Colorado Roadless Rule of 2012</edomvd>
+<edomvds>U.S. Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REGIONCODE</attrlabl>
+<attrdef>U.S. Forest Service Region, consisting of Region 1 (Northern Region), Region 2 (Rocky Mountain Region), Region 3 (Southwestern Region), Region 4 (Intermountain Region), Region 5 (Pacific Southwest Region), Region 6 (Pacific Northwest Region), Region 8 (Southern Region), Region 9 (Eastern Region), and Region 10 (Alaska Region).  There is no Region 7.  Regions are listed on https://www.fs.usda.gov/organization.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Region number as text.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REGIONNAME</attrlabl>
+<attrdef>U.S. Forest Service Region, consisting of Region 1 (Northern Region), Region 2 (Rocky Mountain Region), Region 3 (Southwestern Region), Region 4 (Intermountain Region), Region 5 (Pacific Southwest Region), Region 6 (Pacific Northwest Region), Region 8 (Southern Region), Region 9 (Eastern Region), and Region 10 (Alaska Region).  There is no Region 7.  Regions are listed on https://www.fs.usda.gov/organization.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Region name.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FORESTNAME</attrlabl>
+<attrdef>Forests are subdivisions of regions and can be found by drilling through regions on https://www.fs.usda.gov/organization.</attrdef>
+<attrdefs>U.S Forest Service</attrdefs>
+<attrdomv>
+<udom>Forest Names.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>STATECODE</attrlabl>
+<attrdef>United States 2-letter abbreviation for political divisions, i.e., State.</attrdef>
+<attrdefs>U.S. Census Bureau</attrdefs>
+<attrdomv>
+<codesetd>
+<codesetn>List of U.S. State Abbreviations</codesetn>
+<codesets>http://www.census.gov/geo/reference/ansi_statetables.html</codesets>
+</codesetd>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>STATENAME</attrlabl>
+<attrdef>Unites States names.</attrdef>
+<attrdefs>U.S. Census Bureau</attrdefs>
+<attrdomv>
+<codesetd>
+<codesetn>List of U.S. States</codesetn>
+<codesets>http://www.census.gov/geo/reference/ansi_statetables.html</codesets>
+</codesetd>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TOTAL_ACRES</attrlabl>
+<attrdef>Total area, in acres, of  the named roadless area by state.</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Official acres for the roadless area.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.AREA</attrlabl>
+<attrdef>Area of feature in internal units squared.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+<attrdef>Length of feature in internal units.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Positive real numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<metainfo>
+<metd>20250415</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>U.S. Forest Service Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

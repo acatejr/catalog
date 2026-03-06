@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>USDA Forest Service, Ian Fox, Office of the Chief, Wildfire Risk Reduction Infrastructure Team, Deputy Team Lead</origin>
+<pubdate>20240815</pubdate>
+<pubtime>153649</pubtime>
+<title>S_USA.BdyPln_BIL_LandscpInvestment</title>
+<geoform>vector</geoform>
+</citeinfo>
+</citation>
+<descript>
+<abstract>The Bipartisan Infrastructure Law (a.k.a Infrastructure Investment Jobs Act) and the Inflation Reduction Act include significant funding to execute fuels mitigation projects. Regions submitted proposed project boundaries designed to address community exposure to wildfire. The Executive Leadership Team of the Forest Service selected "Landscapes" for investment in fiscal years 2022 and 2023. Additional landscapes may be selected for future action. This dataset documents the official boundary of the landscapes selected for fuels treatment activities in the Wildfire Crisis Strategy. The public-facing version of these boundaries is called Wildfire Crisis Strategy Landscapes.</abstract>
+<purpose>Wildfire Crisis Strategy Landscapes (a.k.a. National Priority Landscapes or NPL) are boundaries that are used to track legislative investments. They are similar to Collaborative Forest Landscapes Restoration Projects and Joint Chiefs' Projects. Internal users use the Landscapes for project planning and reporting. External users can use this dataset to understand more about Forest Service investment decisions.</purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>20220526</caldate>
+</sngdate>
+</timeinfo>
+<current>This Dataset is current from July 17, 2023 to Present</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>As needed</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-124.098151</westbc>
+<eastbc>-104.681751</eastbc>
+<northbc>49.001516</northbc>
+<southbc>32.441382</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>None</themekt>
+<themekey>IIJA</themekey>
+<themekey>Bipartisan Infrastructure Law</themekey>
+<themekey>Fuels Treatment</themekey>
+<themekey>BIL</themekey>
+<themekey>Wildfire Exposure</themekey>
+<themekey>Inflation Reduction Act</themekey>
+<themekey>Wildfire</themekey>
+<themekey>Wildfire Crisis Strategy</themekey>
+</theme>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>boundaries</themekey>
+</theme>
+</keywords>
+<accconst>Other Constraints</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and land users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USDA Forest Service</cntorg>
+<cntper>Mike Scanlon</cntper>
+</cntorgp>
+<cntpos>System Analyst</cntpos>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<address>3200 SW Jefferson Way</address>
+<city>Corvallis</city>
+<state>Oregon</state>
+<postal>97331</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>541-750-7092</cntvoice>
+<cntemail>michael.scanlon@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<datacred>Landscape boundaries are proposed by local Forest Service staff and approved by Forest Service Leadership. The boundary layer is managed by Wildfire Risk Reduction Infrastructure staff.</datacred>
+<native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.9.1.28388</native>
+</idinfo>
+<dataqual>
+<logic>The data is consistent with the curent the planned project landscapes</logic>
+<complete>All the projects selected by the procdate are collected within the datasaet</complete>
+<posacc>
+<horizpa>
+<horizpar>Accuracy is from on-screen digitizing with a georeferenced topographic or image background.</horizpar>
+</horizpa>
+</posacc>
+<lineage>
+<procstep>
+<procdesc>Collection of project boundaries from Regional contacts with edits approved by the Wildfire Risk Reduction Infrastructure Team.</procdesc>
+<procdate>20230717</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>GT-polygon composed of chains</sdtstype>
+<ptvctcnt>21</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.BdyPln_BIL_LandscpInvestment</enttypl>
+<enttypd>Polygons that represent the project boundaries of the projects selectedto recieve funding from the Bipartisan Infrastructure Bill and Inflation Reduction Act. Together these are referenced as the Wildfire Crisis Strategy.</enttypd>
+<enttypds>U.S.D.A. Forest Service</enttypds>
+</enttyp>
+<attr>
+<attrlabl>EditDate</attrlabl>
+<attrdef>Feature level metadate on the last date of feature editing</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>The date of the last feature level edit</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Shape</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>System generated field</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PROJECTID</attrlabl>
+<attrdef>Project ID is a Landscape code to connect data in reporting systems.</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<edom>
+<edomv>NPL017</edomv>
+<edomvd>Initiative code used with the “Nez Perce-Clearwater-Lower Salmon” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL004</edomv>
+<edomvd>Initiative code used with the “Prescott” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL006</edomv>
+<edomvd>Initiative code used with the “Sierra and Elko Fronts” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL036</edomv>
+<edomvd>Initiative code used with the “Colorado Front Range” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL016</edomv>
+<edomvd>Initiative code used with the “Mount Hood Forest Health and Fire-Resilient Communities” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL005</edomv>
+<edomvd>Initiative code used with the “4FRI” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL025</edomv>
+<edomvd>Initiative code used with the “Enchanted Circle” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL003</edomv>
+<edomvd>Initiative code used with the “Pine Valley” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL015</edomv>
+<edomvd>Initiative code used with the “Colville Northeast Washington Vision” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL001</edomv>
+<edomvd>Initiative code used with the “Kootenai Complex” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL009</edomv>
+<edomvd>Initiative code used with the “Klamath River Basin” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL010</edomv>
+<edomvd>Initiative code used with the “Central Oregon” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL002</edomv>
+<edomvd>Initiative code used with the “San Carlos Apache Tribal Forest Protection” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL011</edomv>
+<edomvd>Initiative code used with the “Plumas Community Protection” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL013</edomv>
+<edomvd>Initiative code used with the “Southwest Idaho” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL008</edomv>
+<edomvd>Initiative code used with the “Stanislaus” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL012</edomv>
+<edomvd>Initiative code used with the “Southern California Fireshed Risk Reduction Strategy” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL007</edomv>
+<edomvd>Initiative code used with the “Wasatch” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL029</edomv>
+<edomvd>Initiative code used with the “North Yuba” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL014</edomv>
+<edomvd>Initiative code used with the “Trinity Forest Health and Fire-Resilient Rural Communities” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+<edom>
+<edomv>NPL028</edomv>
+<edomvd>Initiative code used with the “Central Washington Initiative” landscape</edomvd>
+<edomvds>USFS</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>INVESTMENTSTARTYEAR</attrlabl>
+<attrdef>Investments start year</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Year</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>STATE</attrlabl>
+<attrdef>U.S. State</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Any U.S. state</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.AREA</attrlabl>
+<attrdef>System generated area</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>System generated value</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+<attrdef>System generated length</attrdef>
+<attrdefs>ESRI</attrdefs>
+<attrdomv>
+<udom>System generated value</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>LANDSCAPEACRES</attrlabl>
+<attrdef>Landscape acres</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Non-negative numerical value.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>INVESTMENTENDYEAR</attrlabl>
+<attrdef>Investment end year</attrdef>
+<attrdefs>USFS</attrdefs>
+<attrdomv>
+<udom>Year</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Name</attrlabl>
+<attrdef>Project Names</attrdef>
+<attrdefs>FACTS Database, PALS database, gPAS</attrdefs>
+<attrdomv>
+<udom>Project Names assigned by the Regional Forest Service Offices</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>Region</attrlabl>
+<attrdef>U.S.D.A. Forest Service Regional identifier codes</attrdef>
+<attrdefs>U.S.D.A. Forest Service</attrdefs>
+<attrdomv>
+<codesetd>
+<codesetn>USDA Forest Service Regional Identification Numbers</codesetn>
+<codesets>USDA Forest Service</codesets>
+</codesetd>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</distrib>
+<distliab>The U.S. Forest Service makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, reliability, completeness, or utility of these geospatial data or for the improper or incorrect use of those data. The data are dynamic and may change over time. The user is responsible for verifying the limitations of the geospatial data and for using the data accordingly.</distliab>
+</distinfo>
+<metainfo>
+<metd>20240103</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USDA Forest Service</cntorg>
+<cntper>Mike Scanlon</cntper>
+</cntorgp>
+<cntpos>System Analyst</cntpos>
+<cntaddr>
+<addrtype>mailing and physical</addrtype>
+<address>3200 SW Jefferson Way</address>
+<city>Corvallis</city>
+<state>Oregon</state>
+<postal>97331</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>541-750-7092</cntvoice>
+<cntemail>michael.scanlon@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

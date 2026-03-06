@@ -5,6 +5,8 @@ title: From Single-Pass RAG to Agentic Tool Use
 
 # From Single-Pass RAG to Agentic Tool Use
 
+<!-- more -->
+
 I've been having a lot of fun working on the Catalog project lately — a Python
 CLI tool for discovering geospatial datasets from the USFS Geodata
 Clearinghouse. It's one of those projects where every improvement unlocks a

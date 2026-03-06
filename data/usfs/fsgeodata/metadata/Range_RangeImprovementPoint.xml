@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<pubdate>20260207</pubdate>
+<pubtime>013013</pubtime>
+<title>S_USA.Range_RangeImprovementPoint</title>
+<geoform>vector digital data</geoform>
+<onlink>http://data.fs.usda.gov/geodata/edw/datasets.php. 
+</onlink>
+<onlink>https://usfs.maps.arcgis.com/apps/webappviewer/index.html?id=da0bbc54ab834beaae20c2b5b35d28bc.</onlink>
+</citeinfo>
+</citation>
+<descript>
+<abstract>Depicts structural range improvements that are points. This will include handling facilities and Range Water System components like source, storage and pumps. These improvements are assets tracking expenditures on the ground across the landscape.</abstract>
+<purpose>The data was developed to fill a need for an internal and external spatial representation of the point structural improvements used in the management of the Rangeland resource. The data will be used to create permit maps in addition to field working maps and any other logical uses that the internal and external public may determine this information is helpful to. </purpose>
+</descript>
+<timeperd>
+<timeinfo>
+<rngdates>
+<begdate>2025</begdate>
+<enddate>present</enddate>
+</rngdates>
+</timeinfo>
+<current>Unknown</current>
+</timeperd>
+<status>
+<progress>In work</progress>
+<update>Daily</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-123.730979</westbc>
+<eastbc>-103.586361</eastbc>
+<northbc>47.569435</northbc>
+<southbc>31.333211</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>farming; structure;</themekey>
+</theme>
+<place>
+<placekt>None</placekt>
+<placekey>USA</placekey>
+</place>
+</keywords>
+<accconst>None</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>unknown</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+<country>US</country>
+</cntaddr>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</ptcontac>
+<native>Esri ArcGIS 13.3.4.52636</native>
+</idinfo>
+<dataqual>
+<logic>Data stewards have been relied on to validate the data quality and accuracy of the point structural improvements used in the management of the rangeland resource. Handling Facilities and water system components have been identified using various methods through the years like GPS or digitizing. Spatial data comes from the district and is consolidated at the forest level. This will be a consolidated national extent of the data entered at the lowest level of the agency. Data quality is dependent on quality data maintenance by local data stewards.</logic>
+<complete>This data is current only as of the date of publication and may change daily. The need for a daily refresh is key to incorporate any and all local changes as they are made and keep the data in EDW fresh.</complete>
+<posacc>
+<horizpa>
+<horizpar>Positional accuracy is veryified by visual comparison to source datasets</horizpar>
+</horizpa>
+</posacc>
+<lineage>
+<procstep>
+<procdesc>Data is the result of a national data call where local units were asked to identify and provide spatial and tabular data to represent linear structural improvements like fences and pipelines. Local units are to follow the current GIS Data Dictionaries and load their local data into the appropriate SDE to be collected and merged into a national extent.</procdesc>
+<procdate>20260207</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>Entity point</sdtstype>
+<ptvctcnt>35973</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.Range_RangeImprovementPoint</enttypl>
+<enttypd>Feature class: A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>ESRI GIS Dictionary</enttypds>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ADMIN_ORG_ID</attrlabl>
+<attrdef>The numeric code, six digits, for the Admin Organizational unit (RRFFDD where R = Region code number, F = Forest code number, and D = District code number). The administrative organization is the Ranger District on which the feature is located.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Organization Code for Administrative Organization (RRFFDD)</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ADMIN_ORG_NAME</attrlabl>
+<attrdef>The name associated with the Admin Organization identified.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Name of Administrative Organization</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MANAGING_ORG_ID</attrlabl>
+<attrdef>The numeric code for the Managing Organizational unit (RRFFDD where R = Region code number, F = Forest code number, and D = District code number). The managing organization is the Ranger District that manages the feature, regardless of the location of the feature.  </attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Organization Code for Managing Organization (RRFFDD)</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>MANAGING_ORG_NAME</attrlabl>
+<attrdef>The name associated with the Managing Organization identified.  </attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Name of Managing Organization</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FEATURE_CN</attrlabl>
+<attrdef>Globally unique identifier across all Forest Service databases, foreign key to most Forest Service National Application databases. Specifically for improvements.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Unique ID</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FEATURE_ID</attrlabl>
+<attrdef>A number that uniquely identifies the improvement on the Forest.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Unique ID</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FEATURE_NAME</attrlabl>
+<attrdef>The name of the feature. The name need not be unique.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Name of the Feature</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FEATURE_TYPE</attrlabl>
+<attrdef>The type of feature.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>MULTIPLE PENS</edomv>
+<edomvd>Feature is a set of MULTIPLE PENS</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>DIPPING VAT</edomv>
+<edomvd>Feature is a DIPPING VAT</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>CULVERT/UNDERPASS</edomv>
+<edomvd>Feature is a CULVERT/UNDERPASS</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>CORRAL</edomv>
+<edomvd>Feature is a CORRAL</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>OTHER SOURCE</edomv>
+<edomvd>Feature is a OTHER SOURCE</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>WELL </edomv>
+<edomvd>Feature is a WELL </edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>SPRING</edomv>
+<edomvd>Feature is a SPRING</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>DUGOUT/PIT TANK</edomv>
+<edomvd>Feature is a DUGOUT/PIT TANK</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>GUZZLER/TRICK TANK</edomv>
+<edomvd>Feature is a GUZZLER/TRICK TANK</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>POND</edomv>
+<edomvd>Feature is a POND</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>RESERVOIR</edomv>
+<edomvd>Feature is a RESERVOIR</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>STORAGE TANK</edomv>
+<edomvd>Feature is a STORAGE TANK</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>TROUGH</edomv>
+<edomvd>Feature is a TROUGH</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>PUMP</edomv>
+<edomvd>Feature is a PUMP</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FEA_COND_RATING</attrlabl>
+<attrdef>Condition and state of repair of the feature.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>EXCELLENT</edomv>
+<edomvd>Feature is in EXCELLENT condition. </edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>GOOD</edomv>
+<edomvd>Feature is in GOOD condition. </edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>SATISFACTORY</edomv>
+<edomvd>Feature is in SATISFACTORY condition. </edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>POOR</edomv>
+<edomvd>Feature is in POOR condition. </edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>CRITICAL</edomv>
+<edomvd>Feature is in CRITICAL condition. </edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>REMOVAL</edomv>
+<edomvd>Feature should be or has been removed. </edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>DATE_LAST_INSPECTED</attrlabl>
+<attrdef>The date the feature was last inspected.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Date</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ALLOT_CN</attrlabl>
+<attrdef>Globally unique identifier across all Forest Service databases, foreign key to most Forest Service National Application databases. Specifically for allotments.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Unique ID</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ALLOT_NAME</attrlabl>
+<attrdef>The name of the allotment. The name need not be unique.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Name of the Allotment </udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ALLOT_ID</attrlabl>
+<attrdef>A 5 character alpha numeric identifier assigned to the allotment.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Short alpha numeric code.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PARENT_FEATURE_CN</attrlabl>
+<attrdef>Globally unique identifier across all Forest Service databases, foreign key to most Forest Service National Application databases. Specifically for the parent record associated with an improvement like the Range Water System that a trough is part of.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Unique ID</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PARENT_FEATURE_ID</attrlabl>
+<attrdef>An alpha numeric identifier that uniquely identifies the parent feature ID.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Short alpha numeric code. </udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PARENT_FEATURE_NAME</attrlabl>
+<attrdef>The name of the parent feature. The name need not be unique.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Name of the parent feature.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PARENT_FEATURE_TYPE</attrlabl>
+<attrdef>The type of feature.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>HANDLING_FACILITY</edomv>
+<edomvd>The parent feature type is a HANDLING FACILITY. A handling facility is a structural improvement used to aid in the management or movement of livestock. </edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>RANGE_WATER_SYSTEM</edomv>
+<edomvd>The parent feature is a RANGE WATER SYSTEM. A range water system is a grouping of individual components of a single system.</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PERMIT_CN</attrlabl>
+<attrdef>Globally unique identifier across all Forest Service databases, foreign key to most Forest Service National Application databases.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Unique ID</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PERMIT_ID</attrlabl>
+<attrdef>An alpha numeric identifier for the permit within the Admin Org.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Short alpha numeric code. </udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PERMIT_STATUS</attrlabl>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<edom>
+<edomv>ACTIVE</edomv>
+<edomvd>The permit is within the time frame for which it was issued.</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+<edom>
+<edomv>INACTIVE</edomv>
+<edomvd>All lines of permitted use have expired, been cancelled or been waived.</edomvd>
+<edomvds>US Forest Service</edomvds>
+</edom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PERMITTEE_CN</attrlabl>
+<attrdef>Globally unique identifier across all Forest Service databases, foreign key to most Forest Service National Application databases.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Unique ID</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>PERMITTEE_ID</attrlabl>
+<attrdef>An alpha numeric identifier for the permittee.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Short alpha numeric code. </udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>REV_DATE</attrlabl>
+<attrdef>Revision date, the date and time when the feature was created or last updated. Time is entered using a 24-hour clock (military time) based on the Pacific Standard Time (PST) zone. Tasks associated with each revision should be documented in the process steps of theme-based metadata. Entering the date only is acceptable.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Date</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>DATA_SOURCE</attrlabl>
+<attrdef>Feature data source code that describes how the data feature was derived or collected.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>https://fsweb.datamgt.fs.fed.us/FeatureLevelMetadata.shtml</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ACCURACY</attrlabl>
+<attrdef>Distance (+/-), in dataset distance units, of the expected difference between feature and real-world object locations.</attrdef>
+<attrdefs>US Forest Service</attrdefs>
+<attrdomv>
+<udom>Double</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>GLOBALID</attrlabl>
+<attrdef>A type of UUID (Universal Unique Identifier) in which values are automatically assigned by the geodatabase when a row is created.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>A type of UUID (Universal Unique Identifier) in which values are automatically assigned by the geodatabase when a row is created.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<metainfo>
+<metd>20260112</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>unknown</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>SM.FS.data@usda.gov</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>

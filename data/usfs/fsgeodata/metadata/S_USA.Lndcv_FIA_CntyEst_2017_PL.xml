@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+<idinfo>
+<citation>
+<citeinfo>
+<origin>U.S. Forest Service, Northern Research Station Forest Inventory and Analysis</origin>
+<pubdate>20181127</pubdate>
+<title>FIA County Estimates 2017</title>
+<geoform>vector digital data</geoform>
+</citeinfo>
+</citation>
+<descript>
+<abstract>This feature class represents forest area estimates (and percent sampling error) by county for the year 2017. The data was generated from the Forest Inventory Analysis (FIA) using the EVALIDator web tool (http://apps.fs.fed.us/Evalidator/evalidator.jsp). The areas were calculated within county limits using the US Census Bureau's county spatial data (https://www.census.gov/geo/maps-data/data/cbf/cbf_counties.html). Features and attributes of the county layer were adapted to match attributes within the FIA database (FIADB) and features have been generalized by removing vertices to enhance performance. Future iterations of this dataset will be produced using refined methods and higher resolution spatial data.</abstract>
+<purpose>The primary purpose of this dataset is to serve state annual report and other FIA map applications and publications. The secondary purpose will be to streamline access and use of spatial data for FIA data users.</purpose>
+<supplinf>States without available data contain null values and will be updated as data become available. Additional data descriptions are available in the most recent FIADB User Manual (https://www.fia.fs.fed.us/library/database-documentation/). Data collection manuals and standards available here at https://www.nrs.fs.fed.us/fia/data-collection/. Data entry, query, and estimate standards available at https://www.fia.fs.fed.us/library/database-documentation/current/ver61/FIADB%20User%20Guide%20P2_6-1_final.pdf</supplinf>
+</descript>
+<timeperd>
+<timeinfo>
+<sngdate>
+<caldate>20171231</caldate>
+</sngdate>
+</timeinfo>
+<current>Recorded</current>
+</timeperd>
+<status>
+<progress>Complete</progress>
+<update>As needed</update>
+</status>
+<spdom>
+<bounding>
+<westbc>-178.332224</westbc>
+<eastbc>-65.221142</eastbc>
+<northbc>63.222792</northbc>
+<southbc>17.881239</southbc>
+</bounding>
+</spdom>
+<keywords>
+<theme>
+<themekt>ISO 19115 Topic Categories</themekt>
+<themekey>biota</themekey>
+<themekey>environment</themekey>
+</theme>
+<theme>
+<themekt>None</themekt>
+<themekey>biomass</themekey>
+<themekey>county</themekey>
+<themekey>forest land</themekey>
+<themekey>sawlog volume</themekey>
+<themekey>carbon</themekey>
+<themekey>merchantable bole volume</themekey>
+<themekey>timberland</themekey>
+</theme>
+</keywords>
+<accconst>None - Data set accessible to the public as well as internal Forest Service users</accconst>
+<useconst>The USDA Forest Service makes no warranty, expressed or implied, including the warranties of merchantability and fitness for a particular purpose, nor assumes any legal liability or responsibility for the accuracy, reliability, completeness or utility of these geospatial data, or for the improper or incorrect use of these geospatial data. These geospatial data and related maps or graphics are not legal documents and are not intended to be used as such. The data and maps may not be used to determine title, ownership, legal descriptions or boundaries, legal jurisdiction, or restrictions that may be in place on either public or private land. Natural hazards may or may not be depicted on the data and maps, and users should exercise due caution. The data are dynamic and may change over time. The user is responsible to verify the limitations of the geospatial data and to use the data accordingly.</useconst>
+<ptcontac>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+<country>US</country>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>data@fs.fed.us</cntemail>
+</cntinfo>
+</ptcontac>
+<datacred>James Garner</datacred>
+<native> Version 6.2 (Build 9200) ; Esri ArcGIS 10.7.1.11595</native>
+</idinfo>
+<dataqual>
+<logic>Data entry is accomplished by authorized Forest Service personnel through a web application behind the U.S. Forest Service firewall and is restricted by access requirement protocols.</logic>
+<complete>Data is complete as of publication.</complete>
+<lineage>
+<procstep>
+<procdesc>Attribute data were produced using the USFS FIA EVALIDator web tool (https://apps.fs.usda.gov/Evalidator/evalidator.jsp). Spatial data was obtained from the US Census Bureau's County spatial layer in October of 2018 (https://www.census.gov/geo/maps-data/data/cbf/cbf_counties.html)</procdesc>
+<procdate>20181015</procdate>
+</procstep>
+</lineage>
+</dataqual>
+<spdoinfo>
+<direct>Vector</direct>
+<ptvctinf>
+<sdtsterm>
+<sdtstype>GT-polygon composed of chains</sdtstype>
+<ptvctcnt>3169</ptvctcnt>
+</sdtsterm>
+</ptvctinf>
+</spdoinfo>
+<eainfo>
+<detailed>
+<enttyp>
+<enttypl>S_USA.Lndcv_FIA_CntyEst_2017_PL</enttypl>
+<enttypd>Feature class: A collection of geographic features with the same geometry type (such as point, line, or polygon), the same attributes, and the same spatial reference.</enttypd>
+<enttypds>ESRI GIS Data Dictionary</enttypds>
+</enttyp>
+<attr>
+<attrlabl>OBJECTID</attrlabl>
+<attrdef>Internal feature number.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Sequential unique whole numbers that are automatically generated.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>STATE_CNTY_FIPS</attrlabl>
+<attrdef>Concatenation of State and County FIPS codes</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Code</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>STATE_FIPS</attrlabl>
+<attrdef>State FIPS code</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Code</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CNTY_FIPS</attrlabl>
+<attrdef>County FIPS code</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Code</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>STATE_NAME</attrlabl>
+<attrdef>State name</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Name</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CNTY_NAME</attrlabl>
+<attrdef>County name</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Name</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SAMPLEDLANDWATER_ACRES</attrlabl>
+<attrdef>Area of sampled land and water</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Acres</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SAMPLEDLANDWATER_ERR</attrlabl>
+<attrdef>Percent Sampling Error (68% confidence level) for area of sampled land and water</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Percent</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FORESLAND_ACRES</attrlabl>
+<attrdef>Area of forest land</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Acres</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>FORESLAND_ERR</attrlabl>
+<attrdef>Percent Sampling Error (68% confidence level) for area of forest land</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Percent</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TIMBERLAND_ACRES</attrlabl>
+<attrdef>Area of timberland</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Acres</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TIMBERLAND_ERR</attrlabl>
+<attrdef>Percent Sampling Error (68% confidence level) for area of timberland</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Percent</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>NETMERCHBOLELIVETREES_CBFT</attrlabl>
+<attrdef>Net merchantable bole volume of live trees (at least 5 inches d.b.h./d.r.c.), in cubic feet, on forest land</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Cubic feet</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>NETMERCHBOLELIVETREES_ERR</attrlabl>
+<attrdef>Percent Sampling Error (68% confidence level) for net merchantable bole volume of live trees (at least 5 inches d.b.h./d.r.c.), on forest land</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Percent</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AVGGROWTHMERCHBOLE_CBFT</attrlabl>
+<attrdef>Average annual net growth of merchantable bole volume of trees (at least 5 inches d.b.h./d.r.c.), in cubic feet, on forest land</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Cubic feet</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AVGGROWTHMERCHBOLE_ERR</attrlabl>
+<attrdef>Percent Sampling Error (68% confidence level) for average annual net growth of merchantable bole volume of trees (at least 5 inches d.b.h./d.r.c.), on forest land</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Percent</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AVGMORTMERCHBOLE_CBFT</attrlabl>
+<attrdef>Average annual mortality of merchantable bole volume of trees (at least 5 inches d.b.h./d.r.c.), in cubic feet, on forest land</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Cubic feet</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AVGMORTMERCHBOLE_ERR</attrlabl>
+<attrdef>Percent Sampling Error (68% confidence level) for average annual mortality of merchantable bole volume of trees (at least 5 inches d.b.h./d.r.c.), on forest land</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Percent</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AVGREMOVALMERCHBOLE_CBFT</attrlabl>
+<attrdef>Average annual removals of merchantable bole volume of trees (at least 5 inches d.b.h./d.r.c.), in cubic feet, on forest land</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Cubic feet</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>AVGREMOVALMERCHBOLE_ERR</attrlabl>
+<attrdef>Percent Sampling Error (68% confidence level) for average annual removals of merchantable bole volume of trees (at least 5 inches d.b.h./d.r.c.), on forest land</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Percent</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ABOVEGRDBIOMASSTREES_SHRTTON</attrlabl>
+<attrdef>Aboveground biomass of live trees (at least 1 inch d.b.h./d.r.c), in dry short tons, on forest land</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Dry short tons</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ABOVEGRDBIOMASSTREES_ERR</attrlabl>
+<attrdef>Percent Sampling Error (68% confidence level) for aboveground biomass of live trees (at least 1 inch d.b.h./d.r.c), on forest land</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Percent</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ABOVEGRDCARBONTREES_SHRTTON</attrlabl>
+<attrdef>Aboveground carbon in live trees (at least 1 inch d.b.h./d.r.c), in short tons, on forest land</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Short tons</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>ABOVEGRDCARBONTREES_ERR</attrlabl>
+<attrdef>Percent Sampling Error (68% confidence level) for aboveground carbon in live trees (at least 1 inch d.b.h./d.r.c), on forest land</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Percent</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TOTALCARBON_SHRTTON</attrlabl>
+<attrdef>Total carbon, in short tons, on forest land</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Short tons</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>TOTALCARBON_ERR</attrlabl>
+<attrdef>Percent Sampling Error (68% confidence level) for total carbon, on forest land</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Percent</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>NETMERCHBOLEGROWSTOCK_CBFT</attrlabl>
+<attrdef>Net merchantable bole volume of growing-stock trees (at least 5 inches d.b.h.), in cubic feet, on timberland</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Cubic feet</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>NETMERCHBOLEGROWSTOCK_ERR</attrlabl>
+<attrdef>Percent Sampling Error (68% confidence level) for net merchantable bole volume of growing-stock trees (at least 5 inches d.b.h.), on timberland</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Percent</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>NETSAWLOGVOLSAWTMBR_BRDFT</attrlabl>
+<attrdef>Net sawlog volume of sawtimber trees, in board feet (International 1/4-inch rule), on timberland</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Board feet</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>NETSAWLOGVOLSAWTMBR_ERR</attrlabl>
+<attrdef>Percent Sampling Error (68% confidence level) for net sawlog volume of sawtimber trees, on timberland</attrdef>
+<attrdefs>U.S. Forest Service</attrdefs>
+<attrdomv>
+<udom>Percent</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>CRC_VALUE</attrlabl>
+<attrdef>Internally generated attribute for publishing.</attrdef>
+<attrdefs>U.S. Forest Service Chief Information Officer Enterprise Data Warehouse</attrdefs>
+<attrdomv>
+<udom>ID</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE</attrlabl>
+<attrdef>Feature geometry.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Coordinates defining the features.</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.AREA</attrlabl>
+<attrdef>Area of feature in internal units squared. Automatically generated.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Internal units</udom>
+</attrdomv>
+</attr>
+<attr>
+<attrlabl>SHAPE.LEN</attrlabl>
+<attrdef>Length of feature in internal units. Automatically generated.</attrdef>
+<attrdefs>Esri</attrdefs>
+<attrdomv>
+<udom>Internal units</udom>
+</attrdomv>
+</attr>
+</detailed>
+</eainfo>
+<distinfo>
+<distrib>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>data@fs.fed.us</cntemail>
+</cntinfo>
+</distrib>
+<distliab>The U.S. Forest Service makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, reliability, completeness, or utility of these geospatial data or for the improper or incorrect use of those data. The data are dynamic and may change over time. The user is responsible for verifying the limitations of the geospatial data and for using the data accordingly.</distliab>
+</distinfo>
+<metainfo>
+<metd>20230623</metd>
+<metc>
+<cntinfo>
+<cntorgp>
+<cntorg>USFS Chief Information Office, Enterprise Data Warehouse</cntorg>
+</cntorgp>
+<cntaddr>
+<addrtype>physical</addrtype>
+<city>Washington</city>
+<state>DC</state>
+<postal>20250</postal>
+</cntaddr>
+<cntvoice>Please send an e-mail to the address below.</cntvoice>
+<cntemail>data@fs.fed.us</cntemail>
+</cntinfo>
+</metc>
+<metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+<metstdv>FGDC-STD-001-1998</metstdv>
+<mettc>local time</mettc>
+</metainfo>
+</metadata>
