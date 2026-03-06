@@ -1,0 +1,41 @@
+[project]
+name = "catalog"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "bs4>=0.0.2",
+    "chromadb>=1.4.1",
+    "click>=8.3.1",
+    "langchain-community>=0.4.1",
+    "langchain-litellm>=0.4.0",
+    "lxml>=6.0.2",
+    "mkdocs-asciinema-player>=1.1.0",
+    "mkdocs-material>=9.7.1",
+    "mkdocs-mermaid2-plugin>=1.2.3",
+    "ollama>=0.6.1",
+    "pydantic>=2.12.5",
+    "python-dotenv>=1.2.1",
+    "rank-bm25>=0.2.2",
+    "requests>=2.32.5",
+    "rich>=14.3.1",
+]
+
+[project.scripts]
+catalog = "catalog.cli:main"
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.5.1",
+    "pytest>=9.0.2",
+    "pytest-sugar>=1.1.1",
+    "ruff>=0.14.14",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/catalog"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
