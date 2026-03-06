@@ -19,7 +19,7 @@
     
     
       
-        <title>From Single-Pass RAG to Agentic Tool Use - Catalog Documentation</title>
+        <title>2026 - Catalog Documentation</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#from-single-pass-rag-to-agentic-tool-use" class="md-skip">
+        <a href="#2026" class="md-skip">
           Skip to content
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              From Single-Pass RAG to Agentic Tool Use
+              2026
             
           </span>
         </div>
@@ -361,14 +361,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../search_methods/simple/" class="md-nav__link">
+      <a href="../../../search_methods/semantic/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Simple
+    Semantic
   
 
     
@@ -417,14 +417,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../search_methods/bot/" class="md-nav__link">
+      <a href="../../../search_methods/agent/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Bot
+    Agent
   
 
     
@@ -476,6 +476,8 @@
       
   
   
+  
+    
   
   
     <li class="md-nav__item">
@@ -580,10 +582,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#where-we-started" class="md-nav__link">
+  <a href="#from-single-pass-rag-to-agentic-tool-use" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Where We Started
+        From Single-Pass RAG to Agentic Tool Use
       
     </span>
   </a>
@@ -591,10 +593,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-idea-let-the-llm-drive" class="md-nav__link">
+  <a href="#query-expansion-helping-users-say-what-they-mean" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Idea: Let the LLM Drive
+        Query Expansion — Helping Users Say What They Mean
       
     </span>
   </a>
@@ -602,54 +604,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-tools" class="md-nav__link">
+  <a href="#semantic-search-where-it-all-started" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Tools
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-reasoning-loop" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Reasoning Loop
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#trying-it-out" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Trying It Out
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-changed-in-the-code" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What Changed in the Code
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats-coming-next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What's Coming Next
+        Semantic Search - Where it All Started
       
     </span>
   </a>
@@ -665,203 +623,131 @@
             
           
           
-            <div class="md-content" data-md-component="content">
-              
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-
-
-<h1 id="from-single-pass-rag-to-agentic-tool-use">From Single-Pass RAG to Agentic Tool Use</h1>
-<p>I've been having a lot of fun working on the Catalog project lately — a Python
-CLI tool for discovering geospatial datasets from the USFS Geodata
-Clearinghouse. It's one of those projects where every improvement unlocks a
-new idea, and this week's improvement was one I've been looking forward to
-for a while: <strong>agentic tool use</strong>.</p>
-<p>Let me share what that means, why I think it's a meaningful step forward, and
-how it came together in practice.</p>
-<h2 id="where-we-started">Where We Started</h2>
-<p>The pipeline already had some solid foundations — hybrid search combining BM25
-keyword matching and ChromaDB vector search, fused with Reciprocal Rank
-Fusion. Not bad! But there was a ceiling.</p>
-<p>The flow looked like this:</p>
-<pre><code>User question → ChromaDB query → context string → LLM → answer
-</code></pre>
-<p>One shot. If the first retrieval missed the mark, the LLM had no way to
-recover. It would just work with whatever landed in front of it.</p>
-<p>Geospatial and forestry data makes this especially tricky. A user asking about
-"post-fire erosion" may not use the same words as a dataset abstract that says
-"burn area soil stability", "BAER assessment", or "sediment transport
-monitoring". That jargon gap is real, and a single retrieval pass can't always
-bridge it.</p>
-<h2 id="the-idea-let-the-llm-drive">The Idea: Let the LLM Drive</h2>
-<p>What if, instead of retrieving documents <em>for</em> the LLM, we gave the LLM tools
-and let it decide <em>how</em> to search?</p>
-<p>That's the heart of agentic tool use. The LLM enters a reasoning loop — it
-calls a tool, looks at the results, decides whether that's enough, and if not,
-tries again with a refined approach:</p>
-<pre><code>User question
-     ↓
-LLM calls: search_vector_db(&quot;post-fire erosion&quot;)
-     ↓
-&quot;Only 2 results — let me try a different approach&quot;
-     ↓
-LLM calls: search_hybrid(&quot;fire effects sediment BAER watershed&quot;)
-     ↓
-Better results! LLM calls: get_document_details(&quot;doc-xyz-123&quot;)
-     ↓
-LLM synthesizes a final answer with citations
-</code></pre>
-<p>It's a small architectural shift, but it changes the character of the
-interaction entirely. The LLM becomes an active participant in the search
-process rather than a passive synthesizer.</p>
-<h2 id="the-tools">The Tools</h2>
-<p>I exposed four tools via Ollama's tool-calling API:</p>
-<table>
-<thead>
-<tr>
-<th>Tool</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>search_vector_db</code></td>
-<td>Semantic similarity search via ChromaDB</td>
-</tr>
-<tr>
-<td><code>search_hybrid</code></td>
-<td>BM25 + vector search with RRF fusion</td>
-</tr>
-<tr>
-<td><code>filter_by_source</code></td>
-<td>Narrow results to <code>fsgeodata</code>, <code>gdd</code>, or <code>rda</code></td>
-</tr>
-<tr>
-<td><code>get_document_details</code></td>
-<td>Fetch full metadata for a specific dataset ID</td>
-</tr>
-</tbody>
-</table>
-<p>Each tool is defined as a JSON schema. Here's what one looks like:</p>
-<pre><code class="language-python">{
-    &quot;type&quot;: &quot;function&quot;,
-    &quot;function&quot;: {
-        &quot;name&quot;: &quot;search_hybrid&quot;,
-        &quot;description&quot;: &quot;Search using BM25 keyword + semantic vector search.&quot;,
-        &quot;parameters&quot;: {
-            &quot;type&quot;: &quot;object&quot;,
-            &quot;properties&quot;: {
-                &quot;query&quot;: {&quot;type&quot;: &quot;string&quot;},
-                &quot;n_results&quot;: {&quot;type&quot;: &quot;integer&quot;, &quot;default&quot;: 5}
-            },
-            &quot;required&quot;: [&quot;query&quot;]
-        }
-    }
-}
-</code></pre>
-<p>Nothing too exotic — just a clear description so the model knows when and why
-to reach for each tool.</p>
-<h2 id="the-reasoning-loop">The Reasoning Loop</h2>
-<p>The <code>AgentBot</code> class in <code>bots.py</code> ties it together. The loop runs until the
-LLM stops calling tools (meaning it has what it needs), or until we hit a
-maximum iteration limit as a safety guard:</p>
-<pre><code class="language-python">class AgentBot:
-    MAX_ITERATIONS = 5
-
-    def run(self, question: str) -&gt; str:
-        messages = [system_prompt, user_message(question)]
-
-        for _ in range(self.MAX_ITERATIONS):
-            response = self.client.chat(
-                model=self.model,
-                messages=messages,
-                tools=TOOLS,
-            )
-            msg = response[&quot;message&quot;]
-            messages.append(msg)
-
-            tool_calls = msg.get(&quot;tool_calls&quot;)
-            if not tool_calls:
-                return msg[&quot;content&quot;]  # LLM is satisfied — final answer
-
-            for tc in tool_calls:
-                result = execute_tool(
-                    tc[&quot;function&quot;][&quot;name&quot;],
-                    tc[&quot;function&quot;][&quot;arguments&quot;],
-                    self.db, self.hs
-                )
-                messages.append({&quot;role&quot;: &quot;tool&quot;, &quot;content&quot;: result})
-
-        return &quot;Maximum iterations reached.&quot;
-</code></pre>
-<p>The model appends tool results to its message history and reasons over the
-growing context on each pass. It's genuinely satisfying to watch it work
-through a tricky query.</p>
-<h2 id="trying-it-out">Trying It Out</h2>
-<p>The new <code>agent-search</code> CLI command makes it easy to kick the tires:</p>
-<pre><code class="language-bash">catalog agent-search --qstn &quot;Is there post-wildfire erosion monitoring data?&quot;
-</code></pre>
-<p>One thing worth noting: you'll want an Ollama model that supports tool calling.
-<code>qwen2.5</code>, <code>llama3.1</code>, and <code>mistral-nemo</code> all work well here.</p>
-<h2 id="what-changed-in-the-code">What Changed in the Code</h2>
-<p>I tried to keep the footprint small. The existing <code>ChromaVectorDB</code> and
-<code>HybridSearch</code> infrastructure was reused as-is — no changes needed there.</p>
-<table>
-<thead>
-<tr>
-<th>File</th>
-<th>Change</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>src/catalog/tools.py</code></td>
-<td>New — tool schemas and executor</td>
-</tr>
-<tr>
-<td><code>src/catalog/bots.py</code></td>
-<td>Added <code>AgentBot</code> class</td>
-</tr>
-<tr>
-<td><code>src/catalog/cli.py</code></td>
-<td>Added <code>agent_search</code> command</td>
-</tr>
-</tbody>
-</table>
-<h2 id="whats-coming-next">What's Coming Next</h2>
-<p>There are a few things I'm excited to tackle next:</p>
-<ul>
-<li><strong>Conversational memory</strong> — so users can ask natural follow-up questions
-  without repeating context</li>
-<li><strong>Streaming responses</strong> — Ollama supports streaming and it makes a real
-  difference in how the tool feels to use</li>
-<li><strong>HyDE (Hypothetical Document Embedding)</strong> — generating a hypothetical
-  matching abstract before searching, to close the vocabulary gap further</li>
-</ul>
-<p>If you're working on something similar or have thoughts on the approach, I'd
-love to hear from you. And if you want to dig into the code, it's all up on
-GitHub at <a href="https://github.com/forestbytes/catalog">github.com/forestbytes/catalog</a>.</p>
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
-                
-              </article>
-            </div>
+  <div class="md-content" data-md-component="content">
+    <div class="md-content__inner">
+      <header class="md-typeset">
+        <h1 id="2026">2026</h1>
+      </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-03-04 00:00:00+00:00">March 4, 2026</time></li>
+        
+        
           
+          <li class="md-meta__item">
+            
+              4 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="from-single-pass-rag-to-agentic-tool-use"><a class="toclink" href="../../2026/03/04/from-single-pass-rag-to-agentic-tool-use/">From Single-Pass RAG to Agentic Tool Use</a></h2>
+
+    
+      <nav class="md-post__action">
+        <a href="../../2026/03/04/from-single-pass-rag-to-agentic-tool-use/">
+          Continue reading
+        </a>
+      </nav>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-03-04 00:00:00+00:00">March 4, 2026</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              3 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="query-expansion-helping-users-say-what-they-mean"><a class="toclink" href="../../2026/03/04/query-expansion--helping-users-say-what-they-mean/">Query Expansion — Helping Users Say What They Mean</a></h2>
+
+    
+      <nav class="md-post__action">
+        <a href="../../2026/03/04/query-expansion--helping-users-say-what-they-mean/">
+          Continue reading
+        </a>
+      </nav>
+    
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-02-25 00:00:00+00:00">February 25, 2026</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              3 min read
+            
+          </li>
+        
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="semantic-search-where-it-all-started"><a class="toclink" href="../../2026/02/25/semantic-search/">Semantic Search - Where it All Started</a></h2>
+
+    
+      <nav class="md-post__action">
+        <a href="../../2026/02/25/semantic-search/">
+          Continue reading
+        </a>
+      </nav>
+    
+    
+  </div>
+</article>
+      
+      
+        
+          
+
+
+
+<nav class="md-pagination">
+  
+</nav>
+        
+      
+    </div>
+  </div>
+
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
