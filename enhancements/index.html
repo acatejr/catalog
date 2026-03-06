@@ -1,0 +1,1260 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../disclaimer/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Enhancements - Catalog Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../css/terminal-player.css">
+    
+      <link rel="stylesheet" href="../css/asciinema-player.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#catalog-project-analysis-enhancement-suggestions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Catalog Documentation" class="md-header__button md-logo" aria-label="Catalog Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Catalog Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Enhancements
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Catalog Documentation" class="md-nav__button md-logo" aria-label="Catalog Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Catalog Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vision
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search Methods
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Search Methods
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search_methods/simple/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simple
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search_methods/hybrid_search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../search_methods/bot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../demos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../disclaimer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disclaimer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enhancements
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enhancements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#suggested-ai-feature-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suggested AI Feature Enhancements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Suggested AI Feature Enhancements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-query-expansion-with-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Query Expansion with LLM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-conversation-memory-with-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Conversation Memory with LangChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-reranking-with-cross-encoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Reranking with Cross-Encoder
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-domain-specific-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Domain-Specific Embeddings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-structured-output-citations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Structured Output &amp; Citations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-evaluation-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Evaluation Framework
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-streaming-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Streaming Responses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-caching-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Caching Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-agentic-rag-with-tool-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Agentic RAG with Tool Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Priority
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-wins-1-day-each" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Wins (&lt; 1 day each)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#suggested-ai-feature-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suggested AI Feature Enhancements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Suggested AI Feature Enhancements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-query-expansion-with-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Query Expansion with LLM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-conversation-memory-with-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Conversation Memory with LangChain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-reranking-with-cross-encoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Reranking with Cross-Encoder
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-domain-specific-embeddings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Domain-Specific Embeddings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-structured-output-citations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Structured Output &amp; Citations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-evaluation-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Evaluation Framework
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-streaming-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Streaming Responses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-caching-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Caching Layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-agentic-rag-with-tool-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Agentic RAG with Tool Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-priority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Priority
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-wins-1-day-each" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Wins (&lt; 1 day each)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="catalog-project-analysis-enhancement-suggestions">Catalog Project Analysis &amp; Enhancement Suggestions</h1>
+<p>Pending ehancements.</p>
+<h2 id="project-summary">Project Summary</h2>
+<p><strong>Catalog</strong> is a CLI-driven RAG (Retrieval-Augmented Generation) chatbot for discovering USFS geospatial datasets. It aggregates metadata from three federal data sources and provides semantic search capabilities via two distinct vector database implementations.</p>
+<hr />
+<h2 id="suggested-ai-feature-enhancements">Suggested AI Feature Enhancements</h2>
+<h3 id="1-query-expansion-with-llm">1. Query Expansion with LLM</h3>
+<p>Use the LLM to expand queries before retrieval.</p>
+<pre><code class="language-python">def expand_query(self, original_query: str) -&gt; list[str]:
+    prompt = f&quot;&quot;&quot;Given this search query about USFS geospatial data:
+    &quot;{original_query}&quot;
+
+    Generate 3 alternative phrasings that might match relevant datasets.
+    Include technical terms, acronyms, and synonyms.
+    Return as a JSON list.&quot;&quot;&quot;
+
+    expanded = self.llm.generate(prompt)
+    return [original_query] + json.loads(expanded)
+</code></pre>
+<p><strong>Why</strong>: Users may not know exact dataset names or USFS terminology.</p>
+<hr />
+<h3 id="2-conversation-memory-with-langchain">2. Conversation Memory with LangChain</h3>
+<p>Add multi-turn conversation support.</p>
+<pre><code class="language-python">from langchain.memory import ConversationBufferWindowMemory
+from langchain.chains import ConversationalRetrievalChain
+
+class ConversationalCatalogBot:
+    def __init__(self, retriever, llm):
+        self.memory = ConversationBufferWindowMemory(
+            k=5,  # Remember last 5 exchanges
+            memory_key=&quot;chat_history&quot;,
+            return_messages=True
+        )
+        self.chain = ConversationalRetrievalChain.from_llm(
+            llm=llm,
+            retriever=retriever,
+            memory=self.memory
+        )
+
+    def chat(self, question: str) -&gt; str:
+        return self.chain.run(question)
+</code></pre>
+<p><strong>Why</strong>: Enables follow-up questions like "What about just for California?" without restating context.</p>
+<hr />
+<h3 id="3-reranking-with-cross-encoder">3. Reranking with Cross-Encoder</h3>
+<p>Add a reranking step to improve precision.</p>
+<pre><code class="language-python">from sentence_transformers import CrossEncoder
+
+class Reranker:
+    def __init__(self):
+        self.model = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')
+
+    def rerank(self, query: str, documents: list[dict], top_k: int = 5):
+        pairs = [(query, doc['abstract']) for doc in documents]
+        scores = self.model.predict(pairs)
+
+        ranked = sorted(zip(documents, scores), key=lambda x: x[1], reverse=True)
+        return [doc for doc, score in ranked[:top_k]]
+</code></pre>
+<p><strong>Why</strong>: Cross-encoders are more accurate than bi-encoders for final ranking; retrieve 20, rerank to 5.</p>
+<hr />
+<h3 id="4-domain-specific-embeddings">4. Domain-Specific Embeddings</h3>
+<p>Fine-tune or use a geospatial-aware embedding model.</p>
+<p><strong>Option A</strong>: Use a scientific embedding model</p>
+<pre><code class="language-python"># Instead of all-MiniLM-L6-v2
+model = SentenceTransformer('allenai/specter2')  # Scientific papers
+# or
+model = SentenceTransformer('BAAI/bge-base-en-v1.5')  # Better general performance
+</code></pre>
+<p><strong>Option B</strong>: Fine-tune on your corpus (if you have labeled query-document pairs)</p>
+<p><strong>Why</strong>: Generic models may not capture geospatial terminology relationships (e.g., "FIA" ≈ "Forest Inventory and Analysis").</p>
+<hr />
+<h3 id="5-structured-output-citations">5. Structured Output &amp; Citations</h3>
+<p>Return structured responses with source citations.</p>
+<pre><code class="language-python">from pydantic import BaseModel
+
+class DatasetRecommendation(BaseModel):
+    answer: str
+    datasets: list[dict]  # id, title, relevance_reason
+    confidence: float
+    suggested_followup: list[str]
+
+STRUCTURED_PROMPT = &quot;&quot;&quot;Based on the context, answer the question and return JSON:
+{
+  &quot;answer&quot;: &quot;Direct answer to the question&quot;,
+  &quot;datasets&quot;: [{&quot;id&quot;: &quot;...&quot;, &quot;title&quot;: &quot;...&quot;, &quot;relevance_reason&quot;: &quot;...&quot;}],
+  &quot;confidence&quot;: 0.0-1.0,
+  &quot;suggested_followup&quot;: [&quot;Related question 1&quot;, &quot;Related question 2&quot;]
+}&quot;&quot;&quot;
+</code></pre>
+<p><strong>Why</strong>: Makes responses more actionable and verifiable.</p>
+<hr />
+<h3 id="6-evaluation-framework">6. Evaluation Framework</h3>
+<p>Add retrieval quality metrics.</p>
+<pre><code class="language-python">class RAGEvaluator:
+    def __init__(self, test_queries: list[dict]):
+        # test_queries = [{&quot;query&quot;: &quot;...&quot;, &quot;relevant_doc_ids&quot;: [...]}]
+        self.test_queries = test_queries
+
+    def evaluate(self, retriever, k=5):
+        metrics = {&quot;precision@k&quot;: [], &quot;recall@k&quot;: [], &quot;mrr&quot;: []}
+
+        for test in self.test_queries:
+            results = retriever.query(test[&quot;query&quot;], k=k)
+            result_ids = [r[&quot;id&quot;] for r in results]
+            relevant = set(test[&quot;relevant_doc_ids&quot;])
+
+            # Precision@k
+            hits = len(set(result_ids) &amp; relevant)
+            metrics[&quot;precision@k&quot;].append(hits / k)
+
+            # Recall@k
+            metrics[&quot;recall@k&quot;].append(hits / len(relevant) if relevant else 0)
+
+            # MRR (Mean Reciprocal Rank)
+            for i, rid in enumerate(result_ids):
+                if rid in relevant:
+                    metrics[&quot;mrr&quot;].append(1 / (i + 1))
+                    break
+            else:
+                metrics[&quot;mrr&quot;].append(0)
+
+        return {k: sum(v)/len(v) for k, v in metrics.items()}
+</code></pre>
+<p><strong>Why</strong>: Can't improve what you can't measure. Create a small test set of ~20 queries with known relevant documents.</p>
+<hr />
+<h3 id="7-streaming-responses">7. Streaming Responses</h3>
+<p>Add streaming for better UX on long responses.</p>
+<pre><code class="language-python">def chat_stream(self, question: str, context: str):
+    for chunk in self.client.chat.completions.create(
+        model=self.model,
+        messages=[...],
+        stream=True
+    ):
+        if chunk.choices[0].delta.content:
+            yield chunk.choices[0].delta.content
+</code></pre>
+<p><strong>Why</strong>: Users see responses forming in real-time rather than waiting for complete generation.</p>
+<hr />
+<h3 id="8-caching-layer">8. Caching Layer</h3>
+<p>Cache embeddings and common queries.</p>
+<pre><code class="language-python">import hashlib
+from functools import lru_cache
+
+class CachedVectorDB:
+    def __init__(self, vector_db):
+        self.db = vector_db
+        self.query_cache = {}
+
+    def query(self, query: str, k: int = 5):
+        cache_key = hashlib.md5(f&quot;{query}:{k}&quot;.encode()).hexdigest()
+
+        if cache_key not in self.query_cache:
+            self.query_cache[cache_key] = self.db.query(query, k)
+
+        return self.query_cache[cache_key]
+</code></pre>
+<p><strong>Why</strong>: Repeated queries (common in demos/testing) don't need to re-compute embeddings.</p>
+<hr />
+<h3 id="9-agentic-rag-with-tool-use">9. Agentic RAG with Tool Use</h3>
+<p>Enable the LLM to decide when to search and what to search for.</p>
+<pre><code class="language-python">TOOLS = [
+    {
+        &quot;name&quot;: &quot;search_catalog&quot;,
+        &quot;description&quot;: &quot;Search the USFS geospatial data catalog&quot;,
+        &quot;parameters&quot;: {
+            &quot;query&quot;: &quot;Search query string&quot;,
+            &quot;source_filter&quot;: &quot;Optional: 'fsgeodata', 'rda', or 'gdd'&quot;
+        }
+    },
+    {
+        &quot;name&quot;: &quot;get_dataset_details&quot;,
+        &quot;description&quot;: &quot;Get full details for a specific dataset by ID&quot;
+    }
+]
+
+# LLM decides: &quot;I need to search for wildfire data, then get details on the top result&quot;
+</code></pre>
+<p><strong>Why</strong>: Enables multi-step reasoning: search → filter → compare → recommend.</p>
+<hr />
+<h2 id="implementation-priority">Implementation Priority</h2>
+<table>
+<thead>
+<tr>
+<th>Enhancement</th>
+<th>Effort</th>
+<th>Impact</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reranking</td>
+<td>Low</td>
+<td>High</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Conversation Memory</td>
+<td>Medium</td>
+<td>High</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Streaming Responses</td>
+<td>Low</td>
+<td>Medium</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Evaluation Framework</td>
+<td>Medium</td>
+<td>High</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Structured Output</td>
+<td>Low</td>
+<td>Medium</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Query Expansion</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Caching</td>
+<td>Low</td>
+<td>Low</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Domain Embeddings</td>
+<td>High</td>
+<td>Medium</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Agentic RAG</td>
+<td>High</td>
+<td>High</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="quick-wins-1-day-each">Quick Wins (&lt; 1 day each)</h2>
+<ol>
+<li>Add reranking with <code>cross-encoder/ms-marco-MiniLM-L-6-v2</code> (low effort, high impact)</li>
+<li>Add <code>--stream</code> flag to chat commands for streaming output</li>
+<li>Implement result caching with TTL</li>
+<li>Add <code>--source</code> filter to limit search to specific data sources</li>
+<li>Create 10-20 test queries for evaluation baseline</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../js/asciinema-player.min.js"></script>
+      
+    
+  </body>
+</html>
