@@ -19,5 +19,5 @@ ruff format .
 - When running, IGNORE data/catalog.json.  I do NOT want to consume tokens or use up my Anthropic token limits.
 - If you don't know the answer to something, don't guess, just say you don't know.
 - When asked to make recommendations make sure to ignore ALL files in the scratch folder.
-- Do not read any file with the text "scratch" in the name.
+- Do not read any file or folder with the text "scratch" in the name.
 - Never read the contents of the .env file

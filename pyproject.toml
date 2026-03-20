@@ -1,41 +1,45 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "catalog"
 version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 dependencies = [
-    "bs4>=0.0.2",
-    "chromadb>=1.4.1",
-    "click>=8.3.1",
-    "langchain-community>=0.4.1",
-    "langchain-litellm>=0.4.0",
-    "lxml>=6.0.2",
-    "mkdocs-asciinema-player>=1.1.0",
-    "mkdocs-material>=9.7.1",
-    "mkdocs-mermaid2-plugin>=1.2.3",
-    "ollama>=0.6.1",
-    "pydantic>=2.12.5",
-    "python-dotenv>=1.2.1",
-    "rank-bm25>=0.2.2",
-    "requests>=2.32.5",
-    "rich>=14.3.1",
+    "click>=8.3",
+    # "pydantic>=2.0",
+    # "python-dotenv>=1.0",
+    # "rich>=14.0",
+    # "requests>=2.32",
+    # "lxml>=6.0",
+    # "bs4>=0.0.2",
+    # "chromadb>=1.4",
+    # "rank-bm25>=0.2",
+    # "ollama>=0.6",
+    # "langchain-community>=0.4",
+    # "langchain-litellm>=0.4",
+]
+
+[project.optional-dependencies]
+api = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+]
+dev = [
+    "pytest>=9.0",
+    "pytest-sugar>=1.1",
+    "ruff>=0.4",
+    "pre-commit>=4.0",
 ]
 
 [project.scripts]
-catalog = "catalog.cli:main"
-
-[dependency-groups]
-dev = [
-    "pre-commit>=4.5.1",
-    "pytest>=9.0.2",
-    "pytest-sugar>=1.1.1",
-    "ruff>=0.14.14",
-]
+# catalog = "catalog.cli:main"
+catalog = "catalog.main:cli"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/catalog"]
 
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
