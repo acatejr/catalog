@@ -59,6 +59,7 @@ def build_fs_catalog() -> None:
     usfs = USFS()
     usfs.build_catalog()
 
+
 def _download_all_fs_metadata():
     pass
 

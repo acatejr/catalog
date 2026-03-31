@@ -141,18 +141,13 @@ class USFS:
 
         os.makedirs(dir_path, exist_ok=True)
 
-    def build_catalog(self):
-
+    def build_gdd_catalog(self):
         documents = []
 
-        # FSGeodata
-
-        # GDD
         gdd_json_path = f"{self.output_dir}/gdd/gdd_metadata.json"
         if not os.path.exists(gdd_json_path):
             click.echo("\tGDD metadata not found.")
         else:
-            click.echo("\tGDD metadata found. Processing...")
             with open(gdd_json_path, "r", encoding="utf-8") as f:
                 json_data = json.load(f)
 
@@ -187,10 +182,134 @@ class USFS:
 
                             documents.append(document)
 
-            click.echo(f"\tProcessed {len(documents)} GDD metadata records.")
+            return documents
+
+    def build_rda_catalog(self):
+        documents = []
+
+        rda_json_path = f"{self.output_dir}/rda/rda_metadata.json"
+        if not os.path.exists(rda_json_path):
+            click.echo("\tRDA metadata not found.")
+        else:
+            with open(rda_json_path, "r", encoding="utf-8") as f:
+                json_data = json.load(f)
+
+                if "dataset" in json_data.keys():
+                    dataset = json_data.get("dataset")
+
+                    if dataset and len(dataset) > 0:
+                        for item in dataset:
+                            title = (
+                                clean_str(item.get("title"))
+                                if "title" in item.keys()
+                                else ""
+                            )
+                            description = (
+                                clean_str(item.get("description"))
+                                if "description" in item.keys()
+                                else ""
+                            )
+                            keyword = (
+                                item.get("keyword") if "keyword" in item.keys() else []
+                            )
+
+                            document = {
+                                "id": hash_string(title.lower().strip()),
+                                "title": title,
+                                "description": description,
+                                "keywords": keyword,
+                                "themes": [],
+                                "src": "rda",
+                            }
+
+                            documents.append(document)
+
+        return documents
+
+    def buld_fsgeodata_catalog(self):
+        documents = []
+        xml_path = f"{self.output_dir}/fsgeodata"
+        xml_files = Path(xml_path)
+
+        if xml_files.is_dir():
+            xml_files = list(xml_files.glob("*.xml"))
+        else:
+            xml_files = [xml_files]
+
+        for idx, xml_file in enumerate(xml_files):
+            with open(xml_file, "r", encoding="utf-8") as f:
+                soup = BeautifulSoup(f, "xml")
+                abstract = ""
+                purpose = ""
+                keywords = []
+                procdate = ""
+                procdesc = ""
+
+                title_elem = soup.find("title")
+                title = clean_str(title_elem.get_text()) if title_elem else ""
+
+                descript = soup.find("descript")
+                if descript:
+                    abstract_elem = descript.find("abstract")
+                    abstract = (
+                        clean_str(abstract_elem.get_text()) if abstract_elem else ""
+                    )
+                    purpose_elem = descript.find("purpose")
+                    purpose = clean_str(purpose_elem.get_text()) if purpose_elem else ""
+
+                lineage = []
+                dataqual = soup.find_all("dataqual")
+                if dataqual:
+                    dq = dataqual[0]
+                    procsteps = dq.find_all("procstep")
+                    for step in procsteps:
+                        if step.find("procdate"):
+                            procdate = step.find("procdate").get_text()
+                        if step.find("procdesc"):
+                            procdesc = step.find("procdesc").get_text()
+
+                        if procdate and procdesc:
+                            procstep = {
+                                "description": procdesc,
+                                "date": procdate,
+                            }
+                            lineage.append(procstep)
+
+                if soup.find_all("themekey") is not None:
+                    themekeys = soup.find_all("themekey")
+                    if len(themekeys) > 0:
+                        keywords = [w.get_text() for w in themekeys]
+
+                document = {
+                    "id": hash_string(title.lower().strip()),
+                    "title": title,
+                    "lineage": lineage,
+                    "abstract": abstract,
+                    "purpose": purpose,
+                    "keywords": keywords,
+                    "src": "fsgeodata",
+                }
+
+                documents.append(document)
+
+        return documents
+
+    def build_catalog(self):
+
+        documents = []
+
+        # FSGeodata
+        fsgeodata_documents = self.buld_fsgeodata_catalog()
+        documents.extend(fsgeodata_documents)
+
+        # GDD
+        gdd_documents = self.build_gdd_catalog()
+        documents.extend(gdd_documents)
 
         # RDA
-        if not os.path.exists(f"{self.output_dir}/rda/rda_metadata.json"):
-            click.echo("RDA metadata not found.")
-        else:
-            click.echo("\tRDA metadata found. Processing...")
+        rda_documents = self.build_rda_catalog()
+        documents.extend(rda_documents)
+
+        output_file = f"{self.output_dir}/usfs_catalog.json"
+        with open(output_file, "w", encoding="utf-8") as f:
+            json.dump(documents, f, indent=4)
