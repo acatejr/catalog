@@ -1,3 +1,28 @@
+"""
+USFS metadata download and catalog-build logic.
+
+This module is the core of the Catalog tool.  It provides the ``USFS`` service
+class, which handles:
+
+1. **Downloading** raw metadata from three distinct USFS data sources:
+
+   * **FSGeodata** — individual XML metadata files scraped from the USFS
+     Geodata Clearinghouse at ``data.fs.usda.gov``.
+   * **GDD (Geodata Discovery Database)** — a single DCAT-US 1.1 JSON feed
+     published on the USFS ArcGIS Hub.
+   * **RDA (Research Data Archive)** — a single JSON feed from the USFS
+     Research Data Archive web service.
+
+2. **Building** a unified catalog by parsing each downloaded source and
+   normalising records into the common ``dict`` structure expected by
+   ``schema.USFSDocument``, then writing the combined output to
+   ``data/usfs/usfs_catalog.json``.
+
+All downloaded files are written beneath ``./data/usfs/`` and are organised
+by source sub-directory (``fsgeodata/``, ``gdd/``, ``rda/``).  Files that
+already exist are skipped so that repeat runs are safe and incremental.
+"""
+
 import os
 import requests
 import json
@@ -9,10 +34,42 @@ from .lib import clean_str, hash_string
 
 
 class USFS:
+    """Service class for USFS metadata operations.
+
+    Encapsulates all download and catalog-build logic for the three USFS
+    metadata sources.  Each public method corresponds to one discrete step in
+    the pipeline so that steps can be run individually or composed together via
+    ``build_catalog``.
+
+    Attributes:
+        output_dir: Root directory for all downloaded files and output
+            artifacts.  Defaults to ``./data/usfs`` relative to the working
+            directory from which the CLI is invoked.
+    """
+
     def __init__(self):
         self.output_dir = "./data/usfs"
 
     def download_fsgeodata_metadata(self):
+        """Download XML metadata files from the USFS Geodata Clearinghouse.
+
+        Scrapes the dataset listing page at ``data.fs.usda.gov/geodata/edw/datasets.php``
+        to discover all datasets that have an associated XML metadata file.
+        Each metadata file is then fetched individually and written to
+        ``data/usfs/fsgeodata/<dataset_name>.xml``.
+
+        Files that already exist on disk are skipped, making the method safe
+        to call repeatedly without re-downloading unchanged data.
+
+        Side effects:
+            Creates ``data/usfs/fsgeodata/`` if it does not already exist.
+            Writes one ``.xml`` file per discovered dataset.
+            Prints progress messages via ``click.echo``.
+
+        Raises:
+            requests.exceptions.HTTPError: If the dataset listing page or any
+                individual metadata request returns a non-2xx HTTP status.
+        """
         BASE_URL = "https://data.fs.usda.gov"
         METADATA_BASE_URL = f"{BASE_URL}/geodata/edw/edw_resources/meta/"
         DATASETS_URL = f"{BASE_URL}/geodata/edw/datasets.php"
@@ -80,7 +137,25 @@ class USFS:
                 )
 
     def download_gdd_metadata(self):
+        """Download the GDD metadata feed from the USFS ArcGIS Hub.
 
+        Fetches the DCAT-US 1.1 JSON catalog published at the USFS ArcGIS Hub
+        and writes it to ``data/usfs/gdd/gdd_metadata.json``.  The feed
+        contains dataset-level metadata (title, description, keywords, themes,
+        distribution links) for all datasets registered in the Geodata
+        Discovery Database.
+
+        If the destination file already exists the download is skipped.
+
+        Side effects:
+            Creates ``data/usfs/gdd/`` if it does not already exist.
+            Writes ``gdd_metadata.json`` to that directory.
+            Prints a skip or completion message via ``click.echo``.
+
+        Raises:
+            requests.exceptions.HTTPError: If the remote feed request returns
+                a non-2xx HTTP status.
+        """
         source_url = "https://data-usfs.hub.arcgis.com/api/feed/dcat-us/1.1.json"
         dest_output_dir = "./data/usfs/gdd"
         dest_output_file = "gdd_metadata.json"
@@ -106,8 +181,24 @@ class USFS:
             json.dump(json_data, f, indent=4)
 
     def download_rda_metadata(self):
-        """
-        Downloads Research Data Archive (RDA) metadata
+        """Download the RDA metadata feed from the USFS Research Data Archive.
+
+        Fetches the JSON catalog published by the USFS Research Data Archive
+        web service and writes it to ``data/usfs/rda/rda_metadata.json``.  The
+        feed contains dataset-level metadata (title, description, keywords,
+        identifiers, distribution links) for all datasets registered in the
+        RDA.
+
+        If the destination file already exists the download is skipped.
+
+        Side effects:
+            Creates ``data/usfs/rda/`` if it does not already exist.
+            Writes ``rda_metadata.json`` to that directory.
+            Prints a skip or completion message via ``click.echo``.
+
+        Raises:
+            requests.exceptions.HTTPError: If the remote feed request returns
+                a non-2xx HTTP status.
         """
 
         source_url = "https://www.fs.usda.gov/rds/archive/webservice/datagov"
@@ -134,7 +225,16 @@ class USFS:
             json.dump(json_data, f, indent=4)
 
     def mkdir_output(self, dir_path: str = None) -> None:
-        """Creates the output directory if it doesn't exist"""
+        """Create a directory, including any missing parent directories.
+
+        A thin wrapper around ``os.makedirs(..., exist_ok=True)`` used by the
+        download methods to ensure destination directories are present before
+        writing files.
+
+        Args:
+            dir_path: Path to the directory to create.  Defaults to
+                ``self.output_dir`` (``./data/usfs``) when omitted.
+        """
 
         if dir_path is None:
             dir_path = self.output_dir
@@ -142,6 +242,32 @@ class USFS:
         os.makedirs(dir_path, exist_ok=True)
 
     def build_gdd_catalog(self):
+        """Parse the GDD metadata feed and return a list of document dicts.
+
+        Reads ``data/usfs/gdd/gdd_metadata.json`` (written by
+        ``download_gdd_metadata``), iterates over every entry in the
+        ``dataset`` array, and normalises each entry into the common document
+        structure used by ``schema.USFSDocument``.
+
+        Fields extracted per record:
+
+        * ``title`` — cleaned dataset title.
+        * ``description`` — cleaned narrative description.
+        * ``keyword`` — list of subject keywords.
+        * ``theme`` — list of thematic category strings.
+
+        The ``id`` field is derived by hashing the lower-cased, stripped title
+        via ``lib.hash_string``.
+
+        Returns:
+            A list of dicts, each representing one GDD dataset record with keys
+            ``id``, ``title``, ``description``, ``keywords``, ``themes``, and
+            ``src`` (always ``"gdd"``).  Returns an empty list if the metadata
+            file does not exist.
+
+        Side effects:
+            Prints a "not found" or "processing" message via ``click.echo``.
+        """
         documents = []
 
         gdd_json_path = f"{self.output_dir}/gdd/gdd_metadata.json"
@@ -182,9 +308,35 @@ class USFS:
 
                             documents.append(document)
 
-            return documents
+        return documents
 
     def build_rda_catalog(self):
+        """Parse the RDA metadata feed and return a list of document dicts.
+
+        Reads ``data/usfs/rda/rda_metadata.json`` (written by
+        ``download_rda_metadata``), iterates over every entry in the
+        ``dataset`` array, and normalises each entry into the common document
+        structure used by ``schema.USFSDocument``.
+
+        Fields extracted per record:
+
+        * ``title`` — cleaned dataset title.
+        * ``description`` — cleaned narrative description.
+        * ``keyword`` — list of subject keywords.
+
+        The RDA feed does not include a ``theme`` field; ``themes`` is always
+        set to an empty list.  The ``id`` field is derived by hashing the
+        lower-cased, stripped title via ``lib.hash_string``.
+
+        Returns:
+            A list of dicts, each representing one RDA dataset record with keys
+            ``id``, ``title``, ``description``, ``keywords``, ``themes``, and
+            ``src`` (always ``"rda"``).  Returns an empty list if the metadata
+            file does not exist.
+
+        Side effects:
+            Prints a "not found" or "processing" message via ``click.echo``.
+        """
         documents = []
 
         rda_json_path = f"{self.output_dir}/rda/rda_metadata.json"
@@ -226,7 +378,31 @@ class USFS:
 
         return documents
 
-    def buld_fsgeodata_catalog(self):
+    def build_fsgeodata_catalog(self):
+        """Parse FSGeodata XML metadata files and return a list of document dicts.
+
+        Scans ``data/usfs/fsgeodata/`` for every ``.xml`` file written by
+        ``download_fsgeodata_metadata`` and parses each one with BeautifulSoup.
+        The following FGDC-standard XML elements are extracted:
+
+        * ``<title>`` — dataset title (top-level element).
+        * ``<descript>/<abstract>`` — executive summary of the dataset.
+        * ``<descript>/<purpose>`` — statement of why the dataset was created.
+        * ``<dataqual>/<procstep>`` elements — data-quality lineage steps, each
+          captured as a dict with ``"description"`` and ``"date"`` keys.
+        * ``<themekey>`` elements — controlled-vocabulary theme keywords.
+
+        The ``id`` field is derived by hashing the lower-cased, stripped title
+        via ``lib.hash_string``.
+
+        Returns:
+            A list of dicts, each representing one FSGeodata dataset with keys
+            ``id``, ``title``, ``abstract``, ``purpose``, ``keywords``,
+            ``lineage``, and ``src`` (always ``"fsgeodata"``).
+
+        Side effects:
+            Reads XML files from ``data/usfs/fsgeodata/``.
+        """
         documents = []
         xml_path = f"{self.output_dir}/fsgeodata"
         xml_files = Path(xml_path)
@@ -295,11 +471,33 @@ class USFS:
         return documents
 
     def build_catalog(self):
+        """Build and persist the unified USFS metadata catalog.
 
+        Orchestrates the three catalog-build methods in sequence:
+
+        1. ``build_fsgeodata_catalog`` — parses FSGeodata XML files.
+        2. ``build_gdd_catalog`` — parses the GDD JSON feed.
+        3. ``build_rda_catalog`` — parses the RDA JSON feed.
+
+        All resulting document dicts are combined into a single list and
+        serialised as pretty-printed JSON to
+        ``data/usfs/usfs_catalog.json``.  This file is the final artifact
+        consumed by downstream search and AI retrieval tools.
+
+        The method assumes that the relevant metadata files have already been
+        downloaded by the corresponding ``download_*`` methods.  Missing
+        source files are handled gracefully by the individual build methods
+        (they return empty lists and print a warning).
+
+        Side effects:
+            Reads from ``data/usfs/fsgeodata/``, ``data/usfs/gdd/``, and
+            ``data/usfs/rda/``.
+            Writes ``data/usfs/usfs_catalog.json``.
+        """
         documents = []
 
         # FSGeodata
-        fsgeodata_documents = self.buld_fsgeodata_catalog()
+        fsgeodata_documents = self.build_fsgeodata_catalog()
         documents.extend(fsgeodata_documents)
 
         # GDD
