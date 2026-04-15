@@ -8,6 +8,9 @@ from datetime import datetime
 from typing import Optional, List
 import os
 import json
+from dotenv import load_dotenv
+
+load_dotenv()  # Load environment variables from .env file
 
 Base = declarative_base()
 
