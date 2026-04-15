@@ -70,6 +70,10 @@ class USFSDocument(BaseModel):
         default=None,
         description="Description of the data.",
     )
+    embeddings: Optional[list[float]] | None = Field(
+        default=None,
+        description="Dense vector embedding of the document's content."
+    )
 
     def to_markdown(self, distance: float | None = None) -> str:
         """Render the document as a Markdown-formatted string.
@@ -108,3 +112,21 @@ class USFSDocument(BaseModel):
                 date = item.get("date", "")
                 md += f"- {desc} ({date})\n"
         return md
+
+    def to_embedding_text(self) -> str:
+        """Serialize document to text suitable for embedding."""
+        lineage_str = ""
+        if self.lineage:
+            lineage_str = "; ".join(
+                [f"{item.get('description', '')} ({item.get('date', '')})"
+                 for item in self.lineage]
+            )
+
+        return (
+            f"Title: {self.title or ''}\n"
+            f"Abstract: {self.abstract or ''}\n"
+            f"Description: {self.description or ''}\n"
+            f"Purpose: {self.purpose or ''}\n"
+            f"Keywords: {', '.join(self.keywords) if self.keywords else ''}\n"
+            f"Lineage: {lineage_str}\n"
+        )

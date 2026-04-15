@@ -30,6 +30,7 @@ from pathlib import Path
 import click
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
+import string
 from .lib import clean_str, hash_string
 
 
@@ -295,13 +296,14 @@ class USFS:
                             keyword = (
                                 item.get("keyword") if "keyword" in item.keys() else []
                             )
+                            kw = self.clean_keywords(keyword)
                             theme = item.get("theme") if "theme" in item.keys() else []
 
                             document = {
                                 "id": hash_string(title.lower().strip()),
                                 "title": title,
                                 "description": description,
-                                "keywords": keyword,
+                                "keywords": kw,
                                 "themes": theme,
                                 "src": "gdd",
                             }
@@ -364,12 +366,12 @@ class USFS:
                             keyword = (
                                 item.get("keyword") if "keyword" in item.keys() else []
                             )
-
+                            kw = self.clean_keywords(keyword)
                             document = {
                                 "id": hash_string(title.lower().strip()),
                                 "title": title,
                                 "description": description,
-                                "keywords": keyword,
+                                "keywords": kw,
                                 "themes": [],
                                 "src": "rda",
                             }
@@ -377,6 +379,14 @@ class USFS:
                             documents.append(document)
 
         return documents
+
+    def clean_keywords(self, keywords: list[str]) -> list[str]:
+        cleaned = []
+        for kw in keywords:
+            kw = kw.strip().lower().translate(str.maketrans("", "", string.punctuation))
+            if kw:
+                cleaned.append(kw)
+        return list(dict.fromkeys(cleaned))  # deduplicate, preserve order
 
     def build_fsgeodata_catalog(self):
         """Parse FSGeodata XML metadata files and return a list of document dicts.
@@ -454,7 +464,9 @@ class USFS:
                 if soup.find_all("themekey") is not None:
                     themekeys = soup.find_all("themekey")
                     if len(themekeys) > 0:
-                        keywords = [w.get_text() for w in themekeys]
+                        keywords = self.clean_keywords(
+                            [w.get_text() for w in themekeys]
+                        )
 
                 document = {
                     "id": hash_string(title.lower().strip()),
