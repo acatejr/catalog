@@ -1,118 +1,90 @@
-from pathlib import Path
+"""
+USFS metadata download and catalog-build logic.
+
+This module is the core of the Catalog tool.  It provides the ``USFS`` service
+class, which handles:
+
+1. **Downloading** raw metadata from three distinct USFS data sources:
+
+   * **FSGeodata** — individual XML metadata files scraped from the USFS
+     Geodata Clearinghouse at ``data.fs.usda.gov``.
+   * **GDD (Geodata Discovery Database)** — a single DCAT-US 1.1 JSON feed
+     published on the USFS ArcGIS Hub.
+   * **RDA (Research Data Archive)** — a single JSON feed from the USFS
+     Research Data Archive web service.
+
+2. **Building** a unified catalog by parsing each downloaded source and
+   normalising records into the common ``dict`` structure expected by
+   ``schema.USFSDocument``, then writing the combined output to
+   ``data/usfs/usfs_catalog.json``.
+
+All downloaded files are written beneath ``./data/usfs/`` and are organised
+by source sub-directory (``fsgeodata/``, ``gdd/``, ``rda/``).  Files that
+already exist are skipped so that repeat runs are safe and incremental.
+"""
+
+import os
 import requests
+import json
+from pathlib import Path
+import click
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-import time
-from catalog.lib import clean_str, hash_string, save_json
-import os
-import json
-import logging
-
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-logger = logging.getLogger("catalog")
-
-DATA_DIR = "./data/usfs"
+import string
+from .lib import clean_str, hash_string
 
 
 class USFS:
-    def __init__(self, output_dir: str = DATA_DIR) -> None:
-        self.output_dir = Path(output_dir)
+    """Service class for USFS metadata operations.
 
-    def build_chromadb(self) -> None:
-        """Build ChromaDB vector store from USFS catalog"""
+    Encapsulates all download and catalog-build logic for the three USFS
+    metadata sources.  Each public method corresponds to one discrete step in
+    the pipeline so that steps can be run individually or composed together via
+    ``build_catalog``.
 
-        print("Building USFS ChromaDB vector store...")
-        from catalog.core import ChromaVectorDB
+    Attributes:
+        output_dir: Root directory for all downloaded files and output
+            artifacts.  Defaults to ``./data/usfs`` relative to the working
+            directory from which the CLI is invoked.
+    """
 
-        db = ChromaVectorDB()
-        db.batch_load_documents()
+    def __init__(self):
+        self.output_dir = "./data/usfs"
 
-    def build_catalog(self, format: str = "json"):
-        print("Building USFS catalog...")
-        fsgeodata = FSGeodataLoader()
-        gdd = GeospatialDataDiscovery()
-        rda = RDALoader()
+    def download_fsgeodata_metadata(self):
+        """Download XML metadata files from the USFS Geodata Clearinghouse.
 
-        fsgeo_docs = fsgeodata.parse_metadata()
-        gdd_docs = gdd.parse_metadata()
-        rda_docs = rda.parse_metadata()
-        documents = fsgeo_docs + rda_docs + gdd_docs
+        Scrapes the dataset listing page at ``data.fs.usda.gov/geodata/edw/datasets.php``
+        to discover all datasets that have an associated XML metadata file.
+        Each metadata file is then fetched individually and written to
+        ``data/usfs/fsgeodata/<dataset_name>.xml``.
 
-        print(f"USFS Catalog Docs: {len(documents)}")
+        Files that already exist on disk are skipped, making the method safe
+        to call repeatedly without re-downloading unchanged data.
 
-        if format == "json":
-            save_json(documents, "./data/usfs/catalog.json")
+        Side effects:
+            Creates ``data/usfs/fsgeodata/`` if it does not already exist.
+            Writes one ``.xml`` file per discovered dataset.
+            Prints progress messages via ``click.echo``.
 
-    def download_metadata(self) -> None:
-        """Download USFS metadata files."""
-
-        self.output_dir.mkdir(parents=True, exist_ok=True)
-
-        self.download_fsgeodata()
-        self.download_rda()
-        self.download_gdd()
-
-    def download_fsgeodata(self) -> None:
+        Raises:
+            requests.exceptions.HTTPError: If the dataset listing page or any
+                individual metadata request returns a non-2xx HTTP status.
         """
-        Handles downloading of FSGeoData metadata
-        """
+        BASE_URL = "https://data.fs.usda.gov"
+        METADATA_BASE_URL = f"{BASE_URL}/geodata/edw/edw_resources/meta/"
+        DATASETS_URL = f"{BASE_URL}/geodata/edw/datasets.php"
 
-        print("Downloading FSGeoData metadata...")
-        fsgeodata = FSGeodataLoader(data_dir=self.output_dir / "fsgeodata")
-        fsgeodata.download_all()
+        output_dir = f"{self.output_dir}/fsgeodata"
+        self.mkdir_output(output_dir)
 
-    def download_rda(self) -> None:
-        """
-        Downloads Research Data Archive (RDA) metadata
-        """
-
-        print("Downloading RDA metadata...")
-        rda = RDALoader()
-        rda.download()
-
-    def download_gdd(self) -> None:
-        """
-        Downloads Geospatial Data Discovery (GDD) metadata
-        """
-
-        print("Downloading GDD metadata...")
-        gdd = GeospatialDataDiscovery()
-        gdd.download_gdd_metadata()
-
-
-class FSGeodataLoader:
-    """Downloads metadata and web services data from USFS Geodata Clearinghouse"""
-
-    BASE_URL = "https://data.fs.usda.gov"
-    METADATA_BASE_URL = f"{BASE_URL}/geodata/edw/edw_resources/meta/"
-
-    DATASETS_URL = f"{BASE_URL}/geodata/edw/datasets.php"
-
-    def __init__(self, data_dir="data/usfs/fsgeodata"):
-        """Initialize downloader with data directory"""
-        self.data_dir = Path(data_dir)
-        self.metadata_dir = self.data_dir / "metadata"
-        self.services_dir = self.data_dir / "services"
-
-        # Create directories
-        self.metadata_dir.mkdir(parents=True, exist_ok=True)
-        self.services_dir.mkdir(parents=True, exist_ok=True)
-
-        self.session = requests.Session()
-        self.session.headers.update(
+        session = requests.Session()
+        session.headers.update(
             {"User-Agent": "Mozilla/5.0 (compatible; FSGeodataDownloader/1.0)"}
         )
-
-    def fetch_datasets_page(self):
-        """Fetch the main datasets page"""
-        response = self.session.get(self.DATASETS_URL)
+        response = session.get(DATASETS_URL)
         response.raise_for_status()
-        return response.text
-
-    def parse_datasets(self, html_content):
-        """Parse the HTML and extract metadata and service URLs"""
+        html_content = response.text
         soup = BeautifulSoup(html_content, "html.parser")
         datasets = []
 
@@ -123,7 +95,7 @@ class FSGeodataLoader:
             # Look for metadata XML files
             if "/meta/" in href and href.endswith(".xml"):
                 dataset_name = Path(href).stem
-                metadata_url = urljoin(self.METADATA_BASE_URL, dataset_name + ".xml")
+                metadata_url = urljoin(METADATA_BASE_URL, dataset_name + ".xml")
 
                 # Try to find associated map service URL in nearby elements
                 service_url = None
@@ -144,96 +116,305 @@ class FSGeodataLoader:
                     }
                 )
 
-        return datasets
+        click.echo(f"Found {len(datasets)} datasets with metadata links.")
+        for dataset in datasets:
+            meta_path = Path(output_dir) / f"{dataset['name']}.xml"
+            if not os.path.exists(meta_path):
+                click.echo(f"   Downloading metadata for {dataset['name']}...")
+                try:
+                    meta_response = session.get(dataset["metadata_url"])
+                    meta_response.raise_for_status()
+                    meta_path = Path(output_dir) / f"{dataset['name']}.xml"
+                    with open(meta_path, "w", encoding="utf-8") as f:
+                        f.write(meta_response.text)
 
-    def download_file(
-        self, url: str, output_path: Path, description: str = "file"
-    ) -> bool:
-        """Download a file from URL to output_path
+                except requests.exceptions.RequestException as e:
+                    click.echo(
+                        f"   Failed to download metadata for {dataset['name']}: {e}"
+                    )
+            else:
+                click.echo(
+                    f"   Metadata for {dataset['name']} already exists. Skipping."
+                )
 
-        args:
-            url (str): URL to download
-            output_path (Path): Path to save the downloaded file
-            description (str): Description of the file being downloaded
-        returns:
-            bool: True if download succeeded, False otherwise
+    def download_gdd_metadata(self):
+        """Download the GDD metadata feed from the USFS ArcGIS Hub.
+
+        Fetches the DCAT-US 1.1 JSON catalog published at the USFS ArcGIS Hub
+        and writes it to ``data/usfs/gdd/gdd_metadata.json``.  The feed
+        contains dataset-level metadata (title, description, keywords, themes,
+        distribution links) for all datasets registered in the Geodata
+        Discovery Database.
+
+        If the destination file already exists the download is skipped.
+
+        Side effects:
+            Creates ``data/usfs/gdd/`` if it does not already exist.
+            Writes ``gdd_metadata.json`` to that directory.
+            Prints a skip or completion message via ``click.echo``.
+
+        Raises:
+            requests.exceptions.HTTPError: If the remote feed request returns
+                a non-2xx HTTP status.
         """
+        source_url = "https://data-usfs.hub.arcgis.com/api/feed/dcat-us/1.1.json"
+        dest_output_dir = "./data/usfs/gdd"
+        dest_output_file = "gdd_metadata.json"
 
-        try:
-            response = self.session.get(url, timeout=30)
-            response.raise_for_status()
-            with open(output_path, "wb") as f:
-                f.write(response.content)
-        except Exception as e:
-            logger.error(f"Failed to download {description} from {url}: {e}")
-            return False
+        if os.path.exists(f"{dest_output_dir}/{dest_output_file}"):
+            click.echo("   GDD metadata already exists. Skipping download.")
+            return
 
-        return True
-
-    def download_service_info(self, url: str, output_path: Path) -> bool:
-        """Download service info (JSON format)"""
-
-        json_url = f"{url}?f=json"
-        try:
-            response = self.session.get(json_url, timeout=30)
-            response.raise_for_status()
-            with open(output_path, "w", encoding="utf-8") as f:
-                f.write(response.text)
-        except Exception as e:
-            logger.error(f"Failed to download service info from {json_url}: {e}")
-            return False
-
-        return True
-
-    def download_all(self):
-        """Main method to download all datasets"""
-
-        # Fetch and parse the datasets page
-        html_content = self.fetch_datasets_page()
-        datasets = self.parse_datasets(html_content)
-
-        stats = {
-            "total": len(datasets),
-            "metadata_success": 0,
-            "metadata_failed": 0,
-            "service_success": 0,
-            "service_failed": 0,
+        self.mkdir_output(dest_output_dir)
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+            "Accept": "application/json, text/plain, */*",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Referer": "https://www.fs.usda.gov/",
         }
 
-        # Download each dataset
-        for i, dataset in enumerate(datasets, 1):
-            # Download metadata
-            metadata_path = self.metadata_dir / f"{dataset['name']}.xml"
+        response = requests.get(source_url, headers=headers)
+        response.raise_for_status()
+        json_data = response.json()
 
-            if not metadata_path.exists():
-                if self.download_file(
-                    dataset["metadata_url"], metadata_path, "metadata"
-                ):
-                    stats["metadata_success"] += 1
-                else:
-                    stats["metadata_failed"] += 1
-            else:
-                stats["metadata_success"] += 1
+        src_file = Path(dest_output_dir) / dest_output_file
+        with open(src_file, "w", encoding="utf-8") as f:
+            json.dump(json_data, f, indent=4)
 
-            # Download service info if available
-            if dataset["service_url"]:
-                service_path = self.services_dir / f"{dataset['name']}_service.json"
-                if not service_path.exists():
-                    if self.download_service_info(dataset["service_url"], service_path):
-                        stats["service_success"] += 1
-                    else:
-                        stats["service_failed"] += 1
-                else:
-                    stats["service_success"] += 1
+    def download_rda_metadata(self):
+        """Download the RDA metadata feed from the USFS Research Data Archive.
 
-            # Be nice to the server
-            time.sleep(0.25)
+        Fetches the JSON catalog published by the USFS Research Data Archive
+        web service and writes it to ``data/usfs/rda/rda_metadata.json``.  The
+        feed contains dataset-level metadata (title, description, keywords,
+        identifiers, distribution links) for all datasets registered in the
+        RDA.
 
-    def parse_metadata(self):
-        """Parse metadata XML to extract title and abstract"""
+        If the destination file already exists the download is skipped.
 
+        Side effects:
+            Creates ``data/usfs/rda/`` if it does not already exist.
+            Writes ``rda_metadata.json`` to that directory.
+            Prints a skip or completion message via ``click.echo``.
+
+        Raises:
+            requests.exceptions.HTTPError: If the remote feed request returns
+                a non-2xx HTTP status.
+        """
+
+        source_url = "https://www.fs.usda.gov/rds/archive/webservice/datagov"
+        dest_output_dir = "./data/usfs/rda"
+        dest_output_file = "rda_metadata.json"
+
+        if os.path.exists(f"{dest_output_dir}/{dest_output_file}"):
+            click.echo("   RDA metadata already exists. Skipping download.")
+            return
+
+        self.mkdir_output(dest_output_dir)
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+            "Accept": "application/json, text/plain, */*",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Referer": "https://www.fs.usda.gov/",
+        }
+        response = requests.get(source_url, headers=headers)
+        response.raise_for_status()
+        json_data = response.json()
+
+        src_file = Path(dest_output_dir) / dest_output_file
+        with open(src_file, "w", encoding="utf-8") as f:
+            json.dump(json_data, f, indent=4)
+
+    def mkdir_output(self, dir_path: str = None) -> None:
+        """Create a directory, including any missing parent directories.
+
+        A thin wrapper around ``os.makedirs(..., exist_ok=True)`` used by the
+        download methods to ensure destination directories are present before
+        writing files.
+
+        Args:
+            dir_path: Path to the directory to create.  Defaults to
+                ``self.output_dir`` (``./data/usfs``) when omitted.
+        """
+
+        if dir_path is None:
+            dir_path = self.output_dir
+
+        os.makedirs(dir_path, exist_ok=True)
+
+    def build_gdd_catalog(self):
+        """Parse the GDD metadata feed and return a list of document dicts.
+
+        Reads ``data/usfs/gdd/gdd_metadata.json`` (written by
+        ``download_gdd_metadata``), iterates over every entry in the
+        ``dataset`` array, and normalises each entry into the common document
+        structure used by ``schema.USFSDocument``.
+
+        Fields extracted per record:
+
+        * ``title`` — cleaned dataset title.
+        * ``description`` — cleaned narrative description.
+        * ``keyword`` — list of subject keywords.
+        * ``theme`` — list of thematic category strings.
+
+        The ``id`` field is derived by hashing the lower-cased, stripped title
+        via ``lib.hash_string``.
+
+        Returns:
+            A list of dicts, each representing one GDD dataset record with keys
+            ``id``, ``title``, ``description``, ``keywords``, ``themes``, and
+            ``src`` (always ``"gdd"``).  Returns an empty list if the metadata
+            file does not exist.
+
+        Side effects:
+            Prints a "not found" or "processing" message via ``click.echo``.
+        """
         documents = []
-        xml_path = "data/usfs/fsgeodata/metadata"
+
+        gdd_json_path = f"{self.output_dir}/gdd/gdd_metadata.json"
+        if not os.path.exists(gdd_json_path):
+            click.echo("\tGDD metadata not found.")
+        else:
+            with open(gdd_json_path, "r", encoding="utf-8") as f:
+                json_data = json.load(f)
+
+                if "dataset" in json_data.keys():
+                    dataset = json_data.get("dataset")
+
+                    if dataset and len(dataset) > 0:
+                        for item in dataset:
+                            title = (
+                                clean_str(item.get("title"))
+                                if "title" in item.keys()
+                                else ""
+                            )
+                            description = (
+                                clean_str(item.get("description"))
+                                if "description" in item.keys()
+                                else ""
+                            )
+                            keyword = (
+                                item.get("keyword") if "keyword" in item.keys() else []
+                            )
+                            kw = self.clean_keywords(keyword)
+                            theme = item.get("theme") if "theme" in item.keys() else []
+
+                            document = {
+                                "id": hash_string(title.lower().strip()),
+                                "title": title,
+                                "description": description,
+                                "keywords": kw,
+                                "themes": theme,
+                                "src": "gdd",
+                            }
+
+                            documents.append(document)
+
+        return documents
+
+    def build_rda_catalog(self):
+        """Parse the RDA metadata feed and return a list of document dicts.
+
+        Reads ``data/usfs/rda/rda_metadata.json`` (written by
+        ``download_rda_metadata``), iterates over every entry in the
+        ``dataset`` array, and normalises each entry into the common document
+        structure used by ``schema.USFSDocument``.
+
+        Fields extracted per record:
+
+        * ``title`` — cleaned dataset title.
+        * ``description`` — cleaned narrative description.
+        * ``keyword`` — list of subject keywords.
+
+        The RDA feed does not include a ``theme`` field; ``themes`` is always
+        set to an empty list.  The ``id`` field is derived by hashing the
+        lower-cased, stripped title via ``lib.hash_string``.
+
+        Returns:
+            A list of dicts, each representing one RDA dataset record with keys
+            ``id``, ``title``, ``description``, ``keywords``, ``themes``, and
+            ``src`` (always ``"rda"``).  Returns an empty list if the metadata
+            file does not exist.
+
+        Side effects:
+            Prints a "not found" or "processing" message via ``click.echo``.
+        """
+        documents = []
+
+        rda_json_path = f"{self.output_dir}/rda/rda_metadata.json"
+        if not os.path.exists(rda_json_path):
+            click.echo("\tRDA metadata not found.")
+        else:
+            with open(rda_json_path, "r", encoding="utf-8") as f:
+                json_data = json.load(f)
+
+                if "dataset" in json_data.keys():
+                    dataset = json_data.get("dataset")
+
+                    if dataset and len(dataset) > 0:
+                        for item in dataset:
+                            title = (
+                                clean_str(item.get("title"))
+                                if "title" in item.keys()
+                                else ""
+                            )
+                            description = (
+                                clean_str(item.get("description"))
+                                if "description" in item.keys()
+                                else ""
+                            )
+                            keyword = (
+                                item.get("keyword") if "keyword" in item.keys() else []
+                            )
+                            kw = self.clean_keywords(keyword)
+                            document = {
+                                "id": hash_string(title.lower().strip()),
+                                "title": title,
+                                "description": description,
+                                "keywords": kw,
+                                "themes": [],
+                                "src": "rda",
+                            }
+
+                            documents.append(document)
+
+        return documents
+
+    def clean_keywords(self, keywords: list[str]) -> list[str]:
+        cleaned = []
+        for kw in keywords:
+            kw = kw.strip().lower().translate(str.maketrans("", "", string.punctuation))
+            if kw:
+                cleaned.append(kw)
+        return list(dict.fromkeys(cleaned))  # deduplicate, preserve order
+
+    def build_fsgeodata_catalog(self):
+        """Parse FSGeodata XML metadata files and return a list of document dicts.
+
+        Scans ``data/usfs/fsgeodata/`` for every ``.xml`` file written by
+        ``download_fsgeodata_metadata`` and parses each one with BeautifulSoup.
+        The following FGDC-standard XML elements are extracted:
+
+        * ``<title>`` — dataset title (top-level element).
+        * ``<descript>/<abstract>`` — executive summary of the dataset.
+        * ``<descript>/<purpose>`` — statement of why the dataset was created.
+        * ``<dataqual>/<procstep>`` elements — data-quality lineage steps, each
+          captured as a dict with ``"description"`` and ``"date"`` keys.
+        * ``<themekey>`` elements — controlled-vocabulary theme keywords.
+
+        The ``id`` field is derived by hashing the lower-cased, stripped title
+        via ``lib.hash_string``.
+
+        Returns:
+            A list of dicts, each representing one FSGeodata dataset with keys
+            ``id``, ``title``, ``abstract``, ``purpose``, ``keywords``,
+            ``lineage``, and ``src`` (always ``"fsgeodata"``).
+
+        Side effects:
+            Reads XML files from ``data/usfs/fsgeodata/``.
+        """
+        documents = []
+        xml_path = f"{self.output_dir}/fsgeodata"
         xml_files = Path(xml_path)
 
         if xml_files.is_dir():
@@ -283,7 +464,9 @@ class FSGeodataLoader:
                 if soup.find_all("themekey") is not None:
                     themekeys = soup.find_all("themekey")
                     if len(themekeys) > 0:
-                        keywords = [w.get_text() for w in themekeys]
+                        keywords = self.clean_keywords(
+                            [w.get_text() for w in themekeys]
+                        )
 
                 document = {
                     "id": hash_string(title.lower().strip()),
@@ -299,132 +482,44 @@ class FSGeodataLoader:
 
         return documents
 
+    def build_catalog(self):
+        """Build and persist the unified USFS metadata catalog.
 
-class GeospatialDataDiscovery:
-    """
-    Harvests metadata from USFS Geospatial Data Discovery (GDD) portal
-    https://data-usfs.hub.arcgis.com/pages/geospatial-data-discovery-gdd
-    """
+        Orchestrates the three catalog-build methods in sequence:
 
-    def __init__(self):
-        self.metadata_source_url = (
-            "https://data-usfs.hub.arcgis.com/api/feed/dcat-us/1.1.json"
-        )
-        self.dest_output_dir = "./data/usfs/gdd"
-        self.dest_output_file = "gdd_metadata.json"
+        1. ``build_fsgeodata_catalog`` — parses FSGeodata XML files.
+        2. ``build_gdd_catalog`` — parses the GDD JSON feed.
+        3. ``build_rda_catalog`` — parses the RDA JSON feed.
 
-    def download_gdd_metadata(self):
-        response = requests.get(self.metadata_source_url)
+        All resulting document dicts are combined into a single list and
+        serialised as pretty-printed JSON to
+        ``data/usfs/usfs_catalog.json``.  This file is the final artifact
+        consumed by downstream search and AI retrieval tools.
 
-        # Make output dir if needed.
-        os.makedirs(self.dest_output_dir, exist_ok=True)
+        The method assumes that the relevant metadata files have already been
+        downloaded by the corresponding ``download_*`` methods.  Missing
+        source files are handled gracefully by the individual build methods
+        (they return empty lists and print a warning).
 
-        if response.status_code == 200:
-            try:
-                response.json()
-            except requests.exceptions.JSONDecodeError:
-                logger.error("GDD metadata response is not valid JSON")
-                return
-            fpath = Path(self.dest_output_dir) / self.dest_output_file
-            with open(fpath, "w", encoding="utf-8") as f:
-                f.write(response.text)
-        else:
-            logger.error(
-                f"Failed to download GDD metadata: {response.status_code} {response.text}"
-            )
-
-    def parse_metadata(self) -> None:
+        Side effects:
+            Reads from ``data/usfs/fsgeodata/``, ``data/usfs/gdd/``, and
+            ``data/usfs/rda/``.
+            Writes ``data/usfs/usfs_catalog.json``.
         """
-        Parses GDD metadata JSON file and returns list of documents
-
-        :return: List of document dictionaries
-        :rtype: list[dict]
-        """
-
         documents = []
 
-        src_file = Path(self.dest_output_dir) / self.dest_output_file
+        # FSGeodata
+        fsgeodata_documents = self.build_fsgeodata_catalog()
+        documents.extend(fsgeodata_documents)
 
-        if not os.path.exists(src_file):
-            return []
+        # GDD
+        gdd_documents = self.build_gdd_catalog()
+        documents.extend(gdd_documents)
 
-        with open(src_file, "r", encoding="utf-8") as f:
-            json_data = json.load(f)
+        # RDA
+        rda_documents = self.build_rda_catalog()
+        documents.extend(rda_documents)
 
-            if "dataset" in json_data.keys():
-                dataset = json_data.get("dataset")
-
-                if dataset and len(dataset) > 0:
-                    for item in dataset:
-                        title = (
-                            clean_str(item.get("title"))
-                            if "title" in item.keys()
-                            else ""
-                        )
-                        description = (
-                            clean_str(item.get("description"))
-                            if "description" in item.keys()
-                            else ""
-                        )
-                        keyword = (
-                            item.get("keyword") if "keyword" in item.keys() else []
-                        )
-                        theme = item.get("theme") if "theme" in item.keys() else []
-
-                        document = {
-                            "id": hash_string(title.lower().strip()),
-                            "title": title,
-                            "description": description,
-                            "keywords": keyword,
-                            "themes": theme,
-                            "src": "gdd",
-                        }
-
-                        documents.append(document)
-
-        return documents
-
-
-class RDALoader:
-    def __init__(self):
-        self.source_url = "https://www.fs.usda.gov/rds/archive/webservice/datagov"
-        self.dest_output_dir = "./data/usfs/rda"
-        self.dest_output_file = "rda_metadata.json"
-
-        os.makedirs(self.dest_output_dir, exist_ok=True)
-
-    def download(self):
-        response = requests.get(self.source_url)
-        if response.status_code == 200:
-            json_data = response.json()
-
-            src_file = Path(self.dest_output_dir) / self.dest_output_file
-            with open(src_file, "w", encoding="utf-8") as f:
-                json.dump(json_data, f, indent=4)
-
-    def parse_metadata(self):
-        documents = []
-        src_file = Path(self.dest_output_dir) / self.dest_output_file
-
-        if not os.path.exists(src_file):
-            return []
-
-        with open(src_file, "r", encoding="utf-8") as f:
-            json_data = json.load(f)
-            dataset = json_data.get("dataset", [])
-            for item in dataset:
-                title = clean_str(item.get("title"))
-                description = clean_str(item.get("description"))
-                keywords = item.get("keyword")
-
-                doc = {
-                    "id": hash_string(title.lower().strip()),
-                    "title": title,
-                    "description": description,
-                    "keywords": keywords,
-                    "src": "rda",
-                }
-
-                documents.append(doc)
-
-        return documents
+        output_file = f"{self.output_dir}/usfs_catalog.json"
+        with open(output_file, "w", encoding="utf-8") as f:
+            json.dump(documents, f, indent=4)
