@@ -1,8 +1,7 @@
 """PostgreSQL database operations with pgvector support."""
 
-from sqlalchemy import create_engine, Column, String, Float, DateTime, Text
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import Session
+from sqlalchemy import create_engine, Column, String, DateTime, Text, text
+from sqlalchemy.orm import Session, declarative_base
 from pgvector.sqlalchemy import Vector
 from datetime import datetime
 from typing import Optional, List
@@ -62,9 +61,9 @@ def init_db():
     """Create tables and enable pgvector extension."""
     engine = create_engine(get_db_url())
 
-    # Enable pgvector extension
+    # Enable pgvector extension (must exist before create_all)
     with engine.connect() as conn:
-        conn.execute("CREATE EXTENSION IF NOT EXISTS vector;")
+        conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector;"))
         conn.commit()
 
     # Create tables
@@ -72,9 +71,9 @@ def init_db():
 
     # Create vector similarity index for fast search
     with engine.connect() as conn:
-        conn.execute(
+        conn.execute(text(
             "CREATE INDEX IF NOT EXISTS ix_embedding_cosine "
-            "ON usfs_documents USING ivfflat (embedding vector_cosine_ops) "
+            "ON documents USING ivfflat (embedding vector_cosine_ops) "
             "WITH (lists = 100);"
-        )
+        ))
         conn.commit()
