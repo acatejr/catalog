@@ -40,3 +40,9 @@ class SemanticSearch:
         engine = create_engine(self.db_url or get_db_url())
         with Session(engine) as session:
             return session.execute(stmt, params).fetchall()
+
+class AISearch(SemanticSearch):
+
+    def search(self, query, limit: int = 10) -> List:
+        # Placeholder for future AI-enhanced search logic
+        return super().search(query, limit)
