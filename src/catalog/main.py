@@ -31,6 +31,8 @@ from .schema import USFSDocument
 from .embeddings import EmbeddingsService
 from .db import init_db
 from .search import SemanticSearch
+from .bots import VerdeBot
+from .prompts.simple import SIMPLE
 
 console = Console()
 
@@ -266,7 +268,77 @@ def semantic_search(query: str, limit: int, output_format: str) -> None:
             if keywords:
                 console.print(f"   [dim]Keywords: {keywords}[/dim]")
 
+@cli.command(name="bot-search")
+@click.argument("query")
+@click.option(
+    "--limit",
+    default=10,
+    show_default=True,
+    help="Maximum number of results to return.",
+)
+@click.option(
+    "--bot",
+    type=click.Choice(["verde", "claude"], case_sensitive=False),
+    default="verde",
+    show_default=True,
+    help="Intended bot user: agent (default) or assistant.",
+)
+@click.option(
+    "--prompt",
+    type=click.Choice(["simple", "discovery", "relationships", "lineage"], case_sensitive=False),
+    default="simple",
+    show_default=True,
+    help="Which prompt template to use for the bot's response.",
+)
+def bot_search(query: str, bot:str, limit: int, prompt: str="simple") -> list[USFSDocument]:
+    """Search the catalog using natural language and return structured results.
 
+    This function is intended for use by an LLM agent that needs to query the
+    catalog and receive structured data (e.g. a list of USFSDocument instances)
+    rather than formatted text output.
+
+    Args:
+        query: The natural language search string.
+        limit: Maximum number of results to return.
+
+    """
+
+    search = SemanticSearch("BAAI/bge-small-en-v1.5")
+
+    try:
+        results = search.search(query, limit=limit)
+
+        if results and len(results) > 0:
+            context = "\n\n---\n\n".join(
+                f"Title: {getattr(row, 'title', "")},\nAbstract: {getattr(row, 'abstract', '')},\nDescription: {getattr(row, 'description', '')},\nSimilarity: {getattr(row, 'similarity', '')}"
+                for row in results
+            )
+
+            if prompt == "simple":
+                ai_prompt = SIMPLE.strip()
+            elif prompt == "discovery":
+                from .prompts.discovery import DISCOVERY_BASE
+                ai_prompt = DISCOVERY_BASE.strip()
+            elif prompt == "relationships":
+                from .prompts.relationships import RELATIONSHIPS_BASE
+                ai_prompt = RELATIONSHIPS_BASE.strip()
+            elif prompt == "lineage":
+                from .prompts.lineage import LINEAGE_BASE
+                ai_prompt = LINEAGE_BASE.strip()
+
+            message = f"{ai_prompt}\n\nContext:\n{context}\n\nQuery: {query}"
+            verde = VerdeBot()
+            response = verde.chat(message)
+            console.print(f"\n\n[dim]Prompt: {prompt}[/dim]\n\n")
+            console.print(f"[cyan]Bot response:[/cyan]\n{response.content}")
+
+    except ValueError as e:
+        console.print(f"[red]Error: {e}[/red]")
+        return
+
+    if not results:
+        console.print("[yellow]No results found.[/yellow]")
+        return
 
 if __name__ == "__main__":
     cli()
