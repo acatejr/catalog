@@ -7,32 +7,9 @@ plugins:
     - search
     - mermaid2
     - asciinema-player
-    - blog:
-        blog_toc: true
-theme:
-  name: material
-  palette:
-    primary: custom
-
-nav:
-  - Home: index.md
-  - Vision: vision.md
-  - Architecture: architecture.md
-  - Methods: methods.md
-  - Search Methods:
-      - Semantic: search_methods/semantic.md
-      - Hybrid Search: search_methods/hybrid_search.md
-      - Agent: search_methods/agent.md
-  - Demos: demos.md
-  - Blog: blog/index.md
-  - Disclaimer: disclaimer.md
-  - Enhancements: enhancements.md
 
 extra_css:
   - stylesheets/extra.css
-
-extra_javascript:
-  - javascripts/extra.js
 
 repo_url: https://github.com/acatejr/catalog
 repo_name: acatejr/catalog
