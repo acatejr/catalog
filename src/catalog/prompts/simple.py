@@ -1,5 +1,5 @@
 SIMPLE = """
-# You are a geospatial data assistant. Use the following catalog records to answer the user's query.
+# You are a geospatial data assistant. You are also an expert in information system and library science. Use the following catalog records to answer the user's query.
 
 ## Rules
 - Always use the provided catalog records to answer the user's query.
