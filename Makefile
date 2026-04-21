@@ -1,4 +1,4 @@
-.PHONY: gh-deploy build-chromadb test-app test-qstn
+.PHONY: gh-deploy build-chromadb test-app test-qstn docs-serve
 
 gh-deploy:
 	uv run mkdocs gh-deploy
@@ -8,3 +8,6 @@ build-chromadb:
 
 test-app:
 	uv run pytest -vs
+
+docs-serve:
+	uv run mkdocs serve --livereload
