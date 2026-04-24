@@ -13,3 +13,11 @@ extra_css:
 
 repo_url: https://github.com/acatejr/catalog
 repo_name: acatejr/catalog
+
+nav:
+  - Home: index.md
+  - Vision: vision.md
+  - Architecture: architecture.md
+  - Prompts: prompts.md
+  - Methods: methods.md
+  - Disclaimer: disclaimer.md
