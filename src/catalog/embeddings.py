@@ -7,6 +7,7 @@ from .schema import USFSDocument
 from .db import DocumentRecord, get_db_url
 from sqlalchemy import create_engine
 
+
 class EmbeddingsService:
     """Generates and stores embeddings in PostgreSQL."""
 
@@ -21,10 +22,7 @@ class EmbeddingsService:
         return list(self.model.embed([text]))[0].tolist()
 
     def embed_batch(
-        self,
-        docs: List[USFSDocument],
-        batch_size: int = 32,
-        show_progress: bool = True
+        self, docs: List[USFSDocument], batch_size: int = 32, show_progress: bool = True
     ) -> List[List[float]]:
         """Generate embeddings for multiple documents efficiently."""
         texts = [doc.to_embedding_text() for doc in docs]
@@ -34,7 +32,7 @@ class EmbeddingsService:
         self,
         docs: List[USFSDocument],
         embeddings: List[List[float]],
-        db_url: str = None
+        db_url: str = None,
     ):
         """Store documents with embeddings in PostgreSQL."""
         if db_url is None:
@@ -48,4 +46,3 @@ class EmbeddingsService:
                 session.merge(record)  # Upsert
             session.commit()
             print(f"✓ Stored {len(docs)} documents with embeddings in PostgreSQL")
-

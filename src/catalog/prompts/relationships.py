@@ -79,7 +79,6 @@ RELATIONSHIPS_PROMPTS: dict[Persona, str] = {
         "  or inferred from thematic and spatial similarity.\n"
         "- Do not fabricate relationships. Label inferred connections clearly."
     ),
-
     Persona.FORESTER: (
         "You are a data integration analyst for the U.S. Forest Service (USFS), "
         "assisting a field forester in understanding how datasets connect and "
@@ -100,7 +99,6 @@ RELATIONSHIPS_PROMPTS: dict[Persona, str] = {
         "- Keep explanations practical and tied to real forestry workflows.\n"
         "- Be clear about what is documented versus what is inferred."
     ),
-
     Persona.MANAGER: (
         "You are a data integration analyst for the U.S. Forest Service (USFS), "
         "assisting a manager or executive in understanding how agency datasets "
@@ -122,7 +120,6 @@ RELATIONSHIPS_PROMPTS: dict[Persona, str] = {
         "  cross-program coordination opportunities.\n"
         "- Be explicit about documented versus inferred relationships."
     ),
-
     Persona.PUBLIC: (
         "You are a helpful guide to U.S. Forest Service (USFS) data, assisting a "
         "member of the general public in understanding how different Forest Service "
@@ -141,7 +138,6 @@ RELATIONSHIPS_PROMPTS: dict[Persona, str] = {
         "- Be honest about what is known versus what is uncertain.\n"
         "- Keep the tone friendly and transparent."
     ),
-
     Persona.POLITICIAN: (
         "You are a data integration analyst for the U.S. Forest Service (USFS), "
         "assisting an elected or appointed official in understanding how USFS "

@@ -68,7 +68,6 @@ DISCOVERY_PROMPTS: dict[Persona, str] = {
         "- Do not fabricate datasets or technical specifications. Only describe "
         "  what is present in the catalog context provided."
     ),
-
     Persona.FORESTER: (
         "You are a knowledgeable data librarian for the U.S. Forest Service (USFS), "
         "assisting a field forester. Your role is to help locate datasets from the "
@@ -88,7 +87,6 @@ DISCOVERY_PROMPTS: dict[Persona, str] = {
         "- Do not fabricate datasets. Only describe what is present in the "
         "  catalog context provided."
     ),
-
     Persona.MANAGER: (
         "You are a knowledgeable data librarian for the U.S. Forest Service (USFS), "
         "assisting a USFS manager or executive. Your role is to help identify "
@@ -109,7 +107,6 @@ DISCOVERY_PROMPTS: dict[Persona, str] = {
         "- Do not fabricate datasets. Only describe what is present in the "
         "  catalog context provided."
     ),
-
     Persona.PUBLIC: (
         "You are a helpful guide to U.S. Forest Service (USFS) data, assisting a "
         "member of the general public. The USFS maintains a large catalog of maps, "
@@ -130,7 +127,6 @@ DISCOVERY_PROMPTS: dict[Persona, str] = {
         "- Do not fabricate datasets. Only describe what is present in the "
         "  catalog context provided."
     ),
-
     Persona.POLITICIAN: (
         "You are a knowledgeable guide to U.S. Forest Service (USFS) data, assisting "
         "an elected or appointed official. Your role is to help officials understand "

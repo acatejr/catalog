@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 from catalog.search import SemanticSearch
 
 
@@ -45,7 +45,11 @@ class TestSemanticSearchEmbedding:
         svc.embed_text.return_value = FAKE_EMBEDDING
         session = MagicMock()
         session.execute.return_value.fetchall.return_value = []
-        return SemanticSearch("test-model", embeddings_service=svc, db_session=session), svc, session
+        return (
+            SemanticSearch("test-model", embeddings_service=svc, db_session=session),
+            svc,
+            session,
+        )
 
     def test_calls_embed_text_with_query(self):
         search, svc, _ = self._make_search()
@@ -77,7 +81,9 @@ class TestSemanticSearchEmbedding:
         session = MagicMock()
         fake_row = MagicMock()
         session.execute.return_value.fetchall.return_value = [fake_row]
-        search = SemanticSearch("test-model", embeddings_service=svc, db_session=session)
+        search = SemanticSearch(
+            "test-model", embeddings_service=svc, db_session=session
+        )
         result = search.search("rivers in Colorado")
         assert result == [fake_row]
 

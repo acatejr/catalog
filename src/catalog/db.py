@@ -1,10 +1,10 @@
 """PostgreSQL database operations with pgvector support."""
 
 from sqlalchemy import create_engine, Column, String, DateTime, Text, text
-from sqlalchemy.orm import Session, declarative_base
+from sqlalchemy.orm import declarative_base
 from pgvector.sqlalchemy import Vector
 from datetime import datetime
-from typing import Optional, List
+from typing import List
 import os
 import json
 from dotenv import load_dotenv
@@ -13,8 +13,10 @@ load_dotenv()  # Load environment variables from .env file
 
 Base = declarative_base()
 
+
 class DocumentRecord(Base):
     """PostgreSQL table mapping for USFSDocument with embeddings."""
+
     __tablename__ = "documents"
 
     id = Column(String(64), primary_key=True)
@@ -24,7 +26,7 @@ class DocumentRecord(Base):
     purpose = Column(Text)
     keywords = Column(Text)  # JSON stringified list
     src = Column(String(50))
-    lineage = Column(Text)   # JSON stringified
+    lineage = Column(Text)  # JSON stringified
     embedding = Column(Vector(384))  # all-MiniLM-L6-v2 is 384-dim
     created_at = Column(DateTime, default=datetime.utcnow, index=True)
 
@@ -44,6 +46,7 @@ class DocumentRecord(Base):
             embedding=embedding,
         )
 
+
 def get_db_url() -> str:
     """Build PostgreSQL connection string from environment."""
 
@@ -56,6 +59,7 @@ def get_db_url() -> str:
     if password:
         return f"postgresql://{user}:{password}@{host}:{port}/{database}"
     return f"postgresql://{user}@{host}:{port}/{database}"
+
 
 def init_db():
     """Create tables and enable pgvector extension."""
@@ -71,9 +75,11 @@ def init_db():
 
     # Create vector similarity index for fast search
     with engine.connect() as conn:
-        conn.execute(text(
-            "CREATE INDEX IF NOT EXISTS ix_embedding_cosine "
-            "ON documents USING ivfflat (embedding vector_cosine_ops) "
-            "WITH (lists = 100);"
-        ))
+        conn.execute(
+            text(
+                "CREATE INDEX IF NOT EXISTS ix_embedding_cosine "
+                "ON documents USING ivfflat (embedding vector_cosine_ops) "
+                "WITH (lists = 100);"
+            )
+        )
         conn.commit()

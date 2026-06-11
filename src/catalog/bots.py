@@ -1,5 +1,6 @@
 from dotenv import load_dotenv
 import os
+
 # from langchain_community.chat_models import ChatLiteLLM
 from langchain_litellm import ChatLiteLLM
 
@@ -9,6 +10,7 @@ VERDE_API_KEY = os.getenv("VERDE_API_KEY")
 VERDE_URL = os.getenv("VERDE_URL")
 VERDE_MODEL = os.getenv("VERDE_MODEL")
 
+
 class VerdeBot:
     def __init__(self):
         pass
@@ -17,7 +19,8 @@ class VerdeBot:
         llm = ChatLiteLLM(
             model=f"litellm_proxy/{VERDE_MODEL}",
             api_key=VERDE_API_KEY,
-            api_base=VERDE_URL)
+            api_base=VERDE_URL,
+        )
         response = llm.invoke(message)
         return response
 

@@ -6,7 +6,9 @@ from .db import get_db_url
 
 
 class SemanticSearch:
-    def __init__(self, model: str, embeddings_service=None, db_session=None, db_url: str = None):
+    def __init__(
+        self, model: str, embeddings_service=None, db_session=None, db_url: str = None
+    ):
         self.model = model
         self._embeddings_service = embeddings_service
         self.db_session = db_session
@@ -41,8 +43,8 @@ class SemanticSearch:
         with Session(engine) as session:
             return session.execute(stmt, params).fetchall()
 
-class AISearch(SemanticSearch):
 
+class AISearch(SemanticSearch):
     def search(self, query, limit: int = 10) -> List:
         # Placeholder for future AI-enhanced search logic
         return super().search(query, limit)

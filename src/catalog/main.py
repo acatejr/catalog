@@ -166,10 +166,10 @@ def _load_data(target: str):
         embeddings = embeddings_service.embed_batch(catalog)
 
         if target.lower() in ("chromadb"):
-            console.print(f"[cyan]Loading data into ChromaDB...[/cyan]")
+            console.print("[cyan]Loading data into ChromaDB...[/cyan]")
             console.print("[green]✓ Data loaded into ChromaDB[/green]")
         elif target.lower() in ("pg"):
-            console.print(f"[cyan]Loading data into PostgreSQL...[/cyan]")
+            console.print("[cyan]Loading data into PostgreSQL...[/cyan]")
             init_db()
             embeddings_service.store_in_postgres(catalog, embeddings)
             console.print("[green]✓ Data loaded into PostgreSQL[/green]")
@@ -214,7 +214,8 @@ def load_data(target: str) -> None:
     help="Maximum number of results to return.",
 )
 @click.option(
-    "--format", "output_format",
+    "--format",
+    "output_format",
     type=click.Choice(["text", "markdown"], case_sensitive=False),
     default="text",
     show_default=True,
@@ -253,20 +254,33 @@ def semantic_search(query: str, limit: int, output_format: str) -> None:
         click.echo("| Title | Keywords | Similarity |")
         click.echo("|-------|----------|------------|")
         for row in results:
-            title = getattr(row, "title", None) or (row[1] if len(row) > 1 else str(row))
+            title = getattr(row, "title", None) or (
+                row[1] if len(row) > 1 else str(row)
+            )
             keywords = _parse_keywords(getattr(row, "keywords", None))
-            similarity = getattr(row, "similarity", None) or (row[-1] if len(row) > 1 else "")
+            similarity = getattr(row, "similarity", None) or (
+                row[-1] if len(row) > 1 else ""
+            )
             score = f"{similarity:.4f}" if isinstance(similarity, float) else ""
             click.echo(f"| {title} | {keywords} | {score} |")
     else:
         for i, row in enumerate(results, start=1):
-            title = getattr(row, "title", None) or (row[1] if len(row) > 1 else str(row))
+            title = getattr(row, "title", None) or (
+                row[1] if len(row) > 1 else str(row)
+            )
             keywords = _parse_keywords(getattr(row, "keywords", None))
-            similarity = getattr(row, "similarity", None) or (row[-1] if len(row) > 1 else "")
-            score = f"  [dim]{similarity:.4f}[/dim]" if isinstance(similarity, float) else ""
+            similarity = getattr(row, "similarity", None) or (
+                row[-1] if len(row) > 1 else ""
+            )
+            score = (
+                f"  [dim]{similarity:.4f}[/dim]"
+                if isinstance(similarity, float)
+                else ""
+            )
             console.print(f"[bold]{i}.[/bold] {title}{score}")
             if keywords:
                 console.print(f"   [dim]Keywords: {keywords}[/dim]")
+
 
 @cli.command(name="bot-search")
 @click.argument("query")
@@ -285,12 +299,16 @@ def semantic_search(query: str, limit: int, output_format: str) -> None:
 )
 @click.option(
     "--prompt",
-    type=click.Choice(["simple", "discovery", "relationships", "lineage"], case_sensitive=False),
+    type=click.Choice(
+        ["simple", "discovery", "relationships", "lineage"], case_sensitive=False
+    ),
     default="simple",
     show_default=True,
     help="Which prompt template to use for the bot's response.",
 )
-def bot_search(query: str, bot:str, limit: int, prompt: str="simple") -> list[USFSDocument]:
+def bot_search(
+    query: str, bot: str, limit: int, prompt: str = "simple"
+) -> list[USFSDocument]:
     """Search the catalog using natural language and return structured results.
 
     This function is intended for use by an LLM agent that needs to query the
@@ -310,7 +328,7 @@ def bot_search(query: str, bot:str, limit: int, prompt: str="simple") -> list[US
 
         if results and len(results) > 0:
             context = "\n\n---\n\n".join(
-                f"Title: {getattr(row, 'title', "")},\nAbstract: {getattr(row, 'abstract', '')},\nDescription: {getattr(row, 'description', '')},\nSimilarity: {getattr(row, 'similarity', '')}"
+                f"Title: {getattr(row, 'title', '')},\nAbstract: {getattr(row, 'abstract', '')},\nDescription: {getattr(row, 'description', '')},\nSimilarity: {getattr(row, 'similarity', '')}"
                 for row in results
             )
 
@@ -318,12 +336,15 @@ def bot_search(query: str, bot:str, limit: int, prompt: str="simple") -> list[US
                 ai_prompt = SIMPLE.strip()
             elif prompt == "discovery":
                 from .prompts.discovery import DISCOVERY_BASE
+
                 ai_prompt = DISCOVERY_BASE.strip()
             elif prompt == "relationships":
                 from .prompts.relationships import RELATIONSHIPS_BASE
+
                 ai_prompt = RELATIONSHIPS_BASE.strip()
             elif prompt == "lineage":
                 from .prompts.lineage import LINEAGE_BASE
+
                 ai_prompt = LINEAGE_BASE.strip()
 
             message = f"{ai_prompt}\n\nContext:\n{context}\n\nQuery: {query}"
@@ -339,6 +360,7 @@ def bot_search(query: str, bot:str, limit: int, prompt: str="simple") -> list[US
     if not results:
         console.print("[yellow]No results found.[/yellow]")
         return
+
 
 if __name__ == "__main__":
     cli()

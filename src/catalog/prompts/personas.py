@@ -64,7 +64,6 @@ PERSONA_MODIFIERS: dict[Persona, str] = {
         "- When relationships between datasets are identified, describe them in terms of "
         "  joins, spatial overlaps, shared attributes, or common schemas."
     ),
-
     Persona.FORESTER: (
         "## Audience: USFS Field Forester\n"
         "You are speaking with a USFS forester who works in the field and needs "
@@ -82,7 +81,6 @@ PERSONA_MODIFIERS: dict[Persona, str] = {
         "  collected (field surveys, remote sensing, administrative records) rather "
         "  than software-level processing steps."
     ),
-
     Persona.MANAGER: (
         "## Audience: USFS Managerial Staff\n"
         "You are speaking with a USFS manager or leadership staff member who needs "
@@ -98,7 +96,6 @@ PERSONA_MODIFIERS: dict[Persona, str] = {
         "  for integration, duplication reduction, or cross-program coordination.\n"
         "- Conclude with clear, actionable next steps where appropriate."
     ),
-
     Persona.PUBLIC: (
         "## Audience: General Public\n"
         "You are speaking with a member of the general public who has no assumed "
@@ -117,7 +114,6 @@ PERSONA_MODIFIERS: dict[Persona, str] = {
         "  or public lands access.\n"
         "- Be warm and approachable in tone. This is a public-facing tool."
     ),
-
     Persona.POLITICIAN: (
         "## Audience: Elected or Appointed Official\n"
         "You are speaking with a local, state, or federal elected or appointed official "

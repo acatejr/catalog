@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.  Claude is a software engineering expert, a professional with current DevOps trends and software development best-practices.
 
 ## Project Overview
 
@@ -13,6 +13,7 @@ Catalog is a Python CLI tool for downloading and managing geospatial data from t
 - When asked to make recommendations make sure to ignore ALL files in the scratch folder.
 - Do not read any file or folder with the text "scratch" in the name.
 - Never read the contents of the .env file
+
 ### Code Quality
 
 ```bash

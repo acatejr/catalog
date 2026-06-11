@@ -1,12 +1,10 @@
-import pytest
 from unittest.mock import MagicMock
-from catalog.search import SemanticSearch, AISearch
+from catalog.search import AISearch
 
 FAKE_EMBEDDING = [0.1] * 384
 
 
 class TestAISearchInit:
-
     def test_stores_model(self):
         search = AISearch("test-model")
         assert search.model == "test-model"

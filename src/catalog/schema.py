@@ -71,8 +71,7 @@ class USFSDocument(BaseModel):
         description="Description of the data.",
     )
     embeddings: Optional[list[float]] | None = Field(
-        default=None,
-        description="Dense vector embedding of the document's content."
+        default=None, description="Dense vector embedding of the document's content."
     )
 
     def to_markdown(self, distance: float | None = None) -> str:
@@ -118,8 +117,10 @@ class USFSDocument(BaseModel):
         lineage_str = ""
         if self.lineage:
             lineage_str = "; ".join(
-                [f"{item.get('description', '')} ({item.get('date', '')})"
-                 for item in self.lineage]
+                [
+                    f"{item.get('description', '')} ({item.get('date', '')})"
+                    for item in self.lineage
+                ]
             )
 
         return (
