@@ -362,5 +362,21 @@ def bot_search(
         return
 
 
+@cli.command(name="serve")
+@click.option("--host", default="0.0.0.0", show_default=True, help="Bind host.")
+@click.option("--port", default=8000, show_default=True, help="Bind port.")
+@click.option("--reload", is_flag=True, default=False, help="Enable auto-reload (development only).")
+def serve(host: str, port: int, reload: bool) -> None:
+    """Start the FastAPI web server.
+
+    Launches the catalog REST API using Uvicorn.  Use --reload during
+    development to automatically restart the server on code changes.
+    """
+    import uvicorn
+
+    console.print(f"[bold green]Starting API server on {host}:{port}[/bold green]")
+    uvicorn.run("catalog.api:app", host=host, port=port, reload=reload)
+
+
 if __name__ == "__main__":
     cli()
